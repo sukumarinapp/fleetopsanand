@@ -1,0 +1,72 @@
+command format
+From tracker to server
+$$<L><ID (7 bytes)><command (2 bytes)><data><checksum (2 bytes)>\r\n
+Note：Do not input ‘<’ and ‘>’ when writing a command.
+Item specification
+@@: 2 bytes. It means the header of packet from server to tracking unit. It is in ASCII
+code (Hex code: 0x40)
+$$ :2 bytes. It is the header of packet from tracking unit to server, It is in ASCII code (Hex
+code: 0x24)
+<L>: 2 bytes. It means the length of the whole packet including the header and ending
+character and it is in hex code
+<ID>: 7 bytes, the unused byte will be stuffed by ‘f’. It is in the format of hex code.
+For example, if ID is 13612345678, then it will be shown as follows: 0x13, 0x61, 0x23,
+0x45, 0x67, 0x8f, 0xff.
+<Command>: 2 bytes. The command code is in hex code. Please refer to the command
+list below.
+<Data>: Min 0 byte, max 100 bytes.
+<Checksum>: 2 bytes. It indicates CRC-CCITT(default is 0xffff) checksum of all data (not
+including CRC itself and the ending character). It is in hex code.
+For example:
+24 24 00 11 13 61 23 45 67 8f ff 50 00 05 d8 0d 0a
+0x05d8 = CRC-CCITT (24 24 00 11 13 61 23 45 67 8f ff 50 00)
+\r\n 2 bytes. It is the ending character and in hex code (0x0d,0x0a in hex code)
+
+Current location report
+0x9955
+$$<L><ID><0x9955><data><checksum>\r\n
+<data> format：
+GPRMC | HDOP | Altitude | State | AD1,AD2 | Odometer
+1）GPRMC includes:
+hhmmss.dd,S,xxmm.dddd,<N|S>,yyymm.dddd,<E|W>,s.s,h.h,ddmmy
+y
+I.E.:134829.486,A,1126.6639,S,11133.3299,W,58.31,309.62,110200
+Item specification:
+hhmmss.dd：UTC time,format: hhmmss.sss;
+S：positioning status,A=valid positioning,V=invalid positioning;
+xxmm.dddd：the Latitude. Format: ddmm.mmmm (“0”before Latitude
+data will be transmitted);
+<N|S>：Latitude N or S
+yyymm.dddd：Longitude dddmm.mmmm format (“0” before Longitude
+format will be transmitted)
+<E | W>: Longitude hemisphere E (longitude) or W (W);
+s.s：ground speed (000.0 to 999.9 knot, leading zeros will be transmitted);
+h.h: course over the ground (000.0 ~ 359.9 degrees, Reference datum:
+North Pole ddmmyy：UTC time,format: ddmmyy
+2）|：separator, ASCII (= 0x7c); 3）HDOP：
+horizontal accuracy. ASC II, 0.5-99.9
+4）Altitude：Altitude between antenna and sea level, -9999.9 to 9999.9 m;
+5）State：State of INPUT and OUTPUT：
+Bit0= State of OUTPUT1,Bit0=0, OUTPUT 1 inactive,Bit0=1, OUTPUT 1
+active
+Bit1= State of OUTPUT2,Bit1=0, OUTPUT 2 inactive,Bit1=1, OUTPUT 2
+active;
+Bit2= State of OUTPUT3,Bit2=0, OUTPUT 3 inactive,Bit2=1, OUTPUT 3
+active;
+Bit3= State of OUTPUT4,Bit3=0, OUTPUT 4 inactive,Bit3=1, OUTPUT 4
+active;
+Bit4= State of OUTPUT5,Bit4=0, OUTPUT5 inactive,Bit5=1, OUTPUT 5
+active
+Bit5~7 Reserve ( Not using now)
+Bit8: state of INPUT 1,Bit8=0, INPUT 1 inactive,Bit8=1, INPUT 1 active;
+Bit9: state of INPUT 2,Bit9=0, INPUT 2 inactive,Bit9=1, INPUT 2 active;
+Bit10: state of INPUT3,Bit10=0, INPUT 3 inactive,Bit10=1, INPUT 1 active;
+Bit11: state of INPUT 4,Bit11=0, INPUT 4 inactive,Bit11=1, INPUT 1 active;
+Bit12: state of INPUT 5,Bit12=0, INPUT 5 inactive,Bit8=1, INPUT 1 active;
+Bit13~15Reserver( Not use now, default state=0)
+6 ） AD1,AD2 ： analog digital input (10 digits) hex code,
+0x0000~0x03ff,Separate by comma “,”
+7）Odometer：9-byte ASCII code.
+When tracking unit get command of location inquiry or already set
+continuous tracking, it will send this content to the server accordingly
+
