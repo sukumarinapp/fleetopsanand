@@ -1,10 +1,3 @@
-root@157.245.77.132
-Fleet123$z
-
-mysql -u root -p
-!Fle3tOpsGH202o
-fleetops
-
 TRACKER DETAILS BELOW
 https://documenter.getpostman.com/view/8139575/TVYJ6HHZ#197f1522-bc4d-4365-9bff-27a79d5c89f5
 IMEI: 868223043595882
