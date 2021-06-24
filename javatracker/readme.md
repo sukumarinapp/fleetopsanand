@@ -29,11 +29,14 @@ extension=php_sockets.dl
 SERVER IP: 120.138.15.236 (sukumar computer)
 
 open cmd
-telnet 139.59.56.26 1975
+telnet 143.244.149.76 1975
 type something
 type "quit" to exit
 
 java -jar EchoServer.jar > track.txt &
+
+telnet 143.244.149.76 1975
+
 java -jar EchoServer.jar 2>> error.txt 1>> track.txt
 
 jar cmvf META-INF/MANIFEST.MF EchoServer.jar  EchoThread.class EchoServer.class
