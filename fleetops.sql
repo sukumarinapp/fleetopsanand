@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2021 at 08:00 AM
--- Server version: 10.4.11-MariaDB
+-- Generation Time: Jun 25, 2021 at 03:34 AM
+-- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -238,6 +238,58 @@ INSERT INTO `tbl137` (`id`, `SDT`, `CAN`, `VNO`, `CHR`, `CML`, `RCN`, `RHN`, `SP
 (6, '2021-06-08', 'C1001', 'TN75AC5778', '2.00', '100.00', '90477363245', 0, '0.00', '8000.00', 0, 'Help'),
 (7, '2021-06-08', 'C1001', 'TN75AC5778', '2.00', '100.00', '90477363245', 0, '0.00', '8000.00', 0, 'Help'),
 (8, '2021-06-08', 'C1001', 'TN75AC5778', '2.00', '100.00', '90477363245', 12, '5000.00', '5000.00', 10, 'Driver');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl138`
+--
+
+CREATE TABLE `tbl138` (
+  `id` int(11) NOT NULL,
+  `RDT` date DEFAULT NULL,
+  `CAN` varchar(20) DEFAULT NULL,
+  `VNO` varchar(20) DEFAULT NULL,
+  `RCN` varchar(20) DEFAULT NULL,
+  `RMT` decimal(10,2) DEFAULT 0.00,
+  `ROI` varchar(20) DEFAULT NULL,
+  `RTN` varchar(255) DEFAULT NULL,
+  `RST` tinyint(1) DEFAULT 0,
+  `SSR` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl139`
+--
+
+CREATE TABLE `tbl139` (
+  `id` int(11) NOT NULL,
+  `ODT` date DEFAULT NULL,
+  `CAN` varchar(20) DEFAULT NULL,
+  `VNO` varchar(20) DEFAULT NULL,
+  `FTP` decimal(10,2) DEFAULT 0.00,
+  `CWI` decimal(10,2) DEFAULT 0.00,
+  `FDT` date DEFAULT NULL,
+  `FAN` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl141`
+--
+
+CREATE TABLE `tbl141` (
+  `id` int(11) NOT NULL,
+  `SDT` date DEFAULT NULL,
+  `CAN` varchar(20) DEFAULT NULL,
+  `VNO` varchar(20) DEFAULT NULL,
+  `RCN` varchar(20) DEFAULT NULL,
+  `SSA` decimal(10,2) DEFAULT 0.00,
+  `SSR` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -515,6 +567,24 @@ ALTER TABLE `tbl137`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl138`
+--
+ALTER TABLE `tbl138`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl139`
+--
+ALTER TABLE `tbl139`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl141`
+--
+ALTER TABLE `tbl141`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl361`
 --
 ALTER TABLE `tbl361`
@@ -602,6 +672,24 @@ ALTER TABLE `tbl136`
 --
 ALTER TABLE `tbl137`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl138`
+--
+ALTER TABLE `tbl138`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl139`
+--
+ALTER TABLE `tbl139`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl141`
+--
+ALTER TABLE `tbl141`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl361`
