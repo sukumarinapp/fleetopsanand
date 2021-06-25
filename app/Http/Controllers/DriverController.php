@@ -178,6 +178,11 @@ class DriverController extends Controller
         return view('driver.driverpaysuccess');
     }
 
+    public function billbox()
+    {
+        return view('driver.billbox');
+    }
+
     public function driverpayerror()
     {
         return view('driver.driverpayerror');
