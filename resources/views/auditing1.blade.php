@@ -64,19 +64,19 @@
               <div class="form-group row">
                <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>Sales Earnings:</label>
                <div class="col-sm-8">
-                <input required="required" type="text" class="form-control" name="name" id="name" maxlength="50" placeholder="Userame">
+                <input required="required" type="text" class="form-control" name="name" id="name" maxlength="50" placeholder="Sales Earnings">
               </div>
             </div>
             <div class="form-group row">
                <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>Cash Collected:</label>
                <div class="col-sm-8">
-                <input required="required" type="text" class="form-control" name="name" id="name" maxlength="50" placeholder="Userame">
+                <input required="required" type="text" class="form-control" name="name" id="name" maxlength="50" placeholder="Cash Collected">
               </div>
             </div>
            <div class="form-group row">
-               <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>Cash Collected::</label>
+               <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>No of Trips:</label>
                <div class="col-sm-8">
-                <input required="required" type="text" class="form-control" name="name" id="name" maxlength="50" placeholder="Userame">
+                <input required="required" type="text" class="form-control" name="name" id="name" maxlength="50" placeholder="No of Trips">
               </div>
             </div>
             <div class="form-group row">
