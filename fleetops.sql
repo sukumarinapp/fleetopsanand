@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2021 at 03:34 AM
+-- Generation Time: Jun 26, 2021 at 02:10 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -41,6 +41,31 @@ INSERT INTO `can` (`id`) VALUES
 (1003),
 (1004),
 (1005);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `current_location`
+--
+
+CREATE TABLE `current_location` (
+  `id` int(11) NOT NULL,
+  `terminal_id` varchar(20) DEFAULT NULL,
+  `capture_date` date DEFAULT NULL,
+  `capture_time` decimal(10,3) DEFAULT NULL,
+  `latitude` varchar(20) DEFAULT NULL,
+  `longitude` varchar(20) DEFAULT NULL,
+  `ground_speed` decimal(10,2) DEFAULT NULL,
+  `odometer` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `current_location`
+--
+
+INSERT INTO `current_location` (`id`, `terminal_id`, `capture_date`, `capture_time`, `latitude`, `longitude`, `ground_speed`, `odometer`) VALUES
+(1, '12345', '2021-06-26', '134829.486', '1126.6639S', '11133.3299W', '50.22', 50000),
+(2, '12346', '2021-06-26', '134829.486', '1126.6639S', '11133.3299W', '50.22', 50000);
 
 -- --------------------------------------------------------
 
@@ -237,7 +262,8 @@ INSERT INTO `tbl137` (`id`, `SDT`, `CAN`, `VNO`, `CHR`, `CML`, `RCN`, `RHN`, `SP
 (5, '2021-06-07', 'C1001', 'TN75AC5778', '2.00', '100.00', '3432432', 12, '5000.00', '8000.00', 11, 'Sales Declaration'),
 (6, '2021-06-08', 'C1001', 'TN75AC5778', '2.00', '100.00', '90477363245', 0, '0.00', '8000.00', 0, 'Help'),
 (7, '2021-06-08', 'C1001', 'TN75AC5778', '2.00', '100.00', '90477363245', 0, '0.00', '8000.00', 0, 'Help'),
-(8, '2021-06-08', 'C1001', 'TN75AC5778', '2.00', '100.00', '90477363245', 12, '5000.00', '5000.00', 10, 'Driver');
+(8, '2021-06-08', 'C1001', 'TN75AC5778', '2.00', '100.00', '90477363245', 12, '5000.00', '5000.00', 10, 'Driver'),
+(9, '2021-06-24', 'C1001', 'TN75AC5778', '2.00', '100.00', '3432', 12, '100.00', '100.00', 20, 'Driver');
 
 -- --------------------------------------------------------
 
@@ -370,7 +396,9 @@ INSERT INTO `tracker` (`id`, `veh_date`, `VNO`, `CML`, `CHR`) VALUES
 (4, '2021-06-07', 'KAMP0946', '100.00', '2.00'),
 (5, '2021-06-08', 'TN75AC5778', '100.00', '2.00'),
 (6, '2021-06-09', 'TN75AC5778', '100.00', '2.00'),
-(7, '2021-06-10', 'TN75AC5778', '100.00', '2.00');
+(7, '2021-06-10', 'TN75AC5778', '100.00', '2.00'),
+(8, '2021-06-25', 'TN75AC5778', '100.00', '2.00'),
+(9, '2021-06-24', 'TN75AC5778', '100.00', '2.00');
 
 -- --------------------------------------------------------
 
@@ -505,8 +533,8 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`id`, `CAN`, `driver_id`, `VDT`, `VNO`, `VID`, `VRD`, `VMK`, `VMD`, `VCL`, `ECY`, `CON`, `VFT`, `VFC`, `TSN`, `TID`, `TSM`, `TIP`, `VZC1`, `VZC0`, `VBC1`, `VBC0`, `VTV`, `created_at`, `updated_at`) VALUES
-(1, 'C1001', 3, '2021-06-01', 'TN75AC5778', '1.pdf', '1.pdf', 'Ford', 'Mustang', 'Black', '30', '9958.0302771438', '30', '50', '131311', '3423423', '32423332', '111.11.11.11', 'S111', 's333', 's222', 's444', 1, '2021-06-01 04:53:24', '2021-06-06 20:22:49'),
-(6, 'C1001', NULL, '2021-06-06', 'KAMP0946', '6.pdf', '6.pdf', 'xxx', 'xxx', 'xxx', '50', '12981.843168913', '50', '50', '111', '111', '111', '111', '111', '111', '111', '111', 0, '2021-06-05 19:34:09', '2021-06-06 20:23:01');
+(1, 'C1001', 3, '2021-06-01', 'TN75AC5778', '1.pdf', '1.pdf', 'Ford', 'Mustang', 'Black', '30', '9958.0302771438', '30', '50', '131311', '12345', '32423332', '111.11.11.11', 'S111', 's333', 's222', 's444', 1, '2021-06-01 04:53:24', '2021-06-26 05:02:11'),
+(6, 'C1001', NULL, '2021-06-06', 'KAMP0946', '6.pdf', '6.pdf', 'xxx', 'xxx', 'xxx', '50', '12981.843168913', '50', '50', '111', '12346', '111', '111', '111', '111', '111', '111', 0, '2021-06-05 19:34:09', '2021-06-26 05:05:30');
 
 --
 -- Indexes for dumped tables
@@ -516,6 +544,12 @@ INSERT INTO `vehicle` (`id`, `CAN`, `driver_id`, `VDT`, `VNO`, `VID`, `VRD`, `VM
 -- Indexes for table `can`
 --
 ALTER TABLE `can`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `current_location`
+--
+ALTER TABLE `current_location`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -632,6 +666,12 @@ ALTER TABLE `can`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1006;
 
 --
+-- AUTO_INCREMENT for table `current_location`
+--
+ALTER TABLE `current_location`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
@@ -671,7 +711,7 @@ ALTER TABLE `tbl136`
 -- AUTO_INCREMENT for table `tbl137`
 --
 ALTER TABLE `tbl137`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl138`
@@ -707,7 +747,7 @@ ALTER TABLE `tbl494`
 -- AUTO_INCREMENT for table `tracker`
 --
 ALTER TABLE `tracker`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `uan`
