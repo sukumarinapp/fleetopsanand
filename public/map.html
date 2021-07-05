@@ -31,6 +31,11 @@
         , [ 'Fleetops Vehicle 3', 5.557205473624414, -0.21560944391342093 ]
       ];
 
+// 0545.3571 -00007.4929
+// 0541.4485 -00017.4993
+// 0536.0963 -00004.7606
+// 0534.9724 -00012.7203
+// 0536.8612 -00018.2076
 
 
       // loop through locations and add to map
@@ -48,7 +53,7 @@
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.DROP
-          , icon: "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png"
+          , icon: "car.png"
           , map: map
           , position: position
           , title: location[ 0 ]
