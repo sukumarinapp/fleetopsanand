@@ -8,8 +8,8 @@ $mysql_password = "";
 $conn = new mysqli($mysql_hostname, $mysql_user, $mysql_password, $mysql_database);
 $sql = "select terminal_id,latitude,longitude from current_location where id in (select max(id) from current_location group by terminal_id)";
 $result = mysqli_query($conn, $sql);
-?>
 
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,7 +35,13 @@ $result = mysqli_query($conn, $sql);
       // create map bounds object
       var bounds = new google.maps.LatLngBounds();
 
-      // create array containing locations
+      //create array containing locations
+      var locations = [
+        [ 'Fleetops Vehicle 1', 5.614433333333333, -0.09158833333333334 ]
+        , [ 'Fleetops Vehicle 2', 5.690778333333333, -0.2918783333333333 ]
+        , [ 'Fleetops Vehicle 3', 5.6143616666666665, -0.30347 ]
+      ];
+
       var locations = [
       <?php
         $i=0;
@@ -46,7 +52,6 @@ $result = mysqli_query($conn, $sql);
         }
       ?>
       ];
-
 
       // loop through locations and add to map
       for ( var i = 0; i < locations.length; i++ )
