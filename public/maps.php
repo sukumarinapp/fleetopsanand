@@ -35,11 +35,11 @@ $result = mysqli_query($conn, $sql);
       var bounds = new google.maps.LatLngBounds();
 
       //create array containing locations
-      var locations = [
+      /*var locations = [
         [ 'Fleetops Vehicle 1', 5.614433333333333, -0.09158833333333334 ]
         , [ 'Fleetops Vehicle 2', 5.690778333333333, -0.2918783333333333 ]
         , [ 'Fleetops Vehicle 3', 5.6143616666666665, -0.30347 ]
-      ];
+      ];*/
 
       var locations = [
       <?php
