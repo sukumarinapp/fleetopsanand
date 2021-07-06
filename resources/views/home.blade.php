@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
-<div id="map_canvas" style="height: 600px;"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="map_canvas" style="height: 600px;"></div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('third_party_scripts')
 <script>
