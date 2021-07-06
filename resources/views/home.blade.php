@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div id="map_canvas" style="height: 800px;"></div>
+<div id="map_canvas" style="height: 600px;"></div>
 @endsection
 @section('third_party_scripts')
 <script>
