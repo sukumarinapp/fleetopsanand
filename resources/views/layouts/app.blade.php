@@ -70,12 +70,8 @@
 @stack('page_scripts')
 <script>
 $(document).ready(function(){
-   
-    
-
     $("#CMT").change(function(evt){
         var CMT = $("#CMT").val();
-        console.log(CMT);
         if(CMT == "A"){
             $("#CMALBL").text("Name");
             $("#CMNLBL").text("Mobile Number");
