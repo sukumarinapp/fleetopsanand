@@ -28,6 +28,7 @@
           <tr>
             <th>CAN</th>
             <th>Vehicle Reg#</th>
+            <th>ID</th>
             <th>Make</th>
             <th>Model</th>
             <th>Color</th>
@@ -40,6 +41,7 @@
             <tr>
               <td>{{ $vehicle->CAN }}</td>
               <td>{{ $vehicle->VNO }}</td>
+              <td>{{ $vehicle->TID }}</td>
               <td>{{ $vehicle->VMK }}</td>
               <td>{{ $vehicle->VMD }}</td>
               <td>{{ $vehicle->VCL }}</td>
