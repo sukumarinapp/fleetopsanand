@@ -35,7 +35,7 @@
         $i=0;
         foreach ($markers as $marker){
           if($i>0) echo ",";
-          echo "['".$marker->VNO."','".$marker->latitude."','".$marker->longitude."','".$marker->ground_speed."','".$marker->odometer."']";
+          echo "['".$marker->VNO."','".$marker->latitude."','".$marker->longitude."','".$marker->ground_speed."','".$marker->odometer."','".$marker->terminal_id."']";
           $i++;
         }
       @endphp
@@ -68,7 +68,7 @@
           function( marker, i ) {
             return function() {
               var infowindow = new google.maps.InfoWindow();
-              infowindow.setContent("License Plate: "+locations[i][0]+"<br>Latitude: "+locations[i][1]+"<br>Longitude: "+locations[i][2]+"<br>Speed: "+locations[i][3]+"<br>Mileage(km): "+locations[i][4]);
+              infowindow.setContent("License Plate: "+locations[i][0]+"<br>ID: "+locations[i][5]+"<br>Latitude: "+locations[i][1]+"<br>Longitude: "+locations[i][2]+"<br>Speed: "+locations[i][3]+"<br>Mileage(km): "+locations[i][4]);
               infowindow.open( map, marker );
             }
           }
