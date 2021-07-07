@@ -67,7 +67,7 @@ $result = mysqli_query($conn, $sql);
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.DROP
-          , icon: "car.png"
+          , icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
           , map: map
           , position: position
           , title: location[ 0 ]
