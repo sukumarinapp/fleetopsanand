@@ -35,7 +35,7 @@
         $i=0;
         foreach ($markers as $marker){
           if($i>0) echo ",";
-          echo "['".$marker->terminal_id."',".$marker->latitude.",".$marker->longitude."]";
+          echo "['".$marker->VNO."',".$marker->latitude.",".$marker->longitude."]";
           $i++;
         }
       @endphp
@@ -64,11 +64,16 @@
         });
         
         // create info window and add to marker (https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions)
+// License Plate: 
+// Longitude: 
+// Latitude: 
+// Speed: 
+// Mileage(km): 
         google.maps.event.addListener( marker, 'click', ( 
           function( marker, i ) {
             return function() {
               var infowindow = new google.maps.InfoWindow();
-              infowindow.setContent( locations[ i ][ 0 ] +"<br>"+"Fleetops");
+              infowindow.setContent(locations[i][0]+"<br>"+locations[i][1]+"<br>"+locations[i][2]);
               infowindow.open( map, marker );
             }
           }
