@@ -7,7 +7,7 @@
 			<div class="card card-info">
 			<div class="card-header">
 			<h3 class="card-title">RH Platform Settings</h3>
-			<a href="{{ route('rhplatform.create') }}" class="btn btn-secondary float-right"><i class="nav-icon fas fa-plus"></i>&nbsp; Add Vehicle</a>
+			<a href="{{ route('rhplatform.create') }}" class="btn btn-secondary float-right"><i class="nav-icon fas fa-plus"></i>&nbsp; Add RH Platform</a>
 			</div>
 			<div class="card-body">
 					@if(session()->has('error'))
