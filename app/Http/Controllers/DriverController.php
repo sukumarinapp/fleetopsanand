@@ -82,8 +82,9 @@ class DriverController extends Controller
         $sales = array();
         $sales['VNO'] = $VNO;
         $sales['DCN'] = $DCN;
+        $SDT = date('Y-m-d', strtotime("-1 days"));
         $SDT_dMY = date('d-M-Y', strtotime("-1 days"));
-        $expected_sales = Formulae::expected_sales($VNO);
+        $expected_sales = Formulae::expected_sales($VNO,0);
         $sales['SDT'] = $SDT;
         $sales['SDT_dMY'] = $SDT_dMY;
         $sales['expected_sales'] = $expected_sales;

@@ -38,7 +38,7 @@
        <label class="col-form-label">Date:  {{ $sales['SDT_dMY'] }} </label>
    </div>
    <div class="col-md-12">
-      <label class="col-form-label">Sales amount to declare:  GHC{{ $sales['expected_sales'] }} </label>
+      <label class="col-form-label">Sales amount to declare:  GHC {{ $sales['expected_sales'] }} </label>
    </div>
 </div><br>
 
