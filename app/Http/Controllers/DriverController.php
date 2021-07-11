@@ -7,7 +7,7 @@ use DB;
 use App\rhplatform;
 use App\Formulae;
 use App\TrackerSMS;
-use App\tbl137;
+use App\tbl137a;
 use App\tbl136;
 
 class DriverController extends Controller
@@ -42,7 +42,7 @@ class DriverController extends Controller
                 return view('driver.driverrental',compact('vehicle'));
             }
         }else{
-			return redirect('/drivervnoerror')->with('error', 'Vehicle is not found!');
+			return redirect('/drivervnoerror')->with('error', 'Vehicle not found');
         }
     }
 
@@ -110,20 +110,24 @@ class DriverController extends Controller
         $VNO = trim($request->get("VNO"));
         $DCN = trim($request->get("DCN"));
         $SSR = trim($request->get("SSR"));
+        $TPF = trim($request->get("trips_hidden"));        
         $sql = "SELECT * FROM vehicle where VNO='$VNO'";
         $result = DB::select(DB::raw($sql));
         $CAN = $result[0]->CAN;
+        $CML = 0;
+        $CHR = 0;
         $SDT = date('Y-m-d', strtotime("-1 days"));
-        $expected_sales = Formulae::expected_sales($VNO);
-        $sql = "SELECT * FROM tracker where VNO='$VNO' and veh_date='$SDT'";
+        $sql = "SELECT * FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
         $result = DB::select(DB::raw($sql));
-        $CHR = $result[0]->CHR;
-        $CML = $result[0]->CML;        
+        if(count($result)>0){
+            $CML = $result[0]->CML;
+            $CHR = $result[0]->CHR;
+        }
+        $expected_sales = Formulae::expected_sales($VNO,$TPF);
         $RCN = trim($request->get("DCN"));
         $RHN = trim($request->get("plat_id_hidden"));
         $SPF = trim($request->get("earning_hidden"));
         $CPF = trim($request->get("cash_hidden"));
-        $TPF = trim($request->get("trips_hidden"));
         $insert = array(
                 'SDT' => $SDT,
                 'CAN' => $CAN,
@@ -137,11 +141,11 @@ class DriverController extends Controller
                 'TPF' => $TPF,
                 'SSR' => $SSR,
             );
-        $tbl137 = new tbl137($insert);
-        $tbl137->save();
+        $tbl137a = new tbl137a($insert);
+        $tbl137a->save();
 
         if($SSR == "Driver"){
-            $sql = "SELECT sum(CPF) as paid_amount FROM tbl137 where VNO='$VNO' and SDT='$SDT'";
+            $sql = "SELECT sum(CPF) as paid_amount FROM tbl137a where VNO='$VNO' and SDT='$SDT'";
             $result = DB::select(DB::raw($sql));
             $paid_amount = $result[0]->paid_amount;
             

@@ -16,15 +16,10 @@ class Formulae
   public static function CML($VNO){
   	$CML = 0;
   	$SDT = date('Y-m-d', strtotime("-1 days"));
-  	$sql = "SELECT * FROM tracker where veh_date='$SDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
-		  $CML = $result[0]->CML;
-    }else{
-		  $SDT = date('Y-m-d', strtotime("-2 days"));
-	  	$sql = "SELECT * FROM tracker where veh_date='$SDT' and VNO='$VNO'";
-	    $result = DB::select(DB::raw($sql));
-	    $CML = $result[0]->CML;
+      $CML = $result[0]->CML;
     }
   	return $CML;
   }
@@ -32,14 +27,9 @@ class Formulae
   public static function CHR($VNO){
     $CHR = 0;
     $SDT = date('Y-m-d', strtotime("-1 days"));
-    $sql = "SELECT * FROM tracker where veh_date='$SDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
-      $CHR = $result[0]->CHR;
-    }else{
-      $SDT = date('Y-m-d', strtotime("-2 days"));
-      $sql = "SELECT * FROM tracker where veh_date='$SDT' and VNO='$VNO'";
-      $result = DB::select(DB::raw($sql));
       $CHR = $result[0]->CHR;
     }
     return $CHR;
@@ -52,8 +42,28 @@ class Formulae
   	return $NWM;
   }
 
-  public static function expected_sales($VNO){
-  	return 8000;
+  public static function expected_sales($VNO,$TPF){
+    $SDT = date('Y-m-d', strtotime("-1 days"));
+    $CHR = 0;
+    $CML = 0;
+    $RML = 0;
+    $RMN = 0;
+    $RMS = 0;
+    $sql = "SELECT * FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
+    $result = DB::select(DB::raw($sql));
+    if(count($result)>0){
+      $CHR = $result[0]->CHR;
+      $CML = $result[0]->CML;
+    }
+    $sql = "select b.* from driver_platform a,tbl361 b where a.PLF=b.id and a.driver_id = (select driver_id from vehicle where VNO='$VNO')";
+    $result = DB::select(DB::raw($sql));
+    if(count($result)>0){
+      $RML = $result[0]->RML;
+      $RMN = $result[0]->RMN;
+      $RMS = $result[0]->RMS;
+    }
+    $EXPS=0;
+    $EXPS = $CML * $RML + 60 * $CHR * $RMN + ($TPF * $RMS);
+    return $EXPS;
   }
-
 }

@@ -84,10 +84,6 @@ function submit_data() {
 }
 
 $(document).ready(function(){
-
-    $('.select2').select2({
-        theme: 'bootstrap4'
-    });
     
     $(".decimal").keypress(function(evt){
         var charCode = (evt.which) ? evt.which : event.keyCode;

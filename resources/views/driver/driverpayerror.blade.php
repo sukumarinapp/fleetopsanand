@@ -16,7 +16,7 @@
        Press ‘Ok’ below to receive the cash release prompt. We will confirm with a receipt shortly after.</p>
     </div>
     <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">      
-          <a href="#" class="btn btn-info">OK</a>&nbsp;
+          <a href="{{ route('driver') }}" class="btn btn-info">OK</a>&nbsp;
          
       </nav>
   </div>

@@ -14,7 +14,7 @@
        <p>Thank you for a successful sales declaration.Fuel consumed for the sales declared and offline trips (if any) are being measured and shall be communicated to you in a separate message. Press ‘Ok’ to proceed.</p>
     </div>
     <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">      
-          <a href="#" class="btn btn-info">OK</a>&nbsp;
+          <a href="{{ route('driver') }}" class="btn btn-info">OK</a>&nbsp;
          
       </nav>
   </div>
