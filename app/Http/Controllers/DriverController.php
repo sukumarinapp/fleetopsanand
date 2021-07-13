@@ -14,7 +14,10 @@ class DriverController extends Controller
 {
     public function index()
     {
-        return view('driver.index');
+        $time = array();
+        $time['current_date'] = date("Y-m-d");
+        $time['current_time'] = date("H.i");
+        return view('driver.index',compact('time'));
     }
 
     public function drivervno()
