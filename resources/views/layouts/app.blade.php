@@ -71,6 +71,20 @@
 @stack('page_scripts')
 <script>
 $(document).ready(function(){
+    $("#VBM").change(function(evt){
+        var VBM = $("#VBM").val();
+        if(VBM=="Ride Hailing"){
+            $("#rhdiv").show("slow");
+            $("#freqdiv").hide("slow");
+            $("#paydatediv").hide("slow");
+            $("#payamtdiv").hide("slow");
+        }else{
+            $("#rhdiv").hide("slow");
+            $("#freqdiv").show("slow");
+            $("#paydatediv").show("slow");
+            $("#payamtdiv").show("slow");
+        }
+    });
     $("#CMT").change(function(evt){
         var CMT = $("#CMT").val();
         if(CMT == "A"){
@@ -213,6 +227,18 @@ function load_driver_name(){
     $('#DNM option').each(function() {
         if($(this).val() == DNO) $(this).prop('selected', true);
     });
+}
+
+function validate_amount(){
+    if($("#VBM").val()!="Ride Hailing"){
+        var VAM = $("#VAM").val().trim();
+        if(VAM==""){
+            alert("Enter payment amount");
+            $("#VAM").focus();
+            return false;
+        }
+    }
+    return true;    
 }
 
 </script>

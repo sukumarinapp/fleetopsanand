@@ -36,7 +36,7 @@
           <tbody>
             @foreach($drivers as $driver)
             <tr>
-              <td>{{ $driver->DNM }}</td>
+              <td>{{ $driver->DNM }} {{ $driver->DSN }}</td>
               <td>{{ $driver->DNO }}</td>
               <td>{{ $driver->DCN }}</td>
               <td>{{ $driver->VBM }}</td>

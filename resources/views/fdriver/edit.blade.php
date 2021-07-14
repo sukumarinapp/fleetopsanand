@@ -17,7 +17,7 @@
                         <strong> {{ session('error') }} </strong>
                     </div>
                 @endif
-                <form action="{{ route('fdriver.update',$driver->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form onsubmit="return validate_amount()"  action="{{ route('fdriver.update',$driver->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 @method('PUT')
         
@@ -94,13 +94,18 @@
 					<label for="VBM" class="col-sm-4 col-form-label"><span style="color:red"></span>Business Model</label>
 					<div class="col-sm-8">
 						 <select name="VBM" id="VBM" class="custom-select">
-                          <option {{ ($driver->VBM == "Ride Hailing" ? "selected":"") }} value="Ride Hailing" >Ride Hailing</option>
-                          <option {{ ($driver->VBM == "Rental/Hire Purchase" ? "selected":"") }} value="Rental/Hire Purchase" >Rental/Hire Purchase</option>
-                        </select>
+                <option {{ ($driver->VBM == "Ride Hailing" ? "selected":"") }} value="Ride Hailing" >Ride Hailing</option>
+                <option {{ ($driver->VBM == "Rental" ? "selected":"") }} value="Rental" >Rental</option>
+                <option {{ ($driver->VBM == "Hire Purchase" ? "selected":"") }} value="Hire Purchase" >Hire Purchase</option>
+            </select>
 					</div>
 				</div>
-                  <div class="form-group row">
-					<label for="PLF" class="col-sm-4 col-form-label"><span style="color:red"></span>Ride Hailing platform</label>
+          <div 
+          @php
+          	if($driver->VBM != "Ride Hailing") echo " style='display:none' ";
+          @endphp 
+          class="form-group row" id="rhdiv"  >
+					<label for="PLF" class="col-sm-4 col-form-label"><span style="color:red"></span>RH platform</label>
 					<div class="col-sm-8">
 						 <select name="PLF[]" id="PLF" class="custom-select">
 						  @php
@@ -116,7 +121,11 @@
 					</div>
 				</div>
 				
-				<div class="form-group row">
+				<div 
+				@php
+        	if($driver->VBM == "Ride Hailing") echo " style='display:none' ";
+        @endphp 
+				class="form-group row" id="freqdiv">
 					<label for="VPF" class="col-sm-4 col-form-label">Payment Frequency</label>
 					<div class="col-sm-8">
 						 <select name="VPF" id="VPF" class="custom-select">
@@ -130,17 +139,25 @@
 					</div>
 
 				</div>
-				 <div class="form-group row">
+				 <div 
+				 @php
+        	if($driver->VBM == "Ride Hailing") echo " style='display:none' ";
+         @endphp 
+				 class="form-group row" id="paydatediv">
 					<label for="VPD" class="col-sm-4 col-form-label"><span style="color:red"></span>First Payment Date</label>
 					<div class="col-sm-8">
 						<input onkeydown="return false"  value="{{ $driver->VPD }}" type="date" class="form-control" name="VPD" id="VPD" maxlength="50" placeholder="First Payment Date">
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<label for="VAM" class="col-sm-4 col-form-label"><span style="color:red"></span>Amount Due</label>
+				<div 
+				@php
+        	if($driver->VBM == "Ride Hailing") echo " style='display:none' ";
+        @endphp 
+				class="form-group row" id="payamtdiv">
+					<label for="VAM" class="col-sm-4 col-form-label"><span style="color:red"></span>Payment Amount</label>
 					<div class="col-sm-8">
-						<input value="{{ $driver->VAM }}" type="text" class="form-control decimal" name="VAM" id="VAM" maxlength="10" placeholder="Amount Due">
+						<input value="{{ $driver->VAM }}" type="text" class="form-control decimal" name="VAM" id="VAM" maxlength="10" placeholder="Payment Amount">
 					</div>
 				</div>
               </div>

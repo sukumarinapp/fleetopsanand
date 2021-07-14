@@ -17,7 +17,7 @@
                         <strong> {{ session('error') }} </strong>
                     </div>
                 @endif
-                <form action="{{ route('fdriver.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form onsubmit="return validate_amount()" action="{{ route('fdriver.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
             <div class="row">
               <div class="col-md-6">
@@ -80,13 +80,14 @@
 					<label for="VBM" class="col-sm-4 col-form-label"><span style="color:red"></span>Business Model</label>
 					<div class="col-sm-8">
 						 <select name="VBM" id="VBM" class="custom-select">
-                          <option value="Ride Hailing" selected="selected">Ride Hailing</option>
-                          <option value="Rental/Hire Purchase" selected="selected">Rental/Hire Purchase</option>
-                        </select>
+                <option value="Ride Hailing" selected="selected">Ride Hailing</option>
+                <option value="Rental" >Rental</option>
+                <option value="Hire Purchase" >Hire Purchase</option>
+              </select>
 					</div>
 				</div>
-                  <div class="form-group row">
-					<label for="PLF" class="col-sm-4 col-form-label"><span style="color:red"></span>Ride Hailing platform</label>
+                  <div class="form-group row" id="rhdiv" >
+					<label for="PLF" class="col-sm-4 col-form-label"><span style="color:red"></span>RH Platform</label>
 					<div class="col-sm-8">
 						 <select name="PLF[]" id="multidropdown" class="custom-select">
                          @foreach($rhplatforms as $rhplatform)
@@ -96,7 +97,7 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div class="form-group row" id="freqdiv" style="display: none;">
 					<label for="VPF" class="col-sm-4 col-form-label"><span style="color:red"></span>Payment Frequency</label>
 					<div class="col-sm-8">
 						 <select name="VPF" id="VPF" class="custom-select">
@@ -106,17 +107,17 @@
                         </select>
 					</div>
 				</div>
-				 <div class="form-group row">
+				 <div class="form-group row" id="paydatediv" style="display: none;">
 					<label for="VPD" class="col-sm-4 col-form-label"><span style="color:red"></span>First Payment Date</label>
 					<div class="col-sm-8">
-						<input onkeydown="return false" type="date" class="form-control" name="VPD" id="VPD" maxlength="10" placeholder="First Payment Date">
+						<input value="{{ date('Y-m-d') }}" onkeydown="return false" type="date" class="form-control" name="VPD" id="VPD" maxlength="10" placeholder="First Payment Date">
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<label for="VAM" class="col-sm-4 col-form-label"><span style="color:red"></span>Amount Due</label>
+				<div class="form-group row" id="payamtdiv" style="display: none;">
+					<label for="VAM" class="col-sm-4 col-form-label"><span style="color:red"></span>Payment Amount</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control decimal" name="VAM" id="VAM" maxlength="10" placeholder="Amount Due">
+						<input type="text" class="form-control decimal" name="VAM" id="VAM" maxlength="10" placeholder="Payment Amount">
 					</div>
 				</div>
               </div>
