@@ -231,8 +231,12 @@ function load_driver_name(){
 
 function validate_amount(){
     if($("#VBM").val()!="Ride Hailing"){
-        var VAM = $("#VAM").val().trim();
-        if(VAM==""){
+        if($("#VPD").val().trim()==""){
+            alert("Enter payment date");
+            $("#VPD").focus();
+            return false;
+        }
+        if($("#VAM").val().trim()==""){
             alert("Enter payment amount");
             $("#VAM").focus();
             return false;
