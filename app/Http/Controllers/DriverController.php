@@ -41,7 +41,7 @@ class DriverController extends Controller
                 $sql = "SELECT * FROM tbl361 where id <> 1 and id in (select PLF from driver_platform where driver_id = $driver_id)";
                 $rhplatforms = DB::select(DB::raw($sql));
                 return view('driver.driverrhsales', compact('rhplatforms','vehicle'));
-            }else if($vehicle->VBM == "Rental/Hire Purchase"){
+            }else{
                 return view('driver.driverrental',compact('vehicle'));
             }
         }else{

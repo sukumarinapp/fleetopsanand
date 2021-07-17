@@ -57,7 +57,7 @@
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.DROP
-          , icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          , icon: "car.png"
           , map: map
           , position: position
           , title: location[ 0 ]
