@@ -19,15 +19,17 @@
   var bounds = new google.maps.LatLngBounds();
 
     function refresh_map() {
+      var car_icon = "car.png";
       for ( var i = 0; i < locations.length; i++ )
       {
         var location = locations[ i ];
+        if(location["engine_on"]=="1") car_icon = "blue.png";
         var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
         bounds.extend( position );
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.NONE
-          , icon: "car.png"
+          , icon: car_icon
           , map: map
           , position: position
           , title: location["VNO"]
