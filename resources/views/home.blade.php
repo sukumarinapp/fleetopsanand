@@ -62,7 +62,7 @@
           }
       });
     }
-    setInterval(fetch_location, 10000);
+    setInterval(fetch_location, 5000);
 </script>
 
 @endsection
