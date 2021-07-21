@@ -19,10 +19,11 @@
   var bounds = new google.maps.LatLngBounds();
 
     function refresh_map() {
-      var car_icon = "car.png";
+      
       for ( var i = 0; i < locations.length; i++ )
       {
         var location = locations[ i ];
+        var car_icon = "car.png";
         if(location["engine_on"]=="1") car_icon = "blue.png";
         var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
         bounds.extend( position );
