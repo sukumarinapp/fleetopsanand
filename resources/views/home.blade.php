@@ -89,7 +89,7 @@
       });
     }
 
-    setInterval(fetch_location, 30000);
+    setInterval(fetch_location, 5000);
 </script>
 
 @endsection
