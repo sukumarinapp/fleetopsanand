@@ -10,7 +10,8 @@
 @endsection
 @section('third_party_scripts')
 <script>
-    function initialise_map() {
+  var locations = [];
+    function refresh_map() {
       // create object literal to store map properties
       var myOptions = {
         zoom: 12 // set zoom level
@@ -30,37 +31,29 @@
         , [ 'Fleetops Vehicle 3', 5.6143616666666665, -0.30347 ]
       ];*/
 
-      var locations = [
-      @php
-        $i=0;
-        foreach ($markers as $marker){
-          if($i>0) echo ",";
-          echo "['".$marker->VNO."','".$marker->latitude."','".$marker->longitude."','".$marker->ground_speed."','".$marker->odometer."','".$marker->terminal_id."']";
-          $i++;
-        }
-      @endphp
-      ];
-      console.log(locations);
+      
+      
       
       // loop through locations and add to map
       for ( var i = 0; i < locations.length; i++ )
       {
         // get current location
         var location = locations[ i ];
-        
+
+        console.log(location);
         // create map position
-        var position = new google.maps.LatLng( location[ 1 ], location[ 2 ] );
+        var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
         
         // add position to bounds
         bounds.extend( position );
         
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.NONE
           , icon: "car.png"
           , map: map
           , position: position
-          , title: location[ 0 ]
+          , title: location["VNO"]
         });
         
         // create info window and add to marker (https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions)
@@ -68,7 +61,7 @@
           function( marker, i ) {
             return function() {
               var infowindow = new google.maps.InfoWindow();
-              infowindow.setContent("License Plate: "+locations[i][0]+"<br>ID: "+locations[i][5]+"<br>Latitude: "+locations[i][1]+"<br>Longitude: "+locations[i][2]+"<br>Speed: "+locations[i][3]+"<br>Mileage(km): "+locations[i][4]);
+              infowindow.setContent("License Plate: "+locations[i]["VNO"]+"<br>ID: "+locations[i]["terminal_id"]+"<br>Latitude: "+locations[i]["latitude"]+"<br>Longitude: "+locations[i]["longitude"]+"<br>Speed: "+locations[i]["ground_speed"]+"<br>Mileage(km): "+locations[i]["odometer"]);
               infowindow.open( map, marker );
             }
           }
@@ -79,7 +72,24 @@
       map.fitBounds( bounds );
     }
 
-    window.onload = initialise_map; 
+    window.onload = fetch_location; 
+
+
+    function fetch_location(id){
+      $.ajax({
+          type: "get",
+          url: '{{ route('locations') }}',
+          success: function(response) {
+              locations = response;
+              refresh_map();
+          },
+          error: function (jqXHR, exception) {
+              console.log(exception);
+          }
+      });
+    }
+
+    setInterval(fetch_location, 30000);
 </script>
 
 @endsection

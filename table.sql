@@ -9,7 +9,7 @@ CREATE TABLE `tbl136` (
   `DES` varchar(20) DEFAULT NULL,
   `DECL` tinyint(1) DEFAULT 0,
   PRIMARY KEY(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB;
 
 DROP TABLE `tbl137`;
 CREATE TABLE `tbl137` (

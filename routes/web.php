@@ -64,5 +64,7 @@ Route::post('/workflow1', 'WorkflowController@workflow1')->name('workflow1');
 Route::get('/auditing', 'WorkflowController@index')->name('auditing');
 Route::post('/auditing1', 'WorkflowController@auditing1')->name('auditing1');
 
+Route::get('/locations', 'HomeController@locations')->name('locations');
+
 
 
