@@ -11,42 +11,19 @@
 @section('third_party_scripts')
 <script>
   var locations = [];
+  var myOptions = {
+    zoom: 12 // set zoom level
+    , mapTypeId: google.maps.MapTypeId.ROADMAP // apply tile (options include ROADMAP, SATELLITE, HYBRID and TERRAIN)
+  };
+  var map = new google.maps.Map( document.getElementById("map_canvas"), myOptions );
+  var bounds = new google.maps.LatLngBounds();
+
     function refresh_map() {
-      // create object literal to store map properties
-      var myOptions = {
-        zoom: 12 // set zoom level
-        , mapTypeId: google.maps.MapTypeId.ROADMAP // apply tile (options include ROADMAP, SATELLITE, HYBRID and TERRAIN)
-      };
-      
-      // create map object and apply properties
-      var map = new google.maps.Map( document.getElementById("map_canvas"), myOptions );
-      
-      // create map bounds object
-      var bounds = new google.maps.LatLngBounds();
-
-      //create array containing locations
-      /*var locations = [
-        [ 'Fleetops Vehicle 1', 5.614433333333333, -0.09158833333333334 ]
-        , [ 'Fleetops Vehicle 2', 5.690778333333333, -0.2918783333333333 ]
-        , [ 'Fleetops Vehicle 3', 5.6143616666666665, -0.30347 ]
-      ];*/
-
-      
-      
-      
-      // loop through locations and add to map
       for ( var i = 0; i < locations.length; i++ )
       {
-        // get current location
         var location = locations[ i ];
-
-        console.log(location);
-        // create map position
         var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
-        
-        // add position to bounds
         bounds.extend( position );
-        
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.NONE
@@ -55,7 +32,6 @@
           , position: position
           , title: location["VNO"]
         });
-        
         // create info window and add to marker (https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions)
         google.maps.event.addListener( marker, 'click', ( 
           function( marker, i ) {
@@ -67,14 +43,9 @@
           }
         )( marker, i ) );
       };
-
-      // fit map to bounds
       map.fitBounds( bounds );
     }
-
     window.onload = fetch_location; 
-
-
     function fetch_location(id){
       $.ajax({
           type: "get",
@@ -88,8 +59,7 @@
           }
       });
     }
-
-    setInterval(fetch_location, 5000);
+    setInterval(fetch_location, 10000);
 </script>
 
 @endsection
