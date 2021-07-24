@@ -126,7 +126,7 @@
         	if($driver->VBM == "Ride Hailing") echo " style='display:none' ";
         @endphp 
 				class="form-group row" id="freqdiv">
-					<label for="VPF" class="col-sm-4 col-form-label">Payment Frequency</label>
+					<label for="VPF" class="col-sm-4 col-form-label">Frequency</label>
 					<div class="col-sm-8">
 						 <select name="VPF" id="VPF" class="custom-select">
                          <option {{ ($driver->VPF == "Daily" ? "selected":"") }} value="Daily" >Daily</option>
@@ -139,6 +139,43 @@
 					</div>
 
 				</div>
+
+			<div 
+			@php
+      	if($driver->VPF != "Weekly") echo " style='display:none' ";
+      @endphp 
+			class="form-group row" id="weekdaydiv">
+					<label for="WDY" class="col-sm-4 col-form-label"><span style="color:red"></span>Weekday</label>
+					<div class="col-sm-8">
+						 <select name="WDY" id="WDY" class="custom-select">
+               <option {{ ($driver->WDY == "0" ? "selected":"") }} value="0" >Sunday</option>
+               <option {{ ($driver->WDY == "1" ? "selected":"") }} value="1" selected="selected">Monday</option>
+               <option {{ ($driver->WDY == "2" ? "selected":"") }} value="2">Wednesday</option>
+               <option {{ ($driver->WDY == "3" ? "selected":"") }} value="3">Thursday</option>
+               <option {{ ($driver->WDY == "4" ? "selected":"") }} value="4">Tuesday</option>
+               <option {{ ($driver->WDY == "5" ? "selected":"") }} value="5">Friday</option>
+               <option {{ ($driver->WDY == "6" ? "selected":"") }} value="6">Saturday</option>
+              </select>
+					</div>
+				</div>
+
+					<div 
+				 @php
+        	if($driver->VPF != "Monthly") echo " style='display:none' ";
+         @endphp 
+					class="form-group row" id="monthdaydiv" >
+					<label for="MDY" class="col-sm-4 col-form-label"><span style="color:red"></span>Day of Month</label>
+					<div class="col-sm-8">
+						 <select name="MDY" id="MDY" class="custom-select">
+               <option {{ ($driver->MDY == "1" ? "selected":"") }} value="1" >01</option>
+               @for ($i = 2; $i < 28; $i++)
+							    <option {{ ($driver->MDY == $i ? "selected":"") }} value="{{ $i }}" >{{ str_pad($i, 2 , "0",STR_PAD_LEFT) }}</option>
+							 @endfor
+							 <option {{ ($driver->MDY == "31" ? "selected":"") }} value="31" >Last Day of Month</option>
+              </select>
+					</div>
+				</div>
+
 				 <div 
 				 @php
         	if($driver->VBM == "Ride Hailing") echo " style='display:none' ";
@@ -146,7 +183,7 @@
 				 class="form-group row" id="paydatediv">
 					<label for="VPD" class="col-sm-4 col-form-label"><span style="color:red"></span>First Payment Date</label>
 					<div class="col-sm-8">
-						<input onkeydown="return false"  value="{{ $driver->VPD }}" type="date" class="form-control" name="VPD" id="VPD" maxlength="50" placeholder="First Payment Date">
+						<input onkeydown="return false"   value="{{ $driver->VPD }}" type="date" class="form-control" name="VPD" id="VPD" maxlength="50" placeholder="First Payment Date">
 					</div>
 				</div>
 				
@@ -155,7 +192,7 @@
         	if($driver->VBM == "Ride Hailing") echo " style='display:none' ";
         @endphp 
 				class="form-group row" id="payamtdiv">
-					<label for="VAM" class="col-sm-4 col-form-label"><span style="color:red"></span>Payment Amount</label>
+					<label for="VAM" class="col-sm-4 col-form-label"><span style="color:red"></span>Recurring Amount</label>
 					<div class="col-sm-8">
 						<input value="{{ $driver->VAM }}" type="text" class="form-control decimal" name="VAM" id="VAM" maxlength="10" placeholder="Payment Amount">
 					</div>

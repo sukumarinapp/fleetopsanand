@@ -58,6 +58,8 @@ class FdriverController extends Controller
                 'DCN' => $request->get('DCN'),
                 'VBM' => $request->get('VBM'),
                 'VPF' => $request->get('VPF'),
+                'WDY' => $request->get('WDY'),
+                'MDY' => $request->get('MDY'),
                 'VPD' => $request->get('VPD'),
                 'VAM' => $request->get('VAM'),
                 'LEX' => $request->get('LEX'),
@@ -143,6 +145,8 @@ class FdriverController extends Controller
             if($VCC != "") $driver->VCC  =  $VCC;
             $driver->VBM =  $request->get('VBM');
             $driver->VPF =  $request->get('VPF');
+            $driver->WDY =  $request->get('WDY');
+            $driver->MDY =  $request->get('MDY');
             $driver->VPD =  $request->get('VPD');
             $driver->VAM =  $request->get('VAM');
             $driver->LEX =  $request->get('LEX');

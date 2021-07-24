@@ -98,26 +98,57 @@
 				</div>
 
 				<div class="form-group row" id="freqdiv" style="display: none;">
-					<label for="VPF" class="col-sm-4 col-form-label"><span style="color:red"></span>Payment Frequency</label>
+					<label for="VPF" class="col-sm-4 col-form-label"><span style="color:red"></span>Frequency</label>
 					<div class="col-sm-8">
 						 <select name="VPF" id="VPF" class="custom-select">
                          <option value="Daily" selected="selected">Daily</option>
-                         <option value="Weekly" selected="selected">Weekly</option>
-                         <option value="Monthly" selected="selected">Monthly</option>
+                         <option value="Weekly" >Weekly</option>
+                         <option value="Monthly" >Monthly</option>
                         </select>
 					</div>
 				</div>
+
+				<div class="form-group row" id="weekdaydiv" style="display: none;">
+					<label for="WDY" class="col-sm-4 col-form-label"><span style="color:red"></span>Weekday</label>
+					<div class="col-sm-8">
+						 <select name="WDY" id="WDY" class="custom-select">
+               <option value="0" >Sunday</option>
+               <option value="1" selected="selected">Monday</option>
+               <option value="2">Wednesday</option>
+               <option value="3">Thursday</option>
+               <option value="4">Tuesday</option>
+               <option value="5">Friday</option>
+               <option value="6">Saturday</option>
+              </select>
+					</div>
+				</div>
+
+					<div class="form-group row" id="monthdaydiv" style="display: none;">
+					<label for="MDY" class="col-sm-4 col-form-label"><span style="color:red"></span>Day of Month</label>
+					<div class="col-sm-8">
+						 <select name="MDY" id="MDY" class="custom-select">
+               <option value="1" selected="selected">01</option>
+               @for ($i = 2; $i < 28; $i++)
+
+							    <option value="{{ $i }}" >{{ str_pad($i, 2 , "0",STR_PAD_LEFT) }}</option>
+							 @endfor
+							 <option value="31" >Last Day of Month</option>
+              </select>
+					</div>
+				</div>
+
+
 				 <div class="form-group row" id="paydatediv" style="display: none;">
 					<label for="VPD" class="col-sm-4 col-form-label"><span style="color:red"></span>First Payment Date</label>
 					<div class="col-sm-8">
-						<input value="{{ date('Y-m-d') }}" onkeydown="return false" type="date" class="form-control" name="VPD" id="VPD" maxlength="10" placeholder="First Payment Date">
+						<input min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" onkeydown="return false" type="date" class="form-control" name="VPD" id="VPD" maxlength="10" placeholder="First Payment Date">
 					</div>
 				</div>
 				
 				<div class="form-group row" id="payamtdiv" style="display: none;">
-					<label for="VAM" class="col-sm-4 col-form-label"><span style="color:red"></span>Payment Amount</label>
+					<label for="VAM" class="col-sm-4 col-form-label"><span style="color:red"></span>Recurring Amount</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control decimal" name="VAM" id="VAM" maxlength="10" placeholder="Payment Amount">
+						<input type="text" class="form-control decimal" name="VAM" id="VAM" maxlength="10" placeholder="Recurring Amount">
 					</div>
 				</div>
               </div>

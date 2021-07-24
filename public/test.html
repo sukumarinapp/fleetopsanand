@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+</body>
+<script>
+$(document).ready(function(){
+  $.ajax({
+    'url': "http://65.1.179.46:2021/api/v1/chefs",
+    'method': "GET",
+    'contentType': 'application/json'
+  }).done( function(data) {
+    console.debug(data);
+  });
+});
+</script>
+</html>

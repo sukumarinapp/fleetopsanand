@@ -71,6 +71,20 @@
 @stack('page_scripts')
 <script>
 $(document).ready(function(){
+    $("#VPF").change(function(evt){
+        var VPF = $("#VPF").val();
+        console.log(VPF);
+        if(VPF=="Daily"){
+            $("#weekdaydiv").hide("slow");
+            $("#monthdaydiv").hide("slow");
+        }else if(VPF=="Weekly"){
+            $("#weekdaydiv").show("slow");
+            $("#monthdaydiv").hide("slow");
+        }else if(VPF=="Monthly"){
+            $("#weekdaydiv").hide("slow");
+            $("#monthdaydiv").show("slow");
+        }
+    });
     $("#VBM").change(function(evt){
         var VBM = $("#VBM").val();
         if(VBM=="Ride Hailing"){

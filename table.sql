@@ -1,3 +1,9 @@
+alter table driver add WDY int(1) null default 1 after VPF;
+alter table driver add MDY int(2) null default 1 after WDY;
+
+alter table tbl137 drop DCR;
+alter table tbl137 drop RTN;
+
 DROP TABLE `tbl136`;
 CREATE TABLE `tbl136` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

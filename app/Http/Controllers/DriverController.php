@@ -7,8 +7,9 @@ use DB;
 use App\rhplatform;
 use App\Formulae;
 use App\TrackerSMS;
-use App\tbl137a;
+use App\tbl137;
 use App\tbl136;
+use App\Billbox;
 
 class DriverController extends Controller
 {
@@ -98,6 +99,7 @@ class DriverController extends Controller
 
     public function driverpay(Request $request)
     {
+        $options = Billbox::listPayOptions();
         $sales = array();
         $sales['VNO'] = trim($request->get("VNO"));
         $sales['DCN'] = trim($request->get("DCN"));
@@ -106,11 +108,13 @@ class DriverController extends Controller
         $sales['cash_hidden'] = trim($request->get("cash_hidden"));
         $sales['trips_hidden'] = trim($request->get("trips_hidden"));
         $sales['SSR'] = trim($request->get("SSR"));
-        return view('driver.driverpay',compact('sales'));
+        return view('driver.driverpay',compact('sales','options'));
     }
 
     public function driverpaysave(Request $request)
     {
+        $options = trim($request->get("options"));
+        echo $options;die;
         $VNO = trim($request->get("VNO"));
         $DCN = trim($request->get("DCN"));
         $SSR = trim($request->get("SSR"));
@@ -121,7 +125,7 @@ class DriverController extends Controller
         $CML = 0;
         $CHR = 0;
         $SDT = date('Y-m-d', strtotime("-1 days"));
-        $sql = "SELECT * FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
+        $sql = "SELECT * FROM tbl136 where DDT='$SDT' and VNO='$VNO'";
         $result = DB::select(DB::raw($sql));
         if(count($result)>0){
             $CML = $result[0]->CML;
@@ -136,8 +140,6 @@ class DriverController extends Controller
                 'SDT' => $SDT,
                 'CAN' => $CAN,
                 'VNO' => $VNO,
-                'CHR' => $CHR,
-                'CML' => $CML,
                 'RCN' => $RCN,
                 'RHN' => $RHN,
                 'SPF' => $SPF,
@@ -145,18 +147,21 @@ class DriverController extends Controller
                 'TPF' => $TPF,
                 'SSR' => $SSR,
             );
-        $tbl137a = new tbl137a($insert);
-        $tbl137a->save();
+        $tbl137 = new tbl137($insert);
+        $tbl137->save();
+
+        //call billbox paynow API
 
         if($SSR == "Driver"){
-            $sql = "SELECT sum(CPF) as paid_amount FROM tbl137a where VNO='$VNO' and SDT='$SDT'";
+            $sql = "SELECT sum(CPF) as paid_amount FROM tbl137 where VNO='$VNO' and SDT='$SDT'";
             $result = DB::select(DB::raw($sql));
             $paid_amount = $result[0]->paid_amount;
-            
-            if($expected_sales > $paid_amount){
-                return view('driver.driverpayerror');
+            return view('driver.driverpaysuccess');
+            if($paid_amount >= $expected_sales){
+                #turn off buzzer if active
+                #unblock vehicle if blocked
             }else{
-                return view('driver.driverpaysuccess');
+                
             }
         }else{
             $sales = array();

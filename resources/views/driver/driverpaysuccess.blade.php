@@ -7,16 +7,12 @@
   </div>
 </div>
   <div class="card card-success">
-    <div class="card-header">
-      <h3 class="card-title">Sales Declaration Complete – Thank you!</h3>
-    </div>
     <div class="card-body">
-       <p>Thank you for a successful sales declaration.Fuel consumed for the sales declared and offline trips (if any) are being measured and shall be communicated to you in a separate message. Press ‘Ok’ to proceed.</p>
+       <p>Thank you for your submission.Please check your phone for the cash release prompt. Upon receipt of cash, we will confirm with a message shortly after.</p>
     </div>
-    <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">      
-          <a href="{{ route('driver') }}" class="btn btn-info">OK</a>&nbsp;
-         
-      </nav>
+    <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">
+      <a href="{{ route('driver') }}" class="btn btn-info">Cancel</a>
+    </nav>
   </div>
 </div>
 @endsection 
