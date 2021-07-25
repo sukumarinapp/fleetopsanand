@@ -29,7 +29,7 @@
         bounds.extend( position );
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
-          animation: google.maps.Animation.NONE
+          animation: google.maps.Animation.DROP
           , icon: car_icon
           , map: map
           , position: position
@@ -62,7 +62,7 @@
           }
       });
     }
-    setInterval(fetch_location, 5000);
+    setInterval(fetch_location, 10000);
 </script>
 
 @endsection
