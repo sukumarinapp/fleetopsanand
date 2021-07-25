@@ -51,22 +51,34 @@ class FdriverController extends Controller
         if(count($drivers) > 0){
             return redirect('/fdriver/create')->with('error', 'Duplicate License Number');
         }else{
+            $VPF = "";
+            $WDY = 0;
+            $MDY = 0;
+            $VPD = "";
+            $VAM = 0;
+            if($request->get('VBM') != "Ride Hailing"){
+               $VPF = $request->get('VPF');
+               $WDY = $request->get('WDY');
+               $MDY = $request->get('MDY');
+               $VPD = $request->get('VPD'); 
+               $VAM = $request->get('VAM'); 
+            }
             $insert = array(
                 'DNO' => $request->get('DNO'),
                 'DNM' => $request->get('DNM'),
                 'DSN' => $request->get('DSN'),
                 'DCN' => $request->get('DCN'),
                 'VBM' => $request->get('VBM'),
-                'VPF' => $request->get('VPF'),
-                'WDY' => $request->get('WDY'),
-                'MDY' => $request->get('MDY'),
-                'VPD' => $request->get('VPD'),
-                'VAM' => $request->get('VAM'),
+                'VPF' => $VPF,
+                'WDY' => $WDY,
+                'MDY' => $MDY,
+                'VAM' => $VAM,
                 'LEX' => $request->get('LEX'),
                 'CEX' => $request->get('CEX'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             );
+            if($VPD != "") $insert += array('VPD' => $VPD);
             $driver = new Driver($insert);
             $driver->save();
             $last_insert_id = $driver->id;
@@ -137,6 +149,18 @@ class FdriverController extends Controller
                 move_uploaded_file($_FILES['VCC']['tmp_name'], $filepath.$VCC);
             }
             $driver = Driver::find($id);
+            $VPF = "";
+            $WDY = 0;
+            $MDY = 0;
+            $VPD = NULL;
+            $VAM = 0;
+            if($request->get('VBM') != "Ride Hailing"){
+               $VPF = $request->get('VPF');
+               $WDY = $request->get('WDY');
+               $MDY = $request->get('MDY');
+               $VPD = $request->get('VPD'); 
+               $VAM = $request->get('VAM'); 
+            }
             $driver->DNO =  $request->get('DNO');
             $driver->DNM =  $request->get('DNM');
             $driver->DSN =  $request->get('DSN');
@@ -144,11 +168,11 @@ class FdriverController extends Controller
             if($DLD != "") $driver->DLD  =  $DLD;
             if($VCC != "") $driver->VCC  =  $VCC;
             $driver->VBM =  $request->get('VBM');
-            $driver->VPF =  $request->get('VPF');
-            $driver->WDY =  $request->get('WDY');
-            $driver->MDY =  $request->get('MDY');
-            $driver->VPD =  $request->get('VPD');
-            $driver->VAM =  $request->get('VAM');
+            $driver->VPF =  $VPF;
+            $driver->WDY =  $WDY;
+            $driver->MDY =  $MDY;
+            $driver->VPD =  $VPD;
+            $driver->VAM =  $VAM;
             $driver->LEX =  $request->get('LEX');
             $driver->CEX =  $request->get('CEX');
             $driver->updated_at =  date("Y-m-d H:i:s");        

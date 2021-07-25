@@ -1,8 +1,27 @@
 alter table driver add WDY int(1) null default 1 after VPF;
 alter table driver add MDY int(2) null default 1 after WDY;
 
-alter table tbl137 drop DCR;
+alter table tbl136 drop CHR;
 alter table tbl137 drop RTN;
+
+
+select * from tbl135;
+select * from tbl136;
+select * from tbl137;
+select * from tbl141;
+select * from tbl138;
+
+DROP TABLE `tbl135`;
+CREATE TABLE `tbl135` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `DDT` date DEFAULT NULL,
+  `CAN` varchar(20) DEFAULT NULL,
+  `VNO` varchar(20) DEFAULT NULL,
+  `CHR` decimal(10,2) DEFAULT NULL,
+  `CML` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB;
+
 
 DROP TABLE `tbl136`;
 CREATE TABLE `tbl136` (
@@ -10,8 +29,6 @@ CREATE TABLE `tbl136` (
   `DDT` date DEFAULT NULL,
   `CAN` varchar(20) DEFAULT NULL,
   `VNO` varchar(20) DEFAULT NULL,
-  `CHR` decimal(10,2) DEFAULT NULL,
-  `CML` decimal(10,2) DEFAULT NULL,
   `DES` varchar(20) DEFAULT NULL,
   `DECL` tinyint(1) DEFAULT 0,
   PRIMARY KEY(id)
@@ -30,7 +47,6 @@ CREATE TABLE `tbl137` (
   `CPF` decimal(10,2) DEFAULT NULL,
   `TPF` int(11) DEFAULT NULL,
   `SSR` varchar(20) DEFAULT NULL,
-   RTN varchar(50) DEFAULT NULL,
   PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -44,7 +60,6 @@ CREATE TABLE `tbl141` (
   `RCN` varchar(20) DEFAULT NULL,
   `SSA` decimal(10,2) DEFAULT 0.00,
   `SSR` varchar(20) DEFAULT NULL,
-  RTN varchar(50) DEFAULT NULL,
   PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
