@@ -5,29 +5,9 @@
 		<div class="col-md-12">
 			<div class="card card-info">
 				<div class="card-header">
-					<h3 class="card-title">
-					@php
-					if(request()->segment(1) == "workflow"){
-						echo "WorkFlow Manager";
-					}else if(request()->segment(1) == "auditing"){
-						echo "Sales Auditing";
-					}
-					@endphp
-					</h3>
+					<h3 class="card-title">WorkFlow Manager</h3>
 				</div>
 				<div class="card-body">
-					@php
-					if(request()->segment(1) == "workflow"){
-					@endphp
-						<form action="{{ route('workflow1') }}" method="post">
-					@php
-					}else if(request()->segment(1) == "auditing"){
-					@endphp
-						<form action="{{ route('auditing1') }}" method="post">
-					@php		
-					}
-					@endphp
-						@csrf
 						<div class="form-group row">
 							<label for="VNO" class="col-sm-2 col-form-label"><span style="color:red">*</span>Vehicle</label>
 							<div class="col-sm-6">
@@ -39,9 +19,8 @@
 								</select>
 							</div>
 							<div class="col-sm-4">
-								<input required="required" class="btn btn-info"
-								type="submit"
-								name="submit" value="Load Vehicle Details"/>
+								<input onclick="load_vehicle()" required="required" class="btn btn-info"
+								type="button" n ame="submit" value="Load Vehicle Details"/>
 							</div>
 						</div>
 					</form>
@@ -61,6 +40,13 @@
 
 @push('page_scripts')
 <script>
+	var override = "{{ url('override') }}";
+	function load_vehicle(){
+		var VNO = $("#VNO").val();
+		var url =  override + "/" + VNO;
+		window.location.href = url;
+	}
+
 	$(document).ready(function(){
 		$('.select2').select2({
         	theme: 'bootstrap4'

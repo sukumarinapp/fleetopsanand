@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
+  <form action="{{ route('saveoverride') }}" method="post">
+    @csrf
   <div class="row">
     <div class="col-md-12">
       <div class="card card-info">
@@ -10,7 +12,18 @@
 
         <div class="col-md-12">
          <div class="card card-info">
-
+        @if(session()->has('error'))
+        <div class="alert alert-danger alert-dismissable" style="margin: 15px;">
+          <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong> {{ session('error') }} </strong>
+        </div>
+        @endif
+        @if(session()->has('message'))
+            <div class="alert alert-success alert-dismissable" style="margin: 15px;">
+            <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> {{ session('message') }} </strong>
+          </div>
+        @endif
           <div class="card-body row">
             <div class="col-md-1">
               <img src="{{ URL::to('/') }}/images/workflow.png" alt="User Image">
@@ -34,20 +47,16 @@
               <br>
               Client
             </h3>
-            <div class="table borderless">
+            <div class="table ">
               <table class="table">
                 <tr>
                   <th style="width:50%">Account No: {{ $vehicle->CAN }}</th>
-                  <td></td>
                 </tr>
                 <tr>
                   <th>Account Name: {{ $vehicle->name }}</th>
-                  <td></td>
                 </tr>
                 <tr>
                   <th>Assigned Vehicle:  {{ $vehicle->VNO }}</th>
-                  <td></td>
-                </tr>
 
               </table>
             </div>
@@ -65,23 +74,26 @@
           </div>
           <div class="container-fluid">
             <div class="card-body">
-
+              <input type="hidden" name="CAN" value="{{ $vehicle->CAN }}">
+              <input type="hidden" name="VNO" value="{{ $vehicle->VNO }}">
+              <input type="hidden" name="TSM" value="{{ $vehicle->TSM }}">
+              <input type="hidden" name="VID" value="{{ $vehicle->id }}">
              <div class="form-group row">
-               <label for="name" class="col-sm-3 col-form-label"><span style="color:red">*</span>Userame</label>
+               <label for="UAN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Username</label>
                <div class="col-sm-5">
-                <input required="required" type="text" class="form-control" name="name" id="name" maxlength="50" placeholder="Userame">
+                <input required="required" type="text" class="form-control" name="UAN" id="UAN" maxlength="30" placeholder="Userame">
               </div>
             </div>
             <div class="form-group row">
-             <label for="UZS" class="col-sm-3 col-form-label"><span style="color:red">*</span>Password</label>
+             <label for="password" class="col-sm-3 col-form-label"><span style="color:red">*</span>Password</label>
              <div class="col-sm-5">
-              <input required="required" type="text" class="form-control" name="UZS" id="UZS" maxlength="50" placeholder="Password">
+              <input required="required" type="password" class="form-control" name="password" id="password" maxlength="30" placeholder="Password">
             </div>
           </div>
           <div class="form-group row">
-           <label for="UZS" class="col-sm-3 col-form-label"><span style="color:red">*</span>Comments</label>
+           <label for="OAC" class="col-sm-3 col-form-label"><span style="color:red">*</span>Comments</label>
            <div class="col-sm-9">
-            <input required="required" type="text" class="form-control" name="UZS" id="UZS" maxlength="50" placeholder="Comments">
+            <input required="required" type="text" class="form-control" name="OAC" id="OAC" maxlength="100" placeholder="Comments">
           </div>
         </div>
 
@@ -96,6 +108,7 @@
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 

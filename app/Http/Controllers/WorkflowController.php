@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use App\SMSFleetops;
+use Illuminate\Support\Facades\Hash;
 
 class WorkflowController extends Controller
 {
@@ -24,14 +26,47 @@ class WorkflowController extends Controller
         return view('workflow',compact('vehicles'));
     }
 
-    public function workflow1(Request $request)
+
+    public function override($VNO)
     {
         $this->check_access();
-        $id = trim($request->get("VNO"));
+        $id = $VNO;
         $sql = "SELECT a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id";
         $vehicle = DB::select(DB::raw($sql));
         $vehicle = $vehicle[0];
-        return view('workflow1',compact('vehicle'));
+        return view('override',compact('vehicle'));
+    }
+
+    public function saveoverride(Request $request)
+    {
+        $this->check_access();
+        $email = trim($request->UAN);
+        $password = $request->password;
+        $CAN = $request->CAN;
+        $VNO = $request->VNO;
+        $OAC = $request->OAC;
+        $VID = $request->VID;
+        $sql = "SELECT * FROM users where email='$email' and UTV=1";
+        $users = DB::select(DB::raw($sql));
+        if(count($users) > 0){
+            if (Hash::check($password, $users[0]->password)) {
+                $UAN = $users[0]->UAN;
+                $ODT = date("Y-m-d");
+                $OTT = date("H.i");
+                $sql = "insert into tbl024 (ODT,OTT,CAN,VNO,UAN,OAC) values ('$ODT','$OTT','$CAN','$VNO','$UAN','$OAC')";
+                DB::insert($sql);
+                $sql = "SELECT * FROM vehicle where id=$VID";
+                $vehicle = DB::select(DB::raw($sql));
+                $VBC0 = $vehicle[0]->VBC0; 
+                $TSM = $vehicle[0]->TSM;
+                SMSFleetops::send($TSM,$VBC0);
+                return redirect('/override/'.$VID)->with('message', 'Vehicle Immobilized/Blocked Overridden Successfully')->withInput();
+            } else {
+               return redirect('/override/'.$VID)->with('error', 'Invalid Username Credentials')->withInput();
+            }
+        }else{
+            return redirect('/override/'.$VID)->with('error', 'Username does not exist or inactive')->withInput();
+        }
     }
     
     public function auditing1(Request $request)
