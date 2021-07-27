@@ -89,9 +89,10 @@
               </div>
             </div>
             <div class="form-group row">
-               <label for="name" class="form-check-label col-sm-8"><b>Driver cannot be seen on RH platform:</b></label>
-               <div class="icheck-success d-inline">
-              <input required="required" type="checkbox"  name="name" id="name">
+              <div class="form-check">
+                  <input type="checkbox" name="check1" class="form-check-input" id="check1">
+                  <label for="check1" class="form-check-label col-sm-8"><b>Driver cannot be seen on RH platform:</b></label>
+                </div>
               </div>
             </div>
             </div>
