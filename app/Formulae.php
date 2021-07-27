@@ -16,7 +16,7 @@ class Formulae
   public static function CML($VNO){
   	$CML = 0;
   	$SDT = date('Y-m-d', strtotime("-1 days"));
-    $sql = "SELECT * FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl135 where SDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $CML = $result[0]->CML;
@@ -27,7 +27,7 @@ class Formulae
   public static function CHR($VNO){
     $CHR = 0;
     $SDT = date('Y-m-d', strtotime("-1 days"));
-    $sql = "SELECT * FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl135 where SDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $CHR = $result[0]->CHR;
@@ -49,7 +49,7 @@ class Formulae
     $RML = 0;
     $RMN = 0;
     $RMS = 0;
-    $sql = "SELECT * FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl135 where SDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $CHR = $result[0]->CHR;

@@ -10,7 +10,18 @@
 
         <div class="col-md-12">
          <div class="card card-info">
-
+        @if(session()->has('error'))
+        <div class="alert alert-danger alert-dismissable" style="margin: 15px;">
+          <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong> {{ session('error') }} </strong>
+        </div>
+        @endif
+        @if(session()->has('message'))
+            <div class="alert alert-success alert-dismissable" style="margin: 15px;">
+            <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> {{ session('message') }} </strong>
+          </div>
+        @endif
           <div class="card-body row">
             <div class="col-md-1">
               <img src="{{ URL::to('/') }}/images/workflow.png" alt="User Image">
@@ -22,7 +33,7 @@
             </div>
 
             <div class="col-md-3">
-              <h6 class="m-0" style="text-align: right;">Sunday, March, 25, 2021</h6>
+              <h6 class="m-0" style="text-align: right;">{{ date("l M d Y")}}</br>{{ date("h:i A") }}</h6>
             </div>
 
             <div class="col-12">
@@ -38,19 +49,17 @@
             <div class="table borderless">
               <table class="table">
                 <tr>
-                  <th style="width:50%">Account No:</th>
-                  <td></td>
+                  <th>Account No: {{ $vehicle->CAN }}</th>
                 </tr>
                 <tr>
-                  <th>Account Name:</th>
-                  <td></td>
+                  <th>Account Name: {{ $vehicle->name }}</th>
                 </tr>
                 <tr>
-                  <th>Assigned Vehicle:</th>
+                  <th>Assigned Vehicle: {{ $vehicle->VNO }}</th>
                   <td></td>
                 </tr> 
                  <tr>
-                  <th>RH Platform In Use:</th>
+                  <th>RH Platform In Use: {{ $vehicle->RHN }}</th>
                   <td></td>
                 </tr>
 
@@ -59,7 +68,7 @@
           </div>
           <div class="col-6 text-center d-flex align-items-center justify-content-center">
             <div class="card-body">
-              <h4 style=" border: 1px solid grey;padding: 25px 25px 25px 25px;">JOHN DOE</h4>
+              <h4 style=" border: 1px solid grey;padding: 25px 25px 25px 25px;">{{ $vehicle->DNM }}  {{ $vehicle->DSN }}</h4>
               <br>
               <div class="form-group row">
                <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>Sales Earnings:</label>
@@ -96,7 +105,7 @@
           <input required="required" class="btn btn-primary"
           type="submit"
           name="submit" value="Save"/>
-          <a href="{{ route('auditing') }}" class="btn btn-primary ">Cancel</a>
+          <a href="{{ route('auditsrch') }}" class="btn btn-primary ">Cancel</a>
         </div>
 
       </div>

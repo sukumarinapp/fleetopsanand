@@ -62,8 +62,8 @@ Route::get('/driverhelpprev3/{VNO}/{DCN}', 'DriverController@driverhelpprev3')->
 Route::get('/workflow', 'WorkflowController@index')->name('workflow');
 Route::get('/override/{VNO}', 'WorkflowController@override')->name('override');
 Route::post('/saveoverride', 'WorkflowController@saveoverride')->name('saveoverride');
-Route::get('/auditing', 'WorkflowController@index')->name('auditing');
-Route::post('/auditing1', 'WorkflowController@auditing1')->name('auditing1');
+Route::get('/auditsrch', 'WorkflowController@auditsrch')->name('auditsrch');
+Route::get('/auditing/{VNO}', 'WorkflowController@auditing')->name('auditing');
 
 Route::get('/locations', 'HomeController@locations')->name('locations');
 

@@ -69,9 +69,23 @@ class WorkflowController extends Controller
         }
     }
     
-    public function auditing1(Request $request)
+    public function auditsrch()
     {
-        return view('auditing1');
+        $this->check_access();
+        $sql = "SELECT * from vehicle where VTV=1 and driver_id is not null";
+        $vehicles = DB::select(DB::raw($sql));
+        return view('auditsrch',compact('vehicles'));
+        
+    }
+
+    public function auditing($VNO)
+    {
+        $this->check_access();
+        $id = $VNO;
+        $sql = "SELECT e.RHN,a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c,driver_platform d,tbl361 e where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id and c.id=d.driver_id and d.PLF=e.id";
+        $vehicle = DB::select(DB::raw($sql));
+        $vehicle = $vehicle[0];
+        return view('auditing',compact('vehicle'));
     }
         
 }

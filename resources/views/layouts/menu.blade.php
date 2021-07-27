@@ -89,7 +89,7 @@
 </li>
 @endif
 <li class="nav-item menu-open">
-  <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'workflow1') ? 'active' : '' }}">
+  <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}">
       <i class="nav-icon fas fa-tasks"></i>
       <p>
         Workflow Manager
@@ -97,7 +97,7 @@
   </a>
 </li>
 <li class="nav-item menu-open">
-  <a href="{{ route('auditing') }}" class="nav-link {{ (request()->segment(1) == 'auditing' || request()->segment(1) == 'auditing1') ? 'active' : '' }}">
+  <a href="{{ route('auditsrch') }}" class="nav-link {{ (request()->segment(1) == 'auditsrch' || request()->segment(1) == 'auditing') ? 'active' : '' }}">
       <i class="nav-icon fas fa-history"></i>
       <p>
         Sales Auditing
