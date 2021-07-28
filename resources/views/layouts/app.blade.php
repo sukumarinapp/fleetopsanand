@@ -48,8 +48,8 @@
         </section>
     </div>
     <footer class="main-footer">
-        <strong>Copyright &copy; 2021 <a href="#">FleetOps</a>.</strong> All rights
-        reserved.
+        <!-- <strong>Copyright &copy; 2021 <a href="#">FleetOps</a>.</strong> All rights
+        reserved. -->
     </footer>
 </div>
 <script src="{{ mix('js/app.js') }}" ></script>

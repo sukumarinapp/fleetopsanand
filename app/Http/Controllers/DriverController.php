@@ -15,6 +15,9 @@ class DriverController extends Controller
 {
     public function index()
     {
+        $DDT = date('Y-m-d', strtotime("-1 days"));
+        echo Formulae::CCEI($DDT,"GN7122-17");
+        die;
         $time = array();
         $time['current_date'] = date("Y-m-d");
         $time['current_time'] = date("H.i");

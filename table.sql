@@ -1,3 +1,6 @@
+ update tbl361 set RML=1.14,RMN=.35,RMS=4,RHT='N/A';
+
+  
 ALTER TABLE `driver_platform` CHANGE `PLF` `PLF` INT(11) NULL DEFAULT NULL;
 alter table driver add WDY int(1) null default 1 after VPF;
 alter table driver add MDY int(2) null default 1 after WDY;
