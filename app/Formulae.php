@@ -4,8 +4,7 @@ use DB;
 
 class Formulae{
 
-  //sukumar changed
-  //anand changed
+  //sukumar saved
   //Covered mileage
   public static function CML($DDT,$VNO){
   	$CML = 0;
@@ -165,7 +164,7 @@ class Formulae{
     $FTP = 0;
     if($fuel_sales < $fuel_mileage){
       $FTP = $fuel_sales;
-    }else{
+    }else{      
       $FTP = $fuel_mileage;
     }
     return $FTP;
