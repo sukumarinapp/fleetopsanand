@@ -4,7 +4,6 @@ use DB;
 
 class Formulae{
 
-  //sukumar saved
   //Covered mileage
   public static function CML($DDT,$VNO){
   	$CML = 0;
