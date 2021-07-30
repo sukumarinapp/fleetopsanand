@@ -48,6 +48,7 @@ Route::get('/drivervnoerror', 'DriverController@drivervnoerror')->name('drivervn
 Route::post('/driverpay','DriverController@driverpay')->name('driverpay');
 Route::post('/driverpaysave','DriverController@driverpaysave')->name('driverpaysave');
 Route::get('/driverpaysuccess', 'DriverController@driverpaysuccess')->name('driverpaysuccess');
+Route::get('/prompt', 'DriverController@prompt')->name('prompt');
 Route::get('/billbox', 'DriverController@billbox')->name('billbox');
 
 Route::get('/driverpayerror', 'DriverController@driverpayerror')->name('driverpayerror');

@@ -8,6 +8,7 @@ alter table driver add MDY int(2) null default 1 after WDY;
 alter table tbl136 drop CHR;
 alter table tbl137 drop RTN;
 
+alter table tbl137 add RTN varchar(50) DEFAULT NULl after WDY;
 
 select * from tbl135;
 select * from tbl136;
@@ -51,6 +52,7 @@ CREATE TABLE `tbl137` (
   `CPF` decimal(10,2) DEFAULT NULL,
   `TPF` int(11) DEFAULT NULL,
   `SSR` varchar(20) DEFAULT NULL,
+  RTN varchar(50) DEFAULT NULL,  
   PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

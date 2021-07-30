@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `billbox`
+--
+
+DROP TABLE IF EXISTS `billbox`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `billbox` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(100) DEFAULT NULL,
+  `transac_id` varchar(100) DEFAULT NULL,
+  `cust_ref` varchar(100) DEFAULT NULL,
+  `pay_token` varchar(100) DEFAULT NULL,
+  `callback_time` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `billbox`
+--
+
+LOCK TABLES `billbox` WRITE;
+/*!40000 ALTER TABLE `billbox` DISABLE KEYS */;
+/*!40000 ALTER TABLE `billbox` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `can`
 --
 
@@ -313,7 +340,7 @@ CREATE TABLE `tbl135` (
 
 LOCK TABLES `tbl135` WRITE;
 /*!40000 ALTER TABLE `tbl135` DISABLE KEYS */;
-INSERT INTO `tbl135` VALUES (115,'2021-07-27','C1001','GN7122-17',5.81,186.71),(116,'2021-07-27','C1001','GN7121-17',0.00,0.00);
+INSERT INTO `tbl135` VALUES (115,'2021-07-29','C1001','GN7122-17',5.81,186.71),(116,'2021-07-29','C1001','GN7121-17',0.00,0.00);
 /*!40000 ALTER TABLE `tbl135` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +368,7 @@ CREATE TABLE `tbl136` (
 
 LOCK TABLES `tbl136` WRITE;
 /*!40000 ALTER TABLE `tbl136` DISABLE KEYS */;
-INSERT INTO `tbl136` VALUES (31,'2021-07-27','C1001','GN7122-17','A4',0),(32,'2021-07-27','C1001','GN7121-17','A4',0);
+INSERT INTO `tbl136` VALUES (31,'2021-07-29','C1001','GN7122-17','A0',0),(32,'2021-07-29','C1001','GN7121-17','A0',0);
 /*!40000 ALTER TABLE `tbl136` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,8 +391,9 @@ CREATE TABLE `tbl137` (
   `CPF` decimal(10,2) DEFAULT NULL,
   `TPF` int(11) DEFAULT NULL,
   `SSR` varchar(20) DEFAULT NULL,
+  `RTN` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -397,7 +425,7 @@ CREATE TABLE `tbl138` (
   `SSR` varchar(20) DEFAULT NULL,
   `RTN` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -703,4 +731,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-29 11:21:43
+-- Dump completed on 2021-07-30 17:52:10
