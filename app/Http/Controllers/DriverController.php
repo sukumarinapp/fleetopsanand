@@ -15,9 +15,6 @@ class DriverController extends Controller
 {
     public function index()
     {
-        #$DDT = date('Y-m-d', strtotime("-1 days"));
-        #echo Formulae::CCEI($DDT,"GN7122-17");
-        #die;
         $time = array();
         $time['current_date'] = date("Y-m-d");
         $time['current_time'] = date("H.i");
@@ -34,7 +31,7 @@ class DriverController extends Controller
         $VNO = trim($request->get("VNO"));
         $VNO = str_replace(' ', '', $VNO);        
         $DCN = trim($request->get("DCN"));
-        $sql = "SELECT a.*,b.VBM,b.DCN FROM vehicle a,driver b where a.driver_id=b.id and  a.VNO='$VNO' and a.VTV=1";
+        $sql = "SELECT a.*,b.VBM,b.DCN,b.VAM,b.VPF FROM vehicle a,driver b where a.driver_id=b.id and  a.VNO='$VNO' and a.VTV=1";
         $vehicle = DB::select(DB::raw($sql));
         if(count($vehicle) > 0){
             $vehicle = $vehicle[0];
@@ -91,7 +88,7 @@ class DriverController extends Controller
         $sales['DCN'] = $DCN;
         $SDT = date('Y-m-d', strtotime("-1 days"));
         $SDT_dMY = date('d-M-Y', strtotime("-1 days"));
-        $expected_sales = Formulae::expected_sales($VNO,0);
+        $expected_sales = Formulae::EXPS($SDT,$VNO);
         $sales['SDT'] = $SDT;
         $sales['SDT_dMY'] = $SDT_dMY;
         $sales['expected_sales'] = $expected_sales;
@@ -100,15 +97,30 @@ class DriverController extends Controller
 
     public function driverpay(Request $request)
     {
+        $SSR = $request->SSR;
+        $VBM = $request->VBM;
+        $plat_id_hidden = 0;
+        $earning_hidden = 0;
+        $cash_hidden = 0;
+        $trips_hidden = 0;
+        if($VBM=="Ride Hailing"){
+            $plat_id_hidden = trim($request->get("plat_id_hidden"));
+            $earning_hidden = trim($request->get("earning_hidden"));
+            $cash_hidden = trim($request->get("cash_hidden"));
+            $trips_hidden = trim($request->get("trips_hidden"));
+        }else{
+            $cash_hidden = trim($request->get("SSA"));
+        }
         $options = Billbox::listPayOptions();
         $sales = array();
+        $sales['VBM'] = $VBM;
         $sales['VNO'] = trim($request->get("VNO"));
         $sales['DCN'] = trim($request->get("DCN"));
-        $sales['plat_id_hidden'] = trim($request->get("plat_id_hidden"));
-        $sales['earning_hidden'] = trim($request->get("earning_hidden"));
-        $sales['cash_hidden'] = trim($request->get("cash_hidden"));
-        $sales['trips_hidden'] = trim($request->get("trips_hidden"));
-        $sales['SSR'] = trim($request->get("SSR"));
+        $sales['plat_id_hidden'] = $plat_id_hidden;
+        $sales['earning_hidden'] = $earning_hidden;
+        $sales['cash_hidden'] = round($cash_hidden,2);
+        $sales['trips_hidden'] = $trips_hidden;
+        $sales['SSR'] = $SSR;
         return view('driver.driverpay',compact('sales','options'));
     }
 
@@ -210,13 +222,13 @@ class DriverController extends Controller
     public function driverhelpprev2($VNO,$DCN)
     {
         $sales = array();
+        $SDT = date('Y-m-d', strtotime("-1 days"));
         $sales['VNO'] = $VNO;
         $sales['DCN'] = $DCN;
-        $CML = Formulae::CML($VNO);
-        $NWM = Formulae::NWM($VNO);
-        $DDT = date("Y-m-d");
+        $CML = Formulae::CML($SDT,$VNO);
+        $NWM = Formulae::NWM();
         if($CML <= $NWM){
-            $sql = "update tbl136 set DECL=1 where DDT = '$DDT' AND VNO='$VNO'";
+            $sql = "update tbl136 set DECL=1 where DDT = '$SDT' AND VNO='$VNO'";
             DB::update($sql);
             TrackerSMS::unblock($VNO);
             return view('driver.driverhelpprev2',compact('sales'));

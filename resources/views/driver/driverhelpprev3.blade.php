@@ -20,7 +20,7 @@
    </div>
 </div>
 <hr>
-      <p>Unfortunately, your claim was not successful.System reset failed. Please proceed to declare your sales made within the past days.</p>
+      <p>Unfortunately, your claim was not successful. System reset failed. Please proceed to declare your sales made within the past days.</p>
 
 <br>
 <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">

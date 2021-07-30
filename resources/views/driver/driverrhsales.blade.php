@@ -22,6 +22,7 @@
        <input type="hidden" id="cash_hidden" name="cash_hidden" value="">
        <input type="hidden" id="trips_hidden" name="trips_hidden" value="">
        <input type="hidden" id="SSR" name="SSR" value="Driver">
+       <input type="hidden" id="VBM" name="VBM" value="Ride Hailing">
        <label class="col-form-label">Vehicle Reg  No: {{ $vehicle->VNO }}</label>
    </div>
    <div class="col-md-12">

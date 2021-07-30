@@ -22,6 +22,7 @@
        <input type="hidden" id="cash_hidden" name="cash_hidden" value="{{ $sales['expected_sales'] }}">
        <input type="hidden" id="trips_hidden" name="trips_hidden" value="0">
        <input type="hidden" id="SSR" name="SSR" value="Help">
+       <input type="hidden" id="VBM" name="VBM" value="Ride Hailing">
        <label class="col-form-label">Vehicle Reg  No: {{ $sales['VNO'] }} </label>
    </div>
    <div class="col-md-12">
@@ -40,9 +41,7 @@
    <div class="col-md-12">
       <label class="col-form-label">Sales amount to declare:  GHC {{ $sales['expected_sales'] }} </label>
    </div>
-</div><br>
-
-        <p>Please check your phone for the cash release prompt. Upon receipt of cash, we will confirm with a message shortly after.</p>
+</div>
 
    
 <br>

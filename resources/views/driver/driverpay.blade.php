@@ -8,6 +8,7 @@
       <div class="col col-md-6">
         <input type="hidden" id="VNO" name="VNO" value="{{ $sales['VNO'] }}">
         <input type="hidden" id="DCN" name="DCN" value="{{ $sales['DCN'] }}">
+        <input type="hidden" id="VBM" name="VBM" value="{{ $sales['VBM'] }}">
         <input type="hidden" id="plat_id_hidden" name="plat_id_hidden" value="{{ $sales['plat_id_hidden'] }}">
         <input type="hidden" id="earning_hidden" name="earning_hidden" value="{{ $sales['earning_hidden'] }}">
         <input type="hidden" id="cash_hidden" name="cash_hidden" value="{{ $sales['cash_hidden'] }}">
