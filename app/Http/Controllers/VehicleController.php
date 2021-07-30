@@ -161,9 +161,9 @@ class VehicleController extends Controller
             }
 
             $ECY = trim($request->get('ECY'));
+            $vehicle = Vehicle::find($id);            
             $vehicle->VNO  =  $request->get('VNO');
             $CON = Formulae::CON($vehicle->VNO);
-            $vehicle = Vehicle::find($id);            
             $vehicle->CAN  =  $request->get('CAN');
             if($VID != "") $vehicle->VID  =  $VID;
             if($VRD != "") $vehicle->VRD  =  $VRD;
