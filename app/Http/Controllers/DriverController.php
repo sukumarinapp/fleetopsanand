@@ -196,6 +196,7 @@ class DriverController extends Controller
 
     public function billbox()
     {
+     //http://fleetopsgh.com/billbox?status=0&transac_id=3092&cust_ref=8723498807290116&pay_token=5e455780-9c2b-47f2-8387-a024c577263c
         return view('driver.billbox');
     }
 
