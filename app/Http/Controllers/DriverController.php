@@ -128,6 +128,7 @@ class DriverController extends Controller
     {
         $ROI = $request->options;
         $VNO = $request->VNO;
+        $VBM = $request->VBM;
         $sql = "SELECT a.CAN,b.DNM,b.DSN FROM vehicle a,driver b where a.driver_id=b.id and a.VNO='$VNO' and a.VTV=1";
         $vehicle = DB::select(DB::raw($sql));
         $cust_name = $vehicle[0]->DNM . " " . $vehicle[0]->DSN;
@@ -158,11 +159,9 @@ class DriverController extends Controller
         $result = DB::select(DB::raw($sql));
         $DCR = $result[0]->id;
         $requestId = uniqid();
-        $sql = "insert into tbl137 (DCR,SDT,CAN,VNO,RCN,RHN,SPF,CPF,TPF,SSR,RTN) values ('$DCR','$SDT','$CAN','$VNO','$RCN','$RHN','$SPF','$CPF','$TPF','$SSR','$requestId')";
-        DB::insert($sql);
         $response = Billbox::payNow($requestId,$request->cash_hidden,$request->options,$request->DCN,$cust_name);
         if($response->statusCode=="SUCCESS"){
-            $sql = "insert into tbl138 (RDT,DCR,CAN,VNO,RCN,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$CPF','$ROI','0','$SSR','$requestId')";
+            $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$CPF','$ROI','0','$SSR','$requestId')";
             DB::insert($sql);
             return view('driver.prompt');
         }
