@@ -19,12 +19,11 @@
   var bounds = new google.maps.LatLngBounds();
 
     function refresh_map() {
-      
       for ( var i = 0; i < locations.length; i++ )
       {
-        var location = locations[ i ];
-        var car_icon = "car.png";
-        if(location["engine_on"]=="1") car_icon = "car.png";
+        var location = locations[i];
+        var car_icon = "red.png";
+        if(location["engine_on"]=="1") car_icon = "red.png";
         var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
         bounds.extend( position );
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
