@@ -28,7 +28,7 @@
         bounds.extend( position );
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.NONE
           , icon: car_icon
           , map: map
           , position: position
