@@ -49,6 +49,7 @@
     }
     window.onload = fetch_location; 
     function fetch_location(id){
+      locations = [];
       $.ajax({
           type: "get",
           url: '{{ route('locations') }}',
