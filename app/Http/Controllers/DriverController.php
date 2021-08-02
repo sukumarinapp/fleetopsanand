@@ -10,6 +10,7 @@ use App\TrackerSMS;
 use App\tbl137;
 use App\tbl136;
 use App\Billbox;
+use App\SMSFleetops;
 
 class DriverController extends Controller
 {
@@ -186,16 +187,49 @@ class DriverController extends Controller
         return view('driver.driverpaysuccess');
     }
 
-//http://localhost:8000/billbox?status=1&transac_id=6103e95fb962e&cust_ref=8723498807290116&pay_token=5e455780-9c2b-47f2-8387-a024c577263c
+//http://localhost:8000/billbox?status=1&transac_id=6107720e746ff&cust_ref=8723498807290116&pay_token=5e455780-9c2b-47f2-8387-a024c577263c
     public function billbox(Request $request)
     {
         $query = $request->all();
-        print_r($query);
         $RST = $query['status'];
         $RTN = $query['transac_id'];
         if($RST == 1){
-            $sql = "update tbl138 set RST=1 where RTN = '$RTN'";
-            DB::update($sql);
+            $sql = "SELECT * from tbl137 where RTN = '$RTN'";
+            $result = DB::select(DB::raw($sql));
+            if(count($result)>0){
+                $DCR = $result[0]->DCR;
+                $VNO = $result[0]->VNO;
+                $SDT = $result[0]->SDT;
+                $VBM = $result[0]->VBM;
+                $RCN = $result[0]->RCN;
+                $RMT = $result[0]->RMT;
+                $sql = "update tbl137 set RST=1 where RTN = '$RTN'";
+                DB::update($sql);
+                if($VBM == "Ride Hailing"){
+                    $EXPS = Formulae::EXPS($SDT,$VNO);
+                    echo $EXPS."<br>";
+                    $sql = "SELECT sum(RMT) as TOTDEC from tbl137 where RST = 1 and DCR ='$DCR'";
+                    $result = DB::select(DB::raw($sql));
+                    if(count($result)>0){
+                        $TOTDEC = $result[0]->TOTDEC;
+                        echo $TOTDEC."<br>";
+                        if($TOTDEC >= $EXPS){
+                            $msg = "Thank you for a successful sales declaration.Fuel consumed for the sales declared and offline trips (if any) are being measured and shall be communicated to you in a separate message.";
+                            echo $msg."<br>";
+                            SMSFleetops::send($RCN,$msg);
+                        }else{
+                            $msg="Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please send remaining cash immediately else we shall be compelled to enforce the policy. The car owner has been notified of this issue accordingly.";
+                            echo $msg."<br>";
+                            SMSFleetops::send($RCN,$msg);
+                        }
+                    }
+                }else{
+                    $msg="Thank you for a successful payment of GHC ".$RMT.".";
+                    echo $msg."<br>";
+                    SMSFleetops::send($RCN,$msg);
+                }           
+                
+            }
         }
 
         $cust_ref = $query['cust_ref'];
