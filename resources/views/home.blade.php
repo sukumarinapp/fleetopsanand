@@ -11,14 +11,15 @@
 @section('third_party_scripts')
 <script>
   var locations = [];
-  var myOptions = {
+  
+
+    function refresh_map() {
+      var myOptions = {
     zoom: 12 // set zoom level
     , mapTypeId: google.maps.MapTypeId.ROADMAP // apply tile (options include ROADMAP, SATELLITE, HYBRID and TERRAIN)
   };
   var map = new google.maps.Map( document.getElementById("map_canvas"), myOptions );
   var bounds = new google.maps.LatLngBounds();
-
-    function refresh_map() {
       for ( var i = 0; i < locations.length; i++ )
       {
         var location = locations[i];
