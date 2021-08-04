@@ -82,10 +82,48 @@ class WorkflowController extends Controller
     {
         $this->check_access();
         $id = $VNO;
-        $sql = "SELECT e.RHN,a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c,driver_platform d,tbl361 e where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id and c.id=d.driver_id and d.PLF=e.id";
+        $sql = "SELECT d.PLF,e.RHN,a.*,b.name,c.DNO,c.DNM,c.DSN,c.DCN  FROM vehicle a,users b,driver c,driver_platform d,tbl361 e where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id and c.id=d.driver_id and d.PLF=e.id";
         $vehicle = DB::select(DB::raw($sql));
         $vehicle = $vehicle[0];
         return view('auditing',compact('vehicle'));
+    }
+
+    public function auditingsave(Request $request)
+    {
+        $this->check_access();
+        $rhvisibility = ($request->get("rhvisibility") != null) ? 1 : 0;
+        $VBM = "Ride Hailing";
+        $VID = $request->VID;
+        $VNO = $request->VNO;
+        $CAN = $request->CAN;
+        $RCN = $request->RCN;
+        $SPF = $request->SPF;
+        $TPF = $request->TPF;
+        $RMT = $request->RMT;
+        $RHN = $request->RHN;
+        $ROI = "";
+        $SSR = Auth::user()->UAN;
+        $SDT = date('Y-m-d', strtotime("-1 days"));  
+        $DCR = 0;
+        $sql = "SELECT * from tbl135 where DDT='$SDT' and VNO='$VNO'";
+        $result = DB::select(DB::raw($sql));
+        if(count($result)==0){
+            $sql = "insert into tbl135 (DDT,CAN,VNO,CHR,CML) values ('$SDT','$CAN','$VNO','0','0')";
+            DB::insert($sql);
+        }
+        $sql = "SELECT * from tbl136 where DDT='$SDT' and VNO='$VNO'";
+        $result = DB::select(DB::raw($sql));
+        if(count($result)==0){
+            $sql = "insert into tbl136 (DDT,CAN,VNO,DES,DECL) values ('$SDT','$CAN','$VNO','A0','0')";
+            DB::insert($sql);
+        }
+        $sql = "SELECT * from tbl136 where DDT='$SDT' and VNO='$VNO'";
+        $result = DB::select(DB::raw($sql));
+        $DCR = $result[0]->id;
+
+        $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$RMT','$ROI','1','$SSR','')";
+        DB::insert($sql);
+        return redirect('/auditing/'.$VID)->with('message', 'Driver Sales Audit Done Successfully')->withInput();
     }
         
 }

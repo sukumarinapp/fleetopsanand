@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
+  <form action="{{ route('auditingsave') }}" method="post">
+    @csrf
+    <input type="hidden" name="VID" value="{{ $vehicle->id }}">
+    <input type="hidden" name="CAN" value="{{ $vehicle->CAN }}">
+    <input type="hidden" name="VNO" value="{{ $vehicle->VNO }}">
+    <input type="hidden" name="RCN" value="{{ $vehicle->DCN }}">
+    <input type="hidden" name="RHN" value="{{ $vehicle->PLF }}">
   <div class="row">
     <div class="col-md-12">
       <div class="card card-info">
@@ -73,25 +80,25 @@
               <div class="form-group row">
                <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>Sales Earnings:</label>
                <div class="col-sm-8">
-                <input required="required" type="text" class="form-control number" name="name" id="name" maxlength="10" placeholder="Sales Earnings">
+                <input required="required" type="text" class="form-control number" name="SPF" id="SPF" maxlength="10" placeholder="Sales Earnings">
               </div>
             </div>
             <div class="form-group row">
                <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>Cash Collected:</label>
                <div class="col-sm-8">
-                <input required="required" type="text" class="form-control number" name="name" id="name" maxlength="10" placeholder="Cash Collected">
+                <input required="required" type="text" class="form-control number" name="RMT" id="RMT" maxlength="10" placeholder="Cash Collected">
               </div>
             </div>
            <div class="form-group row">
                <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>No of Trips:</label>
                <div class="col-sm-8">
-                <input required="required" type="text" class="form-control number" name="name" id="name" maxlength="3" placeholder="No of Trips">
+                <input required="required" type="text" class="form-control number" name="TPF" id="TPF" maxlength="3" placeholder="No of Trips">
               </div>
             </div>
             <div class="form-group row">
               <div class="form-check">
-                  <input type="checkbox" name="check1" class="form-check-input" id="check1">
-                  <label for="check1" class="form-check-label col-sm-8"><b>Driver cannot be seen on RH platform:</b></label>
+                  <input type="checkbox" value="1" name="rhvisibility" class="form-check-input" id="rhvisibility">
+                  <label for="rhvisibility" class="form-check-label col-sm-8"><b>Driver cannot be seen on RH platform:</b></label>
                 </div>
               </div>
             </div>
@@ -112,6 +119,7 @@
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 

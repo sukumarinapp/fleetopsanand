@@ -7,7 +7,7 @@ class Formulae{
   //Covered mileage
   public static function CML($DDT,$VNO){
   	$CML = 0;
-    $sql = "SELECT * FROM tbl135 where DDT='$DDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl136 where DDT='$DDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $CML = $result[0]->CML;
@@ -18,7 +18,7 @@ class Formulae{
   //Hours Worked
   public static function CHR($DDT,$VNO){
     $CHR = 0;
-    $sql = "SELECT * FROM tbl135 where DDT='$DDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl136 where DDT='$DDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $CHR = $result[0]->CHR;
@@ -128,7 +128,7 @@ class Formulae{
     if(count($result)>0){
       $TPF = $result[0]->TRIPS;
     }
-    $sql = "SELECT * FROM tbl135 where DDT='$SDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl136 where DDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $CHR = $result[0]->CHR;

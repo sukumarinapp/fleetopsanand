@@ -87,8 +87,8 @@ class DriverController extends Controller
         $sales = array();
         $sales['VNO'] = $VNO;
         $sales['DCN'] = $DCN;
-        $SDT = date('Y-m-d', strtotime("-1 days"));
-        $SDT_dMY = date('d-M-Y', strtotime("-1 days"));
+        $SDT = date('Y-m-d');
+        $SDT_dMY = date('d-M-Y');
         $expected_sales = Formulae::EXPS($SDT,$VNO);
         $sales['SDT'] = $SDT;
         $sales['SDT_dMY'] = $SDT_dMY;
@@ -134,7 +134,7 @@ class DriverController extends Controller
         $vehicle = DB::select(DB::raw($sql));
         $cust_name = $vehicle[0]->DNM . " " . $vehicle[0]->DSN;
         $CAN = $vehicle[0]->CAN;
-        $SDT = date('Y-m-d', strtotime("-1 days"));        
+        $SDT = date('Y-m-d');
         $RCN = $request->RCN;
         $VNO = $request->VNO;
         $RCN = $request->DCN;
@@ -144,27 +144,19 @@ class DriverController extends Controller
         $TPF = $request->trips_hidden;
         $SSR = $request->SSR;
         $DCR = 0;
-        $sql = "SELECT * from tbl135 where DDT='$SDT' and VNO='$VNO'";
+        $sql = "SELECT * from tbl136 where DECL=0 and VNO='$VNO'";
         $result = DB::select(DB::raw($sql));
-        if(count($result)==0){
-            $sql = "insert into tbl135 (DDT,CAN,VNO,CHR,CML) values ('$SDT','$CAN','$VNO','0','0')";
-            DB::insert($sql);
-        }
-        $sql = "SELECT * from tbl136 where DDT='$SDT' and VNO='$VNO'";
-        $result = DB::select(DB::raw($sql));
-        if(count($result)==0){
-            $sql = "insert into tbl136 (DDT,CAN,VNO,DES,DECL) values ('$SDT','$CAN','$VNO','A0','0')";
-            DB::insert($sql);
-        }
-        $sql = "SELECT * from tbl136 where DDT='$SDT' and VNO='$VNO'";
-        $result = DB::select(DB::raw($sql));
-        $DCR = $result[0]->id;
-        $requestId = uniqid();
-        $response = Billbox::payNow($requestId,$request->cash_hidden,$request->options,$request->DCN,$cust_name);
-        if($response->statusCode=="SUCCESS"){
-            $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$CPF','$ROI','0','$SSR','$requestId')";
-            DB::insert($sql);
-            return view('driver.prompt');
+        if(count($result) > 0){        
+            $DCR = $result[0]->id;
+            $requestId = uniqid();
+            $response = Billbox::payNow($requestId,$request->cash_hidden,$request->options,$request->DCN,$cust_name);
+            if($response->statusCode=="SUCCESS"){
+                $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$CPF','$ROI','0','$SSR','$requestId')";
+                DB::insert($sql);
+                return view('driver.prompt');
+            }
+        }else{
+            return view('driver.nopending');
         }
   }
 
@@ -187,13 +179,13 @@ class DriverController extends Controller
         return view('driver.driverpaysuccess');
     }
 
-//http://localhost:8000/billbox?status=1&transac_id=6107720e746ff&cust_ref=8723498807290116&pay_token=5e455780-9c2b-47f2-8387-a024c577263c
+//http://fleetopsgh.com/billbox?status=1&transac_id=6109608da766c&cust_ref=8723498807290116&pay_token=5e455780-9c2b-47f2-8387-a024c577263c
     public function billbox(Request $request)
     {
         $query = $request->all();
         $RST = $query['status'];
         $RTN = $query['transac_id'];
-        if($RST == 1){
+        if($RST == 0){
             $sql = "SELECT * from tbl137 where RTN = '$RTN'";
             $result = DB::select(DB::raw($sql));
             if(count($result)>0){
