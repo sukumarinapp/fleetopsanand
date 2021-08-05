@@ -186,8 +186,9 @@ class DriverController extends Controller
         $query = $request->all();
         $RST = $query['status'];
         $RTN = $query['transac_id'];
+        echo $RTN."\n";
         if($RST == 0){
-            $sql = "SELECT * from tbl137 where RTN = '$RTN'";
+            $sql = "SELECT a.*,b.VBC0,b.TSM from tbl137 a,vehicle b where a.VNO=b.VNO and a.RTN = '$RTN'";
             $result = DB::select(DB::raw($sql));
             if(count($result)>0){
                 $DCR = $result[0]->DCR;
@@ -196,6 +197,8 @@ class DriverController extends Controller
                 $VBM = $result[0]->VBM;
                 $RCN = $result[0]->RCN;
                 $RMT = $result[0]->RMT;
+                $VBC0 = $result[0]->VBC0; 
+                $TSM = $result[0]->TSM;
                 $sql = "update tbl137 set RST=1 where RTN = '$RTN'";
                 DB::update($sql);
                 if($VBM == "Ride Hailing"){
@@ -207,7 +210,8 @@ class DriverController extends Controller
                         $TOTDEC = $result[0]->TOTDEC;
                         echo $TOTDEC."<br>";
                         if($TOTDEC >= $EXPS){
-                            $msg = "Thank you for a successful sales declaration.Fuel consumed for the sales declared and offline trips (if any) are being measured and shall be communicated to you in a separate message.";
+                            $msg = "Thank you for a successful sales declaration.Fuel consumed for the sales declared and offline trips (if any) are being measured and shall be communicated to you in a separate message.";                  
+                            SMSFleetops::send($TSM,$VBC0);
                             echo $msg."<br>";
                             SMSFleetops::send($RCN,$msg);
                         }else{
