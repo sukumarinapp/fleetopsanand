@@ -14,13 +14,26 @@ class WorkflowController extends Controller
         $this->middleware('auth');
     }
 
-    private function check_access(){
-        
+    private function check_access($BP){
+        if($BP == "BPJ2"){
+            if(Auth::user()->usertype=="Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ2==1)){
+            }else{
+                echo "Access Denied";
+                die;
+            }            
+        }
+        if($BP == "BPJ1"){
+            if(Auth::user()->usertype=="Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ1==1)){
+            }else{
+                echo "Access Denied";
+                die;
+            }            
+        }
     }
 
     public function index()
     {
-        $this->check_access();
+        $this->check_access("BPJ2");
         $sql = "SELECT * from vehicle where VTV=1 and driver_id is not null";
         $vehicles = DB::select(DB::raw($sql));
         return view('workflow',compact('vehicles'));
@@ -29,7 +42,7 @@ class WorkflowController extends Controller
 
     public function override($VNO)
     {
-        $this->check_access();
+        $this->check_access("BPJ2");
         $id = $VNO;
         $sql = "SELECT a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id";
         $vehicle = DB::select(DB::raw($sql));
@@ -39,7 +52,7 @@ class WorkflowController extends Controller
 
     public function saveoverride(Request $request)
     {
-        $this->check_access();
+        $this->check_access("BPJ2");
         $email = trim($request->UAN);
         $password = $request->password;
         $CAN = $request->CAN;
@@ -71,8 +84,8 @@ class WorkflowController extends Controller
     
     public function auditsrch()
     {
-        $this->check_access();
-        $sql = "SELECT * from vehicle where VTV=1 and driver_id is not null";
+        $this->check_access("BPJ1");
+        $sql = "SELECT a.* from vehicle a,driver b where a.driver_id=b.id and VTV=1 and b.VBM='Ride Hailing'";
         $vehicles = DB::select(DB::raw($sql));
         return view('auditsrch',compact('vehicles'));
         
@@ -80,7 +93,7 @@ class WorkflowController extends Controller
 
     public function auditing($VNO)
     {
-        $this->check_access();
+        $this->check_access("BPJ1");
         $id = $VNO;
         $sql = "SELECT d.PLF,e.RHN,a.*,b.name,c.DNO,c.DNM,c.DSN,c.DCN  FROM vehicle a,users b,driver c,driver_platform d,tbl361 e where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id and c.id=d.driver_id and d.PLF=e.id";
         $vehicle = DB::select(DB::raw($sql));
@@ -90,7 +103,7 @@ class WorkflowController extends Controller
 
     public function auditingsave(Request $request)
     {
-        $this->check_access();
+        $this->check_access("BPJ1");
         $rhvisibility = ($request->get("rhvisibility") != null) ? 1 : 0;
         $VBM = "Ride Hailing";
         $VID = $request->VID;
