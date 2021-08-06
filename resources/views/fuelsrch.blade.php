@@ -20,7 +20,7 @@
 							</div>
 							<div class="col-sm-4">
 								<input onclick="load_vehicle()" required="required" class="btn btn-info"
-								type="button" n ame="submit" value="Load Vehicle Details"/>
+								type="button" n ame="submit" value="Send Fueling Code"/>
 							</div>
 						</div>
 					</form>
