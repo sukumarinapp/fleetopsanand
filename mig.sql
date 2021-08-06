@@ -5,3 +5,5 @@ alter table tbl136 add DECL tinyint(1) DEFAULT 0 after DES;
 update tbl136 set DES='A0',DECL=0;
 
 alter table tbl137 add TIM varchar(20) DEFAULT NULL after RTN;	
+
+alter table tbl139 add VFD tinyint(1) DEFAULT 0 after CWI;

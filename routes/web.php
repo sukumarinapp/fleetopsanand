@@ -69,5 +69,8 @@ Route::post('/auditingsave', 'WorkflowController@auditingsave')->name('auditings
 
 Route::get('/locations', 'HomeController@locations')->name('locations');
 
+Route::get('/fuelsrch', 'FuelController@fuelsrch')->name('fuelsrch');
+
+
 
 

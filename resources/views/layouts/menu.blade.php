@@ -88,6 +88,7 @@
   </ul>
 </li>
 @endif
+@if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ2==1))
 <li class="nav-item menu-open">
   <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}">
       <i class="nav-icon fas fa-tasks"></i>
@@ -96,11 +97,22 @@
       </p>
   </a>
 </li>
+@endif
+@if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ1==1))
 <li class="nav-item menu-open">
   <a href="{{ route('auditsrch') }}" class="nav-link {{ (request()->segment(1) == 'auditsrch' || request()->segment(1) == 'auditing') ? 'active' : '' }}">
       <i class="nav-icon fas fa-history"></i>
       <p>
         Sales Auditing
+      </p>
+  </a>
+</li>
+@endif
+<li class="nav-item menu-open">
+  <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fuelsrch') ? 'active' : '' }}">
+      <i class="nav-icon fas fa-car"></i>
+      <p>
+        Fueler
       </p>
   </a>
 </li>
