@@ -40,10 +40,10 @@
 
 @push('page_scripts')
 <script>
-	var auditing = "{{ url('auditing') }}";
+	var fueler = "{{ url('fueler') }}";
 	function load_vehicle(){
 		var VNO = $("#VNO").val();
-		var url =  auditing + "/" + VNO;
+		var url =  fueler + "/" + VNO;
 		window.location.href = url;
 	}
 
