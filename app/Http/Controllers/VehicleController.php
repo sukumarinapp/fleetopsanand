@@ -67,7 +67,7 @@ class VehicleController extends Controller
         }else{
             $VTV = ($request->get("VTV") != null) ? 1 : 0;
             $ECY = trim($request->get('ECY'));
-            $CON = Formulae::fuel_consumption($ECY);
+            $CON = Formulae::CON($VNO);
             $insert = array(
                 'CAN' => $request->get('CAN'),
                 'VNO' => $request->get('VNO'),
