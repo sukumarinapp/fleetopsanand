@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="logo.jpg" width="50%">
+                    <img src="logo.jpg" width="30%">
                 </div>
             </div>
         </div>
