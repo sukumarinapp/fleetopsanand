@@ -37,9 +37,8 @@ class FuelController extends Controller
         $vehicle = DB::select(DB::raw($sql));
         $vehicle = $vehicle[0];
         $DCN = $vehicle->DCN;
-        echo("Fueling code sent to ".$DCN);die;
         $msg = "Your fueling code is 1111";
-        SMSFleetops::send($DSN,$msg);
+        //SMSFleetops::send($DSN,$msg);
         return view('fueler',compact('vehicle'));
     }
         

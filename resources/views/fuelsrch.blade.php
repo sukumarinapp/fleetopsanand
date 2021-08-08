@@ -47,6 +47,10 @@
 	var fueler = "{{ url('fueler') }}";
 	function load_vehicle(){
 		var VNO = $("#VNO").val();
+		if(VNO==""){
+			alert("Please select a vehicle");
+			return false;
+		}
 		var url =  fueler + "/" + VNO;
 		window.location.href = url;
 	}
