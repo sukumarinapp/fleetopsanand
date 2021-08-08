@@ -1,6 +1,6 @@
 <li class="nav-item menu-open">
   <a href="{{ route('home') }}" class="nav-link {{ (request()->is('home')) ? 'active' : '' }}">
-      <i class="nav-icon fas fa-home"></i>
+      <i class="nav-icon fas fa-map-marker"></i>
       <p>
         Dashboard
       </p>
