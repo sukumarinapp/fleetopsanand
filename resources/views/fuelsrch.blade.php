@@ -8,6 +8,10 @@
 					<h3 class="card-title">Fueler</h3>
 				</div>
 				<div class="card-body">
+					<div class="row" style=" border: 1px solid red;padding: 25px 25px 25px 25px;">
+            <p>The Fueler function helps to provide fuel for the driver. The amount of fuel to be issued is measured accordingly. To complete the process,please make sure the contact number of the driver is valid in the system.A “Fueling Code” will be sent to the driver’s phone via SMS after which he/she will in turn communicate to you as proof and confirmation that fuel was indeed received.</p>
+            <br><br>
+          </div>
 						<div class="form-group row">
 							<label for="VNO" class="col-sm-2 col-form-label"><span style="color:red">*</span>Vehicle</label>
 							<div class="col-sm-6">
