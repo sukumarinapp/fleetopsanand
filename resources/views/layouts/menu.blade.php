@@ -6,7 +6,7 @@
       </p>
   </a>
 </li>
-<!-- <li class="nav-item menu-close">
+<li class="nav-item menu-close">
   <a href="#" class="nav-link">
     <i class="nav-icon fas fa-folder"></i>
     <p>
@@ -56,7 +56,7 @@
       </ul>
     </li>
   </ul>
-</li> -->
+</li>
 @if(Auth::user()->usertype == "Admin")
 <li class="nav-item {{ (request()->is('parameter') || request()->is('rhplatform')) ? 'menu-open' : '' }}">
   <a href="#" class="nav-link">
