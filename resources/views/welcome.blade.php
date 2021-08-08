@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Fleet Ops
+                    <img src="logo.jpg" width="50%">
                 </div>
             </div>
         </div>
