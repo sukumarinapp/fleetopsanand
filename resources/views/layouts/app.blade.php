@@ -41,16 +41,12 @@
             </li>
         </ul>
     </nav>
-@include('layouts.sidebar')
+    @include('layouts.sidebar')
     <div class="content-wrapper">
         <section class="content">
             @yield('content')
         </section>
     </div>
-    <footer class="main-footer">
-        <!-- <strong>Copyright &copy; 2021 <a href="#">FleetOps</a>.</strong> All rights
-        reserved. -->
-    </footer>
 </div>
 <script src="{{ mix('js/app.js') }}" ></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBGD4U0YDBCpPd54yleIeEcFIVfjQ8q9JY"></script>

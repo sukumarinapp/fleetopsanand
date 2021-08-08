@@ -6,6 +6,57 @@
       </p>
   </a>
 </li>
+<!-- <li class="nav-item menu-close">
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-folder"></i>
+    <p>
+      Manager
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="http://localhost:8000/manager" class="nav-link active">
+        <i class="nav-icon fas fa-folder"></i>
+        <p>Client A</p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-car"></i>
+            <p>Car A</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-car"></i>
+            <p>Car B</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a href="http://localhost:8000/client" class="nav-link ">
+        <i class="nav-icon fas fa-folder"></i>
+        <p>Client B</p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-car"></i>
+            <p>Car C</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-car"></i>
+            <p>Car D</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li> -->
 @if(Auth::user()->usertype == "Admin")
 <li class="nav-item {{ (request()->is('parameter') || request()->is('rhplatform')) ? 'menu-open' : '' }}">
   <a href="#" class="nav-link">
@@ -111,7 +162,7 @@
 @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
 <li class="nav-item menu-open">
   <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fuelsrch') ? 'active' : '' }}">
-      <i class="nav-icon fas fa-car"></i>
+      <i class="nav-icon fas fa-gas-pump"></i>
       <p>
         Fueler
       </p>
