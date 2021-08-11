@@ -30,7 +30,7 @@
         
 
           @if(Auth::user()->usertype == "Admin")
-           <li class="dropdown dropdown-hover nav nav-tabs {{ (request()->is('parameter') || request()->is('rhplatform')) ? 'active' : '' }}">
+           <li class="dropdown dropdown-hover nav nav-tabs {{ (request()->is('parameter') || request()->is('rhplatform') || request()->is('sms')) ? 'active' : '' }}">
 
             <a id="dropdownSubMenu" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><b>Settings</b></a>
 
