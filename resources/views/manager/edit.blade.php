@@ -196,12 +196,6 @@
                        <label class="form-check-label col-sm-8" for="BPJ2">Override Blocked/Immobilized Vehicle.</label>
                 </div>
                 <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPK">Can Access Client Tracking Platform.</label>
-                    <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPK == "1" ? "checked":"") }} name="BPK" type="checkbox" id="BPK">
-                     </div> 
-                      </div>
-                <div class="row row-padded">
                        <label class="form-check-label col-sm-8" for="BPL">Can Access Fueler Function.</label>
                     <div class="icheck-success d-inline col-sm-2">
                         <input {{ ($user->BPL == "1" ? "checked":"") }} name="BPL" type="checkbox" id="BPL">

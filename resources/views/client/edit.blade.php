@@ -226,13 +226,6 @@
                     </div> 
                        <label class="form-check-label col-sm-6" for="RBA4B">All Vehicles</label>
                 </div>
-                 <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPF">Can Access Third-Party Tracking Platform.</label>
-                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success col-sm-2">
-                      <input {{ ($user->RBB == "1" ? "checked":"") }} name="RBB" type="checkbox" class="custom-control-input" id="RBB" >
-                      <label class="custom-control-label" for="customSwitch9"></label>
-                    </div> 
-                </div>
 
                  <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPJ">Can Manage Workflows.</label>

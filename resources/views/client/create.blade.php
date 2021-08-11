@@ -198,13 +198,6 @@
           </div> 
           <label class="form-check-label col-sm-10" for="RBA4B">All Vehicles</label>
         </div>
-        <div class="row row-padded">
-          <label class="form-check-label col-sm-11" for="RBB">Can Access Third-Party Tracking Platform.</label>
-          <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success col-sm-1">
-            <input name="RBB" type="checkbox" class="custom-control-input" id="RBB">
-            <label class="custom-control-label" for="RBB"></label>
-          </div> 
-        </div>
 
         <div class="row row-padded">
           <label class="form-check-label col-sm-11" for="BPJ">Can Manage Workflows.</label>
