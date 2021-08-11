@@ -12,15 +12,17 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('third_party_stylesheets')
     @stack('page_css')
+    
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <ul class="navbar-nav">
-            <li class="nav-item">
+          <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
+            </li> 
         </ul>
+
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -50,9 +52,12 @@
 </div>
 <script src="{{ mix('js/app.js') }}" ></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBGD4U0YDBCpPd54yleIeEcFIVfjQ8q9JY"></script>
+
 @yield('third_party_scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+
 @stack('page_scripts')
+
 <script>
 $(document).ready(function(){
     $("#VPF").change(function(evt){
@@ -242,6 +247,7 @@ function validate_amount(){
     }
     return true;    
 }
+
 
 </script>
 </body>
