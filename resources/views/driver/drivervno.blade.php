@@ -7,7 +7,7 @@
         @csrf
       <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-          <h3 style="color: lightgray">Declare Sales</h3>
+          <h3 style="color: lightgray">Authenticate Driver</h3>
         </div>
       </div>
       <div class="row justify-content-center">

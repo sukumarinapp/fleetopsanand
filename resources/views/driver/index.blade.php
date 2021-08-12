@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         @if ($time["current_time"] > .15)
-          <a href="{{ route('drivervno') }}" type="button" class="btn btn-block btn-primary btn-lg text-center">Declare Sales</a>
+          <a href="{{ route('drivervno') }}" type="button" class="btn btn-block btn-primary btn-lg text-center">Make Payment</a>
         @endif
       </div>
     </div>
