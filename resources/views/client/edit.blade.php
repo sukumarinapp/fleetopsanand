@@ -80,9 +80,13 @@
                  <div class="form-group row">
                    <label for="UCN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Contact Number</label>
                     <div class="col-sm-3">
-                        <input value="{{ $user->UCN }}" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+                        <input onchange="duplicateUserContact({{ $user->UCN }})"  value="{{ $user->UCN }}" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
                     </div>
-
+                    <div class="col-sm-4">
+                        <span id="dupContact" style="color:red"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
                    <label id="CMNLBL" for="CMN" class="col-sm-3 col-form-label">{{ ($user->CMT == "B" ? "Account Number":"Mobile Number") }}</label>
                     <div class="col-sm-3">
                         @php
@@ -98,9 +102,13 @@
 			    <div class="form-group row">
 					<label for="email" class="col-sm-3 col-form-label"><span style="color:red">*</span>Email</label>
 					<div class="col-sm-3">
-						<input value="{{ $user->email }}" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
+						<input onchange="duplicateEmail(this.value)" value="{{ $user->email }}" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
 					</div>
-
+                    <div class="col-sm-4">
+                        <span id="dupemail" style="color:red"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
                  <label id="CMBLBL" for="CMB" class="col-sm-3 col-form-label">{{ ($user->CMT == "B" ? "Account Branch":"Telecom Provider") }}</label>
                     <div class="col-sm-3" id="telecom_div">
                         @php
@@ -153,7 +161,7 @@
                   </div>
 			 <div class="form-group row">
 					<div class="col-md-12 text-center">
-						<input required="required" class="btn btn-info"
+						<input id="save" required="required" class="btn btn-info"
 						type="submit"
 						name="submit" value="Update"/>
             <a href="{{ route('manager.index') }}" class="btn btn-info">Back</a>

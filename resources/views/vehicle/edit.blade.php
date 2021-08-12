@@ -25,7 +25,7 @@
               	<div class="form-group row">
 					<label for="CAN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Customer Account #</label>
 					<div class="col-sm-8">
-						<select required="requiered" class="form-control" name="CAN" id="CAN" >
+						<select required="required" class="form-control" name="CAN" id="CAN" >
 						@foreach($clients as $client)
 	                     	<option {{ ($vehicle->CAN == $client->UAN ? "selected":"") }} value="{{ $client->UAN }}" >{{ $client->UAN }}</option>
 	                     @endforeach

@@ -29,7 +29,7 @@
           <div class="form-group row">
            <label for="name" class="col-sm-2 col-form-label"><span style="color:red">*</span>Company Name</label>
            <div class="col-sm-4">
-            <input required="requiered" type="text" class="form-control" name="name" id="name" maxlength="200" placeholder="Company Name">
+            <input required="required" type="text" class="form-control" name="name" id="name" maxlength="200" placeholder="Company Name">
           </div>
 
           <label for="parent_id" class="col-sm-2 col-form-label"><span style="color:red">*</span>Account Manager</label>
@@ -46,7 +46,7 @@
         <div class="form-group row">
          <label for="CZN" class="col-sm-2 col-form-label"><span style="color:red">*</span>Contact Name</label>
          <div class="col-sm-4">
-          <input required="requiered" type="text" class="form-control" name="CZN" id="CZN" maxlength="50" placeholder="Contact Name">
+          <input required="required" type="text" class="form-control" name="CZN" id="CZN" maxlength="50" placeholder="Contact Name">
         </div>
         
         <label for="CMT" class="col-sm-2 col-form-label">Account Type</label>
@@ -61,7 +61,7 @@
       <div class="form-group row">
         <label for="UZA" class="col-sm-2 col-form-label"><span style="color:red">*</span>Address</label>
         <div class="col-sm-4">
-          <textarea  required="requiered" class="form-control max200" name="UZA" id="UZA" rows="1" placeholder="Address"></textarea>
+          <textarea  required="required" class="form-control max200" name="UZA" id="UZA" rows="1" placeholder="Address"></textarea>
         </div>
         
 
@@ -74,9 +74,13 @@
       <div class="form-group row">
        <label for="UCN" class="col-sm-2 col-form-label"><span style="color:red">*</span>Contact Number</label>
        <div class="col-sm-4">
-        <input required="requiered" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+        <input onchange="duplicateUserContact(0)" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
       </div>
-
+      <div class="col-sm-4">
+        <span id="dupContact" style="color:red"></span>
+    </div>
+    </div>
+      <div class="form-group row">
       <label id="CMNLBL" for="CMN" class="col-sm-2 col-form-label">Account Number</label>
       <div class="col-sm-4">
         <input type="text" class="form-control number" name="CMN" id="CMN" maxlength="15" placeholder="Account Number">
@@ -86,8 +90,12 @@
     <div class="form-group row">
      <label for="email" class="col-sm-2 col-form-label"><span style="color:red">*</span>Email</label>
      <div class="col-sm-4">
-      <input required="requiered" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
+      <input onchange="duplicateEmail(0)" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
     </div>
+    <div class="col-sm-4">
+      <span id="dupemail" style="color:red"></span>
+    </div>
+  </div>
     
 
     <label id="CMBLBL" for="CMB" class="col-sm-2 col-form-label">Account Branch</label>
@@ -99,7 +107,7 @@
   <div class="form-group row">
    <label for="password" class="col-sm-2 col-form-label"><span style="color:red">*</span>Password</label>
    <div class="col-sm-4">
-    <input value="{{ random_int(100000, 999999) }}"required="requiered" type="text" class="form-control" name="password" id="password" maxlength="20" placeholder="Password">
+    <input value="{{ random_int(100000, 999999) }}"required="required" type="text" class="form-control" name="password" id="password" maxlength="20" placeholder="Password">
   </div>
 </div>
 <hr>
@@ -127,7 +135,7 @@
 </div>
 <div class="form-group row">
  <div class="col-md-12 text-center">
-  <input required="required" class="btn btn-info"
+  <input id="save" required="required" class="btn btn-info"
   type="submit"
   name="submit" value="Save"/>
   <a href="{{ route('client.index') }}" class="btn btn-info">Back</a>

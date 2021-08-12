@@ -24,7 +24,7 @@
               	<div class="form-group row">
 					<label for="CAN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Customer Account #</label>
 					<div class="col-sm-8">
-						<select required="requiered" class="form-control" name="CAN" id="CAN" >
+						<select required="required" class="form-control" name="CAN" id="CAN" >
 						@foreach($clients as $client)
 	                     	<option value="{{ $client->UAN }}" >{{ $client->UAN }}</option>
 	                     @endforeach
@@ -34,20 +34,20 @@
                  <div class="form-group row">
 					<label for="VNO" class="col-sm-4 col-form-label"><span style="color:red">*</span>Vehicle Reg. No.</label>
 					<div class="col-sm-8">
-						<input onchange="duplicateVNO(0)" required="requiered" type="text" class="form-control" name="VNO" id="VNO" maxlength="50" placeholder="Vehicle Reg. No.">
+						<input onchange="duplicateVNO(0)" required="required" type="text" class="form-control" name="VNO" id="VNO" maxlength="50" placeholder="Vehicle Reg. No.">
 						<span id="dupVNO" style="color:red"></span>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="VID" class="col-sm-4 col-form-label"><span style="color:red">*</span>Insurance</label>
 					<div class="col-sm-8">
-                        <input required="requiered" accept="application/pdf,image/png, image/jpeg" name="VID" type="file" id="VID">
+                        <input required="required" accept="application/pdf,image/png, image/jpeg" name="VID" type="file" id="VID">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="VRD" class="col-sm-4 col-form-label"><span style="color:red">*</span>Roadworthy Cert</label>
 					<div class="col-sm-8">
-                        <input required="requiered" accept="application/pdf,image/png, image/jpeg" name="VRD" type="file" id="VRD">
+                        <input required="required" accept="application/pdf,image/png, image/jpeg" name="VRD" type="file" id="VRD">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -84,13 +84,13 @@
                  <div class="form-group row">
 					<label for="VFT" class="col-sm-4 col-form-label"><span style="color:red">*</span>RH – Tank Capacity (Litres)</label>
 					<div class="col-sm-8">
-						<input required="requiered" type="text" class="form-control decimal" name="VFT" id="VFT" maxlength="10" placeholder="Tank Capacity">
+						<input required="required" type="text" class="form-control decimal" name="VFT" id="VFT" maxlength="10" placeholder="Tank Capacity">
 					</div>
 				</div>
 				 <div class="form-group row">
 					<label for="VFC" class="col-sm-4 col-form-label"><span style="color:red">*</span>RH – Fueling Cap (Litres)</label>
 					<div class="col-sm-8">
-						<input required="requiered" type="text" class="form-control decimal" name="VFC" id="VFC" maxlength="10" placeholder="Fueling Cap (%)">
+						<input required="required" type="text" class="form-control decimal" name="VFC" id="VFC" maxlength="10" placeholder="Fueling Cap (%)">
 					</div>
 				</div>
 				           <div class="form-group row">
@@ -117,7 +117,7 @@
 				<div class="form-group row">
 					<label for="TIP" class="col-sm-4 col-form-label"><span style="color:red">*</span>Terminal IP Address</label>
 					<div class="col-sm-8">
-						<input required="requiered" type="text" class="form-control" name="TIP" id="TIP" maxlength="50" placeholder="Terminal IP Address">
+						<input required="required" type="text" class="form-control" name="TIP" id="TIP" maxlength="50" placeholder="Terminal IP Address">
 					</div>
 				</div>
 				<div class="row">
