@@ -244,6 +244,22 @@ class ManagerController extends Controller
         }
     }
 
+    public function duplicateUserContact(Request $request){
+        $UCN = trim($request->get('UCN'));
+        $id = trim($request->get('id'));
+        if($id == 0){
+            $sql = "SELECT * FROM users where UCN='$UCN'";
+        }else{
+            $sql = "SELECT * FROM users where UCN='$UCN' and id <> $id";
+        }
+        $users = DB::select(DB::raw($sql));
+        if(count($users) > 0){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));
+        }
+    }
+
     public function change_password(Request $request){
         return view('manager.change');
     }

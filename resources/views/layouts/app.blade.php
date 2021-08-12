@@ -184,8 +184,33 @@ function duplicateEmail(id){
             console.log(res);
             if(res.exists){
                 $("#dupemail").html("Email already used by another user");
+                $("#save").prop('disabled', true);
             }else{
                 $("#dupemail").html("<span style='color:green'>Available</span>");
+                $("#save").prop('disabled', false);
+            }
+        },
+        error: function (jqXHR, exception) {
+            console.log(exception);
+        }
+    });
+}
+
+function duplicateUserContact(id){
+    var UCN = $("#UCN").val();
+    console.log(UCN);
+    var _token = $('input[name="_token"]').val();
+    $.ajax({
+        type: "post",
+        url: '{{ route('duplicateUserContact') }}',
+        data:{id:id,UCN:UCN, _token:_token},
+        success: function(res) {
+            if(res.exists){
+                $("#dupContact").html("Contact Number already in use");
+                $("#save").prop('disabled', true);
+            }else{
+                $("#dupContact").html("<span style='color:green'></span>");
+                $("#save").prop('disabled', false);
             }
         },
         error: function (jqXHR, exception) {

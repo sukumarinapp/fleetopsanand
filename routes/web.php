@@ -25,6 +25,7 @@ Route::resource('/rhplatform', 'RHPlatformController');
 
 Route::resource('/manager', 'ManagerController');
 Route::post('/checkemail','ManagerController@checkEmail')->name('checkemail');
+Route::post('/duplicateUserContact','ManagerController@duplicateUserContact')->name('duplicateUserContact');
 Route::resource('/client', 'ClientController');
 Route::resource('/vehicle', 'VehicleController');
 Route::get('/assignvehicle/{id}', 'VehicleController@assign')->name('assignvehicle');
