@@ -6,7 +6,7 @@
 		<div class="col-md-12">
 			<div class="card card-info">
 			<div class="card-header">
-			<h3 class="card-title">General Settings</h3>
+			<h3 class="card-title">Parameter Settings</h3>
 			</div>
             <form action="{{ route('paramupdate') }}" method="post" class="form-horizontal">
         	@csrf
