@@ -96,19 +96,22 @@
 				           <div class="form-group row">
 					<label for="TSN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker Device SN</label>
 					<div class="col-sm-8">
-						<input required="requiered" type="text" class="form-control" name="TSN" id="TSN" maxlength="50" placeholder="Tracker Device SN">
+						<input onchange="duplicateDeviceSN(0)" required="required" type="text" class="form-control" name="TSN" id="TSN" maxlength="50" placeholder="Tracker Device SN">
+						<span id="dupTSN" style="color:red"></span>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="TID" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker ID</label>
 					<div class="col-sm-8">
-						<input required="requiered" type="text" class="form-control" name="TID" id="TID" maxlength="50" placeholder="Tracker ID">
+						<input onchange="duplicateTrackerID(0)" required="required" type="text" class="form-control" name="TID" id="TID" maxlength="50" placeholder="Tracker ID">
+						<span id="dupTID" style="color:red"></span>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="TSM" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker SIM No.</label>
 					<div class="col-sm-8">
-						<input required="requiered" type="text" class="form-control" name="TSM" id="TSM" maxlength="50" placeholder="Tracker SIM No.">
+						<input onchange="duplicateTrackerSIM(0)" required="required" type="text" class="form-control" name="TSM" id="TSM" maxlength="50" placeholder="Tracker SIM No.">
+						<span id="dupTSM" style="color:red"></span>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -123,7 +126,7 @@
                      <div class="form-group row">
 					<label for="VZC1" class="col-sm-6 col-form-label"><span style="color:red">*</span>Buzzer (On)</label>
 					<div class="col-sm-6">
-						<input required="requiered" type="text" class="form-control" name="VZC1" id="VZC1" maxlength="50" placeholder="Code">
+						<input required="required" type="text" class="form-control" name="VZC1" id="VZC1" maxlength="50" placeholder="Code">
 					</div>
 				</div>
                     </div>
@@ -131,7 +134,7 @@
                      <div class="form-group row">
 					<label for="VZC0" class="col-sm-6 col-form-label"><span style="color:red">*</span>Buzzer (Off)</label>
 					<div class="col-sm-6">
-						<input required="requiered" type="text" class="form-control" name="VZC0" id="VZC0" maxlength="50" placeholder="Code">
+						<input required="required" type="text" class="form-control" name="VZC0" id="VZC0" maxlength="50" placeholder="Code">
 					</div>
 				</div>
                     </div>
@@ -142,7 +145,7 @@
                      <div class="form-group row">
 					<label for="VBC1" class="col-sm-6 col-form-label"><span style="color:red">*</span>Blocking (On)</label>
 					<div class="col-sm-6">
-						<input required="requiered" type="text" class="form-control" name="VBC1" id="VBC1" maxlength="50" placeholder="Code">
+						<input required="required" type="text" class="form-control" name="VBC1" id="VBC1" maxlength="50" placeholder="Code">
 					</div>
 				</div>
                     </div>
@@ -150,7 +153,7 @@
                      <div class="form-group row">
 					<label for="VBC0" class="col-sm-6 col-form-label"><span style="color:red">*</span>Blocking (Off):</label>
 					<div class="col-sm-6">
-						<input required="requiered" type="text" class="form-control" name="VBC0" id="VBC0" maxlength="50" placeholder="Code">
+						<input required="required" type="text" class="form-control" name="VBC0" id="VBC0" maxlength="50" placeholder="Code">
 					</div>
 				</div>
                     </div>
@@ -171,9 +174,7 @@
           </div>
          <div class="form-group row">
 					<div class="col-md-12 text-center">
-						<input required="required" class="btn btn-info"
-						type="submit"
-						name="submit" value="Save"/>
+						<input id="save" required="required" class="btn btn-info"	type="submit" name="submit" value="Save"/>
                         <a href="{{ route('vehicle.index') }}" class="btn btn-info">Back</a>
 					</div>
 				</div>	

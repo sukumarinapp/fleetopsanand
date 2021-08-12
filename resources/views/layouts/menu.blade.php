@@ -159,7 +159,7 @@
 @endif
 @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
 <li class="nav-item menu-open">
-  <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fuelsrch') ? 'active' : '' }}">
+  <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fueler') ? 'active' : '' }}">
       <i class="nav-icon fas fa-gas-pump"></i>
       <p>
         Fueler

@@ -254,4 +254,52 @@ class VehicleController extends Controller
             return response()->json(array("exists" => false));   
         }
     }
+
+    public function tracker_device_sn(Request $request){
+        $TSN = trim($request->get('TSN'));
+        $id = trim($request->get('id'));
+        if($id == 0){
+            $sql = "SELECT * FROM vehicle where TSN='$TSN'";
+        }else{
+            $sql = "SELECT * FROM vehicle where TSN='$TSN' and id <> $id";
+        }
+        $vehicles = DB::select(DB::raw($sql));
+        if(count($vehicles) > 0){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));   
+        }
+    }
+
+    public function tracker_id(Request $request){
+        $TID = trim($request->get('TID'));
+        $id = trim($request->get('id'));
+        if($id == 0){
+            $sql = "SELECT * FROM vehicle where TID='$TID'";
+        }else{
+            $sql = "SELECT * FROM vehicle where TID='$TID' and id <> $id";
+        }
+        $vehicles = DB::select(DB::raw($sql));
+        if(count($vehicles) > 0){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));   
+        }
+    }
+
+    public function tracker_sim_no(Request $request){
+        $TSM = trim($request->get('TSM'));
+        $id = trim($request->get('id'));
+        if($id == 0){
+            $sql = "SELECT * FROM vehicle where TSM='$TSM'";
+        }else{
+            $sql = "SELECT * FROM vehicle where TSM='$TSM' and id <> $id";
+        }
+        $vehicles = DB::select(DB::raw($sql));
+        if(count($vehicles) > 0){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));   
+        }
+    }
 }

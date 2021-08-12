@@ -34,6 +34,9 @@ Route::post('/removedriver','VehicleController@removedriver')->name('removedrive
 Route::resource('/fdriver', 'FdriverController');
 Route::post('/checkDNO','FdriverController@checkDNO')->name('checkDNO');
 Route::post('/checkVNO','VehicleController@checkVNO')->name('checkVNO');
+Route::post('/tracker_device_sn','VehicleController@tracker_device_sn')->name('tracker_device_sn');
+Route::post('/tracker_id','VehicleController@tracker_id')->name('tracker_id');
+Route::post('/tracker_sim_no','VehicleController@tracker_sim_no')->name('tracker_sim_no');
 Route::get('/sms', 'SMSController@index')->name('sms');
 Route::post('/smsupdate','SMSController@update')->name('smsupdate');
 Route::get('/change_password','ManagerController@change_password')->name('change_password');

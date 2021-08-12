@@ -111,19 +111,21 @@
 				           <div class="form-group row">
 					<label for="TSN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker Device SN</label>
 					<div class="col-sm-8">
-						<input value="{{ $vehicle->TSN }}" required="required" type="text" class="form-control" name="TSN" id="TSN" maxlength="50" placeholder="Tracker Device SN">
+						<input onchange="duplicateDeviceSN( {{ $vehicle->TSN }} )" value="{{ $vehicle->TSN }}" required="required" type="text" class="form-control" name="TSN" id="TSN" maxlength="50" placeholder="Tracker Device SN">
+						<span id="dupTSN" style="color:red"></span>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="TID" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker ID</label>
 					<div class="col-sm-8">
-						<input value="{{ $vehicle->TID }}" required="required" type="text" class="form-control" name="TID" id="TID" maxlength="50" placeholder="Tracker ID">
+						<input onchange="duplicateTrackerID( {{ $vehicle->TID }} )" value="{{ $vehicle->TID }}" required="required" type="text" class="form-control" name="TID" id="TID" maxlength="50" placeholder="Tracker ID">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="TSM" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker SIM No.</label>
 					<div class="col-sm-8">
-						<input value="{{ $vehicle->TSM }}" required="required" type="text" class="form-control" name="TSM" id="TSM" maxlength="50" placeholder="Tracker SIM No.">
+						<input onchange="duplicateTrackerSIM( {{ $vehicle->TSM }} )" value="{{ $vehicle->TSM }}" required="required" type="text" class="form-control" name="TSM" id="TSM" maxlength="50" placeholder="Tracker SIM No.">
+						<span id="dupTSM" style="color:red"></span>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -184,9 +186,7 @@
           </div>
         	<div class="form-group row">
 					<div class="col-md-12 text-center">
-						<input required="required" class="btn btn-info"
-						type="submit"
-						name="submit" value="Update"/>
+						<input id="save" required="required" class="btn btn-info" type="submit" name="submit" value="Update"/>
               <a href="{{ route('vehicle.index') }}" class="btn btn-info">Back</a>
 					</div>
 				</div>	

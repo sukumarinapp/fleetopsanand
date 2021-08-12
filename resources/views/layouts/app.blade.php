@@ -238,6 +238,72 @@ function duplicateVNO(id){
     });
 }
 
+function duplicateDeviceSN(id){
+    var TSN = $("#TSN").val().trim();
+    var _token = $('input[name="_token"]').val();
+    $.ajax({
+        type: "post",
+        url: '{{ route('tracker_device_sn') }}',
+        data:{id:id,TSN:TSN,_token:_token},
+        success: function(res) {
+            if(res.exists){
+                $("#save").prop('disabled', true);
+                $("#dupTSN").html("Duplicate Tracker Device SN");
+            }else{
+                $("#save").prop('disabled', false);
+                $("#dupTSN").html("");
+            }
+        },
+        error: function (jqXHR, exception) {
+            console.log(exception);
+        }
+    });
+}
+
+function duplicateTrackerID(id){
+    var TID = $("#TID").val().trim();
+    var _token = $('input[name="_token"]').val();
+    $.ajax({
+        type: "post",
+        url: '{{ route('tracker_id') }}',
+        data:{id:id,TID:TID,_token:_token},
+        success: function(res) {
+            if(res.exists){
+                $("#save").prop('disabled', true);
+                $("#dupTID").html("Duplicate Tracker ID");
+            }else{
+                $("#save").prop('disabled', false);
+                $("#dupTID").html("");
+            }
+        },
+        error: function (jqXHR, exception) {
+            console.log(exception);
+        }
+    });
+}
+
+function duplicateTrackerSIM(id){
+    var TSM = $("#TSM").val().trim();
+    var _token = $('input[name="_token"]').val();
+    $.ajax({
+        type: "post",
+        url: '{{ route('tracker_sim_no') }}',
+        data:{id:id,TSM:TSM,_token:_token},
+        success: function(res) {
+            if(res.exists){
+                $("#save").prop('disabled', true);
+                $("#dupTSM").html("Duplicate Tracker SIM No");
+            }else{
+                $("#save").prop('disabled', false);
+                $("#dupTSM").html("");
+            }
+        },
+        error: function (jqXHR, exception) {
+            console.log(exception);
+        }
+    });
+}
+
 function load_driver_license(){
     var DNM = $("#DNM").val();
     $('#DNO option').each(function() {
