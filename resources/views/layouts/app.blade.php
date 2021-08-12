@@ -15,14 +15,13 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <ul class="navbar-nav">
           <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li> 
         </ul>
-
-        <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
@@ -41,6 +40,7 @@
                 </ul>
             </li>
         </ul>
+        </ul>
     </nav>
     @include('layouts.sidebar')
     <div class="content-wrapper">
@@ -56,32 +56,6 @@
 @stack('page_scripts')
 <script>
 $(document).ready(function(){
-    $('#BPJ').change(function() {
-        if(this.checked) {            
-            $('#BPJ1').prop("checked", true);
-            $('#BPJ2').prop("checked", true);
-        }else{
-            $('#BPJ1').prop("checked", false);
-            $('#BPJ2').prop("checked", false);
-        }
-    });
-
-    $('#BPJ1').change(function() {
-         if ($('#BPJ').prop(":checked")) {
-            $('#BPJ1').prop("checked", true);
-         }else{
-            $('#BPJ1').prop("checked", false);
-         }
-    });
-
-    $('#BPJ2').change(function() {
-         if ($('#BPJ').prop(":checked")) {
-            $('#BPJ2').prop("checked", true);
-         }else{
-            $('#BPJ2').prop("checked", false);
-         }
-    });
-
     $("#VPF").change(function(evt){
         var VPF = $("#VPF").val();
         console.log(VPF);
@@ -269,7 +243,6 @@ function validate_amount(){
     }
     return true;    
 }
-
 
 </script>
 </body>

@@ -73,13 +73,23 @@ class WorkflowController extends Controller
                 $VBC0 = $vehicle[0]->VBC0; 
                 $TSM = $vehicle[0]->TSM;
                 SMSFleetops::send($TSM,$VBC0);
-                return redirect('/override/'.$VID)->with('message', 'Vehicle Immobilized/Blocked Overridden Successfully')->withInput();
+                return redirect('/overrides/'.$VID)->with('message', 'Vehicle Immobilized/Blocked Overridden Successfully')->withInput();
             } else {
                return redirect('/override/'.$VID)->with('error', 'Invalid Username Credentials')->withInput();
             }
         }else{
             return redirect('/override/'.$VID)->with('error', 'Username does not exist or inactive')->withInput();
         }
+    }
+
+    public function overrides($VNO)
+    {
+        $this->check_access("BPJ2");
+        $id = $VNO;
+        $sql = "SELECT a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id";
+        $vehicle = DB::select(DB::raw($sql));
+        $vehicle = $vehicle[0];
+        return view('overrides',compact('vehicle'));
     }
     
     public function auditsrch()

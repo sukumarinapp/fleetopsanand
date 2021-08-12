@@ -83,8 +83,8 @@
                <div id="map_canvas" style="height: 600px;"></div>
   
 </div>
-
-        <!-- Small boxes (Stat box) -->
+</div>
+</div>
        
 @endsection
 @section('third_party_scripts')
