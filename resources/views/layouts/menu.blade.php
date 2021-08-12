@@ -6,7 +6,7 @@
       </p>
   </a>
 </li>
- <li class="nav-item menu-close">
+ <!-- <li class="nav-item menu-close">
   <a href="#" class="nav-link">
     <i class="nav-icon fas fa-folder"></i>
     <p>
@@ -56,13 +56,13 @@
       </ul>
     </li>
   </ul>
-</li> 
+</li>  -->
 @if(Auth::user()->usertype == "Admin")
-<li class="nav-item {{ (request()->is('parameter') || request()->is('rhplatform')) ? 'menu-open' : '' }}">
+<li class="nav-item {{ (request()->is('parameter') || request()->is('rhplatform') || request()->is('sms')) ? 'menu-open' : '' }}">
   <a href="#" class="nav-link">
     <i class="nav-icon fas fa-cog"></i>
     <p>
-      Parameter Settings
+      Settings
       <i class="right fas fa-angle-left"></i>
     </p>
   </a>
@@ -71,7 +71,7 @@
     <li class="nav-item">
       <a href="{{ route('parameter') }}" class="nav-link {{ (request()->is('parameter')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-cog"></i>
-        <p>General Settings</p>
+        <p>Parameter Settings</p>
       </a>
     </li>
     <li class="nav-item">
@@ -80,18 +80,16 @@
         <p>RH Platform Settings</p>
       </a>
     </li>
-  </ul>
-  @endif
-</li>
-@endif
-@if(Auth::user()->usertype == "Admin")
-<li class="nav-item menu-open">
+    <li class="nav-item menu-open">
   <a href="{{ route('sms') }}" class="nav-link {{ (request()->segment(1) =='sms' ) ? 'active' : '' }}">
       <i class="nav-icon fas fa-bell"></i>
       <p>
         Notification Setup
       </p>
   </a>
+</li>
+  </ul>
+  @endif
 </li>
 @endif
 @if(Auth::user()->usertype != "Client")
