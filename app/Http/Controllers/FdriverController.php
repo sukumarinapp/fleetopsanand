@@ -223,4 +223,20 @@ class FdriverController extends Controller
             return response()->json(array("exists" => false));   
         }
     }
+
+    public function checkDCN(Request $request){
+        $DCN = trim($request->get('DCN'));
+        $id = trim($request->get('id'));
+        if($id == 0){
+            $sql = "SELECT * FROM driver where DCN='$DCN'";
+        }else{
+            $sql = "SELECT * FROM driver where DCN='$DCN' and id <> $id";
+        }
+        $drivers = DB::select(DB::raw($sql));
+        if(count($drivers) > 0){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));   
+        }
+    }
 }
