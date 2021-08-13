@@ -28,7 +28,7 @@ class FdriverController extends Controller
    public function index()
    {
         $this->check_access("BPF");
-        $sql = "select * from driver";
+        $sql = "SELECT a.*,b.VNO FROM driver a LEFT JOIN vehicle b ON a.id = b.driver_id";
         $drivers = DB::select(DB::raw($sql));
         return view('fdriver.index', compact('drivers'));
     }

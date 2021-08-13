@@ -29,7 +29,7 @@
               <img src="{{ URL::to('/') }}/images/workflow.png" alt="User Image">
             </div>
             <div class="col-md-8">
-              <h4 class="m-0"> Workflow: Sales Declaration Enforcement</h4>
+              <!-- <h4 class="m-0"> Workflow: Sales Declaration Enforcement</h4> -->
               <h5 class="m-0" style="text-align: right;">Override - Vehicle Immobilized/Blocked <img src="{{ URL::to('/') }}/images/car.png"></h5>
             </div>
 

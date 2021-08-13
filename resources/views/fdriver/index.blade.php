@@ -36,17 +36,29 @@
           <tbody>
             @foreach($drivers as $driver)
             <tr>
-              <td>{{ $driver->DNM }} {{ $driver->DSN }}</td>
+              <td>{{ $driver->DNM }} {{ $driver->DSN }}
+              @if($driver->VNO !="")
+                <br><small class="text-success">{{ $driver->VNO }}</small>
+              @endif
+              </td>
               <td>{{ $driver->DNO }}</td>
               <td>{{ $driver->DCN }}</td>
               <td>{{ $driver->VBM }}</td>
               <td>
+                @if($driver->VNO == "")
                 <form action="{{ route('fdriver.destroy', $driver->id)}}" method="post">
+                @endif
                     <a href="{{ route('fdriver.edit',$driver->id) }}" class="btn btn-primary btn-sm">Edit</a>
                     @csrf
                     @method('DELETE')
+                  @if($driver->VNO == "")
                   <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                  @else
+                  <button class="btn btn-danger btn-sm disabled" >Delete</button>
+                  @endif
+                @if($driver->VNO == "")
                 </form>
+                @endif
               </td>
             </tr>
             @endforeach
