@@ -119,7 +119,7 @@
           function( marker, i ) {
             return function() {
               var infowindow = new google.maps.InfoWindow();
-              infowindow.setContent("License Plate: "+locations[i]["VNO"]+"<br>Driver: "+locations[i]["DNM"]+" "+locations[i]["DSN"]+" ("+locations[i]["VBM"]+")<br>ID: "+locations[i]["terminal_id"]+"<br>Latitude: "+locations[i]["latitude"]+"<br>Longitude: "+locations[i]["longitude"]+"<br>Speed: "+locations[i]["ground_speed"]+"<br>Mileage(km): "+locations[i]["odometer"]+"<br>ACC: "+locations[i]["engine_on"]);
+              infowindow.setContent("License Plate: "+locations[i]["VNO"]+"<br>ID: "+locations[i]["terminal_id"]+"<br>Latitude: "+locations[i]["latitude"]+"<br>Longitude: "+locations[i]["longitude"]+"<br>Speed: "+locations[i]["ground_speed"]+"<br>Mileage(km): "+locations[i]["odometer"]+"<br>ACC: "+locations[i]["engine_on"]);
               infowindow.open( map, marker );
             }
           }

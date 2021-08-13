@@ -40,7 +40,12 @@
             @foreach($vehicles as $vehicle)
             <tr>
               <td>{{ $vehicle->CAN }}</td>
-              <td>{{ $vehicle->VNO }}</td>
+              <td>{{ $vehicle->VNO }}
+                @if($vehicle->DNM !="")
+                <br><small class="text-success">{{ $vehicle->DNM }} 
+                  {{ $vehicle->DSN }} - {{ $vehicle->VBM }}</small>
+                @endif
+              </td>
               <td>{{ $vehicle->TID }}</td>
               <td>{{ $vehicle->VMK }}</td>
               <td>{{ $vehicle->VMD }}</td>

@@ -37,7 +37,8 @@ class VehicleController extends Controller
     public function index()
     {
         $this->check_access("BPC");
-        $vehicles = Vehicle::all();
+        $sql = "SELECT a.*,b.DNM,b.DSN,b.VBM FROM vehicle a LEFT JOIN driver b ON a.driver_id = b.id";
+        $vehicles = DB::select(DB::raw($sql));
         return view('vehicle.index', compact('vehicles'));
     }
    

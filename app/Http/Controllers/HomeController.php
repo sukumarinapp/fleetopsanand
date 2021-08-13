@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function locations()
     {
-        $sql = "select c.DNM,c.DSN,c.VBM,a.VNO,terminal_id,latitude,longitude,ground_speed,odometer,engine_on from vehicle a,current_location b,driver c where a.driver_id=c.id and a.TID=b.terminal_id and b.id in (select max(id) from current_location group by terminal_id)";
+        $sql = "select a.VNO,terminal_id,latitude,longitude,ground_speed,odometer,engine_on from vehicle a,current_location b where a.VTV=1 and a.TID=b.terminal_id and b.id in (select max(id) from current_location group by terminal_id)";
         $markers = DB::select(DB::raw($sql));
         return response()->json($markers);
     }
