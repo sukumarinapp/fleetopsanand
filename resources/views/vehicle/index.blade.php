@@ -27,7 +27,6 @@
           <thead>
           <tr>
             <th>CAN</th>
-            <th>Name</th>
             <th>Vehicle Reg#</th>
             <th>ID</th>
             <th>Make</th>
@@ -40,8 +39,7 @@
           <tbody>
             @foreach($vehicles as $vehicle)
             <tr>
-              <td>{{ $vehicle->CAN }}</td>
-              <td>{{ $vehicle->name }}</td>
+              <td>{{ $vehicle->CAN }} {{ $vehicle->name }}</td>
               <td>{{ $vehicle->VNO }}
                 @if($vehicle->DNM !="")
                 <br><small class="text-success">{{ $vehicle->DNM }} 
