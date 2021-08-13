@@ -80,7 +80,7 @@
                  <div class="form-group row">
                    <label for="UCN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Contact Number</label>
                     <div class="col-sm-3">
-                        <input onchange="duplicateUserContact({{ $user->UCN }})"  value="{{ $user->UCN }}" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+                        <input onkeyup="duplicateUserContact({{ $user->UCN }})"  value="{{ $user->UCN }}" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
                     </div>
                     <div class="col-sm-4">
                         <span id="dupContact" style="color:red"></span>
@@ -102,7 +102,7 @@
 			    <div class="form-group row">
 					<label for="email" class="col-sm-3 col-form-label"><span style="color:red">*</span>Email</label>
 					<div class="col-sm-3">
-						<input onchange="duplicateEmail(this.value)" value="{{ $user->email }}" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
+						<input onkeyup="duplicateEmail(this.value)" value="{{ $user->email }}" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
 					</div>
                     <div class="col-sm-4">
                         <span id="dupemail" style="color:red"></span>
@@ -191,7 +191,7 @@
                     <label class="form-check-label col-sm-8" for="RBA1">Notify Car owner when driver cash declared is short.</label>
                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success col-sm-2">
                       <input {{ ($user->RBA1 == "1" ? "checked":"") }} name="RBA1" type="checkbox" class="custom-control-input" id="RBA1" >
-                      <label class="custom-control-label" for="customSwitch"></label>
+                      <label class="custom-control-label" for="RBA1"></label>
                     </div>  
                 </div>
 
@@ -199,7 +199,7 @@
                     <label class="form-check-label col-sm-8" for="RBA2">Notify Car owner about wastage (Offline Trips) and Fuel Consumed.</label>
                      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success col-sm-2">
                       <input {{ ($user->RBA2 == "1" ? "checked":"") }} name="RBA2" type="checkbox" class="custom-control-input" id="RBA2" >
-                      <label class="custom-control-label" for="customSwitch6"></label>
+                      <label class="custom-control-label" for="RBA2"></label>
                     </div> 
                 </div>
 
@@ -207,7 +207,7 @@
                     <label class="form-check-label col-sm-8" for="RBA3">Notify Driver about wastage (Offline Trips) and Fuel Consumed.</label>
                      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success col-sm-2">
                       <input {{ ($user->RBA3 == "1" ? "checked":"") }} name="RBA3" type="checkbox" class="custom-control-input" id="RBA3" >
-                      <label class="custom-control-label" for="customSwitch7"></label>
+                      <label class="custom-control-label" for="RBA3"></label>
                     </div>  
                 </div>
 
@@ -215,7 +215,7 @@
                     <label class="form-check-label col-sm-8" for="RBA4">Vehicle Fueling (Activate Fueler Function).</label>
                      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success col-sm-2">
                       <input {{ ($user->RBA4 == "1" ? "checked":"") }} name="RBA4" type="checkbox" class="custom-control-input" id="RBA4" >
-                      <label class="custom-control-label" for="customSwitch8"></label>
+                      <label class="custom-control-label" for="RBA4"></label>
                     </div>  
                 </div>
 

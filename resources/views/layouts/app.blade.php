@@ -68,16 +68,16 @@ $(document).ready(function(){
     });
     $('#BPJ1').change(function() {
          if ($('#BPJ').prop(":checked")) {
-            $('#BPJ1').prop("checked", true);
+            //$('#BPJ1').prop("checked", true);
          }else{
-            $('#BPJ1').prop("checked", false);
+            //$('#BPJ1').prop("checked", false);
          }
     });
     $('#BPJ2').change(function() {
          if ($('#BPJ').prop(":checked")) {
-            $('#BPJ2').prop("checked", true);
+            //$('#BPJ2').prop("checked", true);
          }else{
-            $('#BPJ2').prop("checked", false);
+            //$('#BPJ2').prop("checked", false);
          }
     });
     $("#VPF").change(function(evt){
@@ -226,7 +226,7 @@ function checkDCN(id){
         data:{id:id,DCN:DCN, _token:_token},
         success: function(res) {
             if(res.exists){
-                $("#dupContact").html("Contact Number already in use");
+                $("#dupContact").html("Contact Number already exists");
                 $("#save").prop('disabled', true);
             }else{
                 $("#dupContact").html("<span style='color:green'></span>");

@@ -35,7 +35,7 @@
                  <div class="form-group row">
 					<label for="VNO" class="col-sm-4 col-form-label"><span style="color:red">*</span>Vehicle Reg. No.</label>
 					<div class="col-sm-8">
-						<input onchange="duplicateVNO( {{ $vehicle->id }} )" value="{{ $vehicle->VNO }}" required="required" type="text" class="form-control" name="VNO" id="VNO" maxlength="50" placeholder="Vehicle Reg. No.">
+						<input onkeyup="duplicateVNO( {{ $vehicle->id }} )" value="{{ $vehicle->VNO }}" required="required" type="text" class="form-control" name="VNO" id="VNO" maxlength="50" placeholder="Vehicle Reg. No.">
 						<span id="dupVNO" style="color:red"></span>
 					</div>
 				</div>
@@ -111,20 +111,20 @@
 				           <div class="form-group row">
 					<label for="TSN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker Device SN</label>
 					<div class="col-sm-8">
-						<input onchange="duplicateDeviceSN( {{ $vehicle->TSN }} )" value="{{ $vehicle->TSN }}" required="required" type="text" class="form-control" name="TSN" id="TSN" maxlength="50" placeholder="Tracker Device SN">
+						<input onkeyup="duplicateDeviceSN( {{ $vehicle->TSN }} )" value="{{ $vehicle->TSN }}" required="required" type="text" class="form-control" name="TSN" id="TSN" maxlength="50" placeholder="Tracker Device SN">
 						<span id="dupTSN" style="color:red"></span>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="TID" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker ID</label>
 					<div class="col-sm-8">
-						<input onchange="duplicateTrackerID( {{ $vehicle->TID }} )" value="{{ $vehicle->TID }}" required="required" type="text" class="form-control" name="TID" id="TID" maxlength="50" placeholder="Tracker ID">
+						<input onkeyup="duplicateTrackerID( {{ $vehicle->TID }} )" value="{{ $vehicle->TID }}" required="required" type="text" class="form-control" name="TID" id="TID" maxlength="50" placeholder="Tracker ID">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="TSM" class="col-sm-4 col-form-label"><span style="color:red">*</span>Tracker SIM No.</label>
 					<div class="col-sm-8">
-						<input onchange="duplicateTrackerSIM( {{ $vehicle->TSM }} )" value="{{ $vehicle->TSM }}" required="required" type="text" class="form-control" name="TSM" id="TSM" maxlength="50" placeholder="Tracker SIM No.">
+						<input onkeyup="duplicateTrackerSIM( {{ $vehicle->TSM }} )" value="{{ $vehicle->TSM }}" required="required" type="text" class="form-control" name="TSM" id="TSM" maxlength="50" placeholder="Tracker SIM No.">
 						<span id="dupTSM" style="color:red"></span>
 					</div>
 				</div>

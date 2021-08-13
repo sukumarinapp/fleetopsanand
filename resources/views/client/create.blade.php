@@ -74,7 +74,7 @@
       <div class="form-group row">
        <label for="UCN" class="col-sm-2 col-form-label"><span style="color:red">*</span>Contact Number</label>
        <div class="col-sm-4">
-        <input onchange="duplicateUserContact(0)" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+        <input onkeyup="duplicateUserContact(0)" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
       </div>
       <div class="col-sm-4">
         <span id="dupContact" style="color:red"></span>
@@ -90,7 +90,7 @@
     <div class="form-group row">
      <label for="email" class="col-sm-2 col-form-label"><span style="color:red">*</span>Email</label>
      <div class="col-sm-4">
-      <input onchange="duplicateEmail(0)" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
+      <input onkeyup="duplicateEmail(0)" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
     </div>
     <div class="col-sm-4">
       <span id="dupemail" style="color:red"></span>
