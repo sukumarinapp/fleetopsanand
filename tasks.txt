@@ -1,5 +1,1 @@
-background job to read from tracker table and insert into tbl136
-bilbox api integration
-formulae implementation
-google maps
-java GPRS packet socket program to insert into tracker table
+1) Duplicate contact no
