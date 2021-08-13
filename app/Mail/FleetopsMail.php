@@ -26,7 +26,7 @@ class FleetopsMail extends Mailable
     public function build()
     {
         $from_email = env('MAIL_USERNAME');
-        $url = env('LOGIN_URL');
+        $url = env('APP_URL');
         $details = array();
         $details['name'] = $this->name;
         $details['usertype'] = $this->usertype;
