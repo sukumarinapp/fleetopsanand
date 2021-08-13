@@ -60,12 +60,20 @@
                     @endif
                </td>
                <td>   
+                @if($vehicle->VTV == 0)
                 <form action="{{ route('vehicle.destroy', $vehicle->id)}}" method="post">
+                @endif
                     <a href="{{ route('vehicle.edit',$vehicle->id) }}" class="btn btn-primary btn-sm">Edit</a>
                     @csrf
                     @method('DELETE')
-                  <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    @if($vehicle->VTV == 0)
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    @else
+                    <button class="btn btn-danger btn-sm disabled" >Delete</button>
+                    @endif
+                @if($vehicle->VTV == 0)                    
                 </form>
+                @endif
               </td>
             </tr>
             @endforeach
