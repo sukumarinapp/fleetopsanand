@@ -37,7 +37,7 @@
 				<div class="form-group row">
 					<div class="col-md-12">
 						<select autofocus="autofocus"  style="width: 100%;" required="required" class="form-control select2" name="driver_id" id="DNM" >
-							<option value="">Search</option>
+							<option value="">Search Driver</option>
 	                        @foreach($drivers as $driver)
 		                     	<option value="{{ $driver->id }}" >{{ $driver->DNM }} {{ $driver->DSN }} -  {{ $driver->DNO }} - {{ $driver->DCN }}</option>
 		                    @endforeach
@@ -58,3 +58,12 @@
 	</div>
 </div>
 @endsection
+@push('page_scripts')
+<script>
+	$(document).ready(function(){
+		$('.select2').select2({
+        	theme: 'bootstrap4'
+    	});
+	});
+</script>
+@endpush
