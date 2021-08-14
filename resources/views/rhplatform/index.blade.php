@@ -54,7 +54,7 @@
                     <a href="{{ route('rhplatform.edit', $rhplatform->id) }}" class="btn btn-primary btn-sm">Edit</a>
                     @csrf
                     @method('DELETE')
-                  <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                  <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
                 </form>
               </td>
           		@endif
