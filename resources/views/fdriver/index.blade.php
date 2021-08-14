@@ -35,7 +35,11 @@
           </thead>
           <tbody>
             @foreach($drivers as $driver)
-            <tr>
+            <tr
+            @if($driver->VNO == "")
+              style="background-color: #FFC300;"
+            @endif
+            >
               <td>{{ $driver->DNM }} {{ $driver->DSN }}
               @if($driver->VNO !="")
                 <br><small class="text-success">{{ $driver->VNO }}</small>

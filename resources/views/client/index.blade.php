@@ -28,7 +28,7 @@
 			<table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th>CAN</th>
+            <th >CAN</th>
             <th>Company Name</th>
             <th>Contact Name</th>
             <th>Email</th>
@@ -38,7 +38,11 @@
           </thead>
           <tbody>
             @foreach($users as $user)
-          	<tr>
+          	<tr 
+              @if($user->UTV == 0)
+                style="background-color: #FFC300;"
+              @endif
+            >
           		<td>{{ $user->UAN }}</td>
               <td>{{ $user->name }}</td>
           		<td>{{ $user->CZN }}</td>
