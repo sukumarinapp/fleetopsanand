@@ -39,7 +39,7 @@
 				</div>
 				<div class="form-group row">
 					<div class="col-md-12 text-center">
-						<input onclick="return confirm('Are you sure?')" required="required" class="btn btn-danger"
+						<input onclick="return confirm('Are you sure to unassign the vehicle?')" required="required" class="btn btn-danger"
 						type="submit"
 						name="submit" value="Unassign"/>
                         <a href="{{ route('vehicle.index') }}" class="btn btn-info">Back</a>

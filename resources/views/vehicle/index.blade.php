@@ -67,7 +67,7 @@
                     @csrf
                     @method('DELETE')
                     @if($vehicle->VTV == 0 && $vehicle->DNM == "")
-                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
                     @else
                     <button class="btn btn-danger btn-sm disabled" >Delete</button>
                     @endif
