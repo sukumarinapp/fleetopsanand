@@ -209,7 +209,7 @@
                 <div class="row row-padded">
                     <div class="custom-control custom-radio col-sm-1"></div>
                     <div class="custom-control custom-radio col-sm-1">
-                        <input {{ ($user->RBA4A == "Own Vehicles Only" ? "checked":"") }} value="Own Vehicles Only"  name="RBA4A" type="radio" id="RBA4A">
+                        <input {{ ($user->RBA4A == "Own Vehicles Only" || $user->RBA4A == "" ? "checked":"") }} value="Own Vehicles Only"  name="RBA4A" type="radio" id="RBA4A">
                     </div> 
                     <label class="form-check-label col-sm-6" for="RBA4A">Own Vehicles Only</label>
                 </div>

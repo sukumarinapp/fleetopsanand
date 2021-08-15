@@ -56,14 +56,28 @@
 @stack('page_scripts')
 <script>
 $(document).ready(function(){
-    if($('#BPJ1').prop("checked")){
-
-    }else{
+    if(($('#BPJ1').prop("checked")) == false){
         $('#BPJ1').prop("checked", false);
         $('#BPJ2').prop("checked", false);
         $('#BPJ1').attr("disabled", true);
         $('#BPJ2').attr("disabled", true);
     }
+
+    if(($('#RBA4').prop("checked")) == false){
+        $('#RBA4A').attr("disabled", true);
+        $('#RBA4B').attr("disabled", true);
+    }
+    
+    $('#RBA4').change(function() {
+        if(this.checked) {            
+            $('#RBA4A').attr("disabled", false);
+            $('#RBA4B').attr("disabled", false);
+        }else{
+            $('#RBA4A').attr("disabled", true);
+            $('#RBA4B').attr("disabled", true);
+        }
+    });
+
     $('#BPJ').change(function() {
         if(this.checked) {            
             $('#BPJ1').prop("checked", true);
