@@ -5,7 +5,7 @@
 		<div class="col-md-12">
 			<div class="card card-info">
 				<div class="card-header">
-					<h3 class="card-title">Remove Vehicle</h3>
+					<h3 class="card-title">Unassign Vehicle</h3>
 				</div>
 				
           	<div class="card-body">
@@ -39,9 +39,9 @@
 				</div>
 				<div class="form-group row">
 					<div class="col-md-12 text-center">
-						<input required="required" class="btn btn-danger"
+						<input onclick="return confirm('Are you sure?')" required="required" class="btn btn-danger"
 						type="submit"
-						name="submit" value="Remove"/>
+						name="submit" value="Unassign"/>
                         <a href="{{ route('vehicle.index') }}" class="btn btn-info">Back</a>
 					</div>
 				</div>
