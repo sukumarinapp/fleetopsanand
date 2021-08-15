@@ -199,6 +199,7 @@ class DriverController extends Controller
                 $RMT = $result[0]->RMT;
                 $VBC0 = $result[0]->VBC0; 
                 $TSM = $result[0]->TSM;
+                echo $RTN."\n";
                 $sql = "update tbl137 set RST=1 where RTN = '$RTN'";
                 DB::update($sql);
                 if($VBM == "Ride Hailing"){
