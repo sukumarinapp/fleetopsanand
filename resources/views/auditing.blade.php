@@ -12,7 +12,7 @@
     <div class="col-md-12">
       <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">Sales Auditing</h3>
+          <h3 class="card-title">Workflow: Sales Declaration Enforcement</h3>
         </div>
 
         <div class="col-md-12">
@@ -34,7 +34,7 @@
               <img src="{{ URL::to('/') }}/images/workflow.png" alt="User Image">
             </div>
             <div class="col-md-8">
-              <h4 class="m-0"> Workflow: Sales Declaration Enforcement</h4>
+              <h4 class="m-0"> </h4>
               <h5 class="m-0" style="text-align: right;">Driver Sales Auditing
                 <img src="{{ URL::to('/') }}/images/sales.png"></h5>
             </div>
@@ -113,7 +113,7 @@
           <input required="required" class="btn btn-primary"
           type="submit"
           name="submit" value="Save"/>
-          <a href="{{ route('auditsrch') }}" class="btn btn-primary ">Cancel</a>
+          <a href="{{ route('workflow') }}" class="btn btn-primary ">Back</a>
         </div>
 
       </div>

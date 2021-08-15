@@ -34,7 +34,8 @@
 		              <td>{{ $vehicle->DDT }}</td>
 		              <td>{{ $vehicle->VNO }}</td>
 		              <td>Sales Audit Request</td>
-		              <td>{{ $vehicle->DNM }} {{ $vehicle->DSN }}</td>              
+		              <td>{{ $vehicle->DNM }} {{ $vehicle->DSN }}</td>    
+		              <td><a href="{{ url('auditing') }}/{{ $vehicle->vid }}">Resolve</a></td>          
 		            </tr>
 	            @endif
             @endforeach
