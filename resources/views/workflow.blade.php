@@ -23,7 +23,7 @@
             @foreach($vehicles as $vehicle)
             	@if($vehicle->DES =="A4")
 		            <tr>
-		              <td>{{ $vehicle->DDT }}</td>
+		              <td>{{ date("d-m-Y",strtotime($vehicle->DDT)) }}</td>
 		              <td>{{ $vehicle->VNO }}</td>
 		              <td>WFL{{ str_pad($vehicle->id,3,'0',STR_PAD_LEFT) }}</td>
 		              <td>Vehicle Blocked</td>
