@@ -13,6 +13,7 @@
           <tr>
             <th>Open Date</th>
             <th>VNO</th>
+            <th>Workflow No</th>
             <th>Workflow Type</th>
             <th>Case Initiator</th>
             <th></th>
@@ -24,6 +25,7 @@
 		            <tr>
 		              <td>{{ $vehicle->DDT }}</td>
 		              <td>{{ $vehicle->VNO }}</td>
+		              <td>WFL{{ str_pad($vehicle->id,3,'0',STR_PAD_LEFT) }}</td>
 		              <td>Vehicle Blocked</td>
 		              <td>{{ $vehicle->DNM }} {{ $vehicle->DSN }}</td>              
 		              <td><a href="{{ url('override') }}/{{ $vehicle->vid }}">Resolve</a></td>
@@ -33,6 +35,7 @@
 		            <tr>
 		              <td>{{ $vehicle->DDT }}</td>
 		              <td>{{ $vehicle->VNO }}</td>
+		              <td>WFL{{ str_pad($vehicle->id,3,'0',STR_PAD_LEFT) }}</td>
 		              <td>Sales Audit Request</td>
 		              <td>{{ $vehicle->DNM }} {{ $vehicle->DSN }}</td>    
 		              <td><a href="{{ url('auditing') }}/{{ $vehicle->vid }}">Resolve</a></td>          
