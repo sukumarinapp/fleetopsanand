@@ -14,7 +14,7 @@
             <th>Open Date</th>
             <th>VNO</th>
             <th>Workflow Type</th>
-            <th>Driver</th>
+            <th>Case Initiator</th>
             <th></th>
           </tr>
           </thead>
