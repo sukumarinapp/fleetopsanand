@@ -1,3 +1,9 @@
+insert into tbl136 (DDT,CAN,VNO,CHR,CML,DES,DECL,VBM,driver_id) VALUES ('2021-08-14','C1001','GN7122-17','0','0','A0','0','Rental','6');
+insert into tbl136 (DDT,CAN,VNO,CHR,CML,DES,DECL,VBM,driver_id) VALUES ('2021-08-14','C1001','GN7121-17','3.19','108.567','A0','0','Ride Hailing','3');
+insert into tbl136 (DDT,CAN,VNO,CHR,CML,DES,DECL,VBM,driver_id) VALUES ('2021-08-14','C1006','KLA20','0','0','A0','0','Hire Purchase','16');
+
+select a.VNO,b.DNM,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD from vehicle a,driver b where a.driver_id=b.id and a.VTV=1
+
  update tbl361 set RML=1.14,RMN=.35,RMS=4,RHT='N/A';
 
   
@@ -8,7 +14,8 @@ alter table driver add MDY int(2) null default 1 after WDY;
 alter table tbl136 drop CHR;
 alter table tbl137 drop RTN;
 
-alter table tbl137 add RTN varchar(50) DEFAULT NULl after WDY;
+alter table tbl136 add VBM varchar(20) DEFAULT NULl after DECL;
+alter table tbl136 add driver_id int(11) DEFAULT 0 after VBM;
 
 select * from tbl135;
 select * from tbl136;

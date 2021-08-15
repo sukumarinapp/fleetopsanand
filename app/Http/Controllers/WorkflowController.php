@@ -34,7 +34,7 @@ class WorkflowController extends Controller
     public function index()
     {
         $this->check_access("BPJ2");
-        $sql = "SELECT * from vehicle where VTV=1 and driver_id is not null";
+        $sql = "select a.*,b.DNM,b.DSN from tbl136 a,driver b where a.driver_id=b.id and a.DECL=0 and a.DDT = (select max(DDT) from tbl136 c where a.VNO=c.VNO and DECL=0 group by VNO);";
         $vehicles = DB::select(DB::raw($sql));
         return view('workflow',compact('vehicles'));
     }

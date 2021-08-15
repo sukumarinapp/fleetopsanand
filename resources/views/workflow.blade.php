@@ -5,25 +5,40 @@
 		<div class="col-md-12">
 			<div class="card card-info">
 				<div class="card-header">
-					<h3 class="card-title">WorkFlow Manager</h3>
+					<h3 class="card-title">WorkFlow</h3>
 				</div>
 				<div class="card-body">
-						<div class="form-group row">
-							<label for="VNO" class="col-sm-2 col-form-label"><span style="color:red">*</span>Vehicle</label>
-							<div class="col-sm-6">
-								<select required="required" name="VNO" id="VNO" class="form-control select2" >
-									<option value="">Search Vehicle</option>
-									@foreach($vehicles as $vehicle)
-									<option value="{{ $vehicle->id }}" >{{ $vehicle->VNO }}</option>
-									@endforeach
-								</select>
-							</div>
-							<div class="col-sm-4">
-								<input onclick="load_vehicle()" required="required" class="btn btn-info"
-								type="button" n ame="submit" value="Load Vehicle Details"/>
-							</div>
-						</div>
-					</form>
+						<table id="example1" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Open Date</th>
+            <th>VNO</th>
+            <th>Workflow Type</th>
+            <th>Driver</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+            @foreach($vehicles as $vehicle)
+            	@if($vehicle->DES =="A4")
+		            <tr>
+		              <td>{{ $vehicle->DDT }}</td>
+		              <td>{{ $vehicle->VNO }}</td>
+		              <td>Vehicle Blocked</td>
+		              <td>{{ $vehicle->DNM }} {{ $vehicle->DSN }}</td>              
+		            </tr>
+	            @endif
+	            @if($vehicle->VBM =="Ride Hailing")
+		            <tr>
+		              <td>{{ $vehicle->DDT }}</td>
+		              <td>{{ $vehicle->VNO }}</td>
+		              <td>Sales Audit Request</td>
+		              <td>{{ $vehicle->DNM }} {{ $vehicle->DSN }}</td>              
+		            </tr>
+	            @endif
+            @endforeach
+          </tbody>
+      </table>
 				</div>
 			</div>
 

@@ -137,36 +137,16 @@
   </ul>
 </li>
 @endif
-<li class="nav-item {{ (request()->is('workflow') || request()->is('auditsrch') || request()->segment(1) == 'override' || request()->segment(1) == 'auditing') ? 'menu-open' : '' }}">
-  <a href="#" class="nav-link">
-    <i class="nav-icon fas fa-cog"></i>
-    <p>
-      Workflow
-      <i class="right fas fa-angle-left"></i>
-    </p>
-  </a>
-  <ul class="nav nav-treeview">
-@if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ2==1))
+
 <li class="nav-item menu-open">
-  <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}">
+  <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override' || request()->segment(1) == 'auditing') ? 'active' : '' }}">
       <i class="nav-icon fas fa-tasks"></i>
       <p>
-        Override Immobilized
+        Workflow
       </p>
   </a>
 </li>
-@endif
-@if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ1==1))
-<li class="nav-item menu-open">
-  <a href="{{ route('auditsrch') }}" class="nav-link {{ (request()->segment(1) == 'auditsrch' || request()->segment(1) == 'auditing') ? 'active' : '' }}">
-      <i class="nav-icon fas fa-history"></i>
-      <p>
-        Sales Auditing
-      </p>
-  </a>
-</li>
-@endif
-</ul>
+
 <!-- @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
 <li class="nav-item menu-open">
   <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fueler') ? 'active' : '' }}">
