@@ -33,7 +33,7 @@
 	            @endif
 	            @if($vehicle->VBM =="Ride Hailing")
 		            <tr>
-		              <td>{{ $vehicle->DDT }}</td>
+		              <td>{{ date("d-m-Y",strtotime($vehicle->DDT)) }}</td>
 		              <td>{{ $vehicle->VNO }}</td>
 		              <td>WFL{{ str_pad($vehicle->id,3,'0',STR_PAD_LEFT) }}</td>
 		              <td>Sales Audit Request</td>
