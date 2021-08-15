@@ -26,6 +26,7 @@
 		              <td>{{ $vehicle->VNO }}</td>
 		              <td>Vehicle Blocked</td>
 		              <td>{{ $vehicle->DNM }} {{ $vehicle->DSN }}</td>              
+		              <td><a href="{{ url('override') }}/{{ $vehicle->vid }}">Resolve</a></td>
 		            </tr>
 	            @endif
 	            @if($vehicle->VBM =="Ride Hailing")

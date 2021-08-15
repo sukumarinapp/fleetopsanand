@@ -34,7 +34,7 @@ class WorkflowController extends Controller
     public function index()
     {
         $this->check_access("BPJ2");
-        $sql = "select a.*,b.DNM,b.DSN from tbl136 a,driver b where a.driver_id=b.id and a.DECL=0 and a.DDT = (select max(DDT) from tbl136 c where a.VNO=c.VNO and DECL=0 group by VNO);";
+        $sql = "select d.id as vid,a.*,b.DNM,b.DSN from tbl136 a,driver b,vehicle d where a.driver_id=b.id and a.VNO=d.VNO and a.DECL=0 and a.DDT = (select max(DDT) from tbl136 c where a.VNO=c.VNO and DECL=0 group by VNO);";
         $vehicles = DB::select(DB::raw($sql));
         return view('workflow',compact('vehicles'));
     }

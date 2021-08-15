@@ -7,7 +7,7 @@
     <div class="col-md-12">
       <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">WorkFlow Manager</h3>
+          <h3 class="card-title">Override - Vehicle Immobilized/Blocked</h3>
         </div>
 
         <div class="col-md-12">
@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-8">
               <!-- <h4 class="m-0"> Workflow: Sales Declaration Enforcement</h4> -->
-              <h5 class="m-0" style="text-align: right;">Override - Vehicle Immobilized/Blocked <img src="{{ URL::to('/') }}/images/car.png"></h5>
+              <h5 class="m-0" style="text-align: right;"><img src="{{ URL::to('/') }}/images/car.png"></h5>
             </div>
 
             <div class="col-md-3">
