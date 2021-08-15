@@ -56,30 +56,28 @@
 @stack('page_scripts')
 <script>
 $(document).ready(function(){
+    if($('#BPJ1').prop("checked")){
 
+    }else{
+        $('#BPJ1').prop("checked", false);
+        $('#BPJ2').prop("checked", false);
+        $('#BPJ1').attr("disabled", true);
+        $('#BPJ2').attr("disabled", true);
+    }
     $('#BPJ').change(function() {
         if(this.checked) {            
             $('#BPJ1').prop("checked", true);
             $('#BPJ2').prop("checked", true);
+            $('#BPJ1').attr("disabled", false);
+            $('#BPJ2').attr("disabled", false);
         }else{
             $('#BPJ1').prop("checked", false);
             $('#BPJ2').prop("checked", false);
+            $('#BPJ1').attr("disabled", true);
+            $('#BPJ2').attr("disabled", true);
         }
     });
-    $('#BPJ1').change(function() {
-         if ($('#BPJ').prop(":checked")) {
-            //$('#BPJ1').prop("checked", true);
-         }else{
-            //$('#BPJ1').prop("checked", false);
-         }
-    });
-    $('#BPJ2').change(function() {
-         if ($('#BPJ').prop(":checked")) {
-            //$('#BPJ2').prop("checked", true);
-         }else{
-            //$('#BPJ2').prop("checked", false);
-         }
-    });
+    
     $("#VPF").change(function(evt){
         var VPF = $("#VPF").val();
         console.log(VPF);
