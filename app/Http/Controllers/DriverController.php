@@ -31,8 +31,10 @@ class DriverController extends Controller
     {
         $VNO = trim($request->get("VNO"));
         $VNO = str_replace(' ', '', $VNO);        
+        $VNO = str_replace('-', '', $VNO);        
         $DCN = trim($request->get("DCN"));
-        $sql = "SELECT a.*,b.VBM,b.DCN,b.VAM,b.VPF FROM vehicle a,driver b where a.driver_id=b.id and  a.VNO='$VNO' and a.VTV=1";
+        //select * from vehicle where replace(VNO, '-', '') = 'GN712217';
+        $sql = "SELECT a.*,b.VBM,b.DCN,b.VAM,b.VPF FROM vehicle a,driver b where a.driver_id=b.id and  replace(a.VNO, '-', '') = '$VNO' and a.VTV=1";
         $vehicle = DB::select(DB::raw($sql));
         if(count($vehicle) > 0){
             $vehicle = $vehicle[0];
