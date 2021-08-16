@@ -53,7 +53,11 @@
               <td>
                     @if(Auth::user()->usertype == "Admin" || Auth::user()->BPF == true)
                       @if($vehicle->driver_id == "")
-                        <a href="{{ route('assignvehicle',$vehicle->id) }}" class="btn btn-info btn-sm">Assign Vehicle</a>
+                        @if($vehicle->VTV == 1)
+                          <a href="{{ route('assignvehicle',$vehicle->id) }}" class="btn btn-info btn-sm">Assign Vehicle</a>
+                        @else
+                          <button class="btn btn-info btn-sm disabled" >Assign Vehicle</button>
+                        @endif
                       @else
                         <a href="{{ route('removevehicle',$vehicle->id) }}" class="btn btn-danger btn-sm">Unassign Vehicle</a>
                       @endif
