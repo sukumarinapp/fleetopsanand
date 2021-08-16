@@ -68,14 +68,16 @@ class WorkflowController extends Controller
                 $OTT = date("H.i");
                 $sql = "insert into tbl024 (ODT,OTT,CAN,VNO,UAN,OAC) values ('$ODT','$OTT','$CAN','$VNO','$UAN','$OAC')";
                 DB::insert($sql);
+                $sql = "update tbl136 set DECL=1 where VNO='$VNO'";
+                $vehicle = DB::select(DB::raw($sql));
                 $sql = "SELECT * FROM vehicle where id=$VID";
                 $vehicle = DB::select(DB::raw($sql));
                 $VBC0 = $vehicle[0]->VBC0; 
                 $TSM = $vehicle[0]->TSM;
                 SMSFleetops::send($TSM,$VBC0);
-                return redirect('/overrides/'.$VID)->with('message', 'Vehicle Immobilized/Blocked Overridden Successfully')->withInput();
+                return redirect('/overrides/'.$VID)->with('message', 'Vehicle Mobilized Successfully')->withInput();
             } else {
-               return redirect('/override/'.$VID)->with('error', 'Invalid Username Credentials')->withInput();
+               return redirect('/override/'.$VID)->with('error', 'Invalid User Credentials')->withInput();
             }
         }else{
             return redirect('/override/'.$VID)->with('error', 'Username does not exist or inactive')->withInput();

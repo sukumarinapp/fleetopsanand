@@ -9,7 +9,7 @@
 			<h3 class="card-title">RH Platform Settings</h3>
 			<a href="{{ route('rhplatform.create') }}" class="btn btn-secondary float-right"><i class="nav-icon fas fa-plus"></i>&nbsp; Add RH Platform</a>
 			</div>
-			<div class="card-body">
+			<div style="overflow-x: auto;" class="card-body">
 					@if(session()->has('error'))
 						<div class="alert alert-danger alert-dismissable" style="margin: 15px;">
 						<a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>

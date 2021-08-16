@@ -12,7 +12,7 @@
 			<a href="{{ route('manager.create') }}" class="btn btn-secondary float-right"><i class="nav-icon fas fa-plus"></i>&nbsp; Add User</a>
       @endif
 		    </div>
-			<div class="card-body">
+			<div style="overflow-x: auto;" class="card-body">
         @if(session()->has('message'))
           <div class="alert alert-success alert-dismissable" style="margin: 15px;">
               <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
