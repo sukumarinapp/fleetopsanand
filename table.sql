@@ -1,9 +1,11 @@
+drop TABLE vehicle_log;
 CREATE TABLE vehicle_log (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   CAN varchar(20) DEFAULT NULL,
   VNO varchar(20) DEFAULT NULL,
-  `DNM` varchar(50) DEFAULT NULL,
-  UAN varchar(20) DEFAULT NULL,
+  `DID` int(11) DEFAULT 0,
+  ATN varchar(20)  DEFAULT NULL,
+  UAN varchar(50) DEFAULT NULL,
   `TIM` varchar(20) DEFAULT NULL,
    PRIMARY KEY(id)
 ) ENGINE=InnoDB;

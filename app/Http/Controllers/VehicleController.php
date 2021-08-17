@@ -214,7 +214,7 @@ class VehicleController extends Controller
         $vehicle->save();
         $CAN = $vehicle->CAN;
         $VNO = $vehicle->VNO;
-        $UAN = Auth::user()->UAN;
+        $UAN = Auth::user()->name;
         $TIM = date("Y-m-d H:i");
         $sql = "insert into vehicle_log (CAN,VNO,DID,UAN,TIM,ATN) values ('$CAN','$VNO','$DID','$UAN','$TIM','Assign Vehicle')";
         DB::insert($sql);
@@ -239,7 +239,7 @@ class VehicleController extends Controller
         $vehicle->save();
         $CAN = $vehicle->CAN;
         $VNO = $vehicle->VNO;
-        $UAN = Auth::user()->UAN;
+        $UAN = Auth::user()->name;
         $TIM = date("Y-m-d H:i");
         $sql = "insert into vehicle_log (CAN,VNO,DID,UAN,TIM,ATN) values ('$CAN','$VNO','$DID','$UAN','$TIM','Unassign Vehicle')";
         DB::insert($sql);
