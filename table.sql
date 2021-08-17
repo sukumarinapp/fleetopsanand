@@ -1,8 +1,11 @@
+
+alter table tbl140 add WCI varchar(20) DEFAULT NULL after WST;
 alter table tbl024 add DCR int(11) DEFAULT 0 after id;
 CREATE TABLE tbl140 (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   DCR int(11) DEFAULT 0,
   `WST` date DEFAULT NULL,
+  WCI varchar(50) DEFAULT NULL,
   `UAN` varchar(20) DEFAULT NULL,
   `CAN` varchar(20) DEFAULT NULL,
   `VNO` varchar(20) DEFAULT NULL,

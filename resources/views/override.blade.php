@@ -78,6 +78,7 @@
               <input type="hidden" name="VNO" value="{{ $vehicle->VNO }}">
               <input type="hidden" name="TSM" value="{{ $vehicle->TSM }}">
               <input type="hidden" name="VID" value="{{ $vehicle->id }}">
+              <input type="hidden" name="WCI" value="{{ $vehicle->DNM }} {{ $vehicle->DSN }}">
              <div class="form-group row">
                <label for="UAN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Username</label>
                <div class="col-sm-5">

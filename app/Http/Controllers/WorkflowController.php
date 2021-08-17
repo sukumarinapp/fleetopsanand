@@ -63,6 +63,7 @@ class WorkflowController extends Controller
         $email = trim($request->UAN);
         $password = $request->password;
         $CAN = $request->CAN;
+        $WCI = $request->WCI;
         $VNO = $request->VNO;
         $OAC = $request->OAC;
         $VID = $request->VID;
@@ -87,7 +88,7 @@ class WorkflowController extends Controller
                 DB::insert($sql);
                 $WNB = "WFL" . str_pad($DCR,3,'0',STR_PAD_LEFT);
                 $WTP = "Vehicle Unblocked";
-                $sql = "insert into tbl140 (DCR,WST,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$UAN','$CAN','$VNO','$WNB','$WTP','$ODT')";
+                $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$ODT')";
                 DB::insert($sql);
                 $sql = "SELECT * FROM vehicle where id=$VID";
                 $vehicle = DB::select(DB::raw($sql));

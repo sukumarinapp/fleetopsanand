@@ -17,6 +17,7 @@
             <th>VNO</th>
             <th>Workflow No</th>
             <th>Workflow Type</th>
+            <th>Initiator</th>
             <th>Close Date</th>
           </tr>
           </thead>
@@ -29,6 +30,7 @@
 	              <td>{{ $flow->VNO }}</td>
 	              <td>{{ $flow->WNB }}</td>
 	              <td>{{ $flow->WTP }}</td>
+	              <td>{{ $flow->WCI }}</td>
 	              <td>{{ date("d-m-Y",strtotime($flow->WCD)) }}</td>
 	            </tr>
             @endforeach
