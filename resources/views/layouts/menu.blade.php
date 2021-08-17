@@ -146,7 +146,23 @@
       </p>
   </a>
 </li>
-
+<li class="nav-item {{ (request()->is('workflowlog'))  ? 'menu-open' : '' }}">
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-file"></i>
+    <p>
+      Reports
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{ route('workflowlog') }}" class="nav-link {{ (request()->is('workflowlog')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Workflow Log</p>
+      </a>
+    </li>
+  </ul>
+</li>
 <!-- @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
 <li class="nav-item menu-open">
   <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fueler') ? 'active' : '' }}">

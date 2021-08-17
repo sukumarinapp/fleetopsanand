@@ -39,6 +39,13 @@ class WorkflowController extends Controller
         return view('workflow',compact('vehicles'));
     }
 
+    public function workflowlog()
+    {
+        $this->check_access("BPJ2");
+        $sql = "select * from tbl140";
+        $workflow = DB::select(DB::raw($sql));
+        return view('workflowlog',compact('workflow'));
+    }
 
     public function override($VNO)
     {
@@ -63,13 +70,25 @@ class WorkflowController extends Controller
         $users = DB::select(DB::raw($sql));
         if(count($users) > 0){
             if (Hash::check($password, $users[0]->password)) {
-                $UAN = $users[0]->UAN;
+                $sql = "SELECT * FROM tbl136 where VNO='$VNO' and DECL = 0";
+                $tbl136 = DB::select(DB::raw($sql));
+                $DCR = 0;
                 $ODT = date("Y-m-d");
+                $WST = date("Y-m-d");
+                if(count($tbl136) > 0){
+                    $DCR = $tbl136[0]->id;
+                    $WST = $tbl136[0]->DDT;
+                }
+                $UAN = $users[0]->UAN;                
                 $OTT = date("H.i");
-                $sql = "insert into tbl024 (ODT,OTT,CAN,VNO,UAN,OAC) values ('$ODT','$OTT','$CAN','$VNO','$UAN','$OAC')";
-                DB::insert($sql);
                 $sql = "update tbl136 set DECL=1 where VNO='$VNO'";
                 $vehicle = DB::select(DB::raw($sql));
+                $sql = "insert into tbl024 (DCR,ODT,OTT,CAN,VNO,UAN,OAC) values ($DCR,'$ODT','$OTT','$CAN','$VNO','$UAN','$OAC')";
+                DB::insert($sql);
+                $WNB = "WFL" . str_pad($DCR,3,'0',STR_PAD_LEFT);
+                $WTP = "Vehicle Unblocked";
+                $sql = "insert into tbl140 (DCR,WST,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$UAN','$CAN','$VNO','$WNB','$WTP','$ODT')";
+                DB::insert($sql);
                 $sql = "SELECT * FROM vehicle where id=$VID";
                 $vehicle = DB::select(DB::raw($sql));
                 $VBC0 = $vehicle[0]->VBC0; 

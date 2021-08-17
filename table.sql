@@ -1,19 +1,30 @@
-insert into tbl136 (DDT,CAN,VNO,CHR,CML,DES,DECL,VBM,driver_id) VALUES ('2021-08-14','C1001','GN7122-17','0','0','A0','0','Rental','6');
-insert into tbl136 (DDT,CAN,VNO,CHR,CML,DES,DECL,VBM,driver_id) VALUES ('2021-08-14','C1001','GN7121-17','3.19','108.567','A0','0','Ride Hailing','3');
-insert into tbl136 (DDT,CAN,VNO,CHR,CML,DES,DECL,VBM,driver_id) VALUES ('2021-08-14','C1006','KLA20','0','0','A0','0','Hire Purchase','16');
+alter table tbl024 add DCR int(11) DEFAULT 0 after id;
+CREATE TABLE tbl140 (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  DCR int(11) DEFAULT 0,
+  `WST` date DEFAULT NULL,
+  `UAN` varchar(20) DEFAULT NULL,
+  `CAN` varchar(20) DEFAULT NULL,
+  `VNO` varchar(20) DEFAULT NULL,
+  `WNB` varchar(20) DEFAULT NULL,
+  `WTP` varchar(50) DEFAULT NULL,
+  `WCD` date DEFAULT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB;
 
-select a.VNO,b.DNM,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD from vehicle a,driver b where a.driver_id=b.id and a.VTV=1
+ Workflow Case Open Date/Time
+UAN User Account No.
+CAN Client Account No.
+VNO Vehicle Reg. No.
+WCI Case Initiator (UAN, CAN, DNM or P-CS System)
+WNB Workflow Number
+WNM Workflow Title
+WSM Stage Manager
+WCD Workflow Case Close Date/Time
 
- update tbl361 set RML=1.14,RMN=.35,RMS=4,RHT='N/A';
 
-  
-ALTER TABLE `driver_platform` CHANGE `PLF` `PLF` INT(11) NULL DEFAULT NULL;
-alter table driver add WDY int(1) null default 1 after VPF;
-alter table driver add MDY int(2) null default 1 after WDY;
 
-alter table tbl136 drop CHR;
-alter table tbl137 drop RTN;
-
+__________________________________________________________________
 alter table tbl136 add VBM varchar(20) DEFAULT NULl after DECL;
 alter table tbl136 add driver_id int(11) DEFAULT 0 after VBM;
 
