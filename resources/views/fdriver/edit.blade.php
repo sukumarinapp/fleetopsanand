@@ -96,7 +96,7 @@
               	<div class="form-group row">
 					<label for="VBM" class="col-sm-4 col-form-label"><span style="color:red"></span>Business Model</label>
 					<div class="col-sm-8">
-						 <select name="VBM" id="VBM" class="custom-select">
+						 <select {{ ($driver->VBM == "Hire Purchase" ? "disabled":"") }} name="VBM" id="VBM" class="custom-select">
                 <option {{ ($driver->VBM == "Ride Hailing" ? "selected":"") }} value="Ride Hailing" >Ride Hailing</option>
                 <option {{ ($driver->VBM == "Rental" ? "selected":"") }} value="Rental" >Rental</option>
                 <option {{ ($driver->VBM == "Hire Purchase" ? "selected":"") }} value="Hire Purchase" >Hire Purchase</option>
