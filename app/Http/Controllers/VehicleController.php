@@ -209,8 +209,15 @@ class VehicleController extends Controller
     public function assigndriver(Request $request){
         $this->check_access("BPF");
         $vehicle = Vehicle::find($request->get('vehicle_id'));
-        $vehicle->driver_id  =  $request->get('driver_id');
+        $DID = $request->get('driver_id');
+        $vehicle->driver_id = $DID;
         $vehicle->save();
+        $CAN = $vehicle->CAN;
+        $VNO = $vehicle->VNO;
+        $UAN = Auth::user()->UAN;
+        $TIM = date("Y-m-d H:i");
+        $sql = "insert into vehicle_log (CAN,VNO,DID,UAN,TIM,ATN) values ('$CAN','$VNO','$DID','$UAN','$TIM','Assign Vehicle')";
+        DB::insert($sql);
         return redirect('/vehicle')->with('message', 'Driver Assigned Successfully');
     }
 
@@ -227,8 +234,15 @@ class VehicleController extends Controller
     public function removedriver(Request $request){
         $this->check_access("BPF");
         $vehicle = Vehicle::find($request->get('vehicle_id'));
+        $DID = $vehicle->driver_id;
         $vehicle->driver_id  =  null;
         $vehicle->save();
+        $CAN = $vehicle->CAN;
+        $VNO = $vehicle->VNO;
+        $UAN = Auth::user()->UAN;
+        $TIM = date("Y-m-d H:i");
+        $sql = "insert into vehicle_log (CAN,VNO,DID,UAN,TIM,ATN) values ('$CAN','$VNO','$DID','$UAN','$TIM','Unassign Vehicle')";
+        DB::insert($sql);
         return redirect('/vehicle')->with('message', 'Driver Removed Successfully');
     }
 

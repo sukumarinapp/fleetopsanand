@@ -47,6 +47,14 @@ class WorkflowController extends Controller
         return view('workflowlog',compact('workflow'));
     }
 
+    public function vehiclelog()
+    {
+        $this->check_access("BPJ2");
+        $sql = "select a.*,b.DNM,b.DSN from vehicle_log a,driver b where a.DID=b.id order by TIM desc";
+        $vehiclelog = DB::select(DB::raw($sql));
+        return view('vehiclelog',compact('vehiclelog'));
+    }
+
     public function override($VNO)
     {
         $this->check_access("BPJ2");

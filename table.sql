@@ -1,3 +1,12 @@
+CREATE TABLE vehicle_log (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  CAN varchar(20) DEFAULT NULL,
+  VNO varchar(20) DEFAULT NULL,
+  `DNM` varchar(50) DEFAULT NULL,
+  UAN varchar(20) DEFAULT NULL,
+  `TIM` varchar(20) DEFAULT NULL,
+   PRIMARY KEY(id)
+) ENGINE=InnoDB;
 
 alter table tbl140 add WCI varchar(20) DEFAULT NULL after WST;
 alter table tbl024 add DCR int(11) DEFAULT 0 after id;
@@ -13,6 +22,16 @@ CREATE TABLE tbl140 (
   `WTP` varchar(50) DEFAULT NULL,
   `WCD` date DEFAULT NULL,
   PRIMARY KEY(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE vehicle_log (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  CAN varchar(20) DEFAULT NULL,
+  VNO varchar(20) DEFAULT NULL,
+  `DNM` varchar(20) DEFAULT NULL,
+  UAN varchar(20) DEFAULT NULL,
+  `TIM` varchar(20) DEFAULT NULL,
+   PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 
  Workflow Case Open Date/Time
