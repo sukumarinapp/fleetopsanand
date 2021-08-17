@@ -175,14 +175,14 @@ class WorkflowController extends Controller
             DB::insert($sql);
             $sql = "update tbl136 set DECL=1 where VNO='$VNO'";
             DB::update($sql);
-            $WTP = "Unblocked";
+            $WTP = "Sale Audit Vehicle Unblocked";
             $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$SDT')";
             DB::insert($sql);
             SMSFleetops::send($TSM,$VZC0);
             SMSFleetops::send($TSM,$VBC0);
             return redirect('/workflow')->with('message', 'Driver Sales Audit Done Successfully')->withInput();
         }else{
-           $WTP = "Blocked";
+           $WTP = "Sale Audit Vehicle Blocked";
            $sql = "update tbl136 set DECL=0,DES='A4' where id='$DCR'";
            DB::update($sql);
            $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$SDT')";
