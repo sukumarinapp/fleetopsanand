@@ -94,7 +94,7 @@
           <div class="form-group row">
            <label for="OAC" class="col-sm-3 col-form-label"><span style="color:red">*</span>Comments</label>
            <div class="col-sm-9">
-            <input required="required" type="text" class="form-control" name="OAC" id="OAC" maxlength="100" placeholder="Comments">
+            <input required="required" type="text" class="form-control" name="OAC" id="OAC" maxlength="50" placeholder="Comments">
           </div>
         </div>
 

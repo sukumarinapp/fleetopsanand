@@ -4,6 +4,18 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card card-info">
+				@if(session()->has('error'))
+        <div class="alert alert-danger alert-dismissable" style="margin: 15px;">
+          <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong> {{ session('error') }} </strong>
+        </div>
+        @endif
+        @if(session()->has('message'))
+            <div class="alert alert-success alert-dismissable" style="margin: 15px;">
+            <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> {{ session('message') }} </strong>
+          </div>
+        @endif
 				<div class="card-header">
 					<h3 class="card-title">WorkFlow</h3>
 				</div>

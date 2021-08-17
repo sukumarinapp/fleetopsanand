@@ -56,6 +56,18 @@
 @stack('page_scripts')
 <script>
 $(document).ready(function(){
+    $('#rhvisibility').change(function() {
+        if(this.checked) {            
+            $("#SPF").attr("disabled", "disabled"); 
+            $("#RMT").attr("disabled", "disabled"); 
+            $("#TPF").attr("disabled", "disabled"); 
+        }else{
+            $("#SPF").removeAttr("disabled");
+            $("#RMT").removeAttr("disabled");
+            $("#TPF").removeAttr("disabled");
+        }
+    });
+    
     if(($('#BPJ1').prop("checked")) == false){
         $('#BPJ1').prop("checked", false);
         $('#BPJ2').prop("checked", false);

@@ -83,7 +83,7 @@ class WorkflowController extends Controller
                 $UAN = $users[0]->UAN;                
                 $OTT = date("H.i");
                 $sql = "update tbl136 set DECL=1 where VNO='$VNO'";
-                $vehicle = DB::select(DB::raw($sql));
+                DB::update($sql);
                 $sql = "insert into tbl024 (DCR,ODT,OTT,CAN,VNO,UAN,OAC) values ($DCR,'$ODT','$OTT','$CAN','$VNO','$UAN','$OAC')";
                 DB::insert($sql);
                 $WNB = "WFL" . str_pad($DCR,3,'0',STR_PAD_LEFT);
@@ -95,7 +95,7 @@ class WorkflowController extends Controller
                 $VBC0 = $vehicle[0]->VBC0; 
                 $TSM = $vehicle[0]->TSM;
                 SMSFleetops::send($TSM,$VBC0);
-                return redirect('/overrides/'.$VID)->with('message', 'Vehicle Mobilized Successfully')->withInput();
+                return redirect('/workflow')->with('message', 'Vehicle Mobilized Successfully');
             } else {
                return redirect('/override/'.$VID)->with('error', 'Invalid User Credentials')->withInput();
             }
@@ -127,7 +127,7 @@ class WorkflowController extends Controller
     {
         $this->check_access("BPJ1");
         $id = $VNO;
-        $sql = "SELECT d.PLF,e.RHN,a.*,b.name,c.DNO,c.DNM,c.DSN,c.DCN  FROM vehicle a,users b,driver c,driver_platform d,tbl361 e where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id and c.id=d.driver_id and d.PLF=e.id";
+        $sql = "SELECT d.PLF,e.RHN,a.*,b.UAN,b.name,c.DNO,c.DNM,c.DSN,c.DCN  FROM vehicle a,users b,driver c,driver_platform d,tbl361 e where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id and c.id=d.driver_id and d.PLF=e.id";
         $vehicle = DB::select(DB::raw($sql));
         $vehicle = $vehicle[0];
         return view('auditing',compact('vehicle'));
@@ -141,6 +141,7 @@ class WorkflowController extends Controller
         $VID = $request->VID;
         $VNO = $request->VNO;
         $CAN = $request->CAN;
+        $UAN = $request->UAN;
         $RCN = $request->RCN;
         $SPF = $request->SPF;
         $TPF = $request->TPF;
@@ -148,27 +149,47 @@ class WorkflowController extends Controller
         $RHN = $request->RHN;
         $ROI = "";
         $SSR = Auth::user()->UAN;
-        $SDT = date('Y-m-d', strtotime("-1 days"));  
+        $SDT = date('Y-m-d');
         $DCR = 0;
-        $sql = "SELECT * from tbl135 where DDT='$SDT' and VNO='$VNO'";
+        $TSM = 0;
+        $VZC0 = 0;
+        $VBC0 = 0;
+        $VBC1 = 0;
+        $WST = 0;
+        $WCI = "";
+        $sql = "SELECT a.DDT,a.id,b.TSM,b.VZC0,b.VBC0,b.VBC1,c.DNM,c.DSN from tbl136 a,vehicle b,driver c where a.VNO=b.VNO and b.driver_id=c.id and a.VNO ='$VNO' and DECL=0";
         $result = DB::select(DB::raw($sql));
-        if(count($result)==0){
-            $sql = "insert into tbl135 (DDT,CAN,VNO,CHR,CML) values ('$SDT','$CAN','$VNO','0','0')";
-            DB::insert($sql);
+        if(count($result)>0){
+            $DCR = $result[0]->id;
+            $TSM = $result[0]->TSM;
+            $VZC0 = $result[0]->VZC0;
+            $VBC0 = $result[0]->VBC0;
+            $VBC1 = $result[0]->VBC1;
+            $WST = $result[0]->DDT;
+            $WCI = $result[0]->DNM . " " .$result[0]->DSN;
         }
-        $sql = "SELECT * from tbl136 where DDT='$SDT' and VNO='$VNO'";
-        $result = DB::select(DB::raw($sql));
-        if(count($result)==0){
-            $sql = "insert into tbl136 (DDT,CAN,VNO,DES,DECL) values ('$SDT','$CAN','$VNO','A0','0')";
+        $WNB = "WFL" . str_pad($DCR,3,'0',STR_PAD_LEFT);
+        if($rhvisibility == 0){
+            $TIM = date("Y-m-d H:i:s");
+            $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$RMT','$ROI','1','$SSR','$TIM')";
             DB::insert($sql);
+            $sql = "update tbl136 set DECL=1 where VNO='$VNO'";
+            DB::update($sql);
+            $WTP = "Unblocked";
+            $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$SDT')";
+            DB::insert($sql);
+            SMSFleetops::send($TSM,$VZC0);
+            SMSFleetops::send($TSM,$VBC0);
+            return redirect('/workflow')->with('message', 'Driver Sales Audit Done Successfully')->withInput();
+        }else{
+           $WTP = "Blocked";
+           $sql = "update tbl136 set DECL=0,DES='A4' where id='$DCR'";
+           DB::update($sql);
+           $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$SDT')";
+           DB::insert($sql);
+           SMSFleetops::send($TSM,$VBC1); 
+           return redirect('/workflow')->with('message', 'Driver Sales Audit Done and Vehicle blocked Successfully')->withInput();
         }
-        $sql = "SELECT * from tbl136 where DDT='$SDT' and VNO='$VNO'";
-        $result = DB::select(DB::raw($sql));
-        $DCR = $result[0]->id;
-
-        $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$RMT','$ROI','1','$SSR','')";
-        DB::insert($sql);
-        return redirect('/auditing/'.$VID)->with('message', 'Driver Sales Audit Done Successfully')->withInput();
     }
         
 }
