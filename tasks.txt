@@ -1,0 +1,10 @@
+Billbox Manual Callback Testing (Cron Job)
+Sales Ledger (Ride Hailing)
+Sales Ledger (Rental/Hire Purchase)
+Collection Report (Internal/Company Report)
+
+if (RMT< CCEI(min) change DES in tbl136 to B4
+if A4 or B4 then sales auditing
+
+
+

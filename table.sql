@@ -1,3 +1,30 @@
+
+  CREATE TABLE sales_rh (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    DCR int(11) DEFAULT 0,
+    SDT date DEFAULT NULL,
+    CAN varchar(20) DEFAULT NULL,
+    VNO varchar(20) DEFAULT NULL,
+    RHN int(11) DEFAULT 0,
+    EXPS decimal(10,2) DEFAULT NULL,
+    CCEI decimal(10,2) DEFAULT NULL,
+    PRIMARY KEY(id)
+  ) ENGINE=InnoDB;
+
+  CREATE TABLE sales_rental (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    DCR int(11) DEFAULT 0,
+    SDT date DEFAULT NULL,
+    CAN varchar(20) DEFAULT NULL,
+    VNO varchar(20) DEFAULT NULL,
+    SSA decimal(10,2) DEFAULT NULL,
+    PRIMARY KEY(id)
+  ) ENGINE=InnoDB;
+
+
+
+
+
 drop TABLE vehicle_log;
 CREATE TABLE vehicle_log (
   `id` int(11) NOT NULL AUTO_INCREMENT,

@@ -99,7 +99,7 @@
             <div class="form-group row">
               <div class="form-check">
                   <input type="checkbox" value="1" name="rhvisibility" class="form-check-input" id="rhvisibility">
-                  <label for="rhvisibility" class="form-check-label col-sm-8"><b>Driver cannot be seen on RH platform</b></label>
+                  <label for="rhvisibility" class="form-check-label col-sm-8"><b>Driver cannot be seen on RH platform?</b></label>
                 </div>
               </div>
             </div>
