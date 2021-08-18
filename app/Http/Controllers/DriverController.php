@@ -151,6 +151,7 @@ class DriverController extends Controller
         if(count($result) > 0){        
             $DCR = $result[0]->id;
             $requestId = uniqid();
+            $requestId = $VNO . "-" .$requestId;
             $response = Billbox::payNow($requestId,$request->cash_hidden,$request->options,$request->DCN,$cust_name);
             if($response->statusCode=="SUCCESS"){
                 $TIM = date("Y-m-d H:i:s");

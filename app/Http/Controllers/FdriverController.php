@@ -167,7 +167,9 @@ class FdriverController extends Controller
             $driver->DCN =  $request->get('DCN');
             if($DLD != "") $driver->DLD  =  $DLD;
             if($VCC != "") $driver->VCC  =  $VCC;
-            $driver->VBM =  $request->get('VBM');
+            if($request->get('VBM') != ""){
+                $driver->VBM =  $request->get('VBM');
+            }
             $driver->VPF =  $VPF;
             $driver->WDY =  $WDY;
             $driver->MDY =  $MDY;

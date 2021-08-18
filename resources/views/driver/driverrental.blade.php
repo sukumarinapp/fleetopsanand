@@ -17,7 +17,7 @@
        <input type="hidden" id="DCN" name="DCN" value="{{ $vehicle->DCN }}">
        <input type="hidden" id="SSA" name="SSA" value="{{ $vehicle->VAM }}">
        <input type="hidden" id="SSR" name="SSR" value="Driver">
-       <input type="hidden" id="VBM" name="VBM" value="Rental">
+       <input type="hidden" id="VBM" name="VBM" value="{{ $vehicle->VBM }}">
      <div class="row justify-content-center">
     <div class="col-md-12">
        <label class="col-form-label">Vehicle Reg No: {{ $vehicle->VNO }}</label>
