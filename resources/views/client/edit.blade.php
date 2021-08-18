@@ -45,10 +45,13 @@
                 </div>
                 </div>
                    <div class="form-group row">
-                     <label for="name" class="col-sm-3 col-form-label"><span style="color:red">*</span>Company Name</label>
-                    <div class="col-sm-3">
-                        <input value="{{ $user->name }}" required="required" type="text" class="form-control" name="name" id="name" maxlength="200" placeholder="Company Name">
-                    </div>			
+
+                <label for="CZN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Contact Name</label>
+                <div class="col-sm-3">
+                <input value="{{ $user->CZN }}" required="required" type="text" class="form-control" name="CZN" id="CZN" maxlength="50" placeholder="Contact Name">
+                </div>
+
+
                 
                 	<label for="CMT" class="col-sm-3 col-form-label">Account Type</label>
                 <div class="col-sm-3">
@@ -60,11 +63,13 @@
 				 </div>
 
                  <div class="form-group row">
-                    <label for="UZA" class="col-sm-3 col-form-label"><span style="color:red">*</span>Address</label>
+
+
+                     <label for="name" class="col-sm-3 col-form-label"><span style="color:red">*</span>Company Name</label>
                     <div class="col-sm-3">
-                        <textarea required="required" class="form-control max200" name="UZA" id="UZA" rows="1" placeholder="Address">{{ $user->UZA }}</textarea>
-                    </div>
-               
+                        <input value="{{ $user->name }}" required="required" type="text" class="form-control" name="name" id="name" maxlength="200" placeholder="Company Name">
+                    </div>  
+                                  
 					<label id="CMALBL" for="CMA" class="col-sm-3 col-form-label">{{ ($user->CMT == "B" ? "Account Name":"Name") }}</label>
 					<div class="col-sm-3">
 						<input value="{{ $user->CMA }}" type="text" class="form-control" name="CMA" id="CMA" maxlength="50" placeholder='{{ ($user->CMT == "B" ? "Account Name":"Name") }}'>
@@ -72,11 +77,11 @@
 				</div>
 
                  <div class="form-group row">
-                   <label for="UCN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Contact Number</label>
+                     <label for="UZA" class="col-sm-3 col-form-label"><span style="color:red">*</span>Address</label>
                     <div class="col-sm-3">
-                        <input onkeyup="duplicateUserContact({{ $user->UCN }})"  value="{{ $user->UCN }}" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
-                        <span id="dupContact" style="color:red"></span>
+                        <textarea required="required" class="form-control max200" name="UZA" id="UZA" rows="1" placeholder="Address">{{ $user->UZA }}</textarea>
                     </div>
+                  
                
                    <label id="CMNLBL" for="CMN" class="col-sm-3 col-form-label">{{ ($user->CMT == "B" ? "Account Number":"Mobile Number") }}</label>
                     <div class="col-sm-3">
@@ -91,11 +96,12 @@
                 </div>
 
 			    <div class="form-group row">
-					<label for="email" class="col-sm-3 col-form-label"><span style="color:red">*</span>Email</label>
-					<div class="col-sm-3">
-						<input onkeyup="duplicateEmail(this.value)" value="{{ $user->email }}" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
-                        <span id="dupemail" style="color:red"></span>
-					</div>
+                     <label for="UCN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Contact Number</label>
+                    <div class="col-sm-3">
+                        <input onkeyup="duplicateUserContact({{ $user->UCN }})"  value="{{ $user->UCN }}" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+                        <span id="dupContact" style="color:red"></span>
+                    </div>
+					
                  <label id="CMBLBL" for="CMB" class="col-sm-3 col-form-label">{{ ($user->CMT == "B" ? "Account Branch":"Telecom Provider") }}</label>
                     <div class="col-sm-3" id="telecom_div">
                         @php
@@ -117,6 +123,14 @@
                         @endphp
                     </div>
               </div>
+            
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label"><span style="color:red">*</span>Email</label>
+                    <div class="col-sm-3">
+                        <input onkeyup="duplicateEmail(this.value)" value="{{ $user->email }}" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
+                        <span id="dupemail" style="color:red"></span>
+                    </div>
+                </div>
              
 				  <div class="form-group row">
                     <label for="password" class="col-sm-3 col-form-label"><span style="color:red">*</span>Reset Password</label>

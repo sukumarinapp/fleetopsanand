@@ -229,6 +229,7 @@ class DriverController extends Controller
                         }
                     }
                 }else{
+                    SMSFleetops::send($TSM,$VBC0);
                     $msg="Thank you for a successful payment of GHC ".$RMT.".";
                     echo $msg."<br>";
                     SMSFleetops::send($RCN,$msg);
