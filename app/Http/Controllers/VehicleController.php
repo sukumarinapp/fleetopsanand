@@ -183,7 +183,9 @@ class VehicleController extends Controller
             $vehicle->VZC0 =  $request->get('VZC0');
             $vehicle->VBC1 =  $request->get('VBC1');
             $vehicle->VBC0 =  $request->get('VBC0');
-            $vehicle->VTV = $VTV;
+            if($vehicle->driver_id == ""){
+                $vehicle->VTV = $VTV;
+            }
             $vehicle->updated_at =  date("Y-m-d H:i:s");        
             $vehicle->save();
             return redirect('/vehicle')->with('message', 'Vehicle Updated Successfully');
