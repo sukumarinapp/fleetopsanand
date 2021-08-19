@@ -7,7 +7,6 @@ if (RMT< CCEI(min) change DES in tbl136 to B4
 if A4 or B4 then sales auditing
 
 
-Add/Edit Client	Logic	2. Recommendation: Add “Bank Name” when Bank account selected	Open
 
 User Account	Logic	When a User Account is being deactivated while other users or clients are active under this account, the originator must be prompted. If deactivation is still persists then either (1) all active users and clients go under admin account by default or (2) a dialog box (modal) requests to re-assign these other users and clients to another account.	Open
 
@@ -19,7 +18,6 @@ User Account	Logic	Upper level users should be able to re-assign client accounts
 
 Client Account	Logic	If Client Account is made "Inactive" then all accesses and operations must also be "Inactive".	Open
 
-Edit Client Page	Bug	No "Contact Name" on "Edit Client" page	Open
 
 
 

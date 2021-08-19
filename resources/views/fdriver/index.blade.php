@@ -42,7 +42,7 @@
             >
               <td>{{ $driver->DNM }} {{ $driver->DSN }}
               @if($driver->VNO !="")
-                <br><small class="text-success">{{ $driver->VNO }}</small>
+                <br><small class="text-success"><a href="{{ route('vehicle.edit',$driver->vid) }}">{{ $driver->VNO }}</a></small>
               @endif
               </td>
               <td>{{ $driver->DNO }}</td>

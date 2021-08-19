@@ -42,8 +42,8 @@
               <td>{{ $vehicle->CAN }}<br><small class="text-success">{{ $vehicle->name }}</small></td>
               <td>{{ $vehicle->VNO }}
                 @if($vehicle->DNM !="")
-                <br><small class="text-success">{{ $vehicle->DNM }} 
-                  {{ $vehicle->DSN }} - {{ $vehicle->VBM }}</small>
+                <br><small class="text-success"><a href="{{ route('fdriver.edit',$vehicle->did) }}">{{ $vehicle->DNM }} 
+                  {{ $vehicle->DSN }}</a> - {{ $vehicle->VBM }}</small>
                 @endif
               </td>
               <td>{{ $vehicle->TID }}</td>

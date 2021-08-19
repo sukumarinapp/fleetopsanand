@@ -1,5 +1,8 @@
 alter table users add CBK varchar(50) DEFAULT NULL after CMB;
 
+select id,name,CZN,CMT,CMA,CMN,CMB,CBK from users where usertype='client';
+
+select id,name,CMT,CMA,CMN,CMB,CBK from users;
 
   CREATE TABLE sales_rh (
     id int(11) NOT NULL AUTO_INCREMENT,
