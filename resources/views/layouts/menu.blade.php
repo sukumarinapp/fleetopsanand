@@ -146,7 +146,7 @@
       </p>
   </a>
 </li>
-<li class="nav-item {{ (request()->is('workflowlog') || request()->is('vehiclelog'))  ? 'menu-open' : '' }}">
+<li class="nav-item {{ (request()->is('workflowlog') || request()->is('vehiclelog') || request()->is('sales')) ? 'menu-open' : '' }}">
   <a href="#" class="nav-link">
     <i class="nav-icon fas fa-file"></i>
     <p>
@@ -167,6 +167,14 @@
       <a href="{{ route('vehiclelog') }}" class="nav-link {{ (request()->is('vehiclelog')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>
         <p>Vehicle Assign Log</p>
+      </a>
+    </li>
+  </ul>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{ route('sales') }}" class="nav-link {{ (request()->is('sales')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>Sales (Rental/HP)</p>
       </a>
     </li>
   </ul>

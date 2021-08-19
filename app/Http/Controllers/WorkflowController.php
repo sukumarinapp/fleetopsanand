@@ -49,10 +49,17 @@ class WorkflowController extends Controller
 
     public function vehiclelog()
     {
-        $this->check_access("BPJ2");
         $sql = "select a.*,b.DNM,b.DSN from vehicle_log a,driver b where a.DID=b.id order by TIM desc";
         $vehiclelog = DB::select(DB::raw($sql));
         return view('vehiclelog',compact('vehiclelog'));
+    }
+
+    public function sales()
+    {
+        $this->check_access("BPJ2");
+        $sql = "select * from sales_rental order by SDT desc";
+        $sales = DB::select(DB::raw($sql));
+        return view('sales',compact('sales'));
     }
 
     public function override($VNO)
