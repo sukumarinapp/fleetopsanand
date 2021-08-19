@@ -13,133 +13,36 @@
     @yield('third_party_stylesheets')
     @stack('page_css')
 </head>
-<body class="hold-transition layout-top-nav">
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-  <nav class="main-header navbar navbar-expand-md navbar-light">
-    <div class="container">
-
-     <a href="#" class="navbar-brand">
-        <img src="{{ URL::to('/') }}/images/fleetopslogo.png" alt="AdminLTE Logo">
-      </a>
-
-      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-        <!-- Left navbar links -->
-         <ul class="navbar-nav">
-          <li class="nav-item">
-           <a href="{{ route('home') }}" class="nav-link {{ (request()->is('home')) ? 'active' : '' }}">
-      <p><b>
-        Dashboard
-      </b></p>
-  </a>
-          </li>
-      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-       
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <ul class="navbar-nav">
-         
-          @if(Auth::user()->usertype == "Admin")
-           <li class="dropdown dropdown-hover {{ (request()->is('parameter') || request()->is('rhplatform') || request()->is('sms')) ? 'active' : '' }}">
-
-            <a id="dropdownSubMenu" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><b>Settings</b></a>
-
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                 @if(Auth::user()->usertype == "Admin" || Auth::user()->BPI == true)
-              <li><a href="{{ route('parameter') }}" class="dropdown-item {{ (request()->is('parameter')) ? 'active' : '' }}" class="dropdown-item"><b>Parameter Settings</b> </a></li>
-              <li><a href="{{ route('rhplatform.index') }}" class="dropdown-item {{ (request()->is('rhplatform')) ? 'active' : '' }}" class="dropdown-item"><b>RH Platform Settings</b></a></li>
-                @endif
-                  @if(Auth::user()->usertype == "Admin")
-            <a href="{{ route('sms') }}" class="dropdown-item {{ (request()->segment(1) =='sms' ) ? 'active' : '' }}" class="dropdown-item"><b>Notification Setup</b></a>
-          </li>
-          @endif
-          </ul>
-           @endif
-     
-
-         @if(Auth::user()->usertype != "Client")
-          <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'manager' || request()->segment(1) == 'client' || request()->segment(1) == 'vehicle' || request()->segment(1) == 'fdriver' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}">
-
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><b> Manage Account</b></a>
-
-            
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                   @if(Auth::user()->usertype == "Admin" || Auth::user()->BPA == true || Auth::user()->BPD == true)
-              <li><a href="{{ route('manager.index') }}" class="dropdown-item {{ (request()->segment(1) == 'manager') ? 'active' : '' }}" class="dropdown-item"><b>User Account</b> </a></li>
-              @endif
-
-               @if(Auth::user()->usertype == "Admin" || Auth::user()->BPB == true || Auth::user()->BPE == true)
-
-              <li><a href="{{ route('client.index') }}" class="dropdown-item {{ (request()->segment(1) == 'client') ? 'active' : '' }}" class="dropdown-item"><b>Client Account</b></a></li>
-                @endif
-
-                 @if(Auth::user()->usertype == "Admin" || Auth::user()->BPC == true || Auth::user()->BPF == true)
-            <li><a href="{{ route('vehicle.index') }}" class="dropdown-item {{ (request()->segment(1) == 'vehicle' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}" class="dropdown-item"><b>Manage Vehicle</b></a></li>
-                @endif
-
-                  @if(Auth::user()->usertype == "Admin" || Auth::user()->BPF == true)
-
-              <li><a href="{{ route('fdriver.index') }}" class="dropdown-item {{ (request()->segment(1) == 'fdriver') ? 'active' : '' }}" class="dropdown-item"><b>Manage Driver</b></a></li>
+          <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li> 
+        </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <li class="user-footer">
+                       <a href="{{ route('change_password') }}" class="btn btn-default btn-flat">Change Password</a>
+                        <a href="#" class="btn btn-default btn-flat float-right"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Sign out
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
             </li>
-                @endif
-          </ul>
-           @endif
-
-  
-
-          @if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ2==1))
-       <li class="nav-item">
-       <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="nav-link"><b>Workflow Manager</b></a>
-    </li>
-     @endif
-
-         <li class="dropdown dropdown-hover {{ (request()->is('workflowlog') || request()->is('vehiclelog') || request()->is('sales')) ? 'active' : '' }}">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><b>Reports</b></a>
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="{{ route('workflowlog') }}" class="dropdown-item {{ (request()->is('workflowlog')) ? 'active' : '' }}" class="dropdown-item"><b>Workflow Log</b> </a></li>
-
-              <li><a href="{{ route('vehiclelog') }}" class="dropdown-item {{ (request()->is('vehiclelog')) ? 'active' : '' }}" class="dropdown-item"><b>Vehicle Assign Log</b></a></li>
-
-              <li><a href="{{ route('sales') }}" class="dropdown-item {{ (request()->is('sales')) ? 'active' : '' }}" class="dropdown-item"><b>Sales(Rental/HP)</b></a></li>
-            </ul>
-          </li>
-
-            @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
-             <!-- <li class="nav-item">
-             <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fuelsrch') ? 'active' : '' }}" class="nav-link"><b>Fueler</b></a>
-            </li> -->
-            @endif
-          </li>
-        </li>
-      </ul>
-    </div>
-  </ul>
-
-      <!-- Right navbar links -->
- 
- <ul class="navbar-nav ml-auto">
-<li class="nav-item dropdown user-menu">
-<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
- <span class="d-none d-md-inline"><strong>{{ Auth::user()->name }}</strong></span>
-</a>
-<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-<li class="user-footer">
-<a href="{{ route('change_password') }}" class="btn btn-default btn-flat">Change Password</a>
-<a href="#" class="btn btn-default btn-flat float-right"
-  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
- Sign out
- </a>
- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
- @csrf
- </form>
- </li>
- </ul>
- </li>
- </ul>
-   </div>
-  </nav> 
-
+        </ul>
+        </ul>
+    </nav>
+    @include('layouts.sidebar')
     <div class="content-wrapper">
         <section class="content">
             @yield('content')

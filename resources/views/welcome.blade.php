@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="logo.jpg" width="30%">
+                    <img src="{{ URL::to('/') }}/images/fleetopslogo.png" >
                 </div>
             </div>
         </div>
