@@ -37,7 +37,7 @@
             @foreach($drivers as $driver)
             <tr
             @if($driver->VNO == "")
-              style="background-color: #FFC300;"
+              style="color: #FFC300;"
             @endif
             >
               <td>{{ $driver->DNM }} {{ $driver->DSN }}

@@ -40,7 +40,7 @@
             @foreach($users as $user)
           	<tr 
               @if($user->UTV == 0)
-                style="background-color: #FFC300;"
+                style="color: #FFC300;"
               @endif
             >
           		<td>{{ $user->UAN }}</td>
