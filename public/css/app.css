@@ -932,6 +932,7 @@ pre code {
   width: 100%;
   padding-right: 7.5px;
   padding-left: 7.5px;
+  overflow-x: auto;
 }
 
 .col {
