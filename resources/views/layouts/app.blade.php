@@ -135,19 +135,23 @@ $(document).ready(function(){
     $("#CMT").change(function(evt){
         var CMT = $("#CMT").val();
         if(CMT == "A"){
+            $("#CMBLBL").hide();
+            $("#branch_div").hide();
             $("#CMALBL").text("Name");
             $("#CMNLBL").text("Mobile Number");
-            $("#CMBLBL").text("Telecom Provider");
+            $("#CBKLBL").text("Telecom Provider");
             $("#CMA").attr("placeholder", "Name");
             $("#CMN").attr("placeholder", "Mobile Number");
-            $("#telecom_div").html("<select class='form-control' name='CMB' id='CMB'><option value='AIRTELTIGO'>AIRTELTIGO</option><option value='MTN'>MTN</option><option value='VODAFONE'>VODAFONE</option></select>");
+            $("#telecom_div").html("<select class='form-control' name='CMB' id='CMB'><option value='AIRTELTIGO'>AIRTELTIGO</option><option value='MTN'>MTN</option><option value='VODAFONE'>VODAFONE</option></select>");            
         }else if(CMT == "B"){
+            $("#CMBLBL").show();
+            $("#branch_div").show();
             $("#CMALBL").text("Account Name");
             $("#CMNLBL").text("Account Number");
-            $("#CMBLBL").text("Account Branch");
+            $("#CBKLBL").text("Bank Name");
             $("#CMA").attr("placeholder", "Account Name");
             $("#CMN").attr("placeholder", "Account Number");
-            $("#telecom_div").html("<input type='text' class='form-control number' name='CMB' id='CMB' maxlength='15' placeholder='Account Branch'>");
+            $("#telecom_div").html("<input type='text' class='form-control number' name='CBK' id='CBK' maxlength='15' placeholder='Bank Name'>");
         }
     });
     $(".decimal").keypress(function(evt){

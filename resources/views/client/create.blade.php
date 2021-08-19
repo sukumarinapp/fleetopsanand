@@ -90,12 +90,9 @@
       <span id="dupemail" style="color:red"></span>
     </div>
     
-    
-    
-
-    <label id="CMBLBL" for="CMB" class="col-sm-2 col-form-label">Account Branch</label>
+    <label id="CBKLBL" for="CBK" class="col-sm-2 col-form-label">Bank Name</label>
     <div class="col-sm-4" id="telecom_div">
-      <input type='text' class='form-control' name='CMB' id='CMB' maxlength='50' placeholder='Account Branch'>
+      <input type='text' class='form-control' name='CBK' id='CBK' maxlength='50' placeholder='Bank Name'>
     </div>
   </div>
   
@@ -104,6 +101,10 @@
    <div class="col-sm-4">
     <input value="{{ random_int(100000, 999999) }}"required="required" type="text" class="form-control" name="password" id="password" maxlength="20" placeholder="Password">
   </div>
+  <label id="CMBLBL" for="CMB" class="col-sm-2 col-form-label">Account Branch</label>
+    <div class="col-sm-4" id="branch_div">
+      <input type='text' class='form-control' name='CMB' id='CMB' maxlength='50' placeholder='Account Branch'>
+    </div>
 </div>
 <hr>
 <div class="form-group row">

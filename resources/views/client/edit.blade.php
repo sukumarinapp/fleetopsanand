@@ -102,11 +102,11 @@
                         <span id="dupContact" style="color:red"></span>
                     </div>
 					
-                 <label id="CMBLBL" for="CMB" class="col-sm-3 col-form-label">{{ ($user->CMT == "B" ? "Account Branch":"Telecom Provider") }}</label>
+                 <label id="CBKLBL" for="CBK" class="col-sm-3 col-form-label">{{ ($user->CMT == "B" ? "Bank Name":"Telecom Provider") }}</label>
                     <div class="col-sm-3" id="telecom_div">
                         @php
                         if($user->CMT == "B"){
-                          echo "<input value='$user->CMB' type='text' class='form-control' name='CMB' id='CMB' maxlength='50' placeholder='Account Branch'>";
+                          echo "<input value='$user->CBK' type='text' class='form-control' name='CBK' id='CBK' maxlength='50' placeholder='Bank Name'>";
                         }else{
                           echo "<select class='form-control' name='CMB' id='CMB'>";
                           echo "<option ";
@@ -129,6 +129,10 @@
                     <div class="col-sm-3">
                         <input onkeyup="duplicateEmail(this.value)" value="{{ $user->email }}" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
                         <span id="dupemail" style="color:red"></span>
+                    </div>
+                    <label {{ $user->CMT == 'A' ? "style=display:none" : '' }} id="CMBLBL" for="CMB" class="col-sm-3 col-form-label">Account Branch</label>
+                    <div {{ $user->CMT == 'A' ? "style=display:none" : '' }} class="col-sm-3" id="branch_div">
+                      <input value="{{ $user->CMT == 'B' ? $user->CMB : '' }}" type='text' class='form-control' name='CMB' id='CMB' maxlength='50' placeholder='Account Branch'>
                     </div>
                 </div>
              

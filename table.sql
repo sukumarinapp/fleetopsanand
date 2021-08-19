@@ -1,3 +1,5 @@
+alter table users add CBK varchar(50) DEFAULT NULL after CMB;
+
 
   CREATE TABLE sales_rh (
     id int(11) NOT NULL AUTO_INCREMENT,

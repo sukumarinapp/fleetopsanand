@@ -96,6 +96,7 @@ class ClientController extends Controller
                 'CMA' => $request->get('CMA'),
                 'CMN' => $request->get('CMN'), 
                 'CMB' => $request->get('CMB'), 
+                'CBK' => $request->get('CBK'), 
                 'UTV' => $UTV,
                 'RBA' => $RBA,
                 'RBA1' => $RBA1,
@@ -185,6 +186,7 @@ class ClientController extends Controller
             $user->CMN =  $request->get('CMN');
             $user->email =  $request->get('email');
             $user->CMB =  $request->get('CMB');
+            $user->CBK =  $request->get('CBK');
             $user->UTV   =  $UTV;            
             $user->RBA   =  $RBA;            
             $user->RBA1   =  $RBA1;            
