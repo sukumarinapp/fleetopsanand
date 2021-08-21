@@ -1,3 +1,5 @@
+alter table tbl136 add attempts int(11) DEFAULT 0 after DECL;
+
 alter table users add CBK varchar(50) DEFAULT NULL after CMB;
 
 select id,name,CZN,CMT,CMA,CMN,CMB,CBK from users where usertype='client';
