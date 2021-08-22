@@ -32,6 +32,7 @@
             <th>Make</th>
             <th>Model</th>
             <th>Color</th>
+            <th>Status</th>
             <th style="width: 100px">Assign/Remove</th>
             <th style="width: 100px">Action</th>
           </tr>
@@ -50,6 +51,13 @@
               <td>{{ $vehicle->VMK }}</td>
               <td>{{ $vehicle->VMD }}</td>
               <td>{{ $vehicle->VCL }}</td>
+              <td>
+                @if($vehicle->VTV == 1)
+                  Active
+                @else
+                  Inactive
+                @endif
+              </td>
               <td>
                     @if(Auth::user()->usertype == "Admin" || Auth::user()->BPF == true)
                       @if($vehicle->driver_id == "")
