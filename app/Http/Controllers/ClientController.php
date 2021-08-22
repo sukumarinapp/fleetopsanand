@@ -52,9 +52,11 @@ class ClientController extends Controller
         $user_id = Auth::user()->id;
         $usertype = Auth::user()->usertype;
         if($usertype == "Admin"){
-            $managers = User::Where('usertype','Manager')->get();
+            $sql="select * from users where UTV=1 and usertype='Manager'";
+            $managers = DB::select(DB::raw($sql));
         }else if($usertype == "Manager"){
-            $managers = User::Where('id',$user_id)->get();
+            $sql="select * from users where (parent_id=$user_id or id=$user_id) AND UTV=1 and usertype='Manager'";
+            $managers = DB::select(DB::raw($sql));
         }
         return view('client.create', compact('managers'));
     }
@@ -144,9 +146,11 @@ class ClientController extends Controller
         $user_id = Auth::user()->id;
         $usertype = Auth::user()->usertype;
         if($usertype == "Admin"){
-            $managers = User::Where('usertype','Manager')->get();
+            $sql="select * from users where UTV=1 and usertype='Manager'";
+            $managers = DB::select(DB::raw($sql));
         }else if($usertype == "Manager"){
-            $managers = User::Where('id',$user_id)->get();
+            $sql="select * from users where (parent_id=$user_id or id=$user_id) AND UTV=1 and usertype='Manager'";
+            $managers = DB::select(DB::raw($sql));
         }
         return view('client.edit', compact('user','managers'));
     }

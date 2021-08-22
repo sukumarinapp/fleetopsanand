@@ -38,7 +38,7 @@
                 <div class="col-sm-3">
                   <select name="parent_id" id="parent_id" required="required" class="form-control select2" style="width: 100%;">
                     @foreach($managers as $manager)
-                      <option {{ ($user->parent_id == $manager->id ? "selected":"") }} value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }}</option>
+                      <option {{ ($user->parent_id == $manager->id ? "selected":"") }} value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }} {{ $manager->UZS }}</option>
                     @endforeach
                   </select>
                  
