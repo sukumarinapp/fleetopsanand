@@ -1,4 +1,9 @@
-alter table tbl136 add attempts int(11) DEFAULT 0 after DECL;
+select id,parent_id,UAN,usertype,email from users where UTV=1 order by parent_id;
+
+
+select * from tbl137 a,vehicle b where a.VNO=b.VNO and RST=0 and attempts <= 3;
+
+alter table tbl137 add attempts int(11) DEFAULT 0 after TIM;
 
 alter table users add CBK varchar(50) DEFAULT NULL after CMB;
 

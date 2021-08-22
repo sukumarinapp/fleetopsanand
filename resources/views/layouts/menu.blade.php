@@ -174,7 +174,7 @@
     <li class="nav-item">
       <a href="{{ route('sales') }}" class="nav-link {{ (request()->is('sales')) ? 'active' : '' }}">
         <i class="nav-icon fas fa-file"></i>
-        <p>Sales (Rental/HP)</p>
+        <p>Sales Ledger (Rental/HP)</p>
       </a>
     </li>
   </ul>
