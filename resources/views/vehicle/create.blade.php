@@ -42,7 +42,7 @@
 					<div class="col-sm-8">
 						<select required="required" class="form-control" name="CAN" id="CAN" >
 						@foreach($clients as $client)
-	                     	<option value="{{ $client->UAN }}" >{{ $client->UAN }}</option>
+	                     	<option value="{{ $client->UAN }}" >{{ $client->UAN }}-{{ $client->name }}</option>
 	                     @endforeach
 						</select>
 					</div>
