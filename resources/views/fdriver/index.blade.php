@@ -45,6 +45,7 @@
             <th>License #</th>
             <th>Contact #</th>
             <th>Business Model</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -63,6 +64,13 @@
               <td>{{ $driver->DNO }}</td>
               <td>{{ $driver->DCN }}</td>
               <td>{{ $driver->VBM }}</td>
+              <td>
+                @if($driver->VNO !="")
+                  Linked
+                @else
+                  Not Linked
+                @endif
+              </td>
               <td>
                 @if($driver->VNO == "")
                 <form action="{{ route('fdriver.destroy', $driver->id)}}" method="post">

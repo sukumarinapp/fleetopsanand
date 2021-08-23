@@ -101,7 +101,7 @@
 
               <li><a href="{{ route('vehiclelog') }}" class="dropdown-item {{ (request()->is('vehiclelog')) ? 'active' : '' }}" class="dropdown-item"><b>Vehicle Assign Log</b></a></li>
 
-              <li><a href="{{ route('sales') }}" class="dropdown-item {{ (request()->is('sales')) ? 'active' : '' }}" class="dropdown-item"><b>Sales(Rental/HP)</b></a></li>
+              <li><a href="{{ route('sales') }}" class="dropdown-item {{ (request()->is('sales')) ? 'active' : '' }}" class="dropdown-item"><b>Sales Ledger (Rental/HP)</b></a></li>
             </ul>
           </li>
 

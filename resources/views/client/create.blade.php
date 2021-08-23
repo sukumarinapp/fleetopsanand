@@ -52,7 +52,7 @@
           <div class="col-sm-4">
             <select name="parent_id" id="parent_id" required="required" class="form-control" style="width: 100%;">
               @foreach($managers as $manager)
-              <option value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }}</option>
+              <option value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }} {{ $manager->UZS }}</option>
               @endforeach
             </select>
             

@@ -19,7 +19,15 @@ class ManagerController extends Controller
     {
         $this->check_access("VIEW");
         $user_id = Auth::user()->id;
-        $users = User::Where('usertype','Manager')->Where('id','<>',$user_id)->get();
+        $usertype = Auth::user()->usertype;
+        $filter = "";
+        if($usertype == "Admin"){
+            $sql="select * from users where usertype='Manager'";
+            $users = DB::select(DB::raw($sql));
+        }else if($usertype == "Manager"){
+            $sql="select * from users where parent_id=$user_id and usertype='Manager'";
+            $users = DB::select(DB::raw($sql));
+        }
         return view('manager.index', compact('users'));
     }
 
@@ -45,10 +53,12 @@ class ManagerController extends Controller
     {
         $this->check_access("BPA");
         if(Auth::user()->usertype == "Admin"){
-            $managers = User::Where('usertype','<>','Client')->get();
+            $sql="select * from users where UTV=1 and usertype='Manager'";
+            $managers = DB::select(DB::raw($sql));
         }else{
             $user_id = Auth::user()->id;
-            $managers = User::Where('usertype','Manager')->Where('id','=',$user_id)->get();
+            $sql="select * from users where id=$user_id AND UTV=1 and usertype='Manager'";
+            $managers = DB::select(DB::raw($sql));
         }
         return view('manager.create',compact('managers'));
     }
@@ -138,10 +148,12 @@ class ManagerController extends Controller
         $this->check_access("BPD");
         $user = User::find($id);
         if(Auth::user()->usertype == "Admin"){
-            $managers = User::Where('usertype','<>','Client')->get();
+            $sql="select * from users where UTV=1 and usertype='Manager'";
+            $managers = DB::select(DB::raw($sql));
         }else{
             $user_id = Auth::user()->id;
-            $managers = User::Where('usertype','Manager')->Where('id','=',$user_id)->get();
+            $sql="select * from users where id=$user_id AND UTV=1 and usertype='Manager'";
+            $managers = DB::select(DB::raw($sql));
         }
         return view('manager.edit', compact('user','managers'));
     }
