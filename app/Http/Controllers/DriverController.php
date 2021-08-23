@@ -115,7 +115,6 @@ class DriverController extends Controller
             $cash_hidden = trim($request->get("SSA"));
         }
         $options = Billbox::listPayOptions();
-        dd($options);
         $sales = array();
         $sales['VBM'] = $VBM;
         $sales['VNO'] = trim($request->get("VNO"));
