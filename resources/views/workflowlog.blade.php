@@ -52,10 +52,7 @@
                     <li class="nav-item"> <input type="date" class="nav-link" data-toggle="collapse"></li>&nbsp;
                    <li class="nav-item"> <button type="button" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Apply</a></button></li>&nbsp;
 
-                     <li class="nav-item"> <button type="button" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse"><i class="fa fa-file-excel"></i>&nbsp;Excel</a></button></li>&nbsp;
-
-                  <li class="nav-item"> <button type="button" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse"><i class='fas fa-file-pdf'></i>&nbsp;PDF</a></button></li>
-                  &nbsp;&nbsp;
+                     
                   
                 </ul>
                 
