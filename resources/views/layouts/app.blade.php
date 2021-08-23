@@ -286,7 +286,7 @@ $(document).ready(function(){
     $('#example1').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            'colvis','excel', 'pdf', 'print'
+            'excel', 'pdf', 'print'
         ]
     } );
 
