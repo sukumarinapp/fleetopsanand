@@ -284,9 +284,14 @@ $(document).ready(function(){
     });
 
     $('#example1').DataTable( {
+        initComplete: function() {
+           $('.buttons-excel').html('<i class="fa fa-file-excel" style="color:green"/>')
+           $('.buttons-pdf').html('<i class="fa fa-file-pdf" style="color:red"/>')
+           $('.buttons-print').html('<i class="fa fa-print" style="color:#0d5b9e"/>')
+        },
         dom: 'Bfrtip',
         buttons: [
-            'excel', 'pdf', 'print'
+            'excel', 'pdf', 'print','colvis'
         ]
     } );
 
