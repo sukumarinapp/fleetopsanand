@@ -3,6 +3,22 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+			      <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Manage Account</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('vehicle.index') }}">Vehicle</a></li>
+              <li class="breadcrumb-item">Assign Vehicle</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
 			<div class="card card-info">
 				<div class="card-header">
 					<h3 class="card-title">Assign Vehicle</h3>

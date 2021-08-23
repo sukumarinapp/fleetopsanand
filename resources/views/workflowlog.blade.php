@@ -3,6 +3,49 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+			  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+			  	<ul>
+			  	  <form class="form-inline ml-0 ml-md-3">
+          <div class="input-group input-group-sm">
+            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+       </ul>
+       <ul>
+          <li  class="navbar">
+          <button type="button" class="btn btn-light btn-sm">Refresh</button><a href="#">
+  </a></button>
+          </li>
+        </ul>
+
+        <ul>
+        	<li class="navbar">
+        		  <button type="button" class="btn btn-light btn-sm">Fields</button><a href="#">
+  </a></button>
+        	</li>
+        </ul>
+			  </nav>
+
+				<div class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Reports</a></li>
+              <li class="breadcrumb-item">Workflow Log</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
 			<div class="card card-info">
 				<div class="card-header">
 					<h3 class="card-title">WorkFlow Log</h3>
