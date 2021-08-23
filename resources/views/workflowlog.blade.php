@@ -27,7 +27,7 @@
            <div class="card">
               <div class="card-header d-flex p-0">
                 <ul class="nav nav-pills">
-             &nbsp; <li class="nav-item"> <button type="button" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Refresh</a></button></li>&nbsp;
+             &nbsp; <!-- <li class="nav-item"> <button type="button" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Refresh</a></button></li>&nbsp;
                 <div class="btn-group">
                     
                     <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
@@ -44,7 +44,7 @@
                       <a class="dropdown-item" href="#">Case Initiator</a>
                       <a class="dropdown-item" href="#">Close Date</a>
                     </div>
-                  </div>&nbsp;
+                  </div>&nbsp; -->
 
                   <label>From:</label>&nbsp;
                   <li class="nav-item"> <input type="date" class="nav-link" data-toggle="collapse"></li>   &nbsp;&nbsp;&nbsp;
