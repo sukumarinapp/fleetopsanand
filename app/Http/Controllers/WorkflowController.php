@@ -42,11 +42,12 @@ class WorkflowController extends Controller
     public function workflowlog()
     {
         $this->check_access("BPJ2");
+        $title = 'Workflow Log';
         $from = date("Y-m-d");
         $to = date('Y-m-d', strtotime("-6 days"));
         $sql = "select * from tbl140";
         $workflow = DB::select(DB::raw($sql));
-        return view('workflowlog',compact('workflow'));
+        return view('workflowlog',compact('workflow','title'));
     }
 
     public function vehiclelog()
