@@ -4737,7 +4737,7 @@ input[type=button].btn-block {
 }
 
 .nav-pills .nav-link {
-  border-radius: 0.25rem;
+  border-radius: none;
 }
 
 .nav-pills .nav-link.active,
@@ -16802,6 +16802,7 @@ body.text-sm .control-sidebar {
 
 .nav-pills .nav-link {
   color: #6c757d;
+  letter-spacing: -1px;
 }
 
 .nav-pills .nav-link:not(.active):hover {
@@ -21148,6 +21149,7 @@ body.text-sm .control-sidebar {
 
 label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 700;
+  padding-top: 10px;
 }
 
 .warning-feedback {
