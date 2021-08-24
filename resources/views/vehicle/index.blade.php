@@ -38,6 +38,7 @@
               <strong> {{ session('message') }} </strong>
           </div>
         @endif
+        <div class="card-body" style="overflow-x: auto;" >
 			<table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
@@ -106,6 +107,7 @@
             @endforeach
           </tbody>
       </table>
+    </div>
 			</div>
 		</div>
 		</div>
