@@ -218,7 +218,8 @@ class VehicleController extends Controller
         $VNO = $vehicle->VNO;
         $UAN = Auth::user()->name;
         $TIM = date("Y-m-d H:i");
-        $sql = "insert into vehicle_log (CAN,VNO,DID,UAN,TIM,ATN) values ('$CAN','$VNO','$DID','$UAN','$TIM','Assign Vehicle')";
+        $LDT = date("Y-m-d");
+        $sql = "insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('$LDT',$CAN','$VNO','$DID','$UAN','$TIM','Assign Vehicle')";
         DB::insert($sql);
         return redirect('/vehicle')->with('message', 'Driver Assigned Successfully');
     }
@@ -243,7 +244,8 @@ class VehicleController extends Controller
         $VNO = $vehicle->VNO;
         $UAN = Auth::user()->name;
         $TIM = date("Y-m-d H:i");
-        $sql = "insert into vehicle_log (CAN,VNO,DID,UAN,TIM,ATN) values ('$CAN','$VNO','$DID','$UAN','$TIM','Unassign Vehicle')";
+        $LDT = date("Y-m-d");
+        $sql = "insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('$LDT',$CAN','$VNO','$DID','$UAN','$TIM','Unassign Vehicle')";
         DB::insert($sql);
         return redirect('/vehicle')->with('message', 'Driver Removed Successfully');
     }

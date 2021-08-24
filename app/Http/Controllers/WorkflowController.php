@@ -39,30 +39,28 @@ class WorkflowController extends Controller
         return view('workflow',compact('vehicles'));
     }
 
-    public function workflowlog()
+    public function workflowlog($from,$to)
     {
         $this->check_access("BPJ2");
         $title = 'Workflow Log';
-        $from = date("Y-m-d");
-        $to = date('Y-m-d', strtotime("-6 days"));
-        $sql = "select * from tbl140";
+        $sql = "select * from tbl140 where WST >= '$from' and WST <='$to'";
         $workflow = DB::select(DB::raw($sql));
-        return view('workflowlog',compact('workflow','title'));
+        return view('workflowlog',compact('workflow','title','from','to'));
     }
 
-    public function vehiclelog()
+    public function vehiclelog($from,$to)
     {
-        $sql = "select a.*,b.DNM,b.DSN from vehicle_log a,driver b where a.DID=b.id order by TIM desc";
+        $sql = "select a.*,b.DNM,b.DSN from vehicle_log a,driver b where LDT >= '$from' and LDT <='$to' and a.DID=b.id order by TIM desc";
         $vehiclelog = DB::select(DB::raw($sql));
-        return view('vehiclelog',compact('vehiclelog'));
+        return view('vehiclelog',compact('vehiclelog','from','to'));
     }
 
-    public function sales()
+    public function sales($from,$to)
     {
         $this->check_access("BPJ2");
-        $sql = "select * from sales_rental order by SDT desc";
+        $sql = "select * from sales_rental where SDT >='$from' and SDT <='$to' order by SDT desc";
         $sales = DB::select(DB::raw($sql));
-        return view('sales',compact('sales'));
+        return view('sales',compact('sales','from','to'));
     }
 
     public function override($VNO)

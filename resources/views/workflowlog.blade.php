@@ -45,13 +45,11 @@
                       <a class="dropdown-item" href="#">Close Date</a>
                     </div>
                   </div>&nbsp; -->
-
-                  <label>From:</label>&nbsp;
-                  <li class="nav-item"> <input type="date" class="nav-link" data-toggle="collapse"></li>   &nbsp;&nbsp;&nbsp;
-                  <label>To:</label>&nbsp;
-                    <li class="nav-item"> <input type="date" class="nav-link" data-toggle="collapse"></li>&nbsp;
-                   <li class="nav-item"> <button type="button" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Apply</a></button></li>&nbsp;
-
+                  <label>From Date:</label>&nbsp;
+                  <li class="nav-item"> <input value="{{ $from }}" name="from" id="from" type="date" class="nav-link" data-toggle="collapse"></li>   &nbsp;&nbsp;&nbsp;
+                  <label>To Date:</label>&nbsp;
+                    <li class="nav-item"> <input value="{{ $to }}" name="to" id="to" type="date" class="nav-link" data-toggle="collapse"></li>&nbsp;
+                   <li class="nav-item"> <button onclick="load_report()" type="submit" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Apply</a></button></li>&nbsp;
                      
                   
                 </ul>
@@ -103,11 +101,18 @@
 
 @push('page_scripts')
 <script>
-	var override = "{{ url('override') }}";
-	function load_vehicle(){
-		var VNO = $("#VNO").val();
-		var url =  override + "/" + VNO;
-		window.location.href = url;
+	var workflowlog = "{{ url('workflowlog') }}";
+	function load_report(){
+		var from = $("#from").val();
+    var to = $("#to").val();
+    if(from == ""){
+      alert("Please select from Date");
+    }else if(to == ""){
+      alert("Please select To Date");
+    }else{
+      var url =  workflowlog + "/" + from + "/" +to;  
+      window.location.href = url;
+    }		
 	}
 
 	$(document).ready(function(){

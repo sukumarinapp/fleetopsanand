@@ -66,9 +66,9 @@ Route::get('/driverhelpprev2/{VNO}/{DCN}', 'DriverController@driverhelpprev2')->
 Route::get('/driverhelpprev3/{VNO}/{DCN}', 'DriverController@driverhelpprev3')->name('driverhelpprev3');
 
 Route::get('/workflow', 'WorkflowController@index')->name('workflow');
-Route::get('/vehiclelog', 'WorkflowController@vehiclelog')->name('vehiclelog');
-Route::get('/sales', 'WorkflowController@sales')->name('sales');
-Route::get('/workflowlog', 'WorkflowController@workflowlog')->name('workflowlog');
+Route::get('/vehiclelog/{from}/{to}', 'WorkflowController@vehiclelog')->name('vehiclelog');
+Route::get('/sales/{from}/{to}', 'WorkflowController@sales')->name('sales');
+Route::get('/workflowlog/{from}/{to}', 'WorkflowController@workflowlog')->name('workflowlog');
 Route::get('/override/{VNO}', 'WorkflowController@override')->name('override');
 Route::get('/overrides/{VNO}', 'WorkflowController@overrides')->name('overrides');
 Route::post('/saveoverride', 'WorkflowController@saveoverride')->name('saveoverride');

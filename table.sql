@@ -3,7 +3,8 @@ select id,parent_id,UAN,usertype,email from users where UTV=1 order by parent_id
 
 select * from tbl137 a,vehicle b where a.VNO=b.VNO and RST=0 and attempts <= 3;
 
-alter table tbl137 add TIM2 varchar(20) DEFAULT NULL after attempts;
+alter table vehicle_log add LDT date DEFAULT NULL after id;
+
 alter table tbl137 add TIM3 varchar(20) DEFAULT NULL after TIM2;
 alter table tbl137 add TIM4 varchar(20) DEFAULT NULL after TIM3;
 alter table tbl137 add TIM5 varchar(20) DEFAULT NULL after TIM4;

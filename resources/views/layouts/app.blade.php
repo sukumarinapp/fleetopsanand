@@ -99,15 +99,14 @@
        <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="nav-link"><b>Workflow Manager</b></a>
     </li>
      @endif
-
          <li class="dropdown dropdown-hover {{ (request()->is('workflowlog') || request()->is('vehiclelog') || request()->is('sales')) ? 'active' : '' }}">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><b>Reports</b></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="{{ route('workflowlog') }}" class="dropdown-item {{ (request()->is('workflowlog')) ? 'active' : '' }}" class="dropdown-item"><b>Workflow Log</b> </a></li>
+              <li><a href="{{ url('workflowlog') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d', strtotime('-6 days')) }}" class="dropdown-item {{ (request()->is('workflowlog')) ? 'active' : '' }}" class="dropdown-item"><b>Workflow Log</b> </a></li>
 
-              <li><a href="{{ route('vehiclelog') }}" class="dropdown-item {{ (request()->is('vehiclelog')) ? 'active' : '' }}" class="dropdown-item"><b>Vehicle Assign Log</b></a></li>
+              <li><a href="{{ url('vehiclelog') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d', strtotime('-6 days')) }}" class="dropdown-item {{ (request()->is('vehiclelog')) ? 'active' : '' }}" class="dropdown-item"><b>Vehicle Assign Log</b></a></li>
 
-              <li><a href="{{ route('sales') }}" class="dropdown-item {{ (request()->is('sales')) ? 'active' : '' }}" class="dropdown-item"><b>Sales Ledger (Rental/HP)</b></a></li>
+              <li><a href="{{ url('sales') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d', strtotime('-6 days')) }}" class="dropdown-item {{ (request()->is('sales')) ? 'active' : '' }}" class="dropdown-item"><b>Sales Ledger (Rental/HP)</b></a></li>
             </ul>
           </li>
 
