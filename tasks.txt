@@ -1,28 +1,9 @@
-insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('2021-08-25',C1001','GN7121-17','','admin','2021-08-25 03:18','Unassign Vehicle')
+56	20/08/2021	Payment Receipt	Bug	Payment receipt is sent to driver after 15 minutes and sometimes longer. Payment receipt must be instant or of shorter delay. Also taking up this issue with DreamOval.	Open
+57	22/08/2021	Driver Incompleted Payment/Unassign Attempt Scenario	Logic	If driver is linked with vehicle and has a pending payment with DECL=0, unless the Unblocking & Sales Auditing is done in the case of RH / only the unblocking is done for Rental and HP we will not allow to unassign driver. Is that ok? Because unassigning from a pending payment system should not allow to unassign the driver. Agree?	Open
+58	22/08/2021	Client Account Re-assignment to sub-level manager (Issues)	Logic	"(1) After re-assigning ""Client"" account to a sub-level manager, upper level manager looses all accesses and visibility to that client account. Upper level manager must have full visibility of all clients accounts even if account owners are sub-level managers.
 
-Send short SMS to Driver summarizing Business Settings as Follows:
-
-“Dear #{DNM}#,
-
-You have been setup successfully on FOVCollector(v2.1) by #{CPY}# as follows:
-
-- Independent Contractor on Ride Hailing)
-- Declare sales daily by 10:00am
-
-OR 
-
-- Hire Purchase Customer (or Vehicle Rental Customer)
-- Instalment (Rental Fee): #{VAM}#
-- Payment Freq: Daily/Weekly/Monthly #{VPF}#
-- Payment Day: Saturday
-- First Payment: August 9, 2021
-
-AND 
-
-Please make prompt payments to avoid any inconveniences. For further details you may contact #{CZN}# on #{CCN}#
-
-Thank you”"
-[8:05 pm, 23/08/2021] suku: If Client Account is made "Inactive" then all accesses and operations must also be "Inactive".
+(2) Client account(s) should not be assignable to manager or sub-level manager who doesn't have the requisite settings."	Open
+60	24/08/2021	Report: Sales Ledger (Rental/HP)	Logic	Rename "Sales Ledger (Rental/HP)" to be "General Sales Ledger" and add 2 columns with title as "Source Business"=HP/RT/RH and "Originator"=DNM i.e., Driver Name	Open
 
 Sales Ledger (Rental/Hire Purchase)
 Collection Report (Rental/Hire Purchase)

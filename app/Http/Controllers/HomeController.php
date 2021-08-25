@@ -25,11 +25,35 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $parent_id = Auth::user()->id;
+        $sql= "with recursive cte (id, name,UAN,usertype,parent_id) as (
+          select     id,
+                     name,
+                     UAN,
+                     usertype,
+                     parent_id
+          from       users
+          where      parent_id = $parent_id
+          union all
+          select     p.id,
+                     p.name,
+                     p.UAN,
+                     p.usertype,
+                     p.parent_id
+          from       users p
+          inner join cte
+                  on p.parent_id = cte.id
+        )
+        select * from cte";
+        $users = DB::select(DB::raw($sql));
+        //dd($result);
+        return view('home',compact('users'));
     }
 
     public function locations()
     {
+        
+
         $user_id = Auth::user()->id;
         $usertype = Auth::user()->usertype;
         $UAN = Auth::user()->UAN;

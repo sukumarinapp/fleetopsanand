@@ -233,3 +233,12 @@
     </div>
 </div>
 @endsection
+@push('page_scripts')
+<script>
+    $(document).ready(function(){
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        });
+    });
+</script>
+@endpush
