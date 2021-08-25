@@ -18,8 +18,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <!-- <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a> -->
-        <img src="{{ URL::to('/') }}/images/fleetopslogo.png" width="80%">
+        <img src="{{ URL::to('/') }}/images/fleetopslogo.png" >
     </div>
     <!-- /.login-logo -->
 
