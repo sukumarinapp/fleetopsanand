@@ -102,11 +102,13 @@
          <li class="dropdown dropdown-hover {{ (request()->is('workflowlog') || request()->is('vehiclelog') || request()->is('sales')) ? 'active' : '' }}">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><b>Reports</b></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="{{ url('workflowlog') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d', strtotime('-6 days')) }}" class="dropdown-item {{ (request()->is('workflowlog')) ? 'active' : '' }}" class="dropdown-item"><b>Workflow Log</b> </a></li>
+              <li><a href="{{ url('workflowlog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->is('workflowlog')) ? 'active' : '' }}" class="dropdown-item"><b>Workflow Log</b> </a></li>
 
-              <li><a href="{{ url('vehiclelog') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d', strtotime('-6 days')) }}" class="dropdown-item {{ (request()->is('vehiclelog')) ? 'active' : '' }}" class="dropdown-item"><b>Vehicle Assign Log</b></a></li>
+              <li><a href="{{ url('vehiclelog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->is('vehiclelog')) ? 'active' : '' }}" class="dropdown-item"><b>Vehicle Assign Log</b></a></li>
 
-              <li><a href="{{ url('sales') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d', strtotime('-6 days')) }}" class="dropdown-item {{ (request()->is('sales')) ? 'active' : '' }}" class="dropdown-item"><b>Sales Ledger (Rental/HP)</b></a></li>
+              <li><a href="{{ url('sales') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->is('sales')) ? 'active' : '' }}" class="dropdown-item"><b>Sales Ledger (Rental/HP)</b></a></li>
+
+              <li><a href="{{ url('collection') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->is('collection')) ? 'active' : '' }}" class="dropdown-item"><b>Collection</b></a></li>
             </ul>
           </li>
 

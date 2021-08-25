@@ -51,16 +51,27 @@ class WorkflowController extends Controller
     public function vehiclelog($from,$to)
     {
         $sql = "select a.*,b.DNM,b.DSN from vehicle_log a,driver b where LDT >= '$from' and LDT <='$to' and a.DID=b.id order by TIM desc";
+        $title = 'Vehicle Assign Log';
         $vehiclelog = DB::select(DB::raw($sql));
-        return view('vehiclelog',compact('vehiclelog','from','to'));
+        return view('vehiclelog',compact('vehiclelog','title','from','to'));
     }
 
     public function sales($from,$to)
     {
         $this->check_access("BPJ2");
+        $title = 'Sales Ledger (Rental/HP)';
         $sql = "select * from sales_rental where SDT >='$from' and SDT <='$to' order by SDT desc";
         $sales = DB::select(DB::raw($sql));
-        return view('sales',compact('sales','from','to'));
+        return view('sales',compact('sales','title','from','to'));
+    }
+
+    public function collection($from,$to)
+    {
+        $this->check_access("BPJ2");
+        $title = 'Collection Report';
+        $sql = "select * from tbl137 where SDT >='$from' and SDT <='$to' order by SDT desc";
+        $sales = DB::select(DB::raw($sql));
+        return view('collection',compact('sales','title','from','to'));
     }
 
     public function override($VNO)

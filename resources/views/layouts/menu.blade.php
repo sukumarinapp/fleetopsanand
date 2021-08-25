@@ -178,6 +178,14 @@
       </a>
     </li>
   </ul>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{ route('collection') }}" class="nav-link {{ (request()->is('collection')) ? 'active' : '' }}">
+        <i class="nav-icon fas fa-file"></i>
+        <p>collection</p>
+      </a>
+    </li>
+  </ul>
 </li>
 <!-- @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
 <li class="nav-item menu-open">
