@@ -16,6 +16,66 @@
       </div>
     </div>
    <div class="row">
+    <div class="col-md-3">
+        <div class="sticky-top mb-3">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Tree View</h4>
+                </div>
+                <div class="card-body">
+                  <div id="treeview_container" class="hummingbird-treeview" style="height: 608px; overflow-y: scroll;">
+      <ul style="float: left; " id="treeview" class="hummingbird-base">
+      <li data-id="0">
+    <i class="fa fa-plus"></i>
+    <label>
+        <input id="xnode-0" data-id="custom-0" type="checkbox" /> Admin
+    </label>
+    <ul>
+        <li data-id="1">
+      <i class="fa fa-plus"></i>
+      <label>
+          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> node-0-1
+      </label>
+      <ul>
+          <li>
+        <label>
+            <input class="hummingbird-end-node" id="xnode-0-1-1" data-id="custom-0-1-1" type="checkbox" /> node-0-1-1
+        </label>
+          </li>
+          <li>
+        <label>
+            <input class="hummingbird-end-node" id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> node-0-1-2
+        </label>
+          </li>
+      </ul>
+        </li>
+        <li data-id="1">
+      <i class="fa fa-plus"></i>
+      <label>
+          <input  id="xnode-0-2" data-id="custom-0-2" type="checkbox" /> node-0-2
+      </label>
+      <ul>
+          <li>
+        <label>
+            <input class="hummingbird-end-node" id="xnode-0-2-1" data-id="custom-0-2-1" type="checkbox" /> node-0-2-1
+        </label>
+          </li>
+          <li>
+        <label>
+            <input class="hummingbird-end-node" id="xnode-0-2-2" data-id="custom-0-2-2" type="checkbox" /> node-0-2-2
+        </label>
+          </li>
+      </ul>
+        </li>
+    </ul>
+      </li>
+  </ul>
+    </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+            </div>
+    </div>
           <!-- <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
               <div class="inner">
@@ -64,7 +124,9 @@
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div> -->
-        </div>
+        
+            <div class="col-md-9">
+
           <div class="card bg-gradient">
               <div class="card-header border-0">
                 <h5 class="card-title">
@@ -84,10 +146,13 @@
 </div>
 </div>
 </div>
+</div>
+</div>
        
 @endsection
 @section('third_party_scripts')
 <script>
+
   var locations = [];
   
 

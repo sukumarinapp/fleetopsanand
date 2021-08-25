@@ -15,6 +15,10 @@
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="css/hummingbird-treeview.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/path/to/font-awesome.min.css">
+
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('third_party_stylesheets')
     @stack('page_css')
@@ -168,9 +172,26 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
 
+<script src="js/hummingbird-treeview.js"></script>
 @stack('page_scripts')
 <script>
+
+   $("#treeview").hummingbird();
+$( "#checkAll" ).click(function() {
+  $("#treeview").hummingbird("checkAll");
+});
+$( "#uncheckAll" ).click(function() {
+  $("#treeview").hummingbird("uncheckAll");
+});
+$( "#collapseAll" ).click(function() {
+  $("#treeview").hummingbird("collapseAll");
+});
+$( "#checkNode" ).click(function() {
+  $("#treeview").hummingbird("checkNode",{attr:"id",name: "node-0-2-2",expandParents:false});
+});
+
 $(document).ready(function(){
     $('#rhvisibility').change(function() {
         if(this.checked) {            
