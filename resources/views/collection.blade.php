@@ -67,6 +67,8 @@
             <th>Tran#</th>
             <th>Status</th>
             <th>Source</th>
+            <th>Request Time</th>
+            <th>Response Time</th>
           </tr>
           </thead>
           <tbody>
@@ -88,6 +90,8 @@
                   @endif
                 </td>
                 <td>{{ $sale->SSR }}</td>
+                <td>{{ $sale->TIM }}</td>
+                <td>{{ $sale->TIM2 }}</td>
 	            </tr>
             @endforeach
           </tbody>
