@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2021 at 07:33 AM
+-- Generation Time: Aug 25, 2021 at 05:39 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -14445,7 +14445,7 @@ CREATE TABLE `driver` (
 
 INSERT INTO `driver` (`id`, `DNO`, `DNM`, `DSN`, `DCN`, `DLD`, `VCC`, `VBM`, `VPF`, `WDY`, `MDY`, `VPD`, `VAM`, `LEX`, `CEX`, `created_at`, `updated_at`) VALUES
 (3, '3432432', 'Sukumar', 'A', '8778193926', '', '', 'Ride Hailing', '', 0, 0, NULL, '0.00', '2021-06-19', '2021-06-30', '2021-05-31 23:33:53', '2021-07-25 01:00:54'),
-(6, '2323221', 'Anand', 'S', '9071272826', '', '', 'Hire Purchase', 'Daily', 1, 31, '2021-07-23', '500.00', '2021-07-30', '2025-10-15', '2021-06-05 14:02:44', '2021-08-17 07:22:30'),
+(6, '2323221', 'Anand', 'S', '9071272826', '', '', 'Hire Purchase', 'Daily', 1, 31, '2021-07-23', '0.50', '2021-07-30', '2025-10-15', '2021-06-05 14:02:44', '2021-08-23 23:45:49'),
 (16, '123213', 'Vikas', 'D', '21321321321', '16.jpg', '16.jpg', 'Hire Purchase', 'Daily', 1, 1, '2021-08-15', '300.00', '2021-08-31', '2021-08-31', '2021-08-15 05:32:22', '2021-08-18 05:56:11');
 
 -- --------------------------------------------------------
@@ -14478,8 +14478,8 @@ INSERT INTO `driver_platform` (`id`, `driver_id`, `PLF`) VALUES
 (29, 13, 8),
 (33, 14, 8),
 (42, 15, 8),
-(44, 6, 8),
-(47, 16, 8);
+(47, 16, 8),
+(48, 6, 8);
 
 -- --------------------------------------------------------
 
@@ -16122,22 +16122,25 @@ CREATE TABLE `tbl137` (
   `RST` tinyint(1) DEFAULT 0,
   `SSR` varchar(20) DEFAULT NULL,
   `RTN` varchar(50) DEFAULT NULL,
-  `TIM` varchar(20) DEFAULT NULL
+  `TIM` varchar(20) DEFAULT NULL,
+  `attempts` int(11) DEFAULT 0,
+  `TIM2` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl137`
 --
 
-INSERT INTO `tbl137` (`id`, `DCR`, `SDT`, `CAN`, `VNO`, `RCN`, `VBM`, `RHN`, `SPF`, `TPF`, `RMT`, `ROI`, `RST`, `SSR`, `RTN`, `TIM`) VALUES
-(1, 0, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '100.00', 10, '100.00', '', 1, 'U0000', '', NULL),
-(2, 0, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '354.00', 435, '435.00', '', 1, 'U0000', '2021-08-17 09:02:56', NULL),
-(3, 2, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '100.00', 10, '100.00', '', 1, 'U0000', '2021-08-17 09:20:48', NULL),
-(4, 2, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '5000.00', 20, '400.00', '', 1, 'U0000', '2021-08-17 09:49:40', NULL),
-(5, 2, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '500.00', 10, '400.00', '', 1, 'U0000', '2021-08-17 12:33:20', NULL),
-(6, 6, '2021-08-18', 'C1006', 'KLA20', '2332484133283', 'Rental', 0, '0.00', 0, '300.00', 'MTN_MONEY', 1, 'Driver', 'KLA20-611cec9c66d00', '2021-08-18 11:18:54'),
-(7, 6, '2021-08-18', 'C1006', 'KLA20', '2332484133283', 'Hire Purchase', 0, '0.00', 0, '300.00', 'MTN_MONEY', 2, 'Driver', '611b9bb1e9ab8', '2021-08-18 14:52:27'),
-(8, 15, '2021-08-19', 'C1001', 'GN7122-17', '233248413328', 'Hire Purchase', 0, '0.00', 0, '500.00', 'MTN_MONEY', 0, 'Driver', 'GN7122-17-611e53b3b2e4b', '2021-08-19 12:51:01');
+INSERT INTO `tbl137` (`id`, `DCR`, `SDT`, `CAN`, `VNO`, `RCN`, `VBM`, `RHN`, `SPF`, `TPF`, `RMT`, `ROI`, `RST`, `SSR`, `RTN`, `TIM`, `attempts`, `TIM2`) VALUES
+(1, 0, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '100.00', 10, '100.00', '', 1, 'U0000', '', NULL, 4, NULL),
+(2, 0, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '354.00', 435, '435.00', '', 1, 'U0000', '2021-08-17 09:02:56', NULL, 4, NULL),
+(3, 2, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '100.00', 10, '100.00', '', 1, 'U0000', '2021-08-17 09:20:48', NULL, 4, NULL),
+(4, 2, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '5000.00', 20, '400.00', '', 1, 'U0000', '2021-08-17 09:49:40', NULL, 4, NULL),
+(5, 2, '2021-08-17', 'C1001', 'GN7121-17', '8778193926', 'Ride Hailing', 12, '500.00', 10, '400.00', '', 1, 'U0000', '2021-08-17 12:33:20', NULL, 4, NULL),
+(6, 6, '2021-08-18', 'C1006', 'KLA20', '2332484133283', 'Rental', 0, '0.00', 0, '300.00', 'MTN_MONEY', 1, 'Driver', 'KLA20-611cec9c66d00', '2021-08-18 11:18:54', 4, NULL),
+(7, 6, '2021-08-18', 'C1006', 'KLA20', '2332484133283', 'Hire Purchase', 0, '0.00', 0, '300.00', 'MTN_MONEY', 2, 'Driver', '611b9bb1e9ab8', '2021-08-18 14:52:27', 4, NULL),
+(8, 15, '2021-08-19', 'C1001', 'GN7122-17', '233248413328', 'Hire Purchase', 0, '0.00', 0, '500.00', 'MTN_MONEY', 0, 'Driver', 'GN7122-17-611e53b3b2e4b', '2021-08-19 12:51:01', 4, NULL),
+(9, 15, '2021-08-24', 'C1001', 'GN7122-17', '233248413328', 'Hire Purchase', 0, '0.00', 0, '0.50', 'MTN_MONEY', 0, 'Driver', 'GN7122-17-612480a4cc2ac', '2021-08-24 05:16:22', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -16307,7 +16310,10 @@ INSERT INTO `uan` (`id`) VALUES
 (1024),
 (1025),
 (1026),
-(1027);
+(1027),
+(1028),
+(1029),
+(1030);
 
 -- --------------------------------------------------------
 
@@ -16368,18 +16374,21 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `UAN`, `name`, `email`, `usertype`, `UDT`, `parent_id`, `UJT`, `UZS`, `UZA`, `UCN`, `CZN`, `CMT`, `CMA`, `CMN`, `CMB`, `CBK`, `UTV`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `BPA`, `BPB`, `BPC`, `BPD`, `BPE`, `BPF`, `BPG`, `BPH`, `BPI`, `BPJ`, `BPJ1`, `BPJ2`, `BPK`, `BPL`, `RBA`, `RBA1`, `RBA2`, `RBA3`, `RBA4`, `RBA4A`, `RBB`) VALUES
 (1, 'U0000', 'admin', 'admin@hubbleclicks.com', 'Admin', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-05-21 21:27:11', '2021-07-27 00:58:35', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', 0),
-(8, 'U1001', 'Sukumar', 'sukumar@hubbleclicks.com', 'Manager', '2021-05-29', 1, 'SE', 'A', 'Bangalore', '877819392633', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$qFhIwfOnGCDOOPl/dTW8cuU0uZ3mq/AJNqeRfE6CHBnDcN5oAhEMy', NULL, '2021-05-28 15:49:14', '2021-08-15 06:49:05', 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(10, 'C1001', 'Hubble Clicks Technologies Private Limited', 'anand@hubbleclicks.com', 'Client', '2021-05-29', 8, NULL, NULL, 'Bangalore', '9003552268', 'Henry', 'B', '34232', '21', '2321', 'HDFC', 1, NULL, '$2y$10$GNejkD2D6zx..IBo1mVQ4OqWRRjml9YBPCSouqe//1cno7LouesvK', NULL, '2021-05-28 15:56:59', '2021-08-18 19:44:33', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 'All Vehicles', 0),
-(11, 'U1002', 'Jino', 'universejino@hubbleclicks.com', 'Manager', '2021-05-29', 1, 'SE', 'A', 'pambanvilai\r\nAasaripallam', '+919047736314', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$GNejkD2D6zx..IBo1mVQ4OqWRRjml9YBPCSouqe//1cno7LouesvK', NULL, '2021-05-28 22:33:15', '2021-05-31 23:20:11', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(28, 'U1015', 'Sukumar', 'sukumar.inapp888@gmail.com', 'Manager', '2021-06-07', 1, 'SE', 'A', 'Nagercoil', '233206972360', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$GNejkD2D6zx..IBo1mVQ4OqWRRjml9YBPCSouqe//1cno7LouesvK', NULL, '2021-06-07 05:29:51', '2021-08-13 06:47:30', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(29, 'C1006', 'PRISM CAB', 'sukumar3@hubbleclicks.com', 'Client', '2021-08-07', 8, NULL, NULL, 'Bangalore', '4354354543', '21321', 'A', NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$9ekn2K/7M1WxzyoNr/9K7.4BHYXs6YKR54VR9sJKShwKyhv1R5fyS', NULL, '2021-08-06 19:17:59', '2021-08-19 06:05:52', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'Own Vehicles Only', 0),
-(31, 'U1017', '32r432', 'admin222@hubbleclicks.com', 'Manager', '2021-08-11', 1, 'w3e432', '2332', '3232', '3232', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '$2y$10$LbbZVOntXk7SYkbzYGKVAeviWFh4pPyO29NIWfYndthbRrLCByxEi', NULL, '2021-08-11 06:22:00', '2021-08-11 06:22:00', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(32, 'U1018', '111', 'universejino@gmail.com', 'Manager', '2021-08-11', 1, '111', '111', '111', '111', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$6FhpuMd3bEjmxh9gCsTJcez6xw0IN/6JrMlqBVYzxY.iuWG8hh.c6', NULL, '2021-08-11 06:28:34', '2021-08-11 06:28:34', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(33, 'U1019', '111', 'sukumar.inap222p@gmail.com', 'Manager', '2021-08-13', 1, '111', '11', '11', '111', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$Uhoaxm/EkBX.IOhdNXI8Ju0XINbS8H1rt2fEP26uGBYd2KjMBCP2S', NULL, '2021-08-13 06:48:15', '2021-08-15 06:48:52', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(34, 'U1020', '111', 'suku@gmail.com', 'Manager', '2021-08-13', 1, '111', '111', '111', '1111', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$Qe4y4SKADeJEdbf/DZziP.Uh9WkSXn9fe35oOw7A6KUgZWHECkdJu', NULL, '2021-08-13 06:53:51', '2021-08-13 06:53:51', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(39, 'U1025', 'James', 'sukumar.inapp2@gmail.com', 'Manager', '2021-08-15', 1, 'Manager', 'K', 'Test', '7868768768', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$uXzirKYFhO14ZSVnNIF38upwe5y.Sl/lXcYRiyxcg1dpR1ShauQMO', NULL, '2021-08-15 07:27:29', '2021-08-15 07:27:29', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(41, 'U1027', '111', 'fleetops.msgperations@gmail.com', 'Manager', '2021-08-18', 1, '111', '111', '111', '11111111111', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$t6KlVfcGpfuZVW6uGiWg6ujzQ8qZqhuOu/RgpkAA2K3SLtXncoCEe', NULL, '2021-08-17 19:46:28', '2021-08-17 19:46:28', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
-(45, 'C1010', '234e32', 'admin@hubbleclicks.com32', 'Client', '2021-08-19', 8, NULL, NULL, '23432', '3232', '23432', 'B', NULL, NULL, NULL, NULL, 0, NULL, '$2y$10$Gj9jY1BFqp8xqolwqF2uUuCk78F8DdkfY15Cj9mmvCTFdZKgIrpBe', NULL, '2021-08-18 19:59:04', '2021-08-18 19:59:04', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0);
+(8, 'U1001', 'Sukumar', 'sukumar@hubbleclicks.com', 'Manager', '2021-05-29', 1, 'SE', 'A', 'Bangalore', '877819392633', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-05-28 15:49:14', '2021-08-15 06:49:05', 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(10, 'C1001', 'Hubble Clicks Technologies Private Limited', 'anand@hubbleclicks.com', 'Client', '2021-05-29', 8, NULL, NULL, 'Bangalore', '9003552268', 'Henry', 'B', '34232', '21', '2321', 'HDFC', 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-05-28 15:56:59', '2021-08-18 19:44:33', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 'All Vehicles', 0),
+(11, 'U1002', 'Jino', 'universejino@hubbleclicks.com', 'Manager', '2021-05-29', 1, 'SE', 'A', 'pambanvilai\r\nAasaripallam', '+919047736314', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-05-28 22:33:15', '2021-05-31 23:20:11', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(28, 'U1015', 'Sukumar', 'sukumar.inapp888@gmail.com', 'Manager', '2021-06-07', 1, 'SE', 'A', 'Nagercoil', '233206972360', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-06-07 05:29:51', '2021-08-13 06:47:30', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(29, 'C1006', 'PRISM CAB', 'sukumar3@hubbleclicks.com', 'Client', '2021-08-07', 8, NULL, NULL, 'Bangalore', '4354354543', '21321', 'A', NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-06 19:17:59', '2021-08-19 06:05:52', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'Own Vehicles Only', 0),
+(31, 'U1017', '32r432', 'admin222@hubbleclicks.com', 'Manager', '2021-08-11', 1, 'w3e432', '2332', '3232', '3232', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-11 06:22:00', '2021-08-11 06:22:00', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(32, 'U1018', '111', 'universejino@gmail.com', 'Manager', '2021-08-11', 1, '111', '111', '111', '111', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-11 06:28:34', '2021-08-11 06:28:34', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(33, 'U1019', '111', 'sukumar.inap222p@gmail.com', 'Manager', '2021-08-13', 1, '111', '11', '11', '111', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-13 06:48:15', '2021-08-15 06:48:52', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(34, 'U1020', '111', 'suku@gmail.com', 'Manager', '2021-08-13', 1, '111', '111', '111', '1111', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-13 06:53:51', '2021-08-13 06:53:51', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(39, 'U1025', 'James', 'sukumar.inapp2@gmail.com', 'Manager', '2021-08-15', 1, 'Manager', 'K', 'Test', '7868768768', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-15 07:27:29', '2021-08-15 07:27:29', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(41, 'U1027', '111', 'fleetops.msgperations@gmail.com', 'Manager', '2021-08-18', 1, '111', '111', '111', '11111111111', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-17 19:46:28', '2021-08-17 19:46:28', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(45, 'C1010', '234e32', 'admin@hubbleclicks.com32', 'Client', '2021-08-19', 8, NULL, NULL, '23432', '3232', '23432', 'B', NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-18 19:59:04', '2021-08-23 08:58:30', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0),
+(47, 'U1028', '222', 'manager222@gmail.com', 'Manager', '2021-08-22', 8, 'manager2', '222', '222', '222', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-22 00:29:09', '2021-08-22 02:25:14', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, NULL, 0),
+(48, 'U1029', 'aaaaaaaa', 'sukumar3423423@hubbleclicks.com', 'Manager', '2021-08-22', 47, 'aaa', 'aaaaaaa', 'aaaaaaaaa', '1112345234', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-22 01:35:36', '2021-08-22 01:35:36', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0),
+(49, 'U1030', 'aaaaaaaa', 'suku3242mar3423423@hubbleclicks.com', 'Manager', '2021-08-22', 47, 'aaa', 'aaaaaaa', 'aaaaaaaaa', '1112345234', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '$2y$10$8R5z2TVXMN/hYdCcRGHH.eeZb8zkDWu24EWPkq8HUHY/OAavDtzH2', NULL, '2021-08-22 01:36:01', '2021-08-22 01:36:01', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -16420,9 +16429,9 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`id`, `CAN`, `driver_id`, `VDT`, `VNO`, `VID`, `VRD`, `VMK`, `VMD`, `VCL`, `ECY`, `CON`, `VFT`, `VFC`, `TSN`, `TID`, `TSM`, `TIP`, `VZC1`, `VZC0`, `VBC1`, `VBC0`, `VTV`, `created_at`, `updated_at`) VALUES
-(1, 'C1001', 6, '2021-06-01', 'GN7122-17', '1.jpg', '1.jpg', 'Ford', 'Mustang', 'Black', '30', '9958.0302771438', '30', '50', '131311', '233500623977', '0500623977', '111.11.11.11', 'OUT,4,1#000000', 'OUT,4,0#000000', '0', '0', 1, '2021-05-31 23:23:24', '2021-08-18 06:05:51'),
-(6, 'C1001', 3, '2021-06-06', 'GN7121-17', '6.pdf', '6.pdf', 'xxx', 'xxx', 'xxx', '50', '12981.843168913', '50', '50', '111', '233500627698', '111', '111', 'OUT,4,1#000000', 'OUT,4,0#000000', '0', '0', 1, '2021-06-05 14:04:09', '2021-08-17 00:26:59'),
-(12, 'C1006', NULL, '2021-08-07', 'KLA20', '12.jpg', '12.jpg', NULL, NULL, NULL, '11', '5918.0234311594', '11', '11', '11', '11', '11', '11', '11', '11', '11', '11', 1, '2021-08-06 19:21:10', '2021-08-18 20:00:17');
+(1, 'C1001', 3, '2021-06-01', 'GN7122-17', '1.jpg', '1.jpg', 'Ford', 'Mustang', 'Black', '30', '9958.0302771438', '30', '50', '131311', '233500623977', '0500623977', '111.11.11.11', 'OUT,4,1#000000', 'OUT,4,0#000000', '0', '0', 1, '2021-05-31 23:23:24', '2021-08-24 22:08:09'),
+(6, 'C1001', 6, '2021-06-06', 'GN7121-17', '6.pdf', '6.pdf', 'xxx', 'xxx', 'xxx', '50', '12981.843168913', '50', '50', '111', '233500627698', '111', '111', 'OUT,4,1#000000', 'OUT,4,0#000000', '0', '0', 1, '2021-06-05 14:04:09', '2021-08-24 22:04:40'),
+(12, 'C1006', 16, '2021-08-07', 'KLA20', '12.jpg', '12.jpg', NULL, NULL, NULL, '11', '5918.0234311594', '11', '11', '11', '11', '11', '11', '11', '11', '11', '11', 1, '2021-08-06 19:21:10', '2021-08-24 22:05:22');
 
 -- --------------------------------------------------------
 
@@ -16432,6 +16441,7 @@ INSERT INTO `vehicle` (`id`, `CAN`, `driver_id`, `VDT`, `VNO`, `VID`, `VRD`, `VM
 
 CREATE TABLE `vehicle_log` (
   `id` int(11) NOT NULL,
+  `LDT` date DEFAULT NULL,
   `CAN` varchar(20) DEFAULT NULL,
   `VNO` varchar(20) DEFAULT NULL,
   `DID` int(11) DEFAULT 0,
@@ -16444,13 +16454,24 @@ CREATE TABLE `vehicle_log` (
 -- Dumping data for table `vehicle_log`
 --
 
-INSERT INTO `vehicle_log` (`id`, `CAN`, `VNO`, `DID`, `ATN`, `UAN`, `TIM`) VALUES
-(1, 'C1006', 'KLA20', 16, 'Assign Vehicle', 'admin', '2021-08-17 12:36'),
-(2, 'C1006', 'KLA20', 16, 'Unassign Vehicle', 'admin', '2021-08-17 12:39'),
-(3, 'C1006', 'KLA20', 16, 'Assign Vehicle', 'admin', '2021-08-18 05:33'),
-(4, 'C1001', 'GN7122-17', 6, 'Unassign Vehicle', 'admin', '2021-08-18 11:35'),
-(5, 'C1001', 'GN7122-17', 6, 'Assign Vehicle', 'admin', '2021-08-18 11:35'),
-(6, 'C1006', 'KLA20', 16, 'Unassign Vehicle', 'admin', '2021-08-19 01:30');
+INSERT INTO `vehicle_log` (`id`, `LDT`, `CAN`, `VNO`, `DID`, `ATN`, `UAN`, `TIM`) VALUES
+(1, '2021-08-01', 'C1006', 'KLA20', 16, 'Assign Vehicle', 'admin', '2021-08-17 12:36'),
+(2, '2021-08-01', 'C1006', 'KLA20', 16, 'Unassign Vehicle', 'admin', '2021-08-17 12:39'),
+(3, '2021-08-01', 'C1006', 'KLA20', 16, 'Assign Vehicle', 'admin', '2021-08-18 05:33'),
+(4, '2021-08-01', 'C1001', 'GN7122-17', 6, 'Unassign Vehicle', 'admin', '2021-08-18 11:35'),
+(5, '2021-08-01', 'C1001', 'GN7122-17', 6, 'Assign Vehicle', 'admin', '2021-08-18 11:35'),
+(6, '2021-08-01', 'C1006', 'KLA20', 16, 'Unassign Vehicle', 'admin', '2021-08-19 01:30'),
+(7, '2021-08-25', 'C1001', 'GN7122-17', 3, 'Assign Vehicle', 'admin', '2021-08-25 03:31'),
+(8, '2021-08-25', 'C1001', 'GN7122-17', 3, 'Assign Vehicle', 'admin', '2021-08-25 03:33'),
+(9, '2021-08-25', 'C1001', 'GN7122-17', 3, 'Assign Vehicle', 'admin', '2021-08-25 03:34'),
+(10, '2021-08-25', 'C1001', 'GN7121-17', 6, 'Assign Vehicle', 'admin', '2021-08-25 03:34'),
+(11, '2021-08-25', 'C1001', 'GN7121-17', 6, 'Assign Vehicle', 'admin', '2021-08-25 03:35'),
+(12, '2021-08-25', 'C1006', 'KLA20', 16, 'Assign Vehicle', 'admin', '2021-08-25 03:35'),
+(13, '2021-08-25', 'C1001', 'GN7122-17', 3, 'Unassign Vehicle', 'admin', '2021-08-25 03:37'),
+(14, '2021-08-25', 'C1001', 'GN7122-17', 3, 'Assign Vehicle', 'admin', '2021-08-25 03:37'),
+(15, '2021-08-25', 'C1001', 'GN7122-17', 3, 'Assign Vehicle', 'admin', '2021-08-25 03:37'),
+(16, '2021-08-25', 'C1001', 'GN7122-17', 3, 'Unassign Vehicle', 'admin', '2021-08-25 03:38'),
+(17, '2021-08-25', 'C1001', 'GN7122-17', 3, 'Assign Vehicle', 'admin', '2021-08-25 03:38');
 
 --
 -- Indexes for dumped tables
@@ -16633,7 +16654,7 @@ ALTER TABLE `driver`
 -- AUTO_INCREMENT for table `driver_platform`
 --
 ALTER TABLE `driver_platform`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -16687,7 +16708,7 @@ ALTER TABLE `tbl136`
 -- AUTO_INCREMENT for table `tbl137`
 --
 ALTER TABLE `tbl137`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl139`
@@ -16723,13 +16744,13 @@ ALTER TABLE `tracker`
 -- AUTO_INCREMENT for table `uan`
 --
 ALTER TABLE `uan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1028;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1031;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
@@ -16741,7 +16762,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `vehicle_log`
 --
 ALTER TABLE `vehicle_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
