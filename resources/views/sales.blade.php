@@ -20,41 +20,30 @@
     </div>
 			<div class="card card-info">
 				<div class="card-header">
-					<h3 class="card-title">Sales Ledger (Rental/HP)</h3>
+					<h3 class="card-title">General Sales Ledger</h3>
 				</div>
-					<div class="card">
-              <div class="card-header d-flex p-0">
-                <ul class="nav nav-pills">
-              &nbsp; <!--<li class="nav-item"> <button type="button" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Refresh</a></button></li>&nbsp;
-                <div class="btn-group">
-                    
-                    <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                      <span class="sr-only">Toggle Dropdown</span>
-                      Fields
-                    </button>
-                    <div class="dropdown-menu" role="menu"> 
-                      <a class="dropdown-item" href="#">Sales Date</a>
-                      <a class="dropdown-item" href="#">CAN</a>    
-                      <a class="dropdown-item" href="#">Declaration No</a>
-                      <a class="dropdown-item" href="#">VNO</a>
-                      <a class="dropdown-item" href="#">Declaration No</a>
-                      <a class="dropdown-item" href="#">Sales Amount</a>
-                    </div>
-                  </div>&nbsp; -->
-
-                  <label>From Date:</label>&nbsp;
-                  <li class="nav-item"> <input value="{{ $from }}" name="from" id="from" type="date" class="nav-link" data-toggle="collapse"></li>   &nbsp;&nbsp;&nbsp;
-                  <label>To Date:</label>&nbsp;
-                    <li class="nav-item"> <input value="{{ $to }}" name="to" id="to"  type="date" class="nav-link" data-toggle="collapse"></li>&nbsp;
-                   <li class="nav-item"> <button onclick="load_report()"  type="submit" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Apply</a></button></li>&nbsp;&nbsp;
-
-                     
-                </ul>
-                
-              </div><!-- /.card-header -->
-            </div>
-				<div class="card-body" style="overflow-x: auto;" >
-						<table id="example1" class="table table-bordered table-striped">
+              <div class="card-body">
+              <div class="row">
+                  <div class="col com-md-1">
+                    <label>From Date:</label>
+                  </div>
+                  <div class="col com-md-2">
+                    <input value="{{ $from }}" name="from" id="from" type="date" class="nav-link" data-toggle="collapse">
+                  </div>
+                  <div class="col com-md-1">
+                    <label>To Date:</label>
+                  </div>
+                  <div class="col com-md-2">
+                    <input value="{{ $to }}" name="to" id="to"  type="date" class="nav-link" data-toggle="collapse">
+                  </div>
+                  <div class="col com-md-2">
+                    <button onclick="load_report()"  type="submit" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Apply</a></button>
+                  </div>
+                  <div class="col com-md-5"></div>
+              </div>
+              </div>
+				  <div class="card-body" style="overflow-x: auto;" >
+					<table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
             <th>Sales Date</th>
@@ -62,6 +51,8 @@
             <th>CAN</th>
             <th>VNO</th>
             <th>Sales Amount</th>
+            <th>Source</th>
+            <th>Originator</th>
           </tr>
           </thead>
           <tbody>
@@ -72,6 +63,16 @@
 	              <td>{{ $sale->CAN }}</td>
 	              <td>{{ $sale->VNO }}</td>
 	              <td>{{ $sale->SSA }}</td>
+                <td>
+                  @if($sale->VBM == "Ride Hailing")
+                    RH
+                  @elseif($sale->VBM == "Rental")
+                    RT
+                  @elseif($sale->VBM == "Hire Purchase")
+                    HP
+                  @endif
+                </td>
+                <td>{{ $sale->DNM }} {{ $sale->DSN }}</td>
 	            </tr>
             @endforeach
           </tbody>
@@ -86,7 +87,9 @@
 
 @push('page_css')
 <style>
-	
+	.ui-datatable thead th {
+word-wrap: break-word;
+}
 </style>
 @endpush
 

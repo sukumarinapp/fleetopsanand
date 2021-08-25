@@ -6,6 +6,10 @@
         <div class="row">
           <div class="col-sm-6">
             <h3>Dashboard</h3>
+            <!-- @foreach($users as $user)
+              {{ $user->id }}-{{ $user->parent_id }}-{{ $user->usertype }}-{{ $user->name }}<br>
+            @endforeach -->
+
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
