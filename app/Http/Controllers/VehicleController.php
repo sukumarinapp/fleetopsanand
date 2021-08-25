@@ -10,7 +10,7 @@ use App\Vehicle;
 use App\User;
 use Auth;
 use App\Formulae;
-
+use App\SMSFleetops;
 
 class VehicleController extends Controller
 {
@@ -212,6 +212,7 @@ class VehicleController extends Controller
         $this->check_access("BPF");
         $vehicle = Vehicle::find($request->get('vehicle_id'));
         $DID = $request->get('driver_id');
+        $VID = $vehicle->id;
         $vehicle->driver_id = $DID;
         $vehicle->save();
         $CAN = $vehicle->CAN;
@@ -219,8 +220,52 @@ class VehicleController extends Controller
         $UAN = Auth::user()->name;
         $TIM = date("Y-m-d H:i");
         $LDT = date("Y-m-d");
-        $sql = "insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('$LDT',$CAN','$VNO','$DID','$UAN','$TIM','Assign Vehicle')";
+        $sql = "insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('$LDT','$CAN','$VNO','$DID','$UAN','$TIM','Assign Vehicle')";
         DB::insert($sql);
+
+        $sql = "select b.DCN,b.DNM,b.VBM,b.VAM,b.VPF,b.WDY,b.MDY,b.VPD,c.name,c.UCN from vehicle a,driver b,users c where a.driver_id=b.id and a.CAN=c.UAN and a.id=$VID";
+        $vehicle = DB::select(DB::raw($sql));
+        $vehicle = $vehicle[0];
+        $VBM = $vehicle->VBM;
+        $DNM = $vehicle->DNM;
+        $VAM = $vehicle->VAM;
+        $VPF = $vehicle->VPF;
+        $WDY = $vehicle->WDY;
+        $MDY = $vehicle->MDY;
+        $VPD = $vehicle->VPD;
+        $name = $vehicle->name;
+        $UCN = $vehicle->UCN;
+        $DCN = $vehicle->DCN;
+        $SMS = "";
+        $SMS = "Dear ".$DNM.",\n";
+        $SMS = $SMS ."You have been setup successfully on FOVCollector(v2.1) by FleetOps as follows:\n";
+        if($VBM == "Ride Hailing"){
+            $SMS = $SMS ."Independent Contractor on Ride Hailing\n";    
+            $SMS = $SMS ."Declare sales daily by 10:00am\n";
+        }else if($VBM == "Rental"){
+            $SMS = $SMS ."Vehicle Rental Customer\n";    
+            $SMS = $SMS ."Rental Fee: ".$VAM."\n";    
+            $SMS = $SMS ."Payment Freq: ".$VPF."\n";    
+            if($VPF == "Weekly"){
+                $SMS = $SMS ."Payment Day: ".$WDY."\n";    
+            }else if($VPF == "Monthly"){
+                $SMS = $SMS ."Payment Day: ".$MDY."\n";    
+            }
+            $SMS = $SMS ."First Payment: ".$VPD."\n";    
+        }else if($VBM == "Hire Purchase"){
+            $SMS = $SMS ."Hire Purchase Customer\n";    
+            $SMS = $SMS ."Instalment: ".$VAM."\n";    
+            $SMS = $SMS ."Payment Freq: ".$VPF."\n";    
+            if($VPF == "Weekly"){
+                $SMS = $SMS ."Payment Day: ".$WDY."\n";    
+            }else if($VPF == "Monthly"){
+                $SMS = $SMS ."Payment Day: ".$MDY."\n";    
+            }
+            $SMS = $SMS ."First Payment: ".$VPD."\n";    
+        }
+        $SMS = $SMS ."Please make prompt payments to avoid any inconveniences. For further details you may contact ".$name." on ".$UCN."\n";
+        $SMS = $SMS ."Thank you.\n";
+        SMSFleetops::send($DCN,$SMS);
         return redirect('/vehicle')->with('message', 'Driver Assigned Successfully');
     }
 
@@ -245,7 +290,7 @@ class VehicleController extends Controller
         $UAN = Auth::user()->name;
         $TIM = date("Y-m-d H:i");
         $LDT = date("Y-m-d");
-        $sql = "insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('$LDT',$CAN','$VNO','$DID','$UAN','$TIM','Unassign Vehicle')";
+        $sql = "insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('$LDT','$CAN','$VNO','$DID','$UAN','$TIM','Unassign Vehicle')";
         DB::insert($sql);
         return redirect('/vehicle')->with('message', 'Driver Removed Successfully');
     }

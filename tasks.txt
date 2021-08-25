@@ -1,3 +1,29 @@
+insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('2021-08-25',C1001','GN7121-17','','admin','2021-08-25 03:18','Unassign Vehicle')
+
+Send short SMS to Driver summarizing Business Settings as Follows:
+
+“Dear #{DNM}#,
+
+You have been setup successfully on FOVCollector(v2.1) by #{CPY}# as follows:
+
+- Independent Contractor on Ride Hailing)
+- Declare sales daily by 10:00am
+
+OR 
+
+- Hire Purchase Customer (or Vehicle Rental Customer)
+- Instalment (Rental Fee): #{VAM}#
+- Payment Freq: Daily/Weekly/Monthly #{VPF}#
+- Payment Day: Saturday
+- First Payment: August 9, 2021
+
+AND 
+
+Please make prompt payments to avoid any inconveniences. For further details you may contact #{CZN}# on #{CCN}#
+
+Thank you”"
+[8:05 pm, 23/08/2021] suku: If Client Account is made "Inactive" then all accesses and operations must also be "Inactive".
+
 Sales Ledger (Rental/Hire Purchase)
 Collection Report (Rental/Hire Purchase)
 

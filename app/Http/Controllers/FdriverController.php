@@ -63,6 +63,8 @@ class FdriverController extends Controller
                $VPD = $request->get('VPD'); 
                $VAM = $request->get('VAM'); 
             }
+           
+
             $insert = array(
                 'DNO' => $request->get('DNO'),
                 'DNM' => $request->get('DNM'),
@@ -110,6 +112,9 @@ class FdriverController extends Controller
                 $driverplatform->PLF = $PLF;
                 $driverplatform->save();
             }
+
+            
+
 
             return redirect('/fdriver')->with('message', 'Driver added Successfully');
         }
