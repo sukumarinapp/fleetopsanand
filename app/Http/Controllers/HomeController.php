@@ -25,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $parent_id = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
         $sql= "with recursive cte (id, name,UAN,usertype,parent_id) as (
           select     id,
                      name,
@@ -33,7 +34,7 @@ class HomeController extends Controller
                      usertype,
                      parent_id
           from       users
-          where      parent_id = $parent_id
+          where      parent_id = $user_id
           union all
           select     p.id,
                      p.name,
@@ -46,7 +47,6 @@ class HomeController extends Controller
         )
         select * from cte";
         $users = DB::select(DB::raw($sql));
-        //dd($result);
         return view('home',compact('users'));
     }
 

@@ -25,7 +25,35 @@ class ManagerController extends Controller
             $sql="select * from users where usertype='Manager'";
             $users = DB::select(DB::raw($sql));
         }else if($usertype == "Manager"){
-            $sql="select * from users where parent_id=$user_id and usertype='Manager'";
+            $sql= "with recursive cte (id,name,UAN,UZS,email,UJT,UCN,UTV,usertype,parent_id) as (
+              select     id,
+                         name,
+                         UAN,
+                         UZS,
+                         email,
+                         UJT,
+                         UCN,
+                         UTV,
+                         usertype,
+                         parent_id
+              from       users
+              where      parent_id = $user_id and usertype='Manager' 
+              union all
+              select     p.id,
+                         p.name,
+                         p.UAN,
+                         p.UZS,
+                         p.email,
+                         p.UJT,
+                         p.UCN,
+                         p.UTV,
+                         p.usertype,
+                         p.parent_id
+              from       users p
+              inner join cte
+                      on p.parent_id = cte.id
+            )
+            select * from cte";
             $users = DB::select(DB::raw($sql));
         }
         return view('manager.index', compact('users'));
@@ -52,12 +80,30 @@ class ManagerController extends Controller
     public function create()
     {
         $this->check_access("BPA");
+        $user_id = Auth::user()->id;
         if(Auth::user()->usertype == "Admin"){
             $sql="select * from users where UTV=1 and usertype='Manager'";
             $managers = DB::select(DB::raw($sql));
         }else{
-            $user_id = Auth::user()->id;
-            $sql="select * from users where id=$user_id AND UTV=1 and usertype='Manager'";
+            $sql= "with recursive cte (id,name,UAN,parent_id,UTV) as (
+              select     id,
+                         name,
+                         UAN,
+                         parent_id,
+                         UTV
+              from       users
+              where      parent_id = $user_id and UTV=1 and usertype='Manager' 
+              union all
+              select     p.id,
+                         p.name,
+                         p.UAN,
+                         p.parent_id,
+                         p.UTV
+              from       users p
+              inner join cte
+                      on p.parent_id = cte.id
+            )
+            select * from cte";
             $managers = DB::select(DB::raw($sql));
         }
         return view('manager.create',compact('managers'));
@@ -147,12 +193,30 @@ class ManagerController extends Controller
     {
         $this->check_access("BPD");
         $user = User::find($id);
+        $user_id = Auth::user()->id;
         if(Auth::user()->usertype == "Admin"){
             $sql="select * from users where UTV=1 and usertype='Manager'";
             $managers = DB::select(DB::raw($sql));
         }else{
-            $user_id = Auth::user()->id;
-            $sql="select * from users where id=$user_id AND UTV=1 and usertype='Manager'";
+            $sql= "with recursive cte (id,name,UAN,parent_id,UTV) as (
+              select     id,
+                         name,
+                         UAN,
+                         parent_id,
+                         UTV
+              from       users
+              where      parent_id = $user_id and UTV=1 and usertype='Manager' 
+              union all
+              select     p.id,
+                         p.name,
+                         p.UAN,
+                         p.parent_id,
+                         p.UTV
+              from       users p
+              inner join cte
+                      on p.parent_id = cte.id
+            )
+            select * from cte";
             $managers = DB::select(DB::raw($sql));
         }
         return view('manager.edit', compact('user','managers'));

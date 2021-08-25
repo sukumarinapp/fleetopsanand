@@ -32,7 +32,7 @@
       <li data-id="0">
     <i class="fa fa-plus"></i>
     <label>
-        <input id="xnode-0" data-id="custom-0" type="checkbox" /> Admin
+        <input id="xnode-0" data-id="custom-{{ Auth::user()->id }}" type="checkbox" /> {{ Auth::user()->name }}
     </label>
     <ul>
         <li data-id="1">
