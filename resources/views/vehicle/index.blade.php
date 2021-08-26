@@ -1,11 +1,22 @@
    @extends('layouts.app')
 
 @section('content')
+@php
+  function check_decl($DECL,$VNO){
+    $pending = false;
+    foreach($DECL as $DEC){
+      if($DEC->VNO == $VNO){
+        $pending = true;
+        break;
+      }
+    }
+    return $pending;
+  }
+@endphp
 <div class="container-fluid">
 	<div class="row">
-
-      		<div class="col-md-12">
-                  <div class="content-header">
+  		<div class="col-md-12">
+      <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -83,7 +94,11 @@
                           <button class="btn btn-info btn-sm disabled" >Assign Vehicle</button>
                         @endif
                       @else
+                        @if(check_decl($DECL,$vehicle->VNO))
+                        <button class="btn btn-danger btn-sm disabled" >  Payment Pending</button>
+                        @else
                         <a href="{{ route('removevehicle',$vehicle->id) }}" class="btn btn-danger btn-sm">Unassign Vehicle</a>
+                        @endif
                       @endif
                     @endif
                </td>

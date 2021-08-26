@@ -39,7 +39,11 @@ class VehicleController extends Controller
         $this->check_access("BPC");
         $sql = "SELECT a.*,b.id as did,b.DNM,b.DSN,b.VBM,c.name FROM vehicle a LEFT JOIN driver b ON a.driver_id = b.id INNER JOIN users c ON a.CAN = c.UAN";
         $vehicles = DB::select(DB::raw($sql));
-        return view('vehicle.index', compact('vehicles'));
+        $sql2 = "select VNO from tbl136 where DECL=0";
+        $DECL = DB::select(DB::raw($sql2));
+        //$DECL = json_encode($DECL);
+        //GN7122-17
+        return view('vehicle.index', compact('vehicles','DECL'));
     }
    
     public function create()
