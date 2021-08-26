@@ -52,10 +52,40 @@ class ClientController extends Controller
         $user_id = Auth::user()->id;
         $usertype = Auth::user()->usertype;
         if($usertype == "Admin"){
-            $sql="select * from users where UTV=1 and usertype='Manager'";
+            $sql="select * from users where UTV=1 and usertype='Manager' and BPE=1";
             $managers = DB::select(DB::raw($sql));
         }else if($usertype == "Manager"){
-            $sql="select * from users where (parent_id=$user_id or id=$user_id) AND UTV=1 and usertype='Manager'";
+            $sql= "with recursive cte (id,name,UAN,UZS,email,UJT,UCN,UTV,usertype,BPE,parent_id) as (
+              select     id,
+                         name,
+                         UAN,
+                         UZS,
+                         email,
+                         UJT,
+                         UCN,
+                         UTV,
+                         usertype,
+                         BPE,
+                         parent_id
+              from       users
+              where      parent_id = $user_id and UTV=1 AND BPE=1 and usertype='Manager' 
+              union all
+              select     p.id,
+                         p.name,
+                         p.UAN,
+                         p.UZS,
+                         p.email,
+                         p.UJT,
+                         p.UCN,
+                         p.UTV,
+                         p.usertype,
+                         p.BPE,
+                         p.parent_id
+              from       users p
+              inner join cte
+                      on p.parent_id = cte.id and p.BPE=1
+            )
+            select * from cte";
             $managers = DB::select(DB::raw($sql));
         }
         return view('client.create', compact('managers'));
@@ -149,7 +179,37 @@ class ClientController extends Controller
             $sql="select * from users where UTV=1 and usertype='Manager'";
             $managers = DB::select(DB::raw($sql));
         }else if($usertype == "Manager"){
-            $sql="select * from users where (parent_id=$user_id or id=$user_id) AND UTV=1 and usertype='Manager'";
+            $sql= "with recursive cte (id,name,UAN,UZS,email,UJT,UCN,UTV,usertype,BPE,parent_id) as (
+              select     id,
+                         name,
+                         UAN,
+                         UZS,
+                         email,
+                         UJT,
+                         UCN,
+                         UTV,
+                         usertype,
+                         BPE,
+                         parent_id
+              from       users
+              where      parent_id = $user_id and UTV=1 AND BPE=1 and usertype='Manager' 
+              union all
+              select     p.id,
+                         p.name,
+                         p.UAN,
+                         p.UZS,
+                         p.email,
+                         p.UJT,
+                         p.UCN,
+                         p.UTV,
+                         p.usertype,
+                         p.BPE,
+                         p.parent_id
+              from       users p
+              inner join cte
+                      on p.parent_id = cte.id and p.BPE=1
+            )
+            select * from cte";
             $managers = DB::select(DB::raw($sql));
         }
         return view('client.edit', compact('user','managers'));

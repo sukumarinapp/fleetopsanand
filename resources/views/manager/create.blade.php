@@ -45,7 +45,9 @@
 					<label for="parent_id" class="col-sm-3 col-form-label"><span style="color:red">*</span>User Manager</label>
 				<div class="col-sm-9">
                   <select name="parent_id" id="parent_id" required="required" class="form-control select2" style="width: 100%;">
-                    <option value="{{ Auth::user()->id }}" >{{ Auth::user()->UAN }} {{ Auth::user()->name }}</option>
+                    @if(Auth::user()->id != 1)
+                        <option value="{{ Auth::user()->id }}" >{{ Auth::user()->UAN }} {{ Auth::user()->name }}</option>
+                    @endif
                     @foreach($managers as $manager)
                       <option value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }}</option>
                     @endforeach

@@ -23,9 +23,6 @@
     <div class="col-md-3">
         <div class="sticky-top mb-3">
               <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Tree View</h4>
-                </div>
                 <div class="card-body">
                   <div id="treeview_container" class="hummingbird-treeview" style="height: 608px; overflow-y: scroll;">
       <ul style="float: left; " id="treeview" class="hummingbird-base">
