@@ -101,10 +101,12 @@ class WorkflowController extends Controller
                 $sql = "SELECT * FROM tbl136 where VNO='$VNO' and DECL = 0";
                 $tbl136 = DB::select(DB::raw($sql));
                 $DCR = 0;
+                $DES = "";
                 $ODT = date("Y-m-d");
                 $WST = date("Y-m-d");
                 if(count($tbl136) > 0){
                     $DCR = $tbl136[0]->id;
+                    $DES = $tbl136[0]->DES;
                     $WST = $tbl136[0]->DDT;
                 }
                 $UAN = $users[0]->UAN;                
@@ -119,10 +121,16 @@ class WorkflowController extends Controller
                 DB::insert($sql);
                 $sql = "SELECT * FROM vehicle where id=$VID";
                 $vehicle = DB::select(DB::raw($sql));
+                $VZC0 = $vehicle[0]->VZC0;
                 $VBC0 = $vehicle[0]->VBC0; 
                 $TSM = $vehicle[0]->TSM;
-                SMSFleetops::send($TSM,$VBC0);
-                return redirect('/workflow')->with('message', 'Vehicle Mobilized Successfully');
+                if($DES == "A4"){
+                    SMSFleetops::send($TSM,$VBC0);
+                    return redirect('/workflow')->with('message', 'Vehicle Mobilized Successfully');
+                }else{
+                    SMSFleetops::send($TSM,$VZC0);
+                    return redirect('/workflow')->with('message', 'Vehicle Buzzer Turned off Successfully');
+                }
             } else {
                return redirect('/override/'.$VID)->with('error', 'Invalid User Credentials')->withInput();
             }
