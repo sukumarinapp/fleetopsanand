@@ -95,7 +95,7 @@
                         @endif
                       @else
                         @if(check_decl($DECL,$vehicle->VNO))
-                        <button class="btn btn-danger btn-sm disabled" >  Payment Pending</button>
+                        <button class="btn btn-primary btn-sm disabled" >  Payment Pending</button>
                         @else
                         <a href="{{ route('removevehicle',$vehicle->id) }}" class="btn btn-danger btn-sm">Unassign Vehicle</a>
                         @endif

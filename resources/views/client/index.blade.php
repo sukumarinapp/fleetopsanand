@@ -43,7 +43,6 @@
 			<table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th >usertype</th>
             <th >CAN</th>
             <th>Company Name</th>
             <th>Contact Name</th>
@@ -60,7 +59,6 @@
                 style="color: #FFC300;"
               @endif
             >
-          		<td>{{ $user->usertype }}</td>
               <td>{{ $user->UAN }}</td>
               <td>{{ $user->name }}</td>
           		<td>{{ $user->CZN }}</td>
