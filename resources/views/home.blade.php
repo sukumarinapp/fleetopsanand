@@ -20,7 +20,7 @@
       </div>
     </div>
    <div class="row">
-    <div class="col-md-3">
+    <!-- <div class="col-md-3">
         <div class="sticky-top mb-3">
               <div class="card">
                 <div class="card-body">
@@ -73,10 +73,9 @@
   </ul>
     </div>
                 </div>
-                <!-- /.card-body -->
               </div>
             </div>
-    </div>
+    </div> -->
           <!-- <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
               <div class="inner">
@@ -126,7 +125,7 @@
             </div>
           </div> -->
         
-            <div class="col-md-9">
+            <div class="col-md-12">
 
           <div class="card bg-gradient">
               <div class="card-header border-0">
