@@ -11,6 +11,7 @@ use App\CAN;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\FleetopsMail;
+use App\SMSFleetops;
 
 class ClientController extends Controller
 {

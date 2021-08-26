@@ -5,7 +5,7 @@ select * from tbl137 a,vehicle b where a.VNO=b.VNO and RST=0 and attempts <= 3;
 
 alter table vehicle_log add LDT date DEFAULT NULL after id;
 
-alter table tbl137 add TIM3 varchar(20) DEFAULT NULL after TIM2;
+alter table tbl136 add attempts int(11) DEFAULT 0 after driver_id;
 alter table tbl137 add TIM4 varchar(20) DEFAULT NULL after TIM3;
 alter table tbl137 add TIM5 varchar(20) DEFAULT NULL after TIM4;
 
