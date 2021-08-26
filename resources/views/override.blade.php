@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-8">
               <!-- <h4 class="m-0"> Workflow: Sales Declaration Enforcement</h4> -->
-              <h5 class="m-0" style="text-align: right;">Override - Vehicle Immobilized/Blocked&nbsp;&nbsp;<img src="{{ URL::to('/') }}/images/car.png"></h5>
+              <h5 class="m-0" style="text-align: right;">Override - Vehicle Buzzer On/Blocked&nbsp;&nbsp;<img src="{{ URL::to('/') }}/images/car.png"></h5>
             </div>
 
             <div class="col-md-3">
@@ -69,7 +69,7 @@
           <div style=" border: 1px solid red;padding: 25px 25px 25px 25px;">
             <h5 style="text-align: center;color: red;">WARNING</h5>
 
-            <p>The vehicle immobilization system (P-CS System) is meant to enforce sales declaration and cash remittance by the driver. This vehicle was immobilized or blocked because the driver failed to either declare sales or surrender full cash collected from passengers. Before you proceed to unblock the vehicle, lease be sure that you have checked with the driver first. By inputting your username and password below you will override the immobilization system and the vehicle can move again.</p>
+            <p>The vehicle immobilization system (P-CS System) is meant to enforce sales declaration and cash remittance by the driver. This vehicle was buzzer on or blocked because the driver failed to either declare sales or surrender full cash collected from passengers. Before you proceed to unblock the vehicle, lease be sure that you have checked with the driver first. By inputting your username and password below you will override the immobilization system and the vehicle can move again.</p>
 
           </div>
           <div class="container-fluid">
