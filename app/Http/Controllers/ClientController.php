@@ -41,7 +41,36 @@ class ClientController extends Controller
         if($usertype == "Admin"){
             $users = User::Where('usertype','Client')->get();
         }else if($usertype == "Manager"){
-            $users = User::Where('usertype','Client')->Where('parent_id',$user_id)->get();
+            $sql= "with recursive cte (id,name,UAN,UZS,CZN,email,UCN,UTV,usertype,parent_id) as (
+              select     id,
+                         name,
+                         UAN,
+                         UZS,
+                         CZN,
+                         email,
+                         UCN,
+                         UTV,
+                         usertype,
+                         parent_id
+              from       users
+              where      parent_id = $user_id  
+              union all
+              select     p.id,
+                         p.name,
+                         p.UAN,
+                         p.UZS,
+                         p.CZN,
+                         p.email,
+                         p.UCN,
+                         p.UTV,
+                         p.usertype,
+                         p.parent_id
+              from       users p
+              inner join cte
+                      on p.parent_id = cte.id
+            )
+            select * from cte";
+            $users = DB::select(DB::raw($sql));
         }
         return view('client.index', compact('users'));
     }
