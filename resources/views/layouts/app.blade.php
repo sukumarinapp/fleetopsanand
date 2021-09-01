@@ -73,14 +73,12 @@
 
             
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                   @if(Auth::user()->usertype == "Admin" || Auth::user()->BPA == true || Auth::user()->BPD == true)
+                   
               <li><a href="{{ route('manager.index') }}" class="dropdown-item {{ (request()->segment(1) == 'manager') ? 'active' : '' }}" class="dropdown-item"><b>User Account</b> </a></li>
-              @endif
 
-               @if(Auth::user()->usertype == "Admin" || Auth::user()->BPB == true || Auth::user()->BPE == true)
+               
 
               <li><a href="{{ route('client.index') }}" class="dropdown-item {{ (request()->segment(1) == 'client') ? 'active' : '' }}" class="dropdown-item"><b>Client Account</b></a></li>
-                @endif
 
                  @if(Auth::user()->usertype == "Admin" || Auth::user()->BPC == true || Auth::user()->BPF == true)
             <li><a href="{{ route('vehicle.index') }}" class="dropdown-item {{ (request()->segment(1) == 'vehicle' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}" class="dropdown-item"><b>Manage Vehicle</b></a></li>

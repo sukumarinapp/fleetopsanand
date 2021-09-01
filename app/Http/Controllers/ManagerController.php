@@ -73,9 +73,9 @@ class ManagerController extends Controller
         }else if($mode == "BPD" && Auth::user()->usertype != "Admin" && Auth::user()->BPD == false){
             echo "Access Denied";
             die;
-        }else if($mode == "VIEW" && Auth::user()->usertype != "Admin" && Auth::user()->BPA == false  && Auth::user()->BPD == false){
-            echo "Access Denied";
-            die;
+        // }else if($mode == "VIEW" && Auth::user()->usertype != "Admin" && Auth::user()->BPA == false  && Auth::user()->BPD == false){
+        //     echo "Access Denied";
+        //     die;
         }
     }
    

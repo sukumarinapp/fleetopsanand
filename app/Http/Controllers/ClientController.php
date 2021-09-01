@@ -28,9 +28,9 @@ class ClientController extends Controller
         }else if($mode == "BPE" && Auth::user()->usertype != "Admin" && Auth::user()->BPE == false){
             echo "Access Denied";
             die;
-        }else if($mode == "VIEW" && Auth::user()->usertype != "Admin" && Auth::user()->BPB == false  && Auth::user()->BPE == false){
-            echo "Access Denied";
-            die;
+        // }else if($mode == "VIEW" && Auth::user()->usertype != "Admin" && Auth::user()->BPB == false  && Auth::user()->BPE == false){
+        //     echo "Access Denied";
+        //     die;
         }
     }
 
