@@ -62,11 +62,7 @@
             <th>Email</th>
             <th>Job Title</th>
             <th>Contact No</th>
-            @if(Auth::user()->usertype == "Admin" || Auth::user()->BPD == true)
             <th>Action</th>
-            @else
-            <th></th>
-            @endif
           </tr>
           </thead>
           <tbody>
