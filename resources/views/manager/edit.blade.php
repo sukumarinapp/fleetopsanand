@@ -49,7 +49,7 @@
                     @endif
                     @foreach($managers as $manager)
                       @if($manager->parent_id != $user->id && $manager->id != $user->id)  
-                      <option {{ (($user->parent_id == $manager->id) ? "selected":"") }} value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }}</option>
+                      <option {{ (($user->parent_id == $manager->id) ? "selected":"") }} value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }} {{ $manager->UZS }}</option>
                       @endif
                     @endforeach
                   </select>

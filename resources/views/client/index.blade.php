@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+  function get_manager($id,$users){
+    $name="";
+    foreach($users as $user){
+      if($user->id == $id){
+        $name = $user->name . " " . $user->UZS;
+        break;
+      }
+    }
+    return $name;
+  }
+@endphp
 <div class="container-fluid">
 	<div class="row">
 
@@ -45,6 +57,7 @@
           <tr>
             <th >CAN</th>
             <th>Company Name</th>
+            <th>Account Manager</th>
             <th>Contact Name</th>
             <th>Email</th>
             <th>Contact No</th>
@@ -61,6 +74,7 @@
             >
               <td>{{ $user->UAN }}</td>
               <td>{{ $user->name }}</td>
+              <td>{{ get_manager($user->parent_id,$parent) }}</td>
           		<td>{{ $user->CZN }}</td>
           		<td>{{ $user->email }}</td>
           		<td>{{ $user->UCN }}</td>

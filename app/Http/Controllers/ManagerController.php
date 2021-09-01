@@ -83,31 +83,8 @@ class ManagerController extends Controller
     {
         $this->check_access("BPA");
         $user_id = Auth::user()->id;
-        if(Auth::user()->usertype == "Admin"){
-            $sql="select * from users where UTV=1 and usertype='Manager'";
-            $managers = DB::select(DB::raw($sql));
-        }else{
-            $sql= "with recursive cte (id,name,UAN,parent_id,UTV) as (
-              select     id,
-                         name,
-                         UAN,
-                         parent_id,
-                         UTV
-              from       users
-              where      parent_id = $user_id and UTV=1 and usertype='Manager' 
-              union all
-              select     p.id,
-                         p.name,
-                         p.UAN,
-                         p.parent_id,
-                         p.UTV
-              from       users p
-              inner join cte
-                      on p.parent_id = cte.id
-            )
-            select * from cte";
-            $managers = DB::select(DB::raw($sql));
-        }
+        $sql="select * from users where UTV=1 and parent_id in (0,1) order by UAN,name,UZS";
+        $managers = DB::select(DB::raw($sql));
         return view('manager.create',compact('managers'));
     }
    
@@ -196,31 +173,8 @@ class ManagerController extends Controller
         $this->check_access("BPD");
         $user = User::find($id);
         $user_id = Auth::user()->id;
-        if(Auth::user()->usertype == "Admin"){
-            $sql="select * from users where UTV=1 and usertype='Manager'";
-            $managers = DB::select(DB::raw($sql));
-        }else{
-            $sql= "with recursive cte (id,name,UAN,parent_id,UTV) as (
-              select     id,
-                         name,
-                         UAN,
-                         parent_id,
-                         UTV
-              from       users
-              where      parent_id = $user_id and UTV=1 and usertype='Manager' 
-              union all
-              select     p.id,
-                         p.name,
-                         p.UAN,
-                         p.parent_id,
-                         p.UTV
-              from       users p
-              inner join cte
-                      on p.parent_id = cte.id
-            )
-            select * from cte";
-            $managers = DB::select(DB::raw($sql));
-        }
+        $sql="select * from users where UTV=1 and parent_id in (0,1) order by UAN,name,UZS";
+        $managers = DB::select(DB::raw($sql));        
         return view('manager.edit', compact('user','managers'));
     }
    

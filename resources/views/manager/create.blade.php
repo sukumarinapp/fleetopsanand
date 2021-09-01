@@ -49,7 +49,7 @@
                         <option value="{{ Auth::user()->id }}" >{{ Auth::user()->UAN }} {{ Auth::user()->name }}</option>
                     @endif
                     @foreach($managers as $manager)
-                      <option value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }}</option>
+                      <option value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }} {{ $manager->UZS }}</option>
                     @endforeach
                   </select>
                 </div>
