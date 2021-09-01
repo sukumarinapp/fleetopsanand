@@ -21,9 +21,11 @@ class ManagerController extends Controller
         $user_id = Auth::user()->id;
         $usertype = Auth::user()->usertype;
         $filter = "";
+        $sql="select id,name,UZS from users where usertype in ('Admin','Manager')";
+        $parent = DB::select(DB::raw($sql));
         if($usertype == "Admin"){
             $sql="select * from users where usertype='Manager'";
-            $users = DB::select(DB::raw($sql));
+            $users = DB::select(DB::raw($sql));            
         }else if($usertype == "Manager"){
             $sql= "with recursive cte (id,name,UAN,UZS,email,UJT,UCN,UTV,usertype,parent_id) as (
               select     id,
@@ -56,7 +58,7 @@ class ManagerController extends Controller
             select * from cte";
             $users = DB::select(DB::raw($sql));
         }
-        return view('manager.index', compact('users'));
+        return view('manager.index', compact('users','parent'));
     }
 
     public function __construct()
