@@ -22,13 +22,12 @@
       </div>
     </div>
 			<div class="card card-info">
-			<div class="card-header">
-			<h3 class="card-title">
 			@if($online == 1)
-				<span style='color:green;font-weight:bold;background-color:white !important'>*</span>
+				<div class="card-header" style="background-color:green">
 			@else
-				<span style='color:red;font-weight:bold;background-color:white !important'>*</span>
+				<div class="card-header" style="background-color:red">
 			@endif
+			<h3 class="card-title" >
 			Edit Vehicle</h3>
 			</div>
 
