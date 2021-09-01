@@ -37,13 +37,14 @@ class VehicleController extends Controller
     public function index()
     {
         $this->check_access("BPC");
+        $today = date("Y-m-d");
         $sql = "SELECT a.*,b.id as did,b.DNM,b.DSN,b.VBM,c.name FROM vehicle a LEFT JOIN driver b ON a.driver_id = b.id INNER JOIN users c ON a.CAN = c.UAN";
         $vehicles = DB::select(DB::raw($sql));
         $sql2 = "select VNO from tbl136 where DECL=0";
         $DECL = DB::select(DB::raw($sql2));
-        //$DECL = json_encode($DECL);
-        //GN7122-17
-        return view('vehicle.index', compact('vehicles','DECL'));
+        $sql3 = " select distinct terminal_id from current_location where capture_date='$today'";
+        $tracker = DB::select(DB::raw($sql3));
+        return view('vehicle.index', compact('vehicles','DECL','tracker'));
     }
    
     public function create()

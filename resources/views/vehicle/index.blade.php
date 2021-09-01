@@ -12,6 +12,17 @@
     }
     return $pending;
   }
+
+  function check_online($TID,$tracker){
+    $online = false;
+    foreach($tracker as $track){
+      if($track->terminal_id == $TID){
+        $online = true;
+        break;
+      }
+    }
+    return $online;
+  }
 @endphp
 <div class="container-fluid">
 	<div class="row">
@@ -54,7 +65,9 @@
           <thead>
           <tr>
             <th>CAN</th>
-            <th>Vehicle Reg#</th>
+            <th>Vehicle Reg# 
+
+            </th>
             <th>ID</th>
             <th>Make</th>
             <th>Model</th>
@@ -68,7 +81,15 @@
             @foreach($vehicles as $vehicle)
             <tr>
               <td>{{ $vehicle->CAN }}<br><small class="text-success">{{ $vehicle->name }}</small></td>
-              <td>{{ $vehicle->VNO }}
+              <td>
+                @php
+                if(check_online($vehicle->TID,$tracker)){
+                  echo "<span style='color:green;font-weight:bold'>*</span>";
+                }else{
+                  echo "<span style='color:red;font-weight:bold'>*</span>";
+                }
+                @endphp
+                {{ $vehicle->VNO }} 
                 @if($vehicle->DNM !="")
                 <br><small class="text-success"><a href="{{ route('fdriver.edit',$vehicle->did) }}">{{ $vehicle->DNM }} 
                   {{ $vehicle->DSN }}</a> - {{ $vehicle->VBM }}</small>
