@@ -200,7 +200,7 @@
              <div class="form-group row">
              	 <div class="col-sm-6">
            <div class="form-check" style="float: left !important">
-                        <input {{ ($vehicle->driver_id != "" ? "disabled=disabled":"") }} {{ ($vehicle->VTV == "1" ? "checked=checked":"") }} value="1" type="checkbox" name="VTV" class="form-check-input" id="VTV">
+                        <input {{ (($vehicle->driver_id != "" || $online == 0) ? "disabled=disabled":"") }} {{ (($vehicle->VTV == "1")  ? "checked=checked":"") }} value="1" type="checkbox" name="VTV" class="form-check-input" id="VTV">
                         <label class="form-check-label text-success" for="VTV"><b>Activate Vehicle</b></label>
                       </div>
           </div>
