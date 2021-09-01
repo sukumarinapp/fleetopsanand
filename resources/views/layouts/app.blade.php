@@ -169,24 +169,8 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
 
-<!-- <script src="js/hummingbird-treeview.js"></script> -->
 @stack('page_scripts')
 <script>
-
-//    $("#treeview").hummingbird();
-// $( "#checkAll" ).click(function() {
-//   $("#treeview").hummingbird("checkAll");
-// });
-// $( "#uncheckAll" ).click(function() {
-//   $("#treeview").hummingbird("uncheckAll");
-// });
-// $( "#collapseAll" ).click(function() {
-//   $("#treeview").hummingbird("collapseAll");
-// });
-// $( "#checkNode" ).click(function() {
-//   $("#treeview").hummingbird("checkNode",{attr:"id",name: "node-0-2-2",expandParents:false});
-// });
-
 $(document).ready(function(){
     $('#rhvisibility').change(function() {
         if(this.checked) {            
@@ -313,7 +297,7 @@ $(document).ready(function(){
         },
         dom: 'Bfrtip',
         buttons: [
-            'excel', 'pdf', 'print','colvis'
+            'excel', 'pdf', 'print','colvis','pageLength'
         ]
     } );
 

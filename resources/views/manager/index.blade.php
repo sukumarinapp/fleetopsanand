@@ -52,6 +52,7 @@
                 <strong> {{ session('error') }} </strong>
             </div>
         @endif
+        <div class="card-body" style="overflow-x: auto;" >
 			<table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
@@ -63,6 +64,8 @@
             <th>Contact No</th>
             @if(Auth::user()->usertype == "Admin" || Auth::user()->BPD == true)
             <th>Action</th>
+            @else
+            <th></th>
             @endif
           </tr>
           </thead>
@@ -97,6 +100,7 @@
             @endforeach
           </tbody>
       </table>
+    </div>
 			</div>
 		</div>
 		</div>
