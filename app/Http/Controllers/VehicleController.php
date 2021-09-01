@@ -137,7 +137,15 @@ class VehicleController extends Controller
         }
         $rhplatforms = rhplatform::all();
         $vehicle = Vehicle::find($id);
-        return view('vehicle.edit', compact('vehicle','rhplatforms','clients'));
+        $TID = $vehicle->TID;
+        $today = date("Y-m-d");
+        $sql3 = " select distinct terminal_id from current_location where capture_date='$today' and terminal_id='$TID'";
+        $tracker = DB::select(DB::raw($sql3));
+        $online = 0;
+        if(count($tracker) > 0){
+            $online = 1;
+        }
+        return view('vehicle.edit', compact('vehicle','rhplatforms','clients','online'));
     }
    
     public function update(Request $request, $id)
