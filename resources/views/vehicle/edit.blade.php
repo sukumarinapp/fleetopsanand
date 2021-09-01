@@ -25,9 +25,9 @@
 			<div class="card-header">
 			<h3 class="card-title">
 			@if($online == 1)
-				<span style='color:green;font-weight:bold'>*</span>
+				<span style='color:green;font-weight:bold;background-color:white !important'>*</span>
 			@else
-				<span style='color:red;font-weight:bold'>*</span>
+				<span style='color:red;font-weight:bold;background-color:white !important'>*</span>
 			@endif
 			Edit Vehicle</h3>
 			</div>
