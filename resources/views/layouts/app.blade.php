@@ -20,6 +20,14 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('third_party_stylesheets')
     @stack('page_css')
+    <style type="text/css">
+        .buttons-columnVisibility{
+            margin-top: 25px;
+        }
+        .button-page-length{
+            margin-top: 25px;   
+        }
+    </style>
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -299,7 +307,10 @@ $(document).ready(function(){
         },
         dom: 'Bfrtip',
         buttons: [
-            'excel', 'pdf', 'print','colvis','pageLength'
+            'excel', 'pdf', 'print',{
+              extend: 'colvis',
+              postfixButtons: ['colvisRestore'],
+           },'pageLength'
         ]
     } );
 
