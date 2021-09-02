@@ -62,8 +62,7 @@
           <tr>
             <th>Mobile</th>
             <th>Message</th>
-            <th>Date</th>
-            <th>Time</th>
+            <th>Sent Date/Time</th>
             <th>Event</th>
           </tr>
           </thead>
@@ -72,8 +71,7 @@
 	            <tr>
 	              <td>{{ $log->PHN }}</td>
 	              <td>{{ $log->MSG }}</td>
-                <td>{{ date("d-m-Y",strtotime($log->DAT)) }}</td>
-	              <td>{{ $log->TIM }}</td>
+                <td>{{ date("d-m-Y",strtotime($log->DAT)) }} {{ $log->TIM }}</td>
 	              <td>{{ $log->CTX }}</td>
 	            </tr>
             @endforeach
