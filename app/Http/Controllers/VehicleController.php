@@ -278,6 +278,11 @@ class VehicleController extends Controller
         }
         $SMS = $SMS ."Please make prompt payments to avoid any inconveniences. For further details you may contact ".$name." on ".$UCN."\n";
         $SMS = $SMS ."Thank you.\n";
+        $DAT = date("Y-m-d");
+        $TIM = date("H:i:s");
+        $CTX = "Assign Driver";
+        $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$DCN','$SMS','$DAT','$TIM','$CTX')";
+        DB::insert($sql);
         SMSFleetops::send($DCN,$SMS);
         return redirect('/vehicle')->with('message', 'Driver Assigned Successfully');
     }

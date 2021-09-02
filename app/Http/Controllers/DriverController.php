@@ -219,12 +219,22 @@ class DriverController extends Controller
                             $msg = "Thank you for a successful sales declaration.Fuel consumed for the sales declared and offline trips (if any) are being measured and shall be communicated to you in a separate message.";                  
                             SMSFleetops::send($TSM,$VBC0);
                             echo $msg."<br>";
+                            $DAT = date("Y-m-d");
+                            $TIM = date("H:i:s");
+                            $CTX = "Sales Declaration";
+                            $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$RCN','$msg','$DAT','$TIM','$CTX')";
+                            DB::insert($sql);
                             SMSFleetops::send($RCN,$msg);
                         }else{
                             $sql = "update tbl136 set DECL = 1 where id = '$DCR'";
                             DB::update($sql);
                             $msg="Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please send remaining cash immediately else we shall be compelled to enforce the policy. The car owner has been notified of this issue accordingly.";
                             echo $msg."<br>";
+                            $DAT = date("Y-m-d");
+                            $TIM = date("H:i:s");
+                            $CTX = "Sales Declaration";
+                            $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$RCN','$msg','$DAT','$TIM','$CTX')";
+                            DB::insert($sql);
                             SMSFleetops::send($RCN,$msg);
                         }
                     }

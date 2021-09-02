@@ -158,6 +158,11 @@ class ClientController extends Controller
             if($UTV == 1 && $sms == 1){
                 Mail::to($email)->send(new FleetopsMail($name,"Client",$email,$password));
                 $message = "Dear $name, Your have been registered as a Client with FleetOps. Your Username is $email and Password is $password";
+                $DAT = date("Y-m-d");
+                $TIM = date("H:i:s");
+                $CTX = "Create Client";
+                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$mobile','$message','$DAT','$TIM','$CTX')";
+                DB::insert($sql);
                 SMSFleetops::send($mobile,$message);
             }
             
@@ -239,6 +244,11 @@ class ClientController extends Controller
             if($password != "" && $UTV == 1 && $sms == 1){
                 Mail::to($email)->send(new FleetopsMail($name,"Client",$email,$password));
                 $message = "Dear $name, Your Password with FleetOps is reset. Your Username is $email and New Password is $password";
+                $DAT = date("Y-m-d");
+                $TIM = date("H:i:s");
+                $CTX = "Update Client";
+                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$mobile','$message','$DAT','$TIM','$CTX')";
+                DB::insert($sql);
                 SMSFleetops::send($mobile,$message);
             }
 

@@ -1,3 +1,16 @@
+DROP TABLE sms_log;
+CREATE TABLE sms_log (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    PHN varchar(20) DEFAULT NULL,
+    MSG varchar(2000) DEFAULT NULL,
+    DAT date DEFAULT NULL,
+    TIM varchar(10) DEFAULT NULL,
+    CTX varchar(50) DEFAULT NULL,
+    STA varchar(20) DEFAULT NULL,
+    PRIMARY KEY(id)
+  ) ENGINE=InnoDB;
+
+
 select id,parent_id,UAN,usertype,email from users where UTV=1 order by parent_id;
 
 
