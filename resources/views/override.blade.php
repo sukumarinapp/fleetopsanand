@@ -47,16 +47,16 @@
               <br>
               Client
             </h3>
-            <div class="table ">
+            <div class="borderless ">
               <table class="table">
                 <tr>
-                  <th style="width:50%">Account No: {{ $vehicle->CAN }}</th>
+                   <td style="width:50%"><label>Account No:</label>   {{ $vehicle->CAN }}</td>
                 </tr>
                 <tr>
-                  <th>Account Name: {{ $vehicle->name }}</th>
+                  <td><label>Account Name:</label> {{ $vehicle->name }}</td>
                 </tr>
                 <tr>
-                  <th>Assigned Vehicle:  {{ $vehicle->VNO }}</th>
+                  <td><label>Assigned Vehicle:</label>  {{ $vehicle->VNO }}</td>
 
               </table>
             </div>
