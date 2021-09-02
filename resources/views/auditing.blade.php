@@ -75,15 +75,13 @@
                   <td><label>Account No:</label> {{ $vehicle->CAN }}</td>
                 </tr>
                 <tr>
-                  <th>Account Name: {{ $vehicle->name }}</th>
+                  <td><label>Account Name:</label> {{ $vehicle->name }}</td>
                 </tr>
                 <tr>
-                  <th>Assigned Vehicle: {{ $vehicle->VNO }}</th>
-                  <td></td>
+                  <td><label>Assigned Vehicle:</label> {{ $vehicle->VNO }}</td>
                 </tr> 
                  <tr>
-                  <th>RH Platform In Use: {{ $vehicle->RHN }}</th>
-                  <td></td>
+                  <td><label>RH Platform:</label> {{ $vehicle->RHN }}</td>
                 </tr>
 
               </table>
