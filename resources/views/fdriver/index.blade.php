@@ -75,13 +75,13 @@
                 @if($driver->VNO == "")
                 <form action="{{ route('fdriver.destroy', $driver->id)}}" method="post">
                 @endif
-                    <a href="{{ route('fdriver.edit',$driver->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ route('fdriver.edit',$driver->id) }}" class="btn btn-primary btn-xs">Edit</a>
                     @csrf
                     @method('DELETE')
                   @if($driver->VNO == "")
-                  <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
+                  <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-xs" type="submit">Delete</button>
                   @else
-                  <button class="btn btn-danger btn-sm disabled" >Delete</button>
+                  <button class="btn btn-danger btn-xs disabled" >Delete</button>
                   @endif
                 @if($driver->VNO == "")
                 </form>

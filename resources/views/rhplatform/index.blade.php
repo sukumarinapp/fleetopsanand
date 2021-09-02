@@ -62,14 +62,14 @@
           		<td>{{ $rhplatform->status }}</td>
           		
           		@if($rhplatform->can_delete == "0")
-          			<td><a href="{{ route('rhplatform.edit', $rhplatform->id) }}" class="btn btn-primary btn-sm">Edit</a>&nbsp;Default</td>
+          			<td><a href="{{ route('rhplatform.edit', $rhplatform->id) }}" class="btn btn-primary btn-xs">Edit</a>&nbsp;Default</td>
           		@else
           			 <td>   
                 <form action="{{ route('rhplatform.destroy', $rhplatform->id)}}" method="post">
-                    <a href="{{ route('rhplatform.edit', $rhplatform->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ route('rhplatform.edit', $rhplatform->id) }}" class="btn btn-primary btn-xs">Edit</a>
                     @csrf
                     @method('DELETE')
-                  <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
+                  <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-xs" type="submit">Delete</button>
                 </form>
               </td>
           		@endif
