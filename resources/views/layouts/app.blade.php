@@ -302,7 +302,7 @@ $(document).ready(function(){
         dom: 'lBfrtip',
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],  
         buttons: [
-            'excel', 'pdf', 'print','columnsToggle','pageLength'
+            'excel', 'pdf', 'print','columnsToggle'
         ]
     } );
 
@@ -315,7 +315,7 @@ $(document).ready(function(){
             }
         }
     });
-    
+
     $('body').on('keyup paste', '.max200', function () {
         $(this).val($(this).val().substring(0, maxLen200));
         var tlength = $(this).val().length;
