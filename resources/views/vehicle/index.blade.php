@@ -110,15 +110,15 @@
                     @if(Auth::user()->usertype == "Admin" || Auth::user()->BPF == true)
                       @if($vehicle->driver_id == "")
                         @if($vehicle->VTV == 1)
-                          <a href="{{ route('assignvehicle',$vehicle->id) }}" class="btn btn-info btn-sm">Assign Vehicle</a>
+                          <a href="{{ route('assignvehicle',$vehicle->id) }}" class="btn btn-info btn-xs">Assign Vehicle</a>
                         @else
-                          <button class="btn btn-info btn-sm disabled" >Assign Vehicle</button>
+                          <button class="btn btn-info btn-xs disabled" >Assign Vehicle</button>
                         @endif
                       @else
                         @if(check_decl($DECL,$vehicle->VNO))
-                        <button class="btn btn-primary btn-sm disabled" >  Payment Pending</button>
+                        <button class="btn btn-primary btn-xs disabled" >  Payment Pending</button>
                         @else
-                        <a href="{{ route('removevehicle',$vehicle->id) }}" class="btn btn-danger btn-sm">Unassign Vehicle</a>
+                        <a href="{{ route('removevehicle',$vehicle->id) }}" class="btn btn-danger btn-xs">Unassign Vehicle</a>
                         @endif
                       @endif
                     @endif
@@ -127,13 +127,13 @@
                 @if($vehicle->VTV == 0 && $vehicle->DNM == "")
                 <form action="{{ route('vehicle.destroy', $vehicle->id)}}" method="post">
                 @endif
-                    <a href="{{ route('vehicle.edit',$vehicle->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ route('vehicle.edit',$vehicle->id) }}" class="btn btn-primary btn-xs">Edit</a>
                     @csrf
                     @method('DELETE')
                     @if($vehicle->VTV == 0 && $vehicle->DNM == "")
-                    <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-xs" type="submit">Delete</button>
                     @else
-                    <button class="btn btn-danger btn-sm disabled" >Delete</button>
+                    <button class="btn btn-danger btn-xs disabled" >Delete</button>
                     @endif
                 @if($vehicle->VTV == 0 && $vehicle->DNM == "")                
                 </form>

@@ -79,13 +79,13 @@
                 @if($user->UTV == 0)
                 <form action="{{ route('manager.destroy', $user->id)}}" method="post">
                 @endif
-                    <a href="{{ route('manager.edit',$user->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ route('manager.edit',$user->id) }}" class="btn btn-primary btn-xs">Edit</a>
                     @csrf
                     @method('DELETE')
                   @if($user->UTV == 0)  
-                  <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
+                  <button onclick="return confirm('Do you want to perform delete operation?')" class="btn btn-danger btn-xs type="submit">Delete</button>
                   @else
-                  <button class="btn btn-danger btn-sm disabled">Delete</button>
+                  <button class="btn btn-danger btn-xs disabled">Delete</button>
                   @endif
                 @if($user->UTV == 0)  
                 </form>
