@@ -109,6 +109,8 @@
               <li><a href="{{ url('sales') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->is('sales')) ? 'active' : '' }}" class="dropdown-item"><b>General Sales Ledger</b></a></li>
 
               <li><a href="{{ url('collection') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->is('collection')) ? 'active' : '' }}" class="dropdown-item"><b>Collection</b></a></li>
+
+              <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->is('notificationslog')) ? 'active' : '' }}" class="dropdown-item"><b>Notifications Log</b></a></li>
             </ul>
           </li>
 
