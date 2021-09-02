@@ -1994,11 +1994,12 @@ pre code {
   margin-bottom: 1rem;
   color: #212529;
   background-color: transparent;
+  font-size: 13px;
 }
 
 .table th,
 .table td {
-  padding: 0.35rem;
+  padding: 0.20rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
 }
