@@ -20,7 +20,11 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('third_party_stylesheets')
     @stack('page_css')
-    
+    <style>
+        .buttons-columnVisibility.active {
+            color: green;
+        }
+    </style>
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
