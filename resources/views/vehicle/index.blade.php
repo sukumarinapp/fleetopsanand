@@ -61,7 +61,7 @@
           </div>
         @endif
         <div class="card-body" style="overflow-x: auto;" >
-			<table id="example1" class="table table-bordered table-striped">
+			<table id="example1" class="display table table-bordered" cellspacing="0" width="100%">
           <thead>
           <tr>
             <th>CAN</th>

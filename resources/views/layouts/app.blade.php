@@ -20,6 +20,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('third_party_stylesheets')
     @stack('page_css')
+    
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -161,7 +162,8 @@
 @yield('third_party_scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
 
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -297,9 +299,10 @@ $(document).ready(function(){
            $('.buttons-pdf').html('<i class="fa fa-file-pdf" style="color:red"/>')
            $('.buttons-print').html('<i class="fa fa-print" style="color:#0d5b9e"/>')
         },
-        dom: 'Bfrtip',
+        dom: 'lBfrtip',
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],  
         buttons: [
-            'excel', 'pdf', 'print','colvis','pageLength'
+            'excel', 'pdf', 'print','columnsToggle'
         ]
     } );
 
@@ -312,6 +315,7 @@ $(document).ready(function(){
             }
         }
     });
+
     $('body').on('keyup paste', '.max200', function () {
         $(this).val($(this).val().substring(0, maxLen200));
         var tlength = $(this).val().length;
