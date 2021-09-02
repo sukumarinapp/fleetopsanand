@@ -84,9 +84,9 @@
               <td>
                 @php
                 if(check_online($vehicle->TID,$tracker)){
-                  echo "<span style='color:green;font-weight:bold'>*</span>";
+                  echo "<span><img src='online.jpg'></span>";
                 }else{
-                  echo "<span style='color:red;font-weight:bold'>*</span>";
+                  echo "<span><img src='offline.jpg'></span>";
                 }
                 @endphp
                 {{ $vehicle->VNO }} 
