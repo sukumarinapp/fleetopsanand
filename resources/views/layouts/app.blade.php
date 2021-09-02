@@ -298,6 +298,7 @@ $(document).ready(function(){
     });
 
     $('#example1').DataTable( {
+        responsive: true,
         initComplete: function() {
            $('.buttons-excel').html('<i class="fa fa-file-excel" style="color:green"/>')
            $('.buttons-pdf').html('<i class="fa fa-file-pdf" style="color:red"/>')
