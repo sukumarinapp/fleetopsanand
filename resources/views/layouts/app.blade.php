@@ -129,10 +129,10 @@
       </ul>
     </div>
   </ul>
-
+ </nav>
       <!-- Right navbar links -->
  
- <ul class="navbar-nav ml-auto ">
+ <ul class="navbar-nav">
 <li class="nav-item dropdown user-menu ">
 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
  <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
@@ -152,7 +152,7 @@
  </li>
  </ul>
    </div>
-  </nav> 
+  
   
 
     <div class="content-wrapper">
