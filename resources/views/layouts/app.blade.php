@@ -180,6 +180,9 @@
 @stack('page_scripts')
 <script>
 $(document).ready(function(){
+    $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+        $(".alert-success").slideUp(500);
+    });
     $('#rhvisibility').change(function() {
         if(this.checked) {            
             $("#SPF").attr("disabled", "disabled"); 
