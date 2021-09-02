@@ -42,7 +42,7 @@
             <th>Workflow No</th>
             <th>Workflow Type</th>
             <th>Case Initiator</th>
-            <th></th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>

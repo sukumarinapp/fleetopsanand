@@ -69,10 +69,10 @@
               <br>
               <u> Client</u>
             </h3>
-            <div class="table borderless">
+            <div class="borderless">
               <table class="table">
                 <tr>
-                  <th>Account No: {{ $vehicle->CAN }}</th>
+                  <td><label>Account No:</label> {{ $vehicle->CAN }}</td>
                 </tr>
                 <tr>
                   <th>Account Name: {{ $vehicle->name }}</th>
