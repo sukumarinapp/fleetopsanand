@@ -4,62 +4,11 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-              <div class="card-body">
-                <div id="treeview_container" class="hummingbird-treeview" style="height: 600px;">
-                  <ul style="float: left; " id="treeview" class="hummingbird-base">
-                    <li data-id="0">
-                      <i class="fa fa-plus"></i>
-                      <label>
-                        <input id="xnode-0" data-id="custom-{{ Auth::user()->id }}" type="checkbox" /> {{ Auth::user()->name }}
-                      </label>
-                      <ul>
-                        <li data-id="1">
-                          <i class="fa fa-plus"></i>
-                          <label>
-                            <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> node-0-1
-                          </label>
-                          <ul>
-                            <li>
-                              <label>
-                                <input class="hummingbird-end-node" id="xnode-0-1-1" data-id="custom-0-1-1" type="checkbox" /> node-0-1-1
-                              </label>
-                            </li>
-                            <li>
-                              <label>
-                                <input class="hummingbird-end-node" id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> node-0-1-2
-                              </label>
-                            </li>
-                          </ul>
-                        </li>
-                        <li data-id="1">
-                          <i class="fa fa-plus"></i>
-                          <label>
-                            <input  id="xnode-0-2" data-id="custom-0-2" type="checkbox" /> node-0-2
-                          </label>
-                          <ul>
-                            <li>
-                              <label>
-                                <input class="hummingbird-end-node" id="xnode-0-2-1" data-id="custom-0-2-1" type="checkbox" /> node-0-2-1
-                              </label>
-                            </li>
-                            <li>
-                              <label>
-                                <input class="hummingbird-end-node" id="xnode-0-2-2" data-id="custom-0-2-2" type="checkbox" /> node-0-2-2
-                              </label>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        <div class="col-md-4">
+          @include('includes.tree')
         </div>
-        <div class="col-md-9">
-            <div class="card bg-gradient">
+        <div class="col-md-8">
+          <div class="card bg-gradient">
               <!-- <div class="card-header border-0">
                 <div class="card-tools">
                   <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
@@ -71,11 +20,11 @@
                <div id="map_canvas" style="height: 600px;"></div>
              </div>
            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
  @endsection
  @section('third_party_scripts')
  

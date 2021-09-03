@@ -45,7 +45,7 @@ class HomeController extends Controller
           inner join cte
                   on p.parent_id = cte.id
         )
-        select * from cte";
+        select * from cte order by parent_id";
         $users = DB::select(DB::raw($sql));
         return view('home',compact('users'));
     }
