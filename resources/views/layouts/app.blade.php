@@ -16,12 +16,37 @@
           crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="css/hummingbird-treeview.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/hummingbird-treeview.css') }}" rel="stylesheet" type="text/css">
     @yield('third_party_stylesheets')
     @stack('page_css')
     <style>
         .buttons-columnVisibility.active {
             color: green;
+        }
+        .dt-buttons{
+            float: left;
+            position: absolute;
+            white-space: nowrap;
+        }
+        .dataTables_filter{
+            float: right;
+            position: relative;
+            white-space: nowrap;
+        }
+        .dataTables_length{
+            float: right;
+            position: relative;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+        .select2-container--default{
+            border-radius: 5px;
+            border: 1px solid red;
+        }
+        .select2-selection__rendered{
+            display: block ;
+            border-radius: 5px;
+            border: 1px solid green;
         }
     </style>
 </head>
@@ -167,7 +192,7 @@
 
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" language="javascript" src="js/hummingbird-treeview.js"></script>
+<script type="text/javascript" language="javascript" src="{{ asset('js/hummingbird-treeview.js') }}"></script>
 
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>

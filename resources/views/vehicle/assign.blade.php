@@ -54,12 +54,12 @@
 				
 				<div class="form-group row">
 					<div class="col-md-12">
-						<label for="DNM" class="col-form-label"><span style="color:red">*</span>Driver Name - License Number - Contact Number</label>
+						<label for="DNM" class="col-form-label"><span style="color:red">*</span>Please Select Driver to Assign Vehicle:</label>
 					</div>
 				</div>
 				<div class="form-group row">
 					<div class="col-md-12">
-						<select autofocus="autofocus"  style="width: 100%;" required="required" class="form-control select2" name="driver_id" id="DNM" >
+						<select style="width: 100%;" required="required" class="form-control select2" name="driver_id" id="driver_id" >
 							<option value="">Search Driver</option>
 	                        @foreach($drivers as $driver)
 		                     	<option value="{{ $driver->id }}" >{{ $driver->DNM }} {{ $driver->DSN }} -  {{ $driver->DNO }} - {{ $driver->DCN }}</option>
@@ -87,8 +87,9 @@
 <script>
 	$(document).ready(function(){
 		$('.select2').select2({
-        	theme: 'bootstrap4'
-    	});
+    	theme: 'bootstrap4'
+    });
+    $("#driver_id").focus();
 	});
 </script>
 @endpush
