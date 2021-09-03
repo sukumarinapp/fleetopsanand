@@ -4,10 +4,10 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row">
-        <!-- <div class="col-md-3">
+        <div class="col-md-3">
             @include("includes.tree")
-        </div> -->
-        <div class="col-md-12">
+        </div>
+        <div class="col-md-9">
             <div class="card bg-gradient">
               <!-- <div class="card-header border-0">
                 <div class="card-tools">

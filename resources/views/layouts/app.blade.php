@@ -23,7 +23,7 @@
         .buttons-columnVisibility.active {
             color: green;
         }
-        .dt-buttons{
+        /*.dt-buttons{
             float: left;
             position: absolute;
             white-space: nowrap;
@@ -38,7 +38,7 @@
             position: relative;
             margin-left: 10px;
             white-space: nowrap;
-        }
+        }*/
         .select2-container--default{
             border-radius: 5px;
             border: 1px solid red;
