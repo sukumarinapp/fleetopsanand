@@ -5,7 +5,6 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-3">
-          <div class="sticky-top mb-3">
             <div class="card">
               <div class="card-body">
                 <div id="treeview_container" class="hummingbird-treeview" style="height: 600px;">
@@ -58,7 +57,6 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
         <div class="col-md-9">
             <div class="card bg-gradient">
@@ -70,7 +68,7 @@
                 </div>
               </div> -->
               <div class="card-body">
-               <div id="map_canvas" style="height: 550px;"></div>
+               <div id="map_canvas" style="height: 600px;"></div>
              </div>
            </div>
         </div>
