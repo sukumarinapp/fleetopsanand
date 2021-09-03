@@ -70,7 +70,7 @@
                 </div>
               </div> -->
               <div class="card-body">
-               <div id="map_canvas" style="height: 550px;"></div>
+               <div id="map_canvas" style="height: 600px;"></div>
              </div>
            </div>
         </div>
