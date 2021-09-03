@@ -65,7 +65,6 @@
    </div>
  </div>
 </div>
-</div>
 @endsection
 @push('page_scripts')
 <script>
