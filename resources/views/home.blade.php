@@ -58,7 +58,7 @@
               </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card bg-gradient">
               <!-- <div class="card-header border-0">
                 <div class="card-tools">
