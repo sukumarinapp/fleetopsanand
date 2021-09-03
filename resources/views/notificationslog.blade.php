@@ -68,7 +68,7 @@
 
 @push('page_scripts')
 <script>
-	var workflowlog = "{{ url('workflowlog') }}";
+	var notificationslog = "{{ url('notificationslog') }}";
 	function load_report(){
 		var from = $("#from").val();
     var to = $("#to").val();
@@ -77,17 +77,9 @@
     }else if(to == ""){
       alert("Please select To Date");
     }else{
-      var url =  workflowlog + "/" + from + "/" +to;  
+      var url =  notificationslog + "/" + from + "/" +to;  
       window.location.href = url;
     }		
   }
-
-  $(document).ready(function(){
-    $('.select2').select2({
-     theme: 'bootstrap4'
-   });
-  });
-
-
 </script>
 @endpush
