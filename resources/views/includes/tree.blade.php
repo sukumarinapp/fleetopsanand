@@ -62,8 +62,7 @@
   </li>
 </ul>
 </div>
-@php
-  echo "<pre>";
-  print_r($users); 
-  echo "</pre>";
-@endphp
+@foreach($users as $user)
+  {{ $user->name }} {{ $user->UZS }} << {{ $user->usertype }} >>
+  <br>
+@endforeach
