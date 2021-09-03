@@ -24,9 +24,9 @@
      <div class="row">
       <div class="col-md-12">
         <form class="form-inline" >
-          <label for="from">From Date&nbsp;</label>
+          <label for="from">&nbsp;From Date&nbsp;</label>
           <input value="{{ $from }}" type="date" id="from" name="from" class="form-control" />
-          <label for="to">To Date&nbsp;</label>
+          <label for="to">&nbsp;To Date&nbsp;</label>
           <input value="{{ $to }}" type="date" id="to" name="to" class="form-control" />
           <label>&nbsp;</label>
           <input onclick="load_report()" type="button"  value="Apply" class="text-center btn btn-success btn-sm" />
