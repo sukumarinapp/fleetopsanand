@@ -3,15 +3,12 @@
 <div class="container-fluid">
   <div class="content-header">
     <div class="container-fluid">
-            <!-- @foreach($users as $user)
-              {{ $user->id }}-{{ $user->parent_id }}-{{ $user->usertype }}-{{ $user->name }}<br>
-              @endforeach -->
       <div class="row">
         <div class="col-md-3">
           <div class="sticky-top mb-3">
             <div class="card">
               <div class="card-body">
-                <div id="treeview_container" class="hummingbird-treeview" style="height: 608px; overflow-y: scroll;">
+                <div id="treeview_container" class="hummingbird-treeview" style="height: 600px;">
                   <ul style="float: left; " id="treeview" class="hummingbird-base">
                     <li data-id="0">
                       <i class="fa fa-plus"></i>
@@ -65,19 +62,15 @@
         </div>
         <div class="col-md-9">
             <div class="card bg-gradient">
-              <div class="card-header border-0">
-                <h5 class="card-title">
-                  <i class="fas fa-map-marker"></i>
-                  Map
-                </h5>
+              <!-- <div class="card-header border-0">
                 <div class="card-tools">
                   <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
                   </button>
                 </div>
-              </div>
+              </div> -->
               <div class="card-body">
-               <div id="map_canvas" style="height: 600px;"></div>
+               <div id="map_canvas" style="height: 550px;"></div>
              </div>
            </div>
         </div>
