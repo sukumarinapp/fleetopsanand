@@ -39,6 +39,15 @@
             margin-left: 10px;
             white-space: nowrap;
         }
+        .select2-container--default{
+            border-radius: 5px;
+            border: 1px solid red;
+        }
+        .select2-selection__rendered{
+            display: block ;
+            border-radius: 5px;
+            border: 1px solid green;
+        }
     </style>
 </head>
 <body class="hold-transition layout-top-nav">
