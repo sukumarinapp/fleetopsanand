@@ -335,7 +335,9 @@ $(document).ready(function(){
            $('.buttons-pdf').html('<i class="fa fa-file-pdf" style="color:red"/>')
            $('.buttons-print').html('<i class="fa fa-print" style="color:#0d5b9e"/>')
         },
-        dom: 'lBfrtip',
+        dom: "<'row'<'col-sm-12 col-md-9'B><'col-sm-12 col-md-3'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'p>>",
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],  
         buttons: [
             'excel', 'pdf', 'print','columnsToggle'
