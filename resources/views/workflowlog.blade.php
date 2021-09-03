@@ -20,50 +20,50 @@
     <div class="card-header">
      <h3 class="card-title">WorkFlow Log</h3>
    </div>
-<div class="card-body">
-   <div class="row">
-    <div class="col-md-12">
-      <form class="form-inline" >
-        <label for="from">From Date&nbsp;</label>
-        <input value="{{ $from }}" type="date" id="from" name="from" class="form-control" />
-        <label for="to">To Date&nbsp;</label>
-        <input value="{{ $to }}" type="date" id="to" name="to" class="form-control" />
-        <label>&nbsp;</label>
-        <input onclick="load_report()" style="text-align:center;" type="button"  value="Apply" class="text-center btn btn-success btn-sm" />
-      </form>
+   <div class="card-body">
+     <div class="row">
+      <div class="col-md-12">
+        <form class="form-inline" >
+          <label for="from">From Date&nbsp;</label>
+          <input value="{{ $from }}" type="date" id="from" name="from" class="form-control" />
+          <label for="to">To Date&nbsp;</label>
+          <input value="{{ $to }}" type="date" id="to" name="to" class="form-control" />
+          <label>&nbsp;</label>
+          <input onclick="load_report()" type="button"  value="Apply" class="text-center btn btn-success btn-sm" />
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="table-responsive" >
-<table id="example1" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Open Date</th>
-      <th>UAN</th>
-      <th>CAN</th>
-      <th>VNO</th>
-      <th>Workflow No</th>
-      <th>Workflow Type</th>
-      <th>Case Initiator</th>
-      <th>Close Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($workflow as $flow)
-    <tr>
-     <td>{{ date("d-m-Y",strtotime($flow->WST)) }}</td>
-     <td>{{ $flow->UAN }}</td>
-     <td>{{ $flow->CAN }}</td>
-     <td>{{ $flow->VNO }}</td>
-     <td>{{ $flow->WNB }}</td>
-     <td>{{ $flow->WTP }}</td>
-     <td>{{ $flow->WCI }}</td>
-     <td>{{ date("d-m-Y",strtotime($flow->WCD)) }}</td>
-   </tr>
-   @endforeach
- </tbody>
-</table>
-</div>
-</div>
+    <div class="table-responsive" >
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Open Date</th>
+            <th>UAN</th>
+            <th>CAN</th>
+            <th>VNO</th>
+            <th>Workflow No</th>
+            <th>Workflow Type</th>
+            <th>Case Initiator</th>
+            <th>Close Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($workflow as $flow)
+          <tr>
+           <td>{{ date("d-m-Y",strtotime($flow->WST)) }}</td>
+           <td>{{ $flow->UAN }}</td>
+           <td>{{ $flow->CAN }}</td>
+           <td>{{ $flow->VNO }}</td>
+           <td>{{ $flow->WNB }}</td>
+           <td>{{ $flow->WTP }}</td>
+           <td>{{ $flow->WCI }}</td>
+           <td>{{ date("d-m-Y",strtotime($flow->WCD)) }}</td>
+         </tr>
+         @endforeach
+       </tbody>
+     </table>
+   </div>
+ </div>
 </div>
 </div>
 @endsection
