@@ -1,8 +1,3 @@
-@php
-  echo "<pre>";
-  print_r($users); 
-  echo "</pre>";
-@endphp
 <div id="treeview_container" class="hummingbird-treeview" style="height: 600px;">
 <ul style="float: left; " id="treeview" class="hummingbird-base">
   <li data-id="0">
@@ -67,3 +62,8 @@
   </li>
 </ul>
 </div>
+@php
+  echo "<pre>";
+  print_r($users); 
+  echo "</pre>";
+@endphp
