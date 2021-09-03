@@ -46,7 +46,8 @@
         .select2-selection__rendered{
             display: block ;
             border-radius: 5px;
-            border: 1px solid green;
+            border: 1px solid black;
+            padding: 1px 1px 1px 1px;
         }
     </style>
 </head>
@@ -63,7 +64,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+      <div class="collapse navbar-collapse order-3" id="navbarCollapse" style="padding-left: 50px;">
         <!-- Left navbar links -->
          <ul class="navbar-nav">
           <li class="nav-item">

@@ -89,7 +89,6 @@
 		$('.select2').select2({
     	theme: 'bootstrap4'
     });
-    $("#driver_id").focus();
 	});
 </script>
 @endpush
