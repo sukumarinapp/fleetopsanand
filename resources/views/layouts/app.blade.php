@@ -23,6 +23,22 @@
         .buttons-columnVisibility.active {
             color: green;
         }
+        .dt-buttons{
+            float: left;
+            position: absolute;
+            white-space: nowrap;
+        }
+        .dataTables_filter{
+            float: right;
+            position: relative;
+            white-space: nowrap;
+        }
+        .dataTables_length{
+            float: right;
+            position: relative;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body class="hold-transition layout-top-nav">
