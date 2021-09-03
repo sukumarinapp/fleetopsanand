@@ -3,9 +3,6 @@
 <div class="container-fluid">
   <div class="content-header">
     <div class="container-fluid">
-            <!-- @foreach($users as $user)
-              {{ $user->id }}-{{ $user->parent_id }}-{{ $user->usertype }}-{{ $user->name }}<br>
-              @endforeach -->
       <div class="row">
         <div class="col-md-3">
           <div class="sticky-top mb-3">
