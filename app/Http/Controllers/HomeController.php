@@ -27,9 +27,10 @@ class HomeController extends Controller
     {
         $user_id = Auth::user()->id;
         $name = Auth::user()->name;
-        $sql= "with recursive cte (id, name,UAN,usertype,parent_id) as (
+        $sql= "with recursive cte (id, name,UZS,UAN,usertype,parent_id) as (
           select     id,
                      name,
+                     UZS,
                      UAN,
                      usertype,
                      parent_id
@@ -38,6 +39,7 @@ class HomeController extends Controller
           union all
           select     p.id,
                      p.name,
+                     p.UZS,
                      p.UAN,
                      p.usertype,
                      p.parent_id
