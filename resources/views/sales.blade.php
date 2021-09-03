@@ -37,7 +37,7 @@
                     <input value="{{ $to }}" name="to" id="to"  type="date" class="nav-link" data-toggle="collapse">
                   </div>
                   <div class="col com-md-2">
-                    <button onclick="load_report()"  type="submit" class="btn btn-default btn-sm"><a class="nav-link" href="#tab_1" data-toggle="collapse">Apply</a></button>
+                    <button onclick="load_report()"  type="submit" class="btn btn-default btn-xs"><a class="nav-link" href="#tab_1" data-toggle="collapse">Apply</a></button>
                   </div>
                   <div class="col com-md-5"></div>
               </div>
