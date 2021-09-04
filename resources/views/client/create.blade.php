@@ -2,33 +2,33 @@
 
 @section('content')
 <style type="text/css">
-  .row-padded {
-    background-color: #F7F7F7;
-    padding: 1px;
-    margin: 4px;
-    border: 1px solid #DDD;
-  }
+.row-padded {
+  background-color: #F7F7F7;
+  padding: 1px;
+  margin: 4px;
+  border: 1px solid #DDD;
+}
 </style>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
       <div class="content-header">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6">
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Manage Account</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('client.index') }}">Client</a></li>
-              <li class="breadcrumb-item">Add Client</li>
-            </ol>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Manage Account</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('client.index') }}">Client</a></li>
+                <li class="breadcrumb-item">Add Client</li>
+              </ol>
+            </div>
           </div>
         </div>
-      </div>
-    </div> 
-			<div class="card card-info">
+      </div> 
+      <div class="card card-info">
        <div class="card-header">
          <h3 class="card-title">Add Client</h3>
        </div>
@@ -41,106 +41,95 @@
         @endif
         <form action="{{ route('client.store') }}" method="post" class="form-horizontal">
           @csrf 
-         <div class="row">
+          <div class="row">
            <div class="col-md-6">
+            <div class="form-group row">
+             <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>Company Name</label>
+             <div class="col-sm-8">
+              <input required="required" type="text" class="form-control" name="name" id="name" maxlength="200" placeholder="Company Name">
+            </div>
+          </div>
+
           <div class="form-group row">
-           <label for="name" class="col-sm-4 col-form-label"><span style="color:red">*</span>Company Name</label>
+           <label for="CZN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Contact Name</label>
            <div class="col-sm-8">
-            <input required="required" type="text" class="form-control" name="name" id="name" maxlength="200" placeholder="Company Name">
+            <input required="required" type="text" class="form-control" name="CZN" id="CZN" maxlength="50" placeholder="Contact Name">
           </div>
         </div>
 
-         <div class="form-group row">
-         <label for="CZN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Contact Name</label>
-         <div class="col-sm-8">
-          <input required="required" type="text" class="form-control" name="CZN" id="CZN" maxlength="50" placeholder="Contact Name">
-        </div>
-      </div>
-
-   <div class="form-group row">
-        <label for="UZA" class="col-sm-4 col-form-label"><span style="color:red">*</span>Address</label>
-        <div class="col-sm-8">
-          <textarea  required="required" class="form-control max200" name="UZA" id="UZA" rows="1" placeholder="Address"></textarea>
-        </div>
-      </div>
-
-<div class="form-group row">
-       <label for="UCN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Contact Number</label>
-       <div class="col-sm-8">
-        <input onkeyup="duplicateUserContact(0)" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number"><span id="dupContact" style="color:red"></span>
-      </div>
-    </div>
-
- <div class="form-group row">
-     <label for="email" class="col-sm-4 col-form-label"><span style="color:red">*</span>Email</label>
-     <div class="col-sm-8">
-      <input onkeyup="duplicateEmail(0)" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
-      <span id="dupemail" style="color:red"></span>
-    </div>
-  </div>
-
-   <div class="form-group row">
-   <label for="password" class="col-sm-4 col-form-label"><span style="color:red">*</span>Password</label>
-   <div class="col-sm-8">
-    <input value="{{ random_int(100000, 999999) }}"required="required" type="text" class="form-control" name="password" id="password" maxlength="20" placeholder="Password">
-  </div>
-</div>
-
-
-         
-        
-       
-
-       
-
-
-        
-         
-    </div>
-
- <div class="col-md-6">
-
-  <div class="form-group row">
-          <label for="parent_id" class="col-sm-4 col-form-label"><span style="color:red">*</span>Account Manager</label>
+        <div class="form-group row">
+          <label for="UZA" class="col-sm-4 col-form-label"><span style="color:red">*</span>Address</label>
           <div class="col-sm-8">
-            <select name="parent_id" id="parent_id" required="required" class="form-control" style="width: 100%;">
-              @if(Auth::user()->id != 1)
-                  <option value="{{ Auth::user()->id }}" >{{ Auth::user()->UAN }} {{ Auth::user()->name }} {{ Auth::user()->UZS }}</option>
-              @endif
-              @foreach($managers as $manager)
-              <option value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }} {{ $manager->UZS }}</option>
-              @endforeach
-            </select>
+            <textarea  required="required" class="form-control max200" name="UZA" id="UZA" rows="1" placeholder="Address"></textarea>
           </div>
         </div>
 
-         <div class="form-group row">
-        <label for="CMT" class="col-sm-4 col-form-label">Account Type</label>
-        <div class="col-sm-8">
-          <select name="CMT" id="CMT" required="required" class="form-control" style="width: 100%;">
-            <option value="B" selected="selected">Bank Account</option>
-            <option value="A">Mobile Money</option>
-          </select>
+        <div class="form-group row">
+         <label for="UCN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Contact Number</label>
+         <div class="col-sm-8">
+          <input onkeyup="duplicateUserContact(0)" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number"><span id="dupContact" style="color:red"></span>
         </div>
       </div>
 
-       <div class="form-group row">
-        <label id="CMALBL" for="CMA" class="col-sm-4 col-form-label">Account Name</label>
-        <div class="col-sm-8">
-          <input type="text" class="form-control" name="CMA" id="CMA" maxlength="50" placeholder="Account Name">
-        </div>
-      </div>
-      
-         <div class="form-group row">
-<label id="CMNLBL" for="CMN" class="col-sm-4 col-form-label">Account Number</label>
-      <div class="col-sm-8">
-        <input type="text" class="form-control number" name="CMN" id="CMN" maxlength="15" placeholder="Account Number">
+      <div class="form-group row">
+       <label for="email" class="col-sm-4 col-form-label"><span style="color:red">*</span>Email</label>
+       <div class="col-sm-8">
+        <input onkeyup="duplicateEmail(0)" required="required" type="email" class="form-control" name="email" id="email" maxlength="50" placeholder="Email">
+        <span id="dupemail" style="color:red"></span>
       </div>
     </div>
-
-   
 
     <div class="form-group row">
+     <label for="password" class="col-sm-4 col-form-label"><span style="color:red">*</span>Password</label>
+     <div class="col-sm-8">
+      <input value="{{ random_int(100000, 999999) }}"required="required" type="text" class="form-control" name="password" id="password" maxlength="20" placeholder="Password">
+    </div>
+  </div>  
+</div>
+
+<div class="col-md-6">
+
+  <div class="form-group row">
+    <label for="parent_id" class="col-sm-4 col-form-label"><span style="color:red">*</span>Account Manager</label>
+    <div class="col-sm-8">
+      <select name="parent_id" id="parent_id" required="required" class="form-control" style="width: 100%;">
+        @if(Auth::user()->id != 1)
+        <option value="{{ Auth::user()->id }}" >{{ Auth::user()->UAN }} {{ Auth::user()->name }} {{ Auth::user()->UZS }}</option>
+        @endif
+        @foreach($managers as $manager)
+        <option value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }} {{ $manager->UZS }}</option>
+        @endforeach
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="CMT" class="col-sm-4 col-form-label">Account Type</label>
+    <div class="col-sm-8">
+      <select name="CMT" id="CMT" required="required" class="form-control" style="width: 100%;">
+        <option value="B" selected="selected">Bank Account</option>
+        <option value="A">Mobile Money</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label id="CMALBL" for="CMA" class="col-sm-4 col-form-label">Account Name</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" name="CMA" id="CMA" maxlength="50" placeholder="Account Name">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label id="CMNLBL" for="CMN" class="col-sm-4 col-form-label">Account Number</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control number" name="CMN" id="CMN" maxlength="15" placeholder="Account Number">
+    </div>
+  </div>
+
+  
+
+  <div class="form-group row">
     <label id="CBKLBL" for="CBK" class="col-sm-4 col-form-label">Bank Name</label>
     <div class="col-sm-8" id="telecom_div">
       <input type='text' class='form-control' name='CBK' id='CBK' maxlength='50' placeholder='Bank Name'>
@@ -149,11 +138,11 @@
   
 
   <div class="form-group row">
-  <label id="CMBLBL" for="CMB" class="col-sm-4 col-form-label">Account Branch</label>
+    <label id="CMBLBL" for="CMB" class="col-sm-4 col-form-label">Account Branch</label>
     <div class="col-sm-8" id="branch_div">
       <input type='text' class='form-control' name='CMB' id='CMB' maxlength='50' placeholder='Account Branch'>
     </div>
-</div>
+  </div>
 </div>
 </div>
 <hr>
