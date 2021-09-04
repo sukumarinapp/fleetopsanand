@@ -30,7 +30,7 @@
 			@endif
 			<h3 class="card-title" >&nbsp;Edit Vehicle</h3>
 				</div>
-			</div>
+			
 
           <div class="card-body">
 		    	@if(session()->has('error'))
@@ -221,7 +221,7 @@
             <!-- /.row -->
           </div>
           <!-- /.card-body -->
-         
+         </div>
         </div>
  			
 		
