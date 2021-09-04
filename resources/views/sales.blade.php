@@ -17,23 +17,24 @@
     </div>
   </div>
   <div class="card card-info">
-    <div class="card-header">
-     <h3 class="card-title">General Sales Ledger</h3>
-   </div>
-   <div class="card-body">
-    <div class="row">
-      <div class="col-md-12">
-        <form class="form-inline" >
-          <label for="from">From Date&nbsp;</label>
-          <input value="{{ $from }}" type="date" id="from" name="from" class="form-control" />
-          <label for="to">To Date&nbsp;</label>
-          <input value="{{ $to }}" type="date" id="to" name="to" class="form-control" />
+    <div class="card-header align-items-center">
+      <div class="row">
+        <div class="col-md-2">
+          <label>General Sales Ledger</label>
+        </div>
+        <div class="col-md-10">
+         <form class="form-inline" >
+          <label for="from">&nbsp;From Date&nbsp;</label>
+          <input value="{{ $from }}" class="form-control" type="date" id="from" name="from"  />
+          <label for="to">&nbsp;To Date&nbsp;</label>
+          <input value="{{ $to }}" class="form-control" type="date" id="to" name="to"  />
           <label>&nbsp;</label>
-          <input onclick="load_report()" type="button"  value="Apply" class="text-center btn btn-success btn-sm" />
+          <input onclick="load_report()" type="button"  value="Apply" class="form-control text-center btn btn-success btn-sm" />
         </form>
       </div>
     </div>
-
+  </div>
+  <div class="card-body">
     <div class="table-responsive" >
      <table id="example1" class="table table-bordered table-striped">
       <thead>
@@ -73,6 +74,7 @@
 </div>
 </div>
 </div>
+
 
 @endsection
 
