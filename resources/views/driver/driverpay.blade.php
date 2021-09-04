@@ -5,7 +5,6 @@
     @csrf
   <div style="padding: 50px; height: 200px;"></div>
   <div class="row justify-content-center">
-      <div class="col col-md-6">
         <input type="hidden" id="VNO" name="VNO" value="{{ $sales['VNO'] }}">
         <input type="hidden" id="DCN" name="DCN" value="{{ $sales['DCN'] }}">
         <input type="hidden" id="VBM" name="VBM" value="{{ $sales['VBM'] }}">
@@ -14,15 +13,22 @@
         <input type="hidden" id="cash_hidden" name="cash_hidden" value="{{ $sales['cash_hidden'] }}">
         <input type="hidden" id="trips_hidden" name="trips_hidden" value="{{ $sales['trips_hidden'] }}">
         <input type="hidden" id="SSR" name="SSR" value="{{ $sales['SSR'] }}">
-        <select name="options" id="options" required="required" class="form-control" style="width: 100%;">
-          <option value="">Select Mobile Wallet</option>
+      </div>
+      <div class="row">
         @php
           foreach($options as $item){
-            echo "<option value='".$item->provider."' >".$item->name."</option>";
+        @endphp    
+            <div class="col-sm-12 col-md-4 text-center">
+              <div class="custom-control custom-radio image-checkbox">
+                  <input value="{{ $item->provider }}" type="radio" class="custom-control-input" id="{{ $item->name }}" name="options">
+                  <label class="custom-control-label" for="{{ $item->name }}">
+                      <img width="120px" src="https://usebillbox.com/{{ $item->logo }}" alt="#" class="img-fluid">
+                  </label>
+              </div>
+            </div>
+        @php
           }
         @endphp
-        </select>
-      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-12">
