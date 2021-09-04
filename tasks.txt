@@ -1,22 +1,29 @@
-56	20/08/2021	Payment Receipt	Bug	Payment receipt is sent to driver after 15 minutes and sometimes longer. Payment receipt must be instant or of shorter delay. Also taking up this issue with DreamOval.	Open
-57	22/08/2021	Driver Incompleted Payment/Unassign Attempt Scenario	Logic	If driver is linked with vehicle and has a pending payment with DECL=0, unless the Unblocking & Sales Auditing is done in the case of RH / only the unblocking is done for Rental and HP we will not allow to unassign driver. Is that ok? Because unassigning from a pending payment system should not allow to unassign the driver. Agree?	Open
-58	22/08/2021	Client Account Re-assignment to sub-level manager (Issues)	Logic	"(1) After re-assigning ""Client"" account to a sub-level manager, upper level manager looses all accesses and visibility to that client account. Upper level manager must have full visibility of all clients accounts even if account owners are sub-level managers.
+(1)
+SMS Business Summary To Driver
+Please confirm how this works as I have tested it and not messages were received on the driver contact numbers used.
 
-(2) Client account(s) should not be assignable to manager or sub-level manager who doesn't have the requisite settings."	Open
-60	24/08/2021	Report: Sales Ledger (Rental/HP)	Logic	Rename "Sales Ledger (Rental/HP)" to be "General Sales Ledger" and add 2 columns with title as "Source Business"=HP/RT/RH and "Originator"=DNM i.e., Driver Name	Open
+(2)
+Upper level users should be able to re-assign client accounts to other users under themselves - Check Contextual implications and scenarios
+Check Contextual implications and scenarios
 
-Sales Ledger (Rental/Hire Purchase)
-Collection Report (Rental/Hire Purchase)
+(3)
+While in Add/Edit Client screen, client identification means with only CAN is not user-friendly - Not Done
 
-if (RMT< CCEI(min) change DES in tbl136 to B4
-if A4 or B4 then sales auditing
+(4)
+"Create a ""Notifications Log"" under ""reports menu item to indicate all messages sent by SMS, to whom the messages were sent and what the delivery status of those notifications are. (Should not contain messages sent to tracker).
+Please,
+1. Add driver name to grid
+2. Combine date/time in one cell and name that column ""Sent Date/Time""
+3. Rename the ""Event"" column as ""Delivery Status""
+4. Enable the delivery status to auto-update i.e., sent....delivered....not delivered etc...
+"Is the status=""Delivered"" a true reflection of actual delivery status or is it just that the message was sent from the software?
+This is a LEGAL issue:
+Is the delivery status the same as what is logged on mNotify?"
 
+(5)
+While in Admin account, consider putting Password on "Settings" before access granted to the sub-listed menu items.
 
-The image on the login page is stretched
-Share the Report Page with Filters and Column Visibility with Sukumar Sir
-Add the Tree Structure on the Dashboard Screen
-
-
-
+(6)
+When selecting Telcos to pay from, use radio buttons displayed with Telcos logos instead of combobox
 
 
