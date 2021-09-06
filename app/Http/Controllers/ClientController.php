@@ -165,7 +165,6 @@ class ClientController extends Controller
                 DB::insert($sql);
                 SMSFleetops::send($mobile,$message);
             }
-            
             $users = User::Where('usertype','Client')->get();
             return redirect('/client')->with('message', 'Client Added Successfully');
         }
