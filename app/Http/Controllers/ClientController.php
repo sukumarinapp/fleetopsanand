@@ -153,15 +153,15 @@ class ClientController extends Controller
             $user->save();
 
             $password = trim($request->get('password'));
-            $name = trim($request->get('CZN'));
+            $name = trim($request->get('name')) . " " .trim($request->get('CZN'));
             $mobile = trim($request->get('UCN'));  
             if($UTV == 1 && $sms == 1){
                 Mail::to($email)->send(new FleetopsMail($name,"Client",$email,$password));
                 $message = "Dear $name, Your have been registered as a Client with FleetOps. Your Username is $email and Password is $password";
                 $DAT = date("Y-m-d");
                 $TIM = date("H:i:s");
-                $CTX = "Create Client";
-                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$mobile','$message','$DAT','$TIM','$CTX')";
+                $CTX = "Client";
+                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$mobile','$message','$DAT','$TIM','$CTX','$name')";
                 DB::insert($sql);
                 SMSFleetops::send($mobile,$message);
             }
@@ -239,15 +239,15 @@ class ClientController extends Controller
             $sms = ($request->get("sms") != null) ? 1 : 0;
 
             $password = trim($request->get('password'));
-            $name = trim($request->get('CZN'));
+            $name = trim($request->get('name')) . " " .trim($request->get('CZN'));
             $mobile = trim($request->get('UCN'));  
-            if($password != "" && $UTV == 1 && $sms == 1){
+            if($UTV == 1 && $sms == 1 && $password != "" ){
                 Mail::to($email)->send(new FleetopsMail($name,"Client",$email,$password));
                 $message = "Dear $name, Your Password with FleetOps is reset. Your Username is $email and New Password is $password";
                 $DAT = date("Y-m-d");
                 $TIM = date("H:i:s");
-                $CTX = "Update Client";
-                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$mobile','$message','$DAT','$TIM','$CTX')";
+                $CTX = "Client";
+                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$mobile','$message','$DAT','$TIM','$CTX','$name')";
                 DB::insert($sql);
                 SMSFleetops::send($mobile,$message);
             }

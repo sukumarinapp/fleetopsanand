@@ -16064,6 +16064,7 @@ CREATE TABLE `sms_log` (
   `MSG` varchar(2000) DEFAULT NULL,
   `DAT` date DEFAULT NULL,
   `TIM` varchar(10) DEFAULT NULL,
+  `NAM` varchar(50) DEFAULT NULL,
   `CTX` varchar(50) DEFAULT NULL,
   `STA` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
