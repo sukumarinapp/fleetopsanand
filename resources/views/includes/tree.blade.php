@@ -62,7 +62,7 @@
   </li>
 </ul>
 </div>
-@foreach($users as $user)
-  {{ $user->name }} {{ $user->UZS }} << {{ $user->usertype }} >>
+@foreach($usertree as $user)
+  {{ $user['name'] }} {{ $user['UZS'] }}  {{ $user['usertype'] }} >>
   <br>
 @endforeach

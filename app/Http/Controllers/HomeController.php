@@ -27,7 +27,61 @@ class HomeController extends Controller
     {
         $user_id = Auth::user()->id;
         $name = Auth::user()->name;
-        $sql= "with recursive cte (id, name,UZS,UAN,usertype,parent_id) as (
+        $usertree = array();
+        $sql1 = "select id,UAN,name,UZS,parent_id,usertype from users where parent_id=1 and usertype='Manager' order by id";
+        $managers = DB::select(DB::raw($sql1));
+        $i=0;
+        foreach($managers as $manager){
+            $manager_id = $manager->id;
+            $usertree[$i]['id'] = $manager_id;
+            $usertree[$i]['name'] = $manager->name;
+            $usertree[$i]['UZS'] = $manager->UZS;
+            $usertree[$i]['parent_id'] = $manager->parent_id;
+            $usertree[$i]['usertype'] = "manager";
+            $usertree[$i]['UAN'] = $manager->UAN;
+            $sql2 = "select id,UAN,name,UZS,parent_id,usertype from users where parent_id=$manager_id and usertype='Manager' order by id";
+            $sub_managers = DB::select(DB::raw($sql2));
+            $j=0;
+            foreach($sub_managers as $sub_manager){
+                $sub_manager_id = $sub_manager->id;
+                $usertree[$i]['submanager'][$j]['id'] = $sub_manager_id;
+                $usertree[$i]['submanager'][$j]['name'] = $sub_manager->name;
+                $usertree[$i]['submanager'][$j]['UZS'] = $sub_manager->UZS;
+                $usertree[$i]['submanager'][$j]['parent_id'] = $sub_manager->parent_id;
+                $usertree[$i]['submanager'][$j]['usertype'] = "submanager";  
+                $usertree[$i]['submanager'][$j]['UAN'] = $sub_manager->UAN;  
+                $sql3 = "select id,UAN,name,UZS,parent_id,usertype from users where parent_id=$sub_manager_id and usertype='Client' order by id";
+                $clients = DB::select(DB::raw($sql3));    
+                $k=0;
+                foreach($clients as $client){
+                    $client_id = $client->id;
+                    $CAN = $client->UAN;
+                    $usertree[$i]['submanager'][$j]['client'][$k]['id'] = $client_id;
+                    $usertree[$i]['submanager'][$j]['client'][$k]['name'] = $client->name;
+                    $usertree[$i]['submanager'][$j]['client'][$k]['UZS'] = $client->UZS;
+                    $usertree[$i]['submanager'][$j]['client'][$k]['parent_id'] = $client->parent_id;
+                    $usertree[$i]['submanager'][$j]['client'][$k]['usertype'] = "client";
+                    $usertree[$i]['submanager'][$j]['client'][$k]['UAN'] = $client->UAN;
+                    $sql4 = "select a.id,a.driver_id,a.VNO,a.VTV,a.TID,b.DNM,b.DSN from vehicle a,driver b where a.driver_id=b.id and a.CAN='$CAN' and a.VTV=1";
+                    $vehicles = DB::select(DB::raw($sql4));  
+                    $c=0;
+                    foreach($vehicles as $vehicle){
+                        $usertree[$i]['submanager'][$j]['client'][$k]['vehicle'][$c]['id'] = $vehicle->id;
+                        $usertree[$i]['submanager'][$j]['client'][$k]['vehicle'][$c]['driver_id'] = $vehicle->driver_id;
+                        $usertree[$i]['submanager'][$j]['client'][$k]['vehicle'][$c]['VNO'] = $vehicle->VNO;
+                        $usertree[$i]['submanager'][$j]['client'][$k]['vehicle'][$c]['TID'] = $vehicle->TID;
+                        $usertree[$i]['submanager'][$j]['client'][$k]['vehicle'][$c]['DNM'] = $vehicle->DNM;
+                        $usertree[$i]['submanager'][$j]['client'][$k]['vehicle'][$c]['DSN'] = $vehicle->DSN;
+                        $c++;
+                    }
+                    $k++;
+                }
+                $j++;
+            }
+            $i++;
+        }
+        //dd($usertree);
+        /*$sql= "with recursive cte (id, name,UZS,UAN,usertype,parent_id) as (
           select     id,
                      name,
                      UZS,
@@ -48,8 +102,8 @@ class HomeController extends Controller
                   on p.parent_id = cte.id
         )
         select * from cte";
-        $users = DB::select(DB::raw($sql));
-        return view('home',compact('users'));
+        $users = DB::select(DB::raw($sql));*/
+        return view('home',compact('usertree'));
     }
 
     public function locations()
