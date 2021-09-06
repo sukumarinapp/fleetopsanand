@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<style type="text/css">
+    .row-padded {
+        background-color: #F7F7F7;
+        padding: 1px;
+        margin: 4px;
+        border: 1px solid #DDD;
+    }
+</style>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -144,62 +152,63 @@
               </button>
             </div>
              <div class="modal-body">
+                <h6><u>Users</u></h6>
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPA">Can Create New User Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
                         <input {{ ($user->BPA == "1" ? "checked":"") }} name="BPA" type="checkbox" id="BPA" >
                     </div> 
                 </div>
-                <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPB">Can Create New Client Account.</label>
-                    <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPB == "1" ? "checked":"") }} name="BPB" type="checkbox" id="BPB">
-                    </div> 
-               </div>
-                <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPC">Can Add Vehicle to Client Account.</label>
-                    <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPC == "1" ? "checked":"") }} name="BPC" type="checkbox" id="BPC">
-                    </div> 
-                </div>
-                <div class="row row-padded">
+
+                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPD">Can Edit User Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
                         <input {{ ($user->BPD == "1" ? "checked":"") }} name="BPD" type="checkbox" id="BPD">
                     </div> 
                 </div>
-                <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPE">Can Edit Client Account.</label>
-                    <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPE == "1" ? "checked":"") }} name="BPE" type="checkbox" id="BPE">
-                   </div> 
-                </div>
-                <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPF">Can Manage Client Drivers.</label>
-                    <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPF == "1" ? "checked":"") }} name="BPF" type="checkbox" id="BPF">
-                    </div> 
-                </div>
+
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPG">Can Edit User Settings.</label>
                     <div class="icheck-success d-inline col-sm-2">
                         <input {{ ($user->BPG == "1" ? "checked":"") }} name="BPG" type="checkbox" id="BPG">
                     </div> 
                 </div>
+                
+                   <h6><u>Client</u></h6>
+
                 <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPH">Can Edit Client RH Business Settings.</label>
+                    <label class="form-check-label col-sm-8" for="BPB">Can Create New Client Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPH == "1" ? "checked":"") }} name="BPH" type="checkbox" id="BPH">
+                        <input {{ ($user->BPB == "1" ? "checked":"") }} name="BPB" type="checkbox" id="BPB">
                     </div> 
-                 </div>
+               </div>
+
                 <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPI">Can Edit System Parameters.</label>
+                    <label class="form-check-label col-sm-8" for="BPE">Can Edit Client Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPI == "1" ? "checked":"") }} name="BPI" type="checkbox" id="BPI">
+                        <input {{ ($user->BPE == "1" ? "checked":"") }} name="BPE" type="checkbox" id="BPE">
+                   </div> 
+                </div>
+
+                <div class="row row-padded">
+                    <label class="form-check-label col-sm-8" for="BPC">Can Manage Client Vehicles.</label>
+                    <div class="icheck-success d-inline col-sm-2">
+                        <input {{ ($user->BPC == "1" ? "checked":"") }} name="BPC" type="checkbox" id="BPC">
                     </div> 
                 </div>
+               
+               
                 <div class="row row-padded">
-                    <label class="form-check-label col-sm-8" for="BPJ">Can Manage Workflows.</label>
+                    <label class="form-check-label col-sm-8" for="BPF">Can Manage Client Drivers.</label>
+                    <div class="icheck-success d-inline col-sm-2">
+                        <input {{ ($user->BPF == "1" ? "checked":"") }} name="BPF" type="checkbox" id="BPF">
+                    </div> 
+                </div>
+                
+               
+               
+                <div class="row row-padded">
+                    <label class="form-check-label col-sm-8" for="BPJ">Can Manage Client Workflows.</label>
                     <div class="icheck-success d-inline col-sm-2">
                         <input {{ ($user->BPJ == "1" ? "checked":"") }} name="BPJ" type="checkbox" id="BPJ">
                     </div> 
@@ -209,21 +218,35 @@
                     <div class="icheck-success d-inline col-sm-1">
                         <input {{ ($user->BPJ1 == "1" ? "checked":"") }} name="BPJ1" type="checkbox" id="BPJ1">
                     </div> 
-                    <label class="form-check-label col-sm-8" for="BPJ1">Perform Driver Sales Auditing.</label>
+                    <label class="form-check-label col-sm-8" for="BPJ1">Sales Auditing.</label>
                 </div>
                 <div class="row row-padded">
                     <div class="icheck-success d-inline col-sm-1"></div>
                     <div class="icheck-success d-inline col-sm-1">
                         <input {{ ($user->BPJ2 == "1" ? "checked":"") }} name="BPJ2" type="checkbox" id="BPJ2">
                     </div> 
-                       <label class="form-check-label col-sm-8" for="BPJ2">Override Blocked/Immobilized Vehicle.</label>
+                       <label class="form-check-label col-sm-8" for="BPJ2">Override Blocked Vehicles.</label>
                 </div>
+                 <div class="row row-padded">
+                    <label class="form-check-label col-sm-8" for="BPH">Can Edit Client RH Business Settings.</label>
+                    <div class="icheck-success d-inline col-sm-2">
+                        <input {{ ($user->BPH == "1" ? "checked":"") }} name="BPH" type="checkbox" id="BPH">
+                    </div> 
+                 </div>
+
                 <div class="row row-padded">
                        <label class="form-check-label col-sm-8" for="BPL">Can Access Fueler Function.</label>
                     <div class="icheck-success d-inline col-sm-2">
                         <input {{ ($user->BPL == "1" ? "checked":"") }} name="BPL" type="checkbox" id="BPL">
                     </div> 
                  </div>
+                 <h6><u>Systems</u></h6>
+                  <div class="row row-padded">
+                    <label class="form-check-label col-sm-8" for="BPI">Can Edit System Parameters.</label>
+                    <div class="icheck-success d-inline col-sm-2">
+                        <input {{ ($user->BPI == "1" ? "checked":"") }} name="BPI" type="checkbox" id="BPI">
+                    </div> 
+                </div>
         </div>
         <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
