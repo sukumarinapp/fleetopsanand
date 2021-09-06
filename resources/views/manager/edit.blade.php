@@ -152,7 +152,7 @@
               </button>
             </div>
              <div class="modal-body">
-                <h6><u>Users</u></h6>
+                <h6>Users</h6>
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPA">Can Create New User Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
@@ -174,7 +174,7 @@
                     </div> 
                 </div>
                 
-                   <h6><u>Client</u></h6>
+                   <h6>Client</h6>
 
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPB">Can Create New Client Account.</label>
@@ -240,7 +240,7 @@
                         <input {{ ($user->BPL == "1" ? "checked":"") }} name="BPL" type="checkbox" id="BPL">
                     </div> 
                  </div>
-                 <h6><u>Systems</u></h6>
+                 <h6>Systems</h6>
                   <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPI">Can Edit System Parameters.</label>
                     <div class="icheck-success d-inline col-sm-2">
