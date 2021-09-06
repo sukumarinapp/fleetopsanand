@@ -176,10 +176,17 @@ class ClientController extends Controller
         $this->check_access("BPE");
         $user = User::find($id);
         $user_id = Auth::user()->id;
+        $CAN = $user->UAN;
         $usertype = Auth::user()->usertype;
         $sql="select * from users where UTV=1 and usertype='Manager' and BPE=1";
         $managers = DB::select(DB::raw($sql));
-        return view('client.edit', compact('user','managers'));
+        $sql2 = "select * from vehicle where CAN='$CAN' and VTV = 1";
+        $vehicle = DB::select(DB::raw($sql2));
+        $vehicle_active = 0;
+        if(count($vehicle) > 0){
+            $vehicle_active = 1;
+        }
+        return view('client.edit', compact('user','managers','vehicle_active'));
     }
     
    
