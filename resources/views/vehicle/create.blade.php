@@ -40,7 +40,7 @@
               	<div class="form-group row">
 					<label for="CAN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Customer Account #</label>
 					<div class="col-sm-8">
-						<select required="required" class="form-control" name="CAN" id="CAN" >
+						<select required="required" class="form-control select2" name="CAN" id="CAN" >
 						@foreach($clients as $client)
 	                     	<option value="{{ $client->UAN }}" >{{ $client->UAN }}-{{ $client->name }}</option>
 	                     @endforeach
@@ -204,3 +204,12 @@
     </section>
    
 @endsection
+@push('page_scripts')
+<script>
+  $(document).ready(function(){
+    $('.select2').select2({
+      theme: 'bootstrap4'
+    });
+  });
+</script>
+@endpush

@@ -127,7 +127,11 @@
                 @if($vehicle->VTV == 0 && $vehicle->DNM == "")
                 <form action="{{ route('vehicle.destroy', $vehicle->id)}}" method="post">
                 @endif
+                    @if(check_decl($DECL,$vehicle->VNO))
+                        <button class="btn btn-primary btn-xs disabled" >Edit</button>
+                    @else
                     <a href="{{ route('vehicle.edit',$vehicle->id) }}" class="btn btn-primary btn-xs">Edit</a>
+                    @endif
                     @csrf
                     @method('DELETE')
                     @if($vehicle->VTV == 0 && $vehicle->DNM == "")

@@ -61,6 +61,7 @@
             <th>Contact Name</th>
             <th>Email</th>
             <th>Contact No</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -78,6 +79,13 @@
           		<td>{{ $user->CZN }}</td>
           		<td>{{ $user->email }}</td>
           		<td>{{ $user->UCN }}</td>
+              <td>
+                @if($user->UTV == 1)
+                  Active
+                @else
+                  Inactive
+                @endif
+              </td>
           		<td>
                 @if(Auth::user()->usertype == "Admin" || Auth::user()->BPE == true)
                 @if($user->UTV == 0)

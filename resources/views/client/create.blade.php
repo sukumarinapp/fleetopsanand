@@ -90,9 +90,9 @@
 <div class="col-md-6">
 
   <div class="form-group row">
-    <label for="parent_id" class="col-sm-4 col-form-label"><span style="color:red">*</span>Account Manager</label>
+    <label for="parent_id" class="col-sm-4 col-form-label"><span style="color:red">*</span>Account Manager2</label>
     <div class="col-sm-8">
-      <select name="parent_id" id="parent_id" required="required" class="form-control" style="width: 100%;">
+      <select name="parent_id" id="parent_id" required="required" class="form-control select" style="width: 100%;">
         @if(Auth::user()->id != 1)
         <option value="{{ Auth::user()->id }}" >{{ Auth::user()->UAN }} {{ Auth::user()->name }} {{ Auth::user()->UZS }}</option>
         @endif
@@ -274,3 +274,12 @@
     </div>
   </div>
   @endsection
+@push('page_scripts')
+<script>
+  $(document).ready(function(){
+    $('.select2').select2({
+      theme: 'bootstrap4'
+    });
+  });
+</script>
+@endpush

@@ -235,7 +235,21 @@ class VehicleController extends Controller
         $LDT = date("Y-m-d");
         $sql = "insert into vehicle_log (LDT,CAN,VNO,DID,UAN,TIM,ATN) values ('$LDT','$CAN','$VNO','$DID','$UAN','$TIM','Assign Vehicle')";
         DB::insert($sql);
+        self::send_sms($VID);
+        return redirect('/vehicle')->with('message', 'Driver Assigned Successfully');
+    }
 
+    public function assign($id){
+        $this->check_access("BPF");
+        $sql = "SELECT a.*,b.name FROM vehicle a,users b where a.CAN=b.UAN and a.id=$id";
+        $vehicle = DB::select(DB::raw($sql));
+        $vehicle = $vehicle[0];
+        $sql = "SELECT id,DNO,DNM,DSN,DNO,DCN FROM driver where id not in (select driver_id from vehicle where driver_id<>'')";
+        $drivers = DB::select(DB::raw($sql));
+        return view('vehicle.assign', compact('vehicle','drivers'));
+    }
+
+    private function send_sms($VID){
         $sql = "select b.DCN,b.DNM,b.VBM,b.VAM,b.VPF,b.WDY,b.MDY,b.VPD,c.name,c.UCN from vehicle a,driver b,users c where a.driver_id=b.id and a.CAN=c.UAN and a.id=$VID";
         $vehicle = DB::select(DB::raw($sql));
         $vehicle = $vehicle[0];
@@ -280,21 +294,10 @@ class VehicleController extends Controller
         $SMS = $SMS ."Thank you.\n";
         $DAT = date("Y-m-d");
         $TIM = date("H:i:s");
-        $CTX = "Assign Driver";
-        $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$DCN','$SMS','$DAT','$TIM','$CTX')";
+        $CTX = "Driver";
+        $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$DCN','$SMS','$DAT','$TIM','$CTX','$DNM')";
         DB::insert($sql);
         SMSFleetops::send($DCN,$SMS);
-        return redirect('/vehicle')->with('message', 'Driver Assigned Successfully');
-    }
-
-    public function assign($id){
-        $this->check_access("BPF");
-        $sql = "SELECT a.*,b.name FROM vehicle a,users b where a.CAN=b.UAN and a.id=$id";
-        $vehicle = DB::select(DB::raw($sql));
-        $vehicle = $vehicle[0];
-        $sql = "SELECT id,DNO,DNM,DSN,DNO,DCN FROM driver where id not in (select driver_id from vehicle where driver_id<>'')";
-        $drivers = DB::select(DB::raw($sql));
-        return view('vehicle.assign', compact('vehicle','drivers'));
     }
 
     public function removedriver(Request $request){

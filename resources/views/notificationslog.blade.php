@@ -40,18 +40,20 @@
         <thead>
           <tr>
             <th>Mobile</th>
+            <th>Receipient Name</th>
+            <th>Designation</th>
             <th>Message</th>
-            <th>Sent Date/Time</th>
-            <th>Event</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
           @foreach($logs as $log)
           <tr>
            <td>{{ $log->PHN }}</td>
+           <td>{{ $log->NAM }}</td>
+           <td>{{ $log->CTX }}</td>
            <td>{{ $log->MSG }}</td>
            <td>{{ date("d-m-Y",strtotime($log->DAT)) }} {{ $log->TIM }}</td>
-           <td>{{ $log->CTX }}</td>
          </tr>
          @endforeach
        </tbody>

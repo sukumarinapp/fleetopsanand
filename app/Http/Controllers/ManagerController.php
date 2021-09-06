@@ -53,7 +53,7 @@ class ManagerController extends Controller
                          p.parent_id
               from       users p
               inner join cte
-                      on p.parent_id = cte.id
+                      on p.parent_id = cte.id and p.usertype = 'Manager'
             )
             select * from cte";
             $users = DB::select(DB::raw($sql));
@@ -162,7 +162,7 @@ class ManagerController extends Controller
                 $DAT = date("Y-m-d");
                 $TIM = date("H:i:s");
                 $CTX = "Create Manager";
-                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$mobile','$message','$DAT','$TIM','$CTX')";
+                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$mobile','$message','$DAT','$TIM','$CTX','$name')";
                 DB::insert($sql);
                 SMSFleetops::send($mobile,$message);
             }
@@ -247,7 +247,7 @@ class ManagerController extends Controller
                 $DAT = date("Y-m-d");
                 $TIM = date("H:i:s");
                 $CTX = "Update Manager";
-                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX) values ('$mobile','$message','$DAT','$TIM','$CTX')";
+                $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$mobile','$message','$DAT','$TIM','$CTX','$name')";
                 DB::insert($sql);
                 SMSFleetops::send($mobile,$message);
             }

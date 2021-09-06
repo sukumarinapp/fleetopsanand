@@ -62,18 +62,30 @@
             <th>Email</th>
             <th>Job Title</th>
             <th>Contact No</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
           </thead>
           <tbody>
             @foreach($users as $user)
-          	<tr>
-          		<td>{{ $user->UAN }}</td>
+          	<tr 
+            @if($user->UTV == 0)
+              style="color: #FFC300;"
+            @endif
+            >
+          		<td>{{ $user->usertype }} {{ $user->UAN }}</td>
               <td>{{ $user->name }} {{ $user->UZS }}</td>
           		<td>{{ get_manager($user->parent_id,$parent) }}</td>
           		<td>{{ $user->email }}</td>
           		<td>{{ $user->UJT }}</td>
           		<td>{{ $user->UCN }}</td>
+              <td>
+                @if($user->UTV == 1)
+                  Active
+                @else
+                  Inactive
+                @endif
+              </td>
           		<td>
                 @if(Auth::user()->usertype == "Admin" || Auth::user()->BPD == true)
                 @if($user->UTV == 0)

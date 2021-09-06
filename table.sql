@@ -10,6 +10,18 @@ $('#example1').DataTable( {
         ]
     } );
 
+CREATE TABLE `sms_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `PHN` varchar(20) DEFAULT NULL,
+  `MSG` varchar(2000) DEFAULT NULL,
+  `DAT` date DEFAULT NULL,
+  `TIM` varchar(10) DEFAULT NULL,
+  `NAM` varchar(50) DEFAULT NULL,
+  `CTX` varchar(50) DEFAULT NULL,
+  `STA` varchar(20) DEFAULT NULL,
+  id PR
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE sms_log;
 CREATE TABLE sms_log (
     id int(11) NOT NULL AUTO_INCREMENT,
@@ -17,6 +29,7 @@ CREATE TABLE sms_log (
     MSG varchar(2000) DEFAULT NULL,
     DAT date DEFAULT NULL,
     TIM varchar(10) DEFAULT NULL,
+    `NAM` varchar(50) DEFAULT NULL,
     CTX varchar(50) DEFAULT NULL,
     STA varchar(20) DEFAULT NULL,
     PRIMARY KEY(id)
