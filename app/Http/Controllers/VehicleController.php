@@ -239,6 +239,11 @@ class VehicleController extends Controller
         return redirect('/vehicle')->with('message', 'Driver Assigned Successfully');
     }
 
+    public function resendsms($VID){
+        self::send_sms($VID);
+        return redirect('/fdriver')->with('message', 'SMS Sent Successfully');
+    }
+
     public function assign($id){
         $this->check_access("BPF");
         $sql = "SELECT a.*,b.name FROM vehicle a,users b where a.CAN=b.UAN and a.id=$id";

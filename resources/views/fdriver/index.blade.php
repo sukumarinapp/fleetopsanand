@@ -46,6 +46,7 @@
             <th>Contact #</th>
             <th>Business Model</th>
             <th>Status</th>
+            <th style="width :100px">Business SMS</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -71,6 +72,13 @@
                   Not Linked
                 @endif
               </td>
+               <td>
+                @if($driver->vid== "")
+                  &nbsp;
+                @else                  
+                  <a href="{{ route('resendsms',$driver->vid) }}" class="btn btn-primary btn-xs">Resend</a>
+                @endif
+               </td>
               <td>
                 @if($driver->VNO == "")
                 <form action="{{ route('fdriver.destroy', $driver->id)}}" method="post">

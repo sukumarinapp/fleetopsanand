@@ -58,6 +58,7 @@ Route::get('/billbox', 'DriverController@billbox')->name('billbox');
 
 Route::get('/driverpayerror', 'DriverController@driverpayerror')->name('driverpayerror');
 Route::get('/driverhelp/{VNO}/{DCN}', 'DriverController@driverhelp')->name('driverhelp');
+Route::get('/resendsms/{VID}', 'VehicleController@resendsms')->name('resendsms');
 Route::get('/driverhelp1/{VNO}/{DCN}', 'DriverController@driverhelp1')->name('driverhelp1');
 Route::get('/driverhelp2/{VNO}/{DCN}', 'DriverController@driverhelp2')->name('driverhelp2');
 Route::get('/driverhelp3/{VNO}/{DCN}', 'DriverController@driverhelp3')->name('driverhelp3');
