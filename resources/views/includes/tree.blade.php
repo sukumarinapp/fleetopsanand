@@ -1,5 +1,5 @@
 <div id="treeview_container" class="hummingbird-treeview" style="height: 600px;">
-<ul style="float: left; " id="treeview" class="hummingbird-base">
+<ul style="float: left;padding-left: 0px;" id="treeview" class="hummingbird-base">
   <li data-id="0">
     <i class="fa fa-plus"></i>
     <label>
@@ -48,7 +48,7 @@
 </ul>
 </div>
 <ul>
-
+<!-- 
 @foreach($usertree as $key => $manager)
   <li>{{ $key+1 }} {{ $manager['name'] }} {{ $manager['UZS'] }}:{{ $manager['usertype'] }}:{{ $manager['level'] }}</li>
   <ul>
@@ -77,4 +77,4 @@
   @endforeach  
   </ul>
 @endforeach
-</ul>
+</ul> -->
