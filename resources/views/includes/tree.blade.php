@@ -1,5 +1,5 @@
-<div id="treeview_container" class="hummingbird-treeview" style="height: 600px;">
-<ul style="float: left; " id="treeview" class="hummingbird-base">
+<div id="treeview_container" class="hummingbird-treeview" style="height: 410px;">
+<ul style="float: left; padding-left: 1px; " id="treeview" class="hummingbird-base">
   <li data-id="0">
     <i class="fa fa-plus"></i>
     <label>
@@ -62,7 +62,7 @@
   </li>
 </ul>
 </div>
-@foreach($users as $user)
+<!-- @foreach($users as $user)
   {{ $user->name }} {{ $user->UZS }} << {{ $user->usertype }} >>
   <br>
-@endforeach
+@endforeach -->
