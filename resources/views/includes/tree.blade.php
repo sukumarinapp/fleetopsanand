@@ -1,4 +1,4 @@
-<div id="treeview_container" class="hummingbird-treeview" style="height: 600px;">
+<div id="treeview_container" class="hummingbird-treeview" style="height: 500px;">
 <ul style="float: left;padding-left: 0px;" id="treeview" class="hummingbird-base">
   <li data-id="0">
     <i class="fa fa-plus"></i>
