@@ -2,18 +2,18 @@
 .hummingbird-treeview *
 {
     list-style: none;
-    font-size: 15px;
-    line-height: 10px;
+    font-size: 13px;
+    line-height: 8px;
 }
 
 .hummingbird-treeview label {
-    font-weight: normal;
+    font-weight: lighter;
 }
 
 
 .hummingbird-treeview input[type=checkbox] {
-    width : 12px;
-    height :12px;
+    width : 10px;
+    height :10px;
     padding: 0px;
     margin: 0px;
 }
@@ -23,12 +23,12 @@
 }
 
 .hummingbird-treeview .fa {
-    font-style: normal;
+    font-style: inherit;
     cursor: pointer;
 }
 
 .hummingbird-treeview .fas {
-    font-style: normal;
+    font-style: inherit;
     cursor: pointer;
 }
 
