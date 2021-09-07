@@ -60,7 +60,7 @@
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
-              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $client['name'] }}}}
+              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $client['name'] }}
             </label>
             <ul>
               @foreach($client['vehicle'] as $key3 => $vehicle)
