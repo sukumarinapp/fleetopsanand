@@ -160,14 +160,14 @@
                  <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPD">Can Edit User Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPD == "1" ? "checked":"") }} name="BPD" type="checkbox" id="BPD">
+                        <input {{ (($current_manager->BPD == 0) ? "disabled=disabled":"") }}  {{ ($user->BPD == "1" ? "checked":"") }} name="BPD" type="checkbox" id="BPD">
                     </div> 
                 </div>
 
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPG">Can Edit User Settings.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPG == "1" ? "checked":"") }} name="BPG" type="checkbox" id="BPG">
+                        <input {{ (($current_manager->BPG == 0) ? "disabled=disabled":"") }}  {{ ($user->BPG == "1" ? "checked":"") }} name="BPG" type="checkbox" id="BPG">
                     </div> 
                 </div>
                 
@@ -176,21 +176,21 @@
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPB">Can Create New Client Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPB == "1" ? "checked":"") }} name="BPB" type="checkbox" id="BPB">
+                        <input  {{ (($current_manager->BPB == 0) ? "disabled=disabled":"") }}  {{ ($user->BPB == "1" ? "checked":"") }} name="BPB" type="checkbox" id="BPB">
                     </div> 
                </div>
 
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPE">Can Edit Client Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPE == "1" ? "checked":"") }} name="BPE" type="checkbox" id="BPE">
+                        <input  {{ (($current_manager->BPE == 0) ? "disabled=disabled":"") }}  {{ ($user->BPE == "1" ? "checked":"") }} name="BPE" type="checkbox" id="BPE">
                    </div> 
                 </div>
 
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPC">Can Manage Client Vehicles.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPC == "1" ? "checked":"") }} name="BPC" type="checkbox" id="BPC">
+                        <input  {{ (($current_manager->BPC == 0) ? "disabled=disabled":"") }}  {{ ($user->BPC == "1" ? "checked":"") }} name="BPC" type="checkbox" id="BPC">
                     </div> 
                 </div>
                
@@ -198,7 +198,7 @@
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPF">Can Manage Client Drivers.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPF == "1" ? "checked":"") }} name="BPF" type="checkbox" id="BPF">
+                        <input  {{ (($current_manager->BPF == 0) ? "disabled=disabled":"") }}  {{ ($user->BPF == "1" ? "checked":"") }} name="BPF" type="checkbox" id="BPF">
                     </div> 
                 </div>
                 
@@ -207,41 +207,41 @@
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPJ">Can Manage Client Workflows.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPJ == "1" ? "checked":"") }} name="BPJ" type="checkbox" id="BPJ">
+                        <input  {{ (($current_manager->BPJ == 0) ? "disabled=disabled":"") }}  {{ ($user->BPJ == "1" ? "checked":"") }} name="BPJ" type="checkbox" id="BPJ">
                     </div> 
                 </div>
                 <div class="row row-padded">
                     <div class="icheck-success d-inline col-sm-1"></div>
                     <div class="icheck-success d-inline col-sm-1">
-                        <input {{ ($user->BPJ1 == "1" ? "checked":"") }} name="BPJ1" type="checkbox" id="BPJ1">
+                        <input  {{ (($current_manager->BPJ1 == 0) ? "disabled=disabled":"") }}  {{ ($user->BPJ1 == "1" ? "checked":"") }} name="BPJ1" type="checkbox" id="BPJ1">
                     </div> 
                     <label class="form-check-label col-sm-8" for="BPJ1">Sales Auditing.</label>
                 </div>
                 <div class="row row-padded">
                     <div class="icheck-success d-inline col-sm-1"></div>
                     <div class="icheck-success d-inline col-sm-1">
-                        <input {{ ($user->BPJ2 == "1" ? "checked":"") }} name="BPJ2" type="checkbox" id="BPJ2">
+                        <input {{ (($current_manager->BPJ2 == 0) ? "disabled=disabled":"") }}   {{ ($user->BPJ2 == "1" ? "checked":"") }} name="BPJ2" type="checkbox" id="BPJ2">
                     </div> 
                        <label class="form-check-label col-sm-8" for="BPJ2">Override Blocked Vehicles.</label>
                 </div>
                  <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPH">Can Edit Client RH Business Settings.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPH == "1" ? "checked":"") }} name="BPH" type="checkbox" id="BPH">
+                        <input  {{ (($current_manager->BPH == 0) ? "disabled=disabled":"") }}  {{ ($user->BPH == "1" ? "checked":"") }} name="BPH" type="checkbox" id="BPH">
                     </div> 
                  </div>
 
                 <div class="row row-padded">
                        <label class="form-check-label col-sm-8" for="BPL">Can Access Fueler Function.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPL == "1" ? "checked":"") }} name="BPL" type="checkbox" id="BPL">
+                        <input  {{ (($current_manager->BPL == 0) ? "disabled=disabled":"") }}  {{ ($user->BPL == "1" ? "checked":"") }} name="BPL" type="checkbox" id="BPL">
                     </div> 
                  </div>
                  <h6>Systems</h6>
                   <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPI">Can Edit System Parameters.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPI == "1" ? "checked":"") }} name="BPI" type="checkbox" id="BPI">
+                        <input  {{ (($current_manager->BPI == 0) ? "disabled=disabled":"") }}  {{ ($user->BPI == "1" ? "checked":"") }} name="BPI" type="checkbox" id="BPI">
                     </div> 
                 </div>
         </div>
