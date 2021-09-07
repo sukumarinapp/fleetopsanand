@@ -52,12 +52,9 @@
 					<label for="parent_id" class="col-sm-4 col-form-label"><span style="color:red">*</span>User Manager</label>
 				<div class="col-sm-8">
                   <select name="parent_id" id="parent_id" required="required" class="form-control select2" style="width: 100%;">
-                    @if(Auth::user()->id != 1)
-                        <option {{ (($user->parent_id == Auth::user()->id) ? "selected":"") }} value="{{ Auth::user()->id }}" >{{ Auth::user()->UAN }} {{ Auth::user()->name }}</option>
-                    @endif
                     @foreach($managers as $manager)
                       @if($manager->parent_id != $user->id && $manager->id != $user->id)  
-                      <option {{ (($user->parent_id == $manager->id) ? "selected":"") }} value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }} {{ $manager->UZS }}</option>
+                      <option data-settings="{{ $manager->BPA }},{{ $manager->BPB }},{{ $manager->BPC }},{{ $manager->BPD }},{{ $manager->BPE }},{{ $manager->BPF }},{{ $manager->BPG }},{{ $manager->BPH }},{{ $manager->BPI }},{{ $manager->BPJ }},{{ $manager->BPJ1 }},{{ $manager->BPJ2 }},{{ $manager->BPK }},{{ $manager->BPL }}" {{ (($user->parent_id == $manager->id) ? "selected":"") }} value="{{ $manager->id }}" >{{ $manager->UAN }} {{ $manager->name }} {{ $manager->UZS }}</option>
                       @endif
                     @endforeach
                   </select>
@@ -264,6 +261,146 @@
         $('.select2').select2({
             theme: 'bootstrap4'
         });
+
+        $('#parent_id').change(function(){
+           var selected = $(this).find('option:selected');
+           var settings = selected.data('settings'); 
+           var selval = selected.val();
+           if(selval != "" && selval != 1){
+               var permissions = settings.split(",");
+               console.log(settings);
+               for (let i = 0; i < permissions.length; i++) {
+                console.log(permissions[i]);
+                if(i==0){
+                    if(permissions[0] == 0){
+                        $("#BPA").attr('disabled','disabled');
+                        $("#BPA").removeAttr('checked');
+                    }else{
+                        $("#BPA").removeAttr("disabled");
+                        $("#BPA").attr('checked','true');
+                    }
+                }
+                if(i==1){
+                    if(permissions[1] == 0){
+                        $("#BPB").attr('disabled','disabled');
+                        $("#BPB").removeAttr('checked');
+                    }else{
+                        $("#BPB").removeAttr("disabled");
+                        $("#BPB").attr('checked','true');
+                    }
+                }
+                if(i==2){
+                    if(permissions[2] == 0){
+                        $("#BPC").attr('disabled','disabled');
+                        $("#BPC").removeAttr('checked');
+                    }else{
+                        $("#BPC").removeAttr("disabled");
+                        $("#BPC").attr('checked','true');
+                    }
+                }
+                if(i==3){
+                    if(permissions[3] == 0){
+                        $("#BPD").attr('disabled','disabled');
+                        $("#BPD").removeAttr('checked');
+                    }else{
+                        $("#BPD").removeAttr("disabled");
+                        $("#BPD").attr('checked','true');
+                    }
+                }
+                if(i==4){
+                    if(permissions[4] == 0){
+                        $("#BPE").attr('disabled','disabled');
+                        $("#BPE").removeAttr('checked');
+                    }else{
+                        $("#BPE").removeAttr("disabled");
+                        $("#BPE").attr('checked','true');
+                    }
+                }
+                if(i==5){
+                    if(permissions[5] == 0){
+                        $("#BPF").attr('disabled','disabled');
+                        $("#BPF").removeAttr('checked');
+                    }else{
+                        $("#BPF").removeAttr("disabled");
+                        $("#BPF").attr('checked','true');
+                    }
+                }
+                if(i==6){
+                    if(permissions[6] == 0){
+                        $("#BPG").attr('disabled','disabled');
+                        $("#BPG").removeAttr('checked');
+                    }else{
+                        $("#BPG").removeAttr("disabled");
+                        $("#BPG").attr('checked','true');
+                    }
+                }
+                if(i==7){
+                    if(permissions[7] == 0){
+                        $("#BPH").attr('disabled','disabled');
+                        $("#BPH").removeAttr('checked');
+                    }else{
+                        $("#BPH").removeAttr("disabled");
+                        $("#BPH").attr('checked','true');
+                    }
+                }
+                if(i==8){
+                    if(permissions[8] == 0){
+                        $("#BPI").attr('disabled','disabled');
+                        $("#BPI").removeAttr('checked');
+                    }else{
+                        $("#BPI").removeAttr("disabled");
+                        $("#BPI").attr('checked','true');
+                    }
+                }
+                if(i==9){
+                    if(permissions[9] == 0){
+                        $("#BPJ").attr('disabled','disabled');
+                        $("#BPJ").removeAttr('checked');
+                    }else{
+                        $("#BPJ").removeAttr("disabled");
+                        $("#BPJ").attr('checked','true');
+                    }
+                }
+                if(i==10){
+                    if(permissions[10] == 0){
+                        $("#BPJ1").attr('disabled','disabled');
+                        $("#BPJ1").removeAttr('checked');
+                    }else{
+                        $("#BPJ1").removeAttr("disabled");
+                        $("#BPJ1").attr('checked','true');
+                    }
+                }
+                if(i==11){
+                    if(permissions[11] == 0){
+                        $("#BPJ2").attr('disabled','disabled');
+                        $("#BPJ2").removeAttr('checked');
+                    }else{
+                        $("#BPJ2").removeAttr("disabled");
+                        $("#BPJ2").attr('checked','true');
+                    }
+                }
+                if(i==12){
+                    if(permissions[12] == 0){
+                        $("#BPK").attr('disabled','disabled');
+                        $("#BPK").removeAttr('checked');
+                    }else{
+                        $("#BPK").removeAttr("disabled");
+                        $("#BPK").attr('checked','true');
+                    }
+                }
+                if(i==13){
+                    if(permissions[13] == 0){
+                        $("#BPL").attr('disabled','disabled');
+                        $("#BPL").removeAttr('checked');
+                    }else{
+                        $("#BPL").removeAttr("disabled");
+                        $("#BPL").attr('checked','true');
+                    }
+                }
+               }
+           }
+        });
+
     });
 </script>
 @endpush

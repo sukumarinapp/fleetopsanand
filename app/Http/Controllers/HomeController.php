@@ -28,19 +28,20 @@ class HomeController extends Controller
         $user_id = Auth::user()->id;
         $name = Auth::user()->name;
         $usertree = array();
-        $sql1 = "select id,UAN,name,UZS,parent_id,usertype from users where parent_id=1 and usertype='Manager' order by id";
+        $sql1 = "select email,id,UAN,name,UZS,parent_id,usertype from users where parent_id=$user_id and usertype='Manager' order by id";
         $managers = DB::select(DB::raw($sql1));
         $i=0;
         foreach($managers as $manager){
             $manager_id = $manager->id;
             $usertree[$i]['id'] = $manager_id;
+            $usertree[$i]['email'] = $manager->email;
             $usertree[$i]['name'] = $manager->name;
             $usertree[$i]['UZS'] = $manager->UZS;
             $usertree[$i]['parent_id'] = $manager->parent_id;
             $usertree[$i]['usertype'] = "manager";
             $usertree[$i]['UAN'] = $manager->UAN;
             $usertree[$i]['level'] = 1;
-            $sql3 = "select id,UAN,name,UZS,parent_id,usertype from users where parent_id=$manager_id and usertype='Client' order by id";
+            $sql3 = "select email,id,UAN,name,UZS,parent_id,usertype from users where parent_id=$manager_id and usertype='Client' order by id";
             $clients = DB::select(DB::raw($sql3));    
             $k=0;
             $usertree[$i]['client'] = array();
@@ -50,6 +51,7 @@ class HomeController extends Controller
                 $parent_id = $client->parent_id;
                 $usertree[$i]['client'][$k]['id'] = $client_id;
                 $usertree[$i]['client'][$k]['name'] = $client->name;
+                $usertree[$i]['client'][$k]['email'] = $client->email;
                 $usertree[$i]['client'][$k]['UZS'] = $client->UZS;
                 $usertree[$i]['client'][$k]['parent_id'] = $client->parent_id;
                 $usertree[$i]['client'][$k]['usertype'] = "client";
@@ -73,7 +75,7 @@ class HomeController extends Controller
                 }
                 $k++;
             }
-            $sql2 = "select id,UAN,name,UZS,parent_id,usertype from users where parent_id=$manager_id and usertype='Manager' order by id";
+            $sql2 = "select email,id,UAN,name,UZS,parent_id,usertype from users where parent_id=$manager_id and usertype='Manager' order by id";
             $sub_managers = DB::select(DB::raw($sql2));
             $usertree[$i]['submanager'] = array();
             $j=0;
@@ -81,12 +83,13 @@ class HomeController extends Controller
                 $sub_manager_id = $sub_manager->id;
                 $usertree[$i]['submanager'][$j]['id'] = $sub_manager_id;
                 $usertree[$i]['submanager'][$j]['name'] = $sub_manager->name;
+                $usertree[$i]['submanager'][$j]['email'] = $sub_manager->email;
                 $usertree[$i]['submanager'][$j]['UZS'] = $sub_manager->UZS;
                 $usertree[$i]['submanager'][$j]['parent_id'] = $sub_manager->parent_id;
                 $usertree[$i]['submanager'][$j]['usertype'] = "submanager";  
                 $usertree[$i]['submanager'][$j]['level'] = 2;  
                 $usertree[$i]['submanager'][$j]['UAN'] = $sub_manager->UAN;  
-                $sql3 = "select id,UAN,name,UZS,parent_id,usertype from users where parent_id=$sub_manager_id and usertype='Client' order by id";
+                $sql3 = "select email,id,UAN,name,UZS,parent_id,usertype from users where parent_id=$sub_manager_id and usertype='Client' order by id";
                 $clients = DB::select(DB::raw($sql3));    
                 $k=0;
                 $usertree[$i]['submanager'][$j]['client'] = array();
@@ -96,6 +99,7 @@ class HomeController extends Controller
                     $parent_id = $client->parent_id;
                     $usertree[$i]['submanager'][$j]['client'][$k]['id'] = $client_id;
                     $usertree[$i]['submanager'][$j]['client'][$k]['name'] = $client->name;
+                    $usertree[$i]['submanager'][$j]['client'][$k]['email'] = $client->email;
                     $usertree[$i]['submanager'][$j]['client'][$k]['UZS'] = $client->UZS;
                     $usertree[$i]['submanager'][$j]['client'][$k]['parent_id'] = $client->parent_id;
                     $usertree[$i]['submanager'][$j]['client'][$k]['usertype'] = "client";

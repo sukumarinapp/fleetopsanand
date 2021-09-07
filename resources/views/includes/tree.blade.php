@@ -3,7 +3,7 @@
   <li data-id="0">
     <i class="fa fa-plus"></i>
     <label>
-      <input id="xnode-0" data-id="custom-{{ Auth::user()->id }}" type="checkbox" /> {{ Auth::user()->name }}
+      <input id="xnode-0" data-id="custom-{{ Auth::user()->id }}" type="checkbox" /> {{ Auth::user()->name }} 
     </label>
     <ul>
       @foreach($usertree as $key => $manager)
@@ -17,14 +17,14 @@
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
-              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $submanager['UZS'] }} {{ $submanager['name'] }}
+              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $submanager['name'] }} {{ $manager['UZS'] }}
             </label>
             <ul>
               @foreach($submanager['client'] as $key3 => $client)
               <li data-id="{{ $key3+1 }}">
                 <i class="fa fa-plus"></i>
                 <label>
-                  <input  id="xnode-0-1-2-3" data-id="custom-0-1-2-3" type="checkbox" /> {{ $client['name'] }} {{ $client['UZS'] }}
+                  <input  id="xnode-0-1-2-3" data-id="custom-0-1-2-3" type="checkbox" /> {{ $client['name'] }} {{ $manager['UZS'] }}
                 </label>
                 <ul>
                   @foreach($client['vehicle'] as $key4 => $vehicle)
@@ -47,8 +47,8 @@
   </li>
 </ul>
 </div>
-<ul>
-<!-- 
+
+<!-- <ul>
 @foreach($usertree as $key => $manager)
   <li>{{ $key+1 }} {{ $manager['name'] }} {{ $manager['UZS'] }}:{{ $manager['usertype'] }}:{{ $manager['level'] }}</li>
   <ul>
