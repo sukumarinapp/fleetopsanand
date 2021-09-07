@@ -182,6 +182,7 @@ class ManagerController extends Controller
         $managers = DB::select(DB::raw($sql));
         $sql2="select * from users where id = $parent_id ";
         $current_manager = DB::select(DB::raw($sql2));
+        $current_manager = $current_manager[0];
         return view('manager.edit', compact('user','managers','current_manager'));
     }
    

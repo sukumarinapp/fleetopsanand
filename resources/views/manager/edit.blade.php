@@ -153,7 +153,7 @@
                 <div class="row row-padded">
                     <label class="form-check-label col-sm-8" for="BPA">Can Create New User Account.</label>
                     <div class="icheck-success d-inline col-sm-2">
-                        <input {{ ($user->BPA == "1" ? "checked":"") }} name="BPA" type="checkbox" id="BPA" >
+                        <input {{ (($current_manager->BPA == 0) ? "disabled=disabled":"") }}  {{ ($user->BPA == "1" ? "checked":"") }} name="BPA" type="checkbox" id="BPA" >
                     </div> 
                 </div>
 
