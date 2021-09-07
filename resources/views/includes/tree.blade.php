@@ -17,14 +17,14 @@
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
-              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $submanager['name'] }} {{ $manager['UZS'] }}
+              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $submanager['name'] }} {{ $submanager['UZS'] }}
             </label>
             <ul>
               @foreach($submanager['client'] as $key3 => $client)
               <li data-id="{{ $key3+1 }}">
                 <i class="fa fa-plus"></i>
                 <label>
-                  <input  id="xnode-0-1-2-3" data-id="custom-0-1-2-3" type="checkbox" /> {{ $client['name'] }} {{ $manager['UZS'] }}
+                  <input  id="xnode-0-1-2-3" data-id="custom-0-1-2-3" type="checkbox" /> {{ $client['name'] }} {{ $client['UZS'] }}
                 </label>
                 <ul>
                   @foreach($client['vehicle'] as $key4 => $vehicle)
@@ -48,28 +48,28 @@
 </ul>
 </div>
 
-<!-- <ul>
+<ul>
 @foreach($usertree as $key => $manager)
-  <li>{{ $key+1 }} {{ $manager['name'] }} {{ $manager['UZS'] }}:{{ $manager['usertype'] }}:{{ $manager['level'] }}</li>
+  <li>{{ $manager['name'] }} {{ $manager['UZS'] }}</li>
   <ul>
   @foreach($manager['client'] as $client)
-    <li>{{ $client['name'] }} {{ $client['UZS'] }}:{{ $client['usertype'] }}:{{ $client['level'] }}</li>
+    <li>{{ $client['name'] }} {{ $client['UZS'] }}</li>
     <ul>
       @foreach($client['vehicle'] as $vehicle)
-        <li>{{ $vehicle['VNO'] }}:{{ $vehicle['usertype'] }}:{{ $vehicle['level'] }}</li>
+        <li>{{ $vehicle['VNO'] }}</li>
       @endforeach    
     </ul>
   @endforeach
   </ul>
   <ul>
   @foreach($manager['submanager'] as $submanager)
-    <li>{{ $submanager['name'] }} {{ $submanager['UZS'] }}:{{ $submanager['usertype'] }}:{{ $submanager['level'] }}</li>
+    <li>{{ $submanager['name'] }} {{ $submanager['UZS'] }}</li>
     <ul>
       @foreach($submanager['client'] as $client)
-        <li>{{ $client['name'] }} {{ $client['UZS'] }}:{{ $client['usertype'] }}:{{ $client['level'] }}</li>
+        <li>{{ $client['name'] }} {{ $client['UZS'] }}</li>
         <ul>
           @foreach($client['vehicle'] as $vehicle)
-            <li>{{ $vehicle['VNO'] }}:{{ $vehicle['usertype'] }}:{{ $vehicle['level'] }}</li>
+            <li>{{ $vehicle['VNO'] }}</li>
           @endforeach  
         </ul>
       @endforeach
@@ -77,4 +77,4 @@
   @endforeach  
   </ul>
 @endforeach
-</ul> -->
+</ul>
