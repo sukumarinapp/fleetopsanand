@@ -53,7 +53,7 @@
       <li data-id="{{ $key1+1 }}">
         <i class="fa fa-plus"></i>
         <label>
-          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $submanager['name'] }}}}
+          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $submanager['name'] }}
         </label>
         <ul>
           @foreach($submanager['client'] as $key2 => $client)
