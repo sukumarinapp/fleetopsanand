@@ -9,14 +9,14 @@
         </div>
         <div class="col-md-9">
                <div class="card bg-gradient">
-<!--                <div class="card-header border-0">
+                <div class="card-header border-0">
                 <div class="card-tools">
                   <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
                   </button>
                 </div>
               </div>
- -->              <div class="card-body">
+              <div class="card-body">
                <div id="map_canvas" style="height: 500px;"></div>
              </div>
            </div>
