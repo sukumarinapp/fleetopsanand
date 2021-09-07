@@ -49,37 +49,27 @@
 
     @if($type == "manager")
     <ul>
-      @foreach($usertree as $key => $manager)
-      <li data-id="{{ $key+1 }}">
+      @foreach($usertree as $key1 => $submanager)
+      <li data-id="{{ $key1+1 }}">
         <i class="fa fa-plus"></i>
         <label>
-          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $manager['name'] }} {{ $manager['UZS'] }}
+          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $submanager['name'] }} {{ $submanager['UZS'] }}
         </label>
         <ul>
-          @foreach($manager['submanager'] as $key2 => $submanager)
+          @foreach($submanager['client'] as $key2 => $client)
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
-              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $submanager['name'] }} {{ $submanager['UZS'] }}
+              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $client['name'] }} {{ $client['UZS'] }}
             </label>
             <ul>
-              @foreach($submanager['client'] as $key3 => $client)
-              <li data-id="{{ $key3+1 }}">
-                <i class="fa fa-plus"></i>
+              @foreach($client['vehicle'] as $key3 => $vehicle)
+              <li>
                 <label>
-                  <input  id="xnode-0-1-2-3" data-id="custom-0-1-2-3" type="checkbox" /> {{ $client['name'] }} {{ $client['UZS'] }}
+                  <input class="hummingbird-end-node" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" /> {{ $vehicle['VNO'] }}
                 </label>
-                <ul>
-                  @foreach($client['vehicle'] as $key4 => $vehicle)
-                  <li>
-                    <label>
-                      <input class="hummingbird-end-node" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" /> {{ $vehicle['VNO'] }}
-                    </label>
-                  </li>
-                  @endforeach 
-                </ul>
               </li>
-              @endforeach    
+              @endforeach 
             </ul>
           </li>                            
           @endforeach
@@ -88,37 +78,41 @@
       @endforeach
     </ul>
     @endif
+
+    @if($type == "submanager")
+      <ul>
+      @foreach($usertree as $key1 => $client)
+      <li data-id="{{ $key1+1 }}">
+        <i class="fa fa-plus"></i>
+        <label>
+          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $client['name'] }} {{ $client['UZS'] }}
+        </label>
+        <ul>
+              @foreach($client['vehicle'] as $key3 => $vehicle)
+              <li>
+                <label>
+                  <input class="hummingbird-end-node" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" /> {{ $vehicle['VNO'] }}
+                </label>
+              </li>
+              @endforeach 
+            </ul>
+      </li>
+      @endforeach
+    </ul>
+    @endif
+
+    @if($type == "client")
+      <ul>
+      @foreach($usertree as $key1 => $vehicle)
+      <li>
+        <label>
+          <input class="hummingbird-end-node" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" /> {{ $vehicle['VNO'] }}
+        </label>
+      </li>             
+      @endforeach
+    </ul>
+    @endif
   </li>
 </ul>
 </div>
 
-<ul>
-@foreach($usertree as $key => $manager)
-  <li>{{ $manager['name'] }} {{ $manager['UZS'] }}</li>
-  <ul>
-  @foreach($manager['client'] as $client)
-    <li>{{ $client['name'] }} {{ $client['UZS'] }}</li>
-    <ul>
-      @foreach($client['vehicle'] as $vehicle)
-        <li>{{ $vehicle['VNO'] }}</li>
-      @endforeach    
-    </ul>
-  @endforeach
-  </ul>
-  <ul>
-  @foreach($manager['submanager'] as $submanager)
-    <li>{{ $submanager['name'] }} {{ $submanager['UZS'] }}</li>
-    <ul>
-      @foreach($submanager['client'] as $client)
-        <li>{{ $client['name'] }} {{ $client['UZS'] }}</li>
-        <ul>
-          @foreach($client['vehicle'] as $vehicle)
-            <li>{{ $vehicle['VNO'] }}</li>
-          @endforeach  
-        </ul>
-      @endforeach
-    </ul>
-  @endforeach  
-  </ul>
-@endforeach
-</ul>
