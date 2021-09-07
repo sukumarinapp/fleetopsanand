@@ -268,9 +268,7 @@
            var selval = selected.val();
            if(selval != "" && selval != 1){
                var permissions = settings.split(",");
-               console.log(settings);
                for (let i = 0; i < permissions.length; i++) {
-                console.log(permissions[i]);
                 if(i==0){
                     if(permissions[0] == 0){
                         $("#BPA").attr('disabled','disabled');
