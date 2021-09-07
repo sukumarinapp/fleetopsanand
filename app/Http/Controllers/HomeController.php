@@ -26,6 +26,20 @@ class HomeController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
+        $parent_id = Auth::user()->parent_id;
+        $usertype = Auth::user()->usertype;
+        $type = "admin";
+        
+        if($parent_id == 0){
+            $type = "admin";
+        }else if($parent_id == 1){
+            $type = "manager";
+        }else if($parent_id > 1 && $usertype == "Manager"){
+            $type = "submanager";
+        }else if($parent_id > 1 && $usertype == "Client"){
+            $type = "client";
+        }
+
         $name = Auth::user()->name;
         $usertree = array();
         $sql1 = "select email,id,UAN,name,UZS,parent_id,usertype from users where parent_id=$user_id and usertype='Manager' order by id";
@@ -127,7 +141,7 @@ class HomeController extends Controller
             }
             $i++;
         }
-        return view('home',compact('usertree'));
+        return view('home',compact('usertree','type'));
     }
 
     public function locations()

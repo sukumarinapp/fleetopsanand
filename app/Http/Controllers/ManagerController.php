@@ -177,10 +177,12 @@ class ManagerController extends Controller
     {
         $this->check_access("BPD");
         $user = User::find($id);
-        $user_id = Auth::user()->id;
+        $parent_id = $user->parent_id;
         $sql="select * from users where UTV=1 and parent_id in (0,1) order by UAN,name,UZS";
-        $managers = DB::select(DB::raw($sql));        
-        return view('manager.edit', compact('user','managers'));
+        $managers = DB::select(DB::raw($sql));
+        $sql2="select * from users where id = $parent_id ";
+        $current_manager = DB::select(DB::raw($sql2));
+        return view('manager.edit', compact('user','managers','current_manager'));
     }
    
     public function update(Request $request, $id)
