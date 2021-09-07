@@ -4,23 +4,23 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
             @include("includes.tree")
         </div>
-        <!-- <div class="col-md-9">
+        <div class="col-md-9">
                <div class="card bg-gradient">
-               <div class="card-header border-0">
+<!--                <div class="card-header border-0">
                 <div class="card-tools">
                   <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
                   </button>
                 </div>
               </div>
-              <div class="card-body">
+ -->              <div class="card-body">
                <div id="map_canvas" style="height: 500px;"></div>
              </div>
            </div>
-        </div> -->
+        </div> 
         </div>
     </div>
   </div>

@@ -48,7 +48,7 @@
 </ul>
 </div>
 
-<ul>
+<!-- <ul>
 @foreach($usertree as $key => $manager)
   <li>{{ $manager['name'] }} {{ $manager['UZS'] }}</li>
   <ul>
@@ -77,4 +77,4 @@
   @endforeach  
   </ul>
 @endforeach
-</ul>
+</ul> -->
