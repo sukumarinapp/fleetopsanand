@@ -128,7 +128,7 @@
       map.fitBounds( bounds );
     }
     window.onload = fetch_location; 
-    function fetch_location(id){
+    function fetch_location(){
       locations = [];
       $.ajax({
         type: "get",

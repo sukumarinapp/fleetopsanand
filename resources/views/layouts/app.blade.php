@@ -208,6 +208,11 @@
 $(document).ready(function(){
     $("#treeview").hummingbird();
 
+    $('#treeview :checkbox').click(function () {
+        console.log("test");
+        fetch_location();
+    });
+
     $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
         $(".alert-success").slideUp(500);
     });
