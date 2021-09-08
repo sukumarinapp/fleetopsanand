@@ -71,7 +71,13 @@
 @section('third_party_scripts')
 
 <script>
-
+  function check_checked(VNO){
+    if($("."+VNO).is(':checked')){
+      return true;
+    }else{
+      return false;
+    }
+  }
   var locations = [];
   function refresh_map() {
     var myOptions = {
@@ -94,7 +100,9 @@
     }
     var capture_time = location['capture_time'];
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
-   $("#header-fixed > tbody").append("<tr><td>"+location['capture_date']+"&nbsp;"+capture_time+"</td><td>"+location['VNO']+"</td>,<td>"+location['terminal_id']+"</td><td>"+acc+"</td><td>"+location['ground_speed']+"</td>,<td>"+location['odometer']+"</td>,<td>"+location['direction']+"</td><td>"+location['latitude']+"</td><td>"+location['longitude']+"</td></tr>");
+    if(check_checked(location['VNO'])){
+      $("#header-fixed > tbody").append("<tr><td>"+location['capture_date']+"&nbsp;"+capture_time+"</td><td>"+location['VNO']+"</td>,<td>"+location['terminal_id']+"</td><td>"+acc+"</td><td>"+location['ground_speed']+"</td>,<td>"+location['odometer']+"</td>,<td>"+location['direction']+"</td><td>"+location['latitude']+"</td><td>"+location['longitude']+"</td></tr>");
+    }
 
     var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
     bounds.extend( position );
