@@ -40,9 +40,6 @@
         <input type="submit" value="Pay GHC {{ $sales['cash_hidden'] }}" class="btn btn-success btn-large" />
       </div>
     </div>
-  <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">
-      <a href="http://fleetops.com">Powered by Fleetops</a>
-  </nav>
   </form>
 </div>
 @endsection
