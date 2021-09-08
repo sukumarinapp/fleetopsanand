@@ -80,6 +80,7 @@
   };
   var map = new google.maps.Map( document.getElementById("map_canvas"), myOptions );
   var bounds = new google.maps.LatLngBounds();
+  $("#header-fixed > tbody").html("");
   for ( var i = 0; i < locations.length; i++ )
   {
     var location = locations[i];
@@ -126,7 +127,7 @@
         }
       });
     }
-    setInterval(fetch_location, 60000);
+    setInterval(fetch_location, 30000);
   </script>
 
   @endsection
