@@ -203,14 +203,28 @@ class HomeController extends Controller
                 $i++;
             }
         }
-        //$usertree);
-        return view('home',compact('usertree','type'));
+        $today = date("Y-m-d");
+        $sql2 = " select count(distinct terminal_id) as online from current_location where capture_date='$today'";
+        $online = DB::select(DB::raw($sql2));
+        $online = $online[0];
+        $sql3 = " select count(distinct terminal_id) as offline from current_location where capture_date<'$today' and terminal_id not in (select distinct terminal_id from current_location where capture_date='$today')";
+        $offline = DB::select(DB::raw($sql3));
+        $offline = $offline[0];
+        $sql3 = " select count(VNO) as inactive from vehicle where VTV=0";
+        $inactive = DB::select(DB::raw($sql3));
+        $inactive = $inactive[0];
+        $sql3 = " select count(VNO) as new from vehicle where driver_id=''";
+        $new = DB::select(DB::raw($sql3));
+        $new = $new[0];
+        return view('home',compact('usertree','type','online','offline','inactive','new'));
+    }
+
+    public function summary()
+    {
     }
 
     public function locations()
     {
-        
-
         $user_id = Auth::user()->id;
         $usertype = Auth::user()->usertype;
         $UAN = Auth::user()->UAN;
@@ -230,8 +244,9 @@ class HomeController extends Controller
             $filter = " AND CAN = '$UAN' ";
         }
         
-        $sql = "select a.VNO,terminal_id,latitude,longitude,ground_speed,odometer,engine_on from vehicle a,current_location b where a.VTV=1 ".$filter." and a.TID=b.terminal_id and b.id in (select max(id) from current_location group by terminal_id)";
+        $sql = "select a.VNO,b.capture_date,b.capture_time,b.direction,terminal_id,latitude,longitude,ground_speed,odometer,engine_on from vehicle a,current_location b where a.VTV=1 ".$filter." and a.TID=b.terminal_id and b.id in (select max(id) from current_location group by terminal_id)";
         $markers = DB::select(DB::raw($sql));
+        
         return response()->json($markers);
     }
 }

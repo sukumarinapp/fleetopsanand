@@ -45,12 +45,10 @@
           <table id="header-fixed" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; ">
             <thead style="width:70%">
               <tr>
-                <th >Time</th>
-                <th>License plate </th>
-                <th>Address</th>
-                <th>Tracker status</th>
-                <th>Vehicle status </th>
-                <th>Alarm status</th>
+                <th>Time</th>
+                <th>License Plate </th>
+                <th>Tracker ID</th>
+                <th>Tracker Status</th>
                 <th>Speed(km/h)</th>
                 <th>Mileage(km) </th>
                 <th>Direction </th>
@@ -59,166 +57,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr>
-               <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr> 
-              <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr><tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr>
-
+              
             </tbody>
           </table>
         </div> 
@@ -278,6 +117,7 @@
         url: '{{ route('locations') }}',
         success: function(response) {
           locations = response;
+          console.log(locations);
           refresh_map();
         },
         error: function (jqXHR, exception) {
@@ -285,7 +125,7 @@
         }
       });
     }
-    setInterval(fetch_location, 30000);
+    setInterval(fetch_location, 60000);
   </script>
 
   @endsection
