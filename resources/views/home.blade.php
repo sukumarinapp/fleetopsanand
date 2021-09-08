@@ -11,13 +11,13 @@
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-sm-4">Online:15</div>
-                <div class="col-sm-4">Offline:1</div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Online:15</p></div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Offline:1</div>
               </div>
               <div class="row">
-                <div class="col-sm-4">New:1</div>
-                <div class="col-sm-4">Inactive:0</div>
-                <div class="col-sm-4">Total:17</div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">New:1</div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Inactive:0</div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Total:17</div>
               </div>
             </div>
           </div>
