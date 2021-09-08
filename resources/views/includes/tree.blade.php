@@ -1,4 +1,4 @@
-<div id="treeview_container" class="hummingbird-treeview" style="height:363px;overflow-x: auto;overflow-y: auto;">
+<div id="treeview_container" class="hummingbird-treeview" style="height:380px;overflow-x: auto;overflow-y: auto;">
 <ul style="padding-left: 0px;" id="treeview" class="hummingbird-base">
   <li data-id="0">
     <i class="fa fa-plus"></i>
