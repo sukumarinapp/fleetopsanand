@@ -204,19 +204,37 @@ class HomeController extends Controller
             }
         }
         $today = date("Y-m-d");
-        $sql2 = " select count(distinct terminal_id) as online from current_location where capture_date='$today'";
-        $online = DB::select(DB::raw($sql2));
-        $online = $online[0];
-        $sql3 = " select count(distinct terminal_id) as offline from current_location where capture_date<'$today' and terminal_id not in (select distinct terminal_id from current_location where capture_date='$today')";
-        $offline = DB::select(DB::raw($sql3));
-        $offline = $offline[0];
-        $sql3 = " select count(VNO) as inactive from vehicle where VTV=0";
-        $inactive = DB::select(DB::raw($sql3));
-        $inactive = $inactive[0];
-        $sql3 = " select count(VNO) as new from vehicle where driver_id=''";
-        $new = DB::select(DB::raw($sql3));
-        $new = $new[0];
-        return view('home',compact('usertree','type','online','offline','inactive','new'));
+        $online = 0;
+        $offline = 0;
+        $inactive = 0;
+        $new = 0;
+        $total = 0;
+        $sql = " select count(distinct terminal_id) as online from current_location where capture_date='$today'";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $online = $result[0]->online;
+        }
+        $sql = " select count(VNO) as offline from vehicle where TID not in (select distinct terminal_id from current_location where capture_date='$today')";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $offline = $result[0]->offline;
+        }
+        $sql = " select count(VNO) as inactive from vehicle where VTV=0";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $inactive = $result[0]->inactive;
+        }
+        $sql = " select count(VNO) as new from vehicle where driver_id=''";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $new = $result[0]->new;
+        }
+        $sql = " select count(VNO) as total from vehicle";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $total = $result[0]->total;
+        }
+        return view('home',compact('usertree','type','online','offline','inactive','new','total'));
     }
 
     public function summary()

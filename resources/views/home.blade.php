@@ -11,13 +11,13 @@
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Online:15</p></div>
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Offline:1</div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Online: {{ $online }}</p></div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Offline: {{ $offline }}</div>
               </div>
               <div class="row">
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">New:1</div>
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Inactive:0</div>
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Total:17</div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">New: {{ $new }}</div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Inactive: {{ $inactive }}</div>
+                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Total: {{ $total }}</div>
               </div>
             </div>
           </div>
