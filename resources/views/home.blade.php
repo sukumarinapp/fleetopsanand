@@ -3,29 +3,13 @@
 <div class="container-fluid">
   <div class="content-header">
     <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
             @include("includes.tree")
-          </div>
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-sm-4">Online:15</div>
-              <div class="col-sm-4">Offline:1</div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4">New:1</div>
-              <div class="col-sm-4">Inactive:0</div>
-              <div class="col-sm-4">Total:17</div>
-            </div>
-          </div>
         </div>
-      </div> 
-      
-    <div class="col-md-9">
-      <div class="card bg-gradient">
-              <!-- <div class="card-header border-0">
+        <div class="col-md-9">
+               <div class="card bg-gradient">
+<!--                <div class="card-header border-0">
                 <div class="card-tools">
                   <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -37,59 +21,14 @@
              </div>
            </div>
         </div> 
-              </div>
-           </div>
-
-         </div>
-
-       </div>
-       <footer class="fixed-bottom">
-       <div class="card">
-        <div class="card-body">
-         <div class="table-responsive">
-          <table id="example" class="table table-bordered table-striped" style="overflow-y:scroll;">
-            <thead style="width:100%">
-              <tr>
-                <th >Time</th>
-                <th>License plate </th>
-                <th>Address</th>
-                <th>Tracker status</th>
-                <th>Vehicle status </th>
-                <th>Alarm status</th>
-                <th>Speed(km/h)</th>
-                <th>Mileage(km) </th>
-                <th>Direction </th>
-                <th>Longitude </th>
-                <th>Latitude </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr>
-
-
-            </tbody>
-          </table>
         </div>
     </div>
   </div>
-</footer>
 </div>
-@endsection
-@section('third_party_scripts')
-
-<script>
+ @endsection
+ @section('third_party_scripts')
+ 
+ <script>
   var locations = [];
   function refresh_map() {
     var myOptions = {

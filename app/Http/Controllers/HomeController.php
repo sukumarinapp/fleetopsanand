@@ -152,6 +152,40 @@ class HomeController extends Controller
                 }
                 $i++;
             }
+        }else if($type == "submanager"){
+            $sql3 = "select email,id,UAN,name,UZS,parent_id,usertype from users where parent_id=$user_id and usertype='Client' order by id";
+            $clients = DB::select(DB::raw($sql3));    
+            $i=0;
+            foreach($clients as $client){
+                $client_id = $client->id;
+                $CAN = $client->UAN;
+                $parent_id = $client->parent_id;
+                $usertree[$i]['id'] = $client_id;
+                $usertree[$i]['name'] = $client->name;
+                $usertree[$i]['email'] = $client->email;
+                $usertree[$i]['UZS'] = $client->UZS;
+                $usertree[$i]['parent_id'] = $client->parent_id;
+                $usertree[$i]['usertype'] = "client";
+                $usertree[$i]['level'] = 1;
+                $usertree[$i]['UAN'] = $client->UAN;
+                $sql4 = "select a.id,a.driver_id,a.VNO,a.VTV,a.TID,b.DNM,b.DSN from vehicle a,driver b where a.driver_id=b.id and a.CAN='$CAN' and a.VTV=1";
+                $vehicles = DB::select(DB::raw($sql4));  
+                $c=0;
+                $usertree[$i]['vehicle'] = array();
+                foreach($vehicles as $vehicle){
+                    $usertree[$i]['vehicle'][$c]['id'] = $vehicle->id;
+                    $usertree[$i]['vehicle'][$c]['driver_id'] = $vehicle->driver_id;
+                    $usertree[$i]['vehicle'][$c]['VNO'] = $vehicle->VNO;
+                    $usertree[$i]['vehicle'][$c]['TID'] = $vehicle->TID;
+                    $usertree[$i]['vehicle'][$c]['DNM'] = $vehicle->DNM;
+                    $usertree[$i]['vehicle'][$c]['DSN'] = $vehicle->DSN;
+                    $usertree[$i]['vehicle'][$c]['usertype'] = "vehicle";
+                    $usertree[$i]['vehicle'][$c]['level'] = 2;
+                    $usertree[$i]['vehicle'][$c]['parent_id'] = $parent_id;
+                    $c++;
+                }
+                $i++;
+            }
         }else{
             $i=0;
             $sql = "select a.id,a.driver_id,a.VNO,a.VTV,a.TID,b.DNM,b.DSN from vehicle a,driver b where a.driver_id=b.id and a.CAN='$CAN' and a.VTV=1";
@@ -169,7 +203,7 @@ class HomeController extends Controller
                 $i++;
             }
         }
-        //dd($usertree);
+        //$usertree);
         return view('home',compact('usertree','type'));
     }
 
