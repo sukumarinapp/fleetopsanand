@@ -233,11 +233,6 @@
 @section('third_party_scripts')
 
 <script>
-  
- @endsection
- @section('third_party_scripts')
- 
- <script>
 
   var locations = [];
   function refresh_map() {
