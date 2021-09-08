@@ -34,7 +34,7 @@
                 </div>
               </div>   -->   
               <div class="card-body">
-               <div id="map_canvas" style="height: 430px;"></div>
+               <div id="map_canvas" style="height: 433px;"></div>
              </div>
            </div>
          </div> 
@@ -57,7 +57,6 @@
               </tr>
             </thead>
             <tbody>
-              
             </tbody>
           </table>
         </div> 
