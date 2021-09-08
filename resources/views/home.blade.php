@@ -25,7 +25,8 @@
 
         <div class="col-md-9">
           <div class="card bg-gradient">
-              <!-- <div class="card-header border-0">
+              <!--
+
                 <div class="card-tools">
                   <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -220,6 +221,7 @@
 
             </tbody>
           </table>
+        </div> 
         </div>
       </div>
     </div>
@@ -231,6 +233,12 @@
 @section('third_party_scripts')
 
 <script>
+  
+ @endsection
+ @section('third_party_scripts')
+ 
+ <script>
+
   var locations = [];
   function refresh_map() {
     var myOptions = {

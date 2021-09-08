@@ -11,21 +11,21 @@
       <li data-id="{{ $key+1 }}">
         <i class="fa fa-plus"></i>
         <label>
-          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $manager['name'] }} {{ $manager['UZS'] }}
+          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $manager['name'] }}
         </label>
         <ul>
           @foreach($manager['submanager'] as $key2 => $submanager)
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
-              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $submanager['name'] }} {{ $submanager['UZS'] }}
+              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $submanager['name'] }}
             </label>
             <ul>
               @foreach($submanager['client'] as $key3 => $client)
               <li data-id="{{ $key3+1 }}">
                 <i class="fa fa-plus"></i>
                 <label>
-                  <input  id="xnode-0-1-2-3" data-id="custom-0-1-2-3" type="checkbox" /> {{ $client['name'] }} {{ $client['UZS'] }}
+                  <input  id="xnode-0-1-2-3" data-id="custom-0-1-2-3" type="checkbox" /> {{ $client['name'] }}
                 </label>
                 <ul>
                   @foreach($client['vehicle'] as $key4 => $vehicle)
@@ -53,14 +53,14 @@
       <li data-id="{{ $key1+1 }}">
         <i class="fa fa-plus"></i>
         <label>
-          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $submanager['name'] }} {{ $submanager['UZS'] }}
+          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $submanager['name'] }}
         </label>
         <ul>
           @foreach($submanager['client'] as $key2 => $client)
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
-              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $client['name'] }} {{ $client['UZS'] }}
+              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $client['name'] }}
             </label>
             <ul>
               @foreach($client['vehicle'] as $key3 => $vehicle)
@@ -85,7 +85,7 @@
       <li data-id="{{ $key1+1 }}">
         <i class="fa fa-plus"></i>
         <label>
-          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $client['name'] }} {{ $client['UZS'] }}
+          <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $client['name'] }}
         </label>
         <ul>
               @foreach($client['vehicle'] as $key3 => $vehicle)
