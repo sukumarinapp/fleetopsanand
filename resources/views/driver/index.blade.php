@@ -14,7 +14,7 @@
       </div>
     </div>
   <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">      
-      <a href="http://fleetops.com">Powered by Fleetops</a>
+      <a href="http://fleetopsgh.com">Powered by Fleetops</a>
   </nav>
 </div>
 @endsection

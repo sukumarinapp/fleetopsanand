@@ -237,16 +237,43 @@ class HomeController extends Controller
         return view('home',compact('usertree','type','online','offline','inactive','new','total'));
     }
 
-    public function summary()
-    {
+    private function get_filter($user_id,$parent_id,$usertype,$CAN){
+        $filter = "";
+        if($parent_id == 1){
+            $sql="select UAN from users where parent_id=$user_id and usertype='Client'";
+            $result = DB::select(DB::raw($sql));
+            $filter = " AND CAN IN ('-1'";
+            foreach($result as $row){
+                $filter = $filter . ",'$row->UAN'";
+            }     
+            $filter = $filter . ") ";
+
+            $sql="select UAN from users where parent_id=$user_id and usertype='Manager'";
+            $result = DB::select(DB::raw($sql));
+            foreach($result as $row){
+                $filter = $filter . ",'$row->UAN'";
+            }     
+        }else if($parent_id > 1 && $usertype == "Manager"){
+            $sql="select UAN from users where parent_id=$user_id and usertype='Client'";
+            $result = DB::select(DB::raw($sql));
+            $filter = " AND CAN IN ('-1'";
+            foreach($result as $row){
+                $filter = $filter . ",'$row->UAN'";
+            }     
+            $filter = $filter . ") ";
+        }else if($parent_id > 1 && $usertype == "Client"){
+            $filter = " and CAN='$CAN' ";
+        }
+        return $filter;
     }
 
     public function locations()
     {
         $user_id = Auth::user()->id;
+        $parent_id = Auth::user()->parent_id;
         $usertype = Auth::user()->usertype;
-        $UAN = Auth::user()->UAN;
-        $filter = "";
+        $CAN = Auth::user()->UAN;
+        $filter = self::get_filter($user_id,$parent_id,$usertype,$CAN);
         if($usertype == "Manager"){
             $sql="select UAN from users where parent_id=$user_id and usertype='Client'";
             $result = DB::select(DB::raw($sql));
