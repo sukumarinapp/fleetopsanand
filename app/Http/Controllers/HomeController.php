@@ -264,6 +264,7 @@ class HomeController extends Controller
         }else if($parent_id > 1 && $usertype == "Client"){
             $filter = " and CAN='$CAN' ";
         }
+        $filter = "";
         return $filter;
     }
 
@@ -288,6 +289,7 @@ class HomeController extends Controller
         }else if($usertype == "Client"){
             $filter = " AND CAN = '$UAN' ";
         }
+        $filter = "";
         
         $sql = "select a.VNO,b.capture_date,b.capture_time,b.direction,terminal_id,latitude,longitude,ground_speed,odometer,engine_on from vehicle a,current_location b where a.VTV=1 ".$filter." and a.TID=b.terminal_id and b.id in (select max(id) from current_location group by terminal_id)";
         $markers = DB::select(DB::raw($sql));
