@@ -160,6 +160,9 @@ class DriverController extends Controller
                 echo $sql;
                 DB::insert($sql);
                 return view('driver.prompt');
+            }else{
+                $message =$response->statusMessage;
+                return view('driver.error',compact('message'));
             }
         }else{
             return view('driver.nopending');
