@@ -20,7 +20,7 @@
         @endphp    
             <div class="col-sm-12 col-md-4 text-center">
               <div class="custom-control custom-radio image-checkbox">
-                  <input {{ key == 0 ? "checked":"" }} value="{{ $item->provider }}" type="radio" class="custom-control-input" id="{{ $item->name }}" name="options">
+                  <input {{ $key == 0 ? "checked":"" }} value="{{ $item->provider }}" type="radio" class="custom-control-input" id="{{ $item->name }}" name="options">
                   <label class="custom-control-label" for="{{ $item->name }}">
                       <img width="120px" src="https://usebillbox.com/{{ $item->logo }}" alt="#" class="img-fluid">
                   </label>
