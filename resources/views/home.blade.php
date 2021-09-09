@@ -115,6 +115,8 @@
       //car_icon = "270.png";
     }else if(dir >= 292.5 && dir < 337.5 ){
       //car_icon = "325.png";
+    }else{
+      car_icon = "blue.png";
     }
     if(location["engine_on"]=="0") car_icon = "red.png";
     var capture_time = location['capture_time'];
