@@ -235,6 +235,11 @@ class WorkflowController extends Controller
            return redirect('/workflow')->with('message', 'Driver Sales Audit Done and Vehicle blocked Successfully')->withInput();
         }
     }
+
+    public function help()
+    {
+       return view('help'); 
+    }
         
 }
 

@@ -84,6 +84,8 @@ Route::get('/locations', 'HomeController@locations')->name('locations');
 Route::get('/fuelsrch', 'FuelController@fuelsrch')->name('fuelsrch');
 Route::get('/fueler/{VNO}', 'FuelController@fueler')->name('fueler');
 
+Route::get('/help', 'WorkflowController@help')->name('help');
+
 
 
 

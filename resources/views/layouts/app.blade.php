@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <title>
         @if(isset($title))
-            {{ $title }}
+        {{ $title }}
         @else
-            {{ config('app.name') }}                
+        {{ config('app.name') }}                
         @endif
     </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-          crossorigin="anonymous"/>
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/hummingbird-treeview.css') }}" rel="stylesheet" type="text/css">
     @yield('third_party_stylesheets')
     @stack('page_css')
     <style>
-        .buttons-columnVisibility.active {
-            color: green;
-        }
+    .buttons-columnVisibility.active {
+        color: green;
+    }
         /*.dt-buttons{
             float: left;
             position: absolute;
@@ -38,97 +38,97 @@
             position: relative;
             margin-left: 10px;
             white-space: nowrap;
-        }*/
-        .select2-container--default{
-            border-radius: 5px;
-            border: 1px solid red;
-        }
-        .select2-selection__rendered{
-            display: block ;
-            border-radius: 5px;
-            border: 1px solid black;
-            padding: 1px 1px 1px 1px;
-        }
-    </style>
-</head>
-<body class="hold-transition layout-top-nav">
-<div class="wrapper">
-  <nav class="main-header navbar navbar-expand-md navbar-light">
-    <div class="container">
+            }*/
+            .select2-container--default{
+                border-radius: 5px;
+                border: 1px solid red;
+            }
+            .select2-selection__rendered{
+                display: block ;
+                border-radius: 5px;
+                border: 1px solid black;
+                padding: 1px 1px 1px 1px;
+            }
+        </style>
+    </head>
+    <body class="hold-transition layout-top-nav">
+        <div class="wrapper">
+          <nav class="main-header navbar navbar-expand-md navbar-light">
+            <div class="container">
 
-     <a href="#" class="navbar-brand">
-        <img src="{{ URL::to('/') }}/images/fleetopslogo.png" alt="AdminLTE Logo">
-      </a>
+               <a href="#" class="navbar-brand">
+                <img src="{{ URL::to('/') }}/images/fleetopslogo.png" alt="AdminLTE Logo">
+            </a>
 
-      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+            <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <div class="collapse navbar-collapse order-3" id="navbarCollapse" style="padding-left: 50px;">
-        <!-- Left navbar links -->
-         <ul class="navbar-nav">
-          <li class="nav-item">
-           <a href="{{ route('home') }}" class="nav-link {{ (request()->is('home')) ? 'active' : '' }}">
-      <p>
-        Dashboard
-      </p>
-  </a>
-          </li>
-      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-       
-        <ul class="navbar-nav">
-         
-          @if(Auth::user()->usertype == "Admin")
-           <li class="dropdown dropdown-hover {{ (request()->is('parameter') || request()->is('rhplatform') || request()->is('sms')) ? 'active' : '' }}">
-
-            <a id="dropdownSubMenu" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Settings</a>
-
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                 @if(Auth::user()->usertype == "Admin" || Auth::user()->BPI == true)
-              <li><a href="{{ route('parameter') }}" class="dropdown-item {{ (request()->is('parameter')) ? 'active' : '' }}" class="dropdown-item">Parameter Settings </a></li>
-              <li><a href="{{ route('rhplatform.index') }}" class="dropdown-item {{ (request()->is('rhplatform')) ? 'active' : '' }}" class="dropdown-item">RH Platform Settings</a></li>
-                @endif
-                  @if(Auth::user()->usertype == "Admin")
-            <a href="{{ route('sms') }}" class="dropdown-item {{ (request()->segment(1) =='sms' ) ? 'active' : '' }}" class="dropdown-item">Notification Setup</a>
-          </li>
-          @endif
-          </ul>
-           @endif
-     
-
-         @if(Auth::user()->usertype != "Client")
-          <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'manager' || request()->segment(1) == 'client' || request()->segment(1) == 'vehicle' || request()->segment(1) == 'fdriver' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}">
-
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"> Manage Account</a>
-
-            
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+            <div class="collapse navbar-collapse order-3" id="navbarCollapse" style="padding-left: 50px;">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                     <a href="{{ route('home') }}" class="nav-link {{ (request()->is('home')) ? 'active' : '' }}">
+                      <p>
+                        Dashboard
+                    </p>
+                </a>
+            </li>
+            <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+             
+                <ul class="navbar-nav">
                    
-              <li><a href="{{ route('manager.index') }}" class="dropdown-item {{ (request()->segment(1) == 'manager') ? 'active' : '' }}" class="dropdown-item">User Account </a></li>
+                  @if(Auth::user()->usertype == "Admin")
+                  <li class="dropdown dropdown-hover {{ (request()->is('parameter') || request()->is('rhplatform') || request()->is('sms')) ? 'active' : '' }}">
 
+                    <a id="dropdownSubMenu" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Settings</a>
+
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                       @if(Auth::user()->usertype == "Admin" || Auth::user()->BPI == true)
+                       <li><a href="{{ route('parameter') }}" class="dropdown-item {{ (request()->is('parameter')) ? 'active' : '' }}" class="dropdown-item">Parameter Settings </a></li>
+                       <li><a href="{{ route('rhplatform.index') }}" class="dropdown-item {{ (request()->is('rhplatform')) ? 'active' : '' }}" class="dropdown-item">RH Platform Settings</a></li>
+                       @endif
+                       @if(Auth::user()->usertype == "Admin")
+                       <a href="{{ route('sms') }}" class="dropdown-item {{ (request()->segment(1) =='sms' ) ? 'active' : '' }}" class="dropdown-item">Notification Setup</a>
+                   </li>
+                   @endif
+               </ul>
+               @endif
                
 
-              <li><a href="{{ route('client.index') }}" class="dropdown-item {{ (request()->segment(1) == 'client') ? 'active' : '' }}" class="dropdown-item">Client Account</a></li>
+               @if(Auth::user()->usertype != "Client")
+               <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'manager' || request()->segment(1) == 'client' || request()->segment(1) == 'vehicle' || request()->segment(1) == 'fdriver' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}">
 
-                 @if(Auth::user()->usertype == "Admin" || Auth::user()->BPC == true || Auth::user()->BPF == true)
-            <li><a href="{{ route('vehicle.index') }}" class="dropdown-item {{ (request()->segment(1) == 'vehicle' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}" class="dropdown-item">Manage Vehicle</a></li>
-                @endif
+                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"> Manage Account</a>
+
+                
+                <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                 
+                  <li><a href="{{ route('manager.index') }}" class="dropdown-item {{ (request()->segment(1) == 'manager') ? 'active' : '' }}" class="dropdown-item">User Account </a></li>
+
+                  
+
+                  <li><a href="{{ route('client.index') }}" class="dropdown-item {{ (request()->segment(1) == 'client') ? 'active' : '' }}" class="dropdown-item">Client Account</a></li>
+
+                  @if(Auth::user()->usertype == "Admin" || Auth::user()->BPC == true || Auth::user()->BPF == true)
+                  <li><a href="{{ route('vehicle.index') }}" class="dropdown-item {{ (request()->segment(1) == 'vehicle' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}" class="dropdown-item">Manage Vehicle</a></li>
+                  @endif
 
                   @if(Auth::user()->usertype == "Admin" || Auth::user()->BPF == true)
 
-              <li><a href="{{ route('fdriver.index') }}" class="dropdown-item {{ (request()->segment(1) == 'fdriver') ? 'active' : '' }}" class="dropdown-item">Manage Driver</a></li>
-            </li>
-                @endif
+                  <li><a href="{{ route('fdriver.index') }}" class="dropdown-item {{ (request()->segment(1) == 'fdriver') ? 'active' : '' }}" class="dropdown-item">Manage Driver</a></li>
+              </li>
+              @endif
           </ul>
-           @endif
+          @endif
 
-  
+          
 
           @if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ2==1))
-       <li class="nav-item">
-       <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="nav-link">Workflow Manager</a>
-    </li>
-     @endif
+          <li class="nav-item">
+             <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="nav-link">Workflow Manager</a>
+         </li>
+         @endif
          <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'workflowlog' || request()->segment(1) == 'vehiclelog' || request()->segment(1) == 'sales' || request()->segment(1) == 'collection' || request()->segment(1) == 'notificationslog') ? 'active' : '' }}">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Reports</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
@@ -141,50 +141,54 @@
               <li><a href="{{ url('collection') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'collection') ? 'active' : '' }}" class="dropdown-item">Collection</a></li>
 
               <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li>
-            </ul>
-          </li>
+          </ul>
+      </li>
 
-            @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
+      @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
              <!-- <li class="nav-item">
              <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fuelsrch') ? 'active' : '' }}" class="nav-link"><b>Fueler</b></a>
-            </li> -->
-            @endif
-          </li>
-        </li>
-      </ul>
-    </div>
-  </ul>
-
-      <!-- Right navbar links -->
- 
- <ul class="navbar-nav ml-auto ">
-<li class="nav-item dropdown user-menu ">
-<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
- <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
-</a>
-<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-<li class="user-footer">
-<a href="{{ route('change_password') }}" class="btn btn-default btn-flat">Change Password</a>
-<a href="#" class="btn btn-default btn-flat float-right"
-  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
- Sign out
- </a>
- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
- @csrf
- </form>
+         </li> -->
+         @endif
+     </li>
  </li>
- </ul>
- </li>
- </ul>
-   </div>
-  </nav> 
-  
 
-    <div class="content-wrapper">
-        <section class="content">
-            @yield('content')
-        </section>
-    </div>
+ <li class="nav-item">
+     <a href="{{ route('help') }}" class="nav-link {{ (request()->segment(1) == 'help' ) ? 'active' : '' }}" class="nav-link">Help</a>
+ </li>
+</ul>
+</div>
+</ul>
+
+<!-- Right navbar links -->
+
+<ul class="navbar-nav ml-auto ">
+    <li class="nav-item dropdown user-menu ">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+           <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+       </a>
+       <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <li class="user-footer">
+            <a href="{{ route('change_password') }}" class="btn btn-default btn-flat">Change Password</a>
+            <a href="#" class="btn btn-default btn-flat float-right"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Sign out
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+           @csrf
+       </form>
+   </li>
+</ul>
+</li>
+</ul>
+</div>
+</nav> 
+
+
+<div class="content-wrapper">
+    <section class="content">
+        @yield('content')
+    </section>
+</div>
 </div>
 <script src="{{ mix('js/app.js') }}" ></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBGD4U0YDBCpPd54yleIeEcFIVfjQ8q9JY"></script>
@@ -195,130 +199,130 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript" language="javascript" src="{{ asset('js/hummingbird-treeview.js') }}"></script>
 
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
 @stack('page_scripts')
 <script>
-$(document).ready(function(){
-    $("#treeview").hummingbird();
+    $(document).ready(function(){
+        $("#treeview").hummingbird();
 
-    $('#treeview :checkbox').click(function () {
-        console.log("test");
-        fetch_location();
-    });
+        $('#treeview :checkbox').click(function () {
+            console.log("test");
+            fetch_location();
+        });
 
-    $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
-        $(".alert-success").slideUp(500);
-    });
-    $('#rhvisibility').change(function() {
-        if(this.checked) {            
-            $("#SPF").attr("disabled", "disabled"); 
-            $("#RMT").attr("disabled", "disabled"); 
-            $("#TPF").attr("disabled", "disabled"); 
-        }else{
-            $("#SPF").removeAttr("disabled");
-            $("#RMT").removeAttr("disabled");
-            $("#TPF").removeAttr("disabled");
-        }
-    });
-    
-    if(($('#BPJ1').prop("checked")) == false){
-        $('#BPJ1').prop("checked", false);
-        $('#BPJ2').prop("checked", false);
-        $('#BPJ1').attr("disabled", true);
-        $('#BPJ2').attr("disabled", true);
-    }
-
-    if(($('#RBA4').prop("checked")) == false){
-        $('#RBA4A').attr("disabled", true);
-        $('#RBA4B').attr("disabled", true);
-    }
-    
-    $('#RBA4').change(function() {
-        if(this.checked) {            
-            $('#RBA4A').attr("disabled", false);
-            $('#RBA4B').attr("disabled", false);
-        }else{
-            $('#RBA4A').attr("disabled", true);
-            $('#RBA4B').attr("disabled", true);
-        }
-    });
-
-    $('#BPJ').change(function() {
-        if(this.checked) {            
-            $('#BPJ1').prop("checked", true);
-            $('#BPJ2').prop("checked", true);
-            $('#BPJ1').attr("disabled", false);
-            $('#BPJ2').attr("disabled", false);
-        }else{
+        $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+            $(".alert-success").slideUp(500);
+        });
+        $('#rhvisibility').change(function() {
+            if(this.checked) {            
+                $("#SPF").attr("disabled", "disabled"); 
+                $("#RMT").attr("disabled", "disabled"); 
+                $("#TPF").attr("disabled", "disabled"); 
+            }else{
+                $("#SPF").removeAttr("disabled");
+                $("#RMT").removeAttr("disabled");
+                $("#TPF").removeAttr("disabled");
+            }
+        });
+        
+        if(($('#BPJ1').prop("checked")) == false){
             $('#BPJ1').prop("checked", false);
             $('#BPJ2').prop("checked", false);
             $('#BPJ1').attr("disabled", true);
             $('#BPJ2').attr("disabled", true);
         }
-    });
-    
-    $("#VPF").change(function(evt){
-        var VPF = $("#VPF").val();
-        console.log(VPF);
-        if(VPF=="Daily"){
-            $("#weekdaydiv").hide("slow");
-            $("#monthdaydiv").hide("slow");
-        }else if(VPF=="Weekly"){
-            $("#weekdaydiv").show("slow");
-            $("#monthdaydiv").hide("slow");
-        }else if(VPF=="Monthly"){
-            $("#weekdaydiv").hide("slow");
-            $("#monthdaydiv").show("slow");
+
+        if(($('#RBA4').prop("checked")) == false){
+            $('#RBA4A').attr("disabled", true);
+            $('#RBA4B').attr("disabled", true);
         }
-    });
-    $("#VBM").change(function(evt){
-        var VBM = $("#VBM").val();
-        if(VBM=="Ride Hailing"){
-            $("#rhdiv").show("slow");
-            $("#freqdiv").hide("slow");
-            $("#paydatediv").hide("slow");
-            $("#payamtdiv").hide("slow");
-        }else{
-            $("#rhdiv").hide("slow");
-            $("#freqdiv").show("slow");
-            $("#paydatediv").show("slow");
-            $("#payamtdiv").show("slow");
-        }
-    });
-    $("#CMT").change(function(evt){
-        var CMT = $("#CMT").val();
-        if(CMT == "A"){
-            $("#CMBLBL").hide();
-            $("#branch_div").hide();
-            $("#CMALBL").text("Name");
-            $("#CMNLBL").text("Mobile Number");
-            $("#CBKLBL").text("Telecom Provider");
-            $("#CMA").attr("placeholder", "Name");
-            $("#CMN").attr("placeholder", "Mobile Number");
-            $("#telecom_div").html("<select class='form-control' name='CMB' id='CMB'><option value='AIRTELTIGO'>AIRTELTIGO</option><option value='MTN'>MTN</option><option value='VODAFONE'>VODAFONE</option></select>");            
-        }else if(CMT == "B"){
-            $("#CMBLBL").show();
-            $("#branch_div").show();
-            $("#CMALBL").text("Account Name");
-            $("#CMNLBL").text("Account Number");
-            $("#CBKLBL").text("Bank Name");
-            $("#CMA").attr("placeholder", "Account Name");
-            $("#CMN").attr("placeholder", "Account Number");
-            $("#telecom_div").html("<input type='text' class='form-control number' name='CBK' id='CBK' maxlength='15' placeholder='Bank Name'>");
-        }
-    });
-    $(".decimal").keypress(function(evt){
-        var charCode = (evt.which) ? evt.which : event.keyCode;
-        if (charCode != 46 && charCode > 31
-            && (charCode < 48 || charCode > 57)) {
-            return false;
+        
+        $('#RBA4').change(function() {
+            if(this.checked) {            
+                $('#RBA4A').attr("disabled", false);
+                $('#RBA4B').attr("disabled", false);
+            }else{
+                $('#RBA4A').attr("disabled", true);
+                $('#RBA4B').attr("disabled", true);
+            }
+        });
+
+        $('#BPJ').change(function() {
+            if(this.checked) {            
+                $('#BPJ1').prop("checked", true);
+                $('#BPJ2').prop("checked", true);
+                $('#BPJ1').attr("disabled", false);
+                $('#BPJ2').attr("disabled", false);
+            }else{
+                $('#BPJ1').prop("checked", false);
+                $('#BPJ2').prop("checked", false);
+                $('#BPJ1').attr("disabled", true);
+                $('#BPJ2').attr("disabled", true);
+            }
+        });
+        
+        $("#VPF").change(function(evt){
+            var VPF = $("#VPF").val();
+            console.log(VPF);
+            if(VPF=="Daily"){
+                $("#weekdaydiv").hide("slow");
+                $("#monthdaydiv").hide("slow");
+            }else if(VPF=="Weekly"){
+                $("#weekdaydiv").show("slow");
+                $("#monthdaydiv").hide("slow");
+            }else if(VPF=="Monthly"){
+                $("#weekdaydiv").hide("slow");
+                $("#monthdaydiv").show("slow");
+            }
+        });
+        $("#VBM").change(function(evt){
+            var VBM = $("#VBM").val();
+            if(VBM=="Ride Hailing"){
+                $("#rhdiv").show("slow");
+                $("#freqdiv").hide("slow");
+                $("#paydatediv").hide("slow");
+                $("#payamtdiv").hide("slow");
+            }else{
+                $("#rhdiv").hide("slow");
+                $("#freqdiv").show("slow");
+                $("#paydatediv").show("slow");
+                $("#payamtdiv").show("slow");
+            }
+        });
+        $("#CMT").change(function(evt){
+            var CMT = $("#CMT").val();
+            if(CMT == "A"){
+                $("#CMBLBL").hide();
+                $("#branch_div").hide();
+                $("#CMALBL").text("Name");
+                $("#CMNLBL").text("Mobile Number");
+                $("#CBKLBL").text("Telecom Provider");
+                $("#CMA").attr("placeholder", "Name");
+                $("#CMN").attr("placeholder", "Mobile Number");
+                $("#telecom_div").html("<select class='form-control' name='CMB' id='CMB'><option value='AIRTELTIGO'>AIRTELTIGO</option><option value='MTN'>MTN</option><option value='VODAFONE'>VODAFONE</option></select>");            
+            }else if(CMT == "B"){
+                $("#CMBLBL").show();
+                $("#branch_div").show();
+                $("#CMALBL").text("Account Name");
+                $("#CMNLBL").text("Account Number");
+                $("#CBKLBL").text("Bank Name");
+                $("#CMA").attr("placeholder", "Account Name");
+                $("#CMN").attr("placeholder", "Account Number");
+                $("#telecom_div").html("<input type='text' class='form-control number' name='CBK' id='CBK' maxlength='15' placeholder='Bank Name'>");
+            }
+        });
+        $(".decimal").keypress(function(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+                && (charCode < 48 || charCode > 57)) {
+                return false;
         }
         if (charCode == 46 && this.value.indexOf(".") !== -1) {
             return false;
@@ -326,46 +330,46 @@ $(document).ready(function(){
         return true;
     });
 
-    $('.number').keypress(function (event) {
-        var keycode = event.which;
-        if (!(event.shiftKey == false && (keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
-        event.preventDefault();
-        }
-    });
-
-    $('#example1').DataTable( {
-        responsive: true,
-        initComplete: function() {
-           $('.buttons-excel').html('<i class="fa fa-file-excel" style="color:green"/>')
-           $('.buttons-pdf').html('<i class="fa fa-file-pdf" style="color:red"/>')
-           $('.buttons-print').html('<i class="fa fa-print" style="color:#0d5b9e"/>')
-        },
-        dom: "<'row'<'col-sm-12 col-md-9'B><'col-sm-12 col-md-3'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-12 col-md-2'i><'col-sm-12 col-md-2'l><'col-sm-12 col-md-8'p>>",
-        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],  
-        buttons: [
-            'excel', 'pdf', 'print','columnsToggle'
-        ]
-    } );
-
-    var maxLen200 = 200;        
-    $('.max200').keypress(function(event){
-        var Length = $(".max200").val().length;
-        if(Length >= maxLen200){
-            if (event.which != 8) {
-                return false;
+        $('.number').keypress(function (event) {
+            var keycode = event.which;
+            if (!(event.shiftKey == false && (keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+                event.preventDefault();
             }
-        }
-    });
+        });
 
-    $('body').on('keyup paste', '.max200', function () {
-        $(this).val($(this).val().substring(0, maxLen200));
-        var tlength = $(this).val().length;
-        remain = maxLen200 - parseInt(tlength);
-        $('.max200').text(remain);
+        $('#example1').DataTable( {
+            responsive: true,
+            initComplete: function() {
+             $('.buttons-excel').html('<i class="fa fa-file-excel" style="color:green"/>')
+             $('.buttons-pdf').html('<i class="fa fa-file-pdf" style="color:red"/>')
+             $('.buttons-print').html('<i class="fa fa-print" style="color:#0d5b9e"/>')
+         },
+         dom: "<'row'<'col-sm-12 col-md-9'B><'col-sm-12 col-md-3'f>>" +
+         "<'row'<'col-sm-12'tr>>" +
+         "<'row'<'col-sm-12 col-md-2'i><'col-sm-12 col-md-2'l><'col-sm-12 col-md-8'p>>",
+         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],  
+         buttons: [
+         'excel', 'pdf', 'print','columnsToggle'
+         ]
+     } );
+
+        var maxLen200 = 200;        
+        $('.max200').keypress(function(event){
+            var Length = $(".max200").val().length;
+            if(Length >= maxLen200){
+                if (event.which != 8) {
+                    return false;
+                }
+            }
+        });
+
+        $('body').on('keyup paste', '.max200', function () {
+            $(this).val($(this).val().substring(0, maxLen200));
+            var tlength = $(this).val().length;
+            remain = maxLen200 - parseInt(tlength);
+            $('.max200').text(remain);
+        });
     });
-});
 
 function isNumber(evt){
     evt = (evt) ? evt : window.event;
@@ -375,7 +379,7 @@ function isNumber(evt){
     }
     return true;
 }
-    
+
 function duplicateEmail(id){
     var email = $("#email").val();
     var _token = $('input[name="_token"]').val();
