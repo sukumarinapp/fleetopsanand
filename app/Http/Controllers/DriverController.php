@@ -156,7 +156,6 @@ class DriverController extends Controller
             if($response->statusCode=="SUCCESS"){
                 $TIM = date("Y-m-d H:i:s");
                 $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN,TIM) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$CPF','$ROI','0','$SSR','$requestId','$TIM')";
-                echo $sql;
                 DB::insert($sql);
                 return view('driver.prompt');
             }else{
