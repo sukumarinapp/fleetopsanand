@@ -152,8 +152,8 @@ class DriverController extends Controller
             $DCR = $result[0]->id;
             $requestId = uniqid();
             $requestId = $VNO . "-" .$requestId;
-            print_r($response);
             $response = Billbox::payNow($requestId,$request->cash_hidden,$request->options,$request->DCN,$cust_name);
+            print_r($response);
             if($response->statusCode=="SUCCESS"){
                 $TIM = date("Y-m-d H:i:s");
                 $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN,TIM) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$CPF','$ROI','0','$SSR','$requestId','$TIM')";
