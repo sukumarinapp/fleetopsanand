@@ -148,6 +148,7 @@ class DriverController extends Controller
         $DCR = 0;
         $sql = "SELECT * from tbl136 where DECL=0 and VNO='$VNO'";
         $result = DB::select(DB::raw($sql));
+        echo $sql;die;
         if(count($result) > 0){        
             $DCR = $result[0]->id;
             $requestId = uniqid();
