@@ -98,7 +98,7 @@
     }else{
       acc = "ACC ON";
     }
-    var car_icon = "red.png";
+    var car_icon = "off0.png";
     var dir = parseFloat(location['direction']);
     acc = acc + " " + engine_on + " " +dir;
 
