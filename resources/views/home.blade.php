@@ -99,7 +99,7 @@
     }
     console.log(dir);
     var car_icon = "blue.png";
-    var dir = location['direction'];
+    var dir = parseFloat(location['direction']);
     if(dir < 22.5 && dir >= 337.5 ){
       car_icon = "0.png";
     }else if(dir >= 22.5 && dir < 67.5 ){
