@@ -98,7 +98,7 @@
       acc = "ACC ON";
     }
     console.log(dir);
-    var car_icon = "blue.png";
+    var car_icon = "0.png";
     var dir = parseFloat(location['direction']);
     if(dir < 22.5 && dir >= 337.5 ){
       car_icon = "0.png";
@@ -116,8 +116,6 @@
       car_icon = "270.png";
     }else if(dir >= 292.5 && dir < 337.5 ){
       car_icon = "315.png";
-    }else{
-      car_icon = "0.png";
     }
     //if(location["engine_on"]=="0") car_icon = "red.png";
     var capture_time = location['capture_time'];
