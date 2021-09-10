@@ -117,9 +117,9 @@
     }else if(dir >= 292.5 && dir < 337.5 ){
       car_icon = "315.png";
     }else{
-      car_icon = "blue.png";
+      car_icon = "0.png";
     }
-    if(location["engine_on"]=="0") car_icon = "red.png";
+    //if(location["engine_on"]=="0") car_icon = "red.png";
     var capture_time = location['capture_time'];
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
     if(check_checked(location['VNO'])){
