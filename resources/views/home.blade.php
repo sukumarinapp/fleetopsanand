@@ -100,21 +100,21 @@
     var car_icon = "blue.png";
     var dir = location['direction'];
     if(dir < 22.5 && dir >= 337.5 ){
-      //car_icon = "0.png";
+      car_icon = "0.png";
     }else if(dir >= 22.5 && dir < 67.5 ){
-      //car_icon = "45.png";
+      car_icon = "45.png";
     }else if(dir >= 67.5 && dir < 112.5 ){
-      //car_icon = "90.png";
+      car_icon = "90.png";
     }else if(dir >= 112.5 && dir < 157.5 ){
-      //car_icon = "135.png";
+      car_icon = "135.png";
     }else if(dir >= 157.5 && dir < 202.5 ){
-      //car_icon = "180.png";
+      car_icon = "180.png";
     }else if(dir >= 202.5 && dir < 247.5 ){
-      //car_icon = "225.png";
+      car_icon = "225.png";
     }else if(dir >= 247.5 && dir < 292.5 ){
-      //car_icon = "270.png";
+      car_icon = "270.png";
     }else if(dir >= 292.5 && dir < 337.5 ){
-      //car_icon = "325.png";
+      car_icon = "315.png";
     }else{
       car_icon = "blue.png";
     }
