@@ -110,7 +110,7 @@
       car_icon = "135.png";
     }else if(dir >= 157.5 && dir < 202.5 ){
       car_icon = "180.png";
-    }else if(dir >= 202.5 && dir < 247.5 ){
+    }else if(dir >= "202.5" && dir < "247.5" ){
       car_icon = "225.png";
     }else if(dir >= 247.5 && dir < 292.5 ){
       car_icon = "270.png";
