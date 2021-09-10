@@ -98,24 +98,57 @@
     }else{
       acc = "ACC ON";
     }
+    acc = acc + " " + engine_on;
     var car_icon = "0.png";
     var dir = parseFloat(location['direction']);
-    if(dir < 22.5 && dir >= 337.5 ){
-      car_icon = (engine_on == 1) ? "0.png" : "red.png";
+    if(dir < 22.5 || dir >= 337.5 ){
+      if(engine_on == 1) {
+        car_icon = "0.png";
+      }else{
+        car_icon = "red.png";
+      }
     }else if(dir >= 22.5 && dir < 67.5 ){
-      car_icon = (engine_on == 1) ? "45.png" : "red.png";
+      if(engine_on == 1) {
+        car_icon = "45.png";
+      }else{
+        car_icon = "red.png";
+      }
     }else if(dir >= 67.5 && dir < 112.5 ){
-      car_icon = (engine_on == 1) ? "90.png" : "red.png";
+      if(engine_on == 1) {
+        car_icon = "90.png";
+      }else{
+        car_icon = "red.png";
+      }
     }else if(dir >= 112.5 && dir < 157.5 ){
-      car_icon = (engine_on == 1) ? "135.png" : "red.png";
+      if(engine_on == 1) {
+        car_icon = "135.png";
+      }else{
+        car_icon = "red.png";
+      }
     }else if(dir >= 157.5 && dir < 202.5 ){
-      car_icon = (engine_on == 1) ? "180.png" : "red.png";
+      if(engine_on == 1) {
+        car_icon = "180.png";
+      }else{
+        car_icon = "red.png";
+      }
     }else if(dir >= "202.5" && dir < "247.5" ){
-      car_icon = (engine_on == 1) ? "225.png" : "red.png";
+      if(engine_on == 1) {
+        car_icon = "225.png";
+      }else{
+        car_icon = "red.png";
+      }
     }else if(dir >= 247.5 && dir < 292.5 ){
-      car_icon = (engine_on == 1) ? "270.png" : "red.png";
+      if(engine_on == 1) {
+        car_icon = "270.png";
+      }else{
+        car_icon = "red.png";
+      }
     }else if(dir >= 292.5 && dir < 337.5 ){
-      car_icon = (engine_on == 1) ? "315.png" : "red.png";
+      if(engine_on == 1) {
+        car_icon = "315.png";
+      }else{
+        car_icon = "red.png";
+      }
     }
     //if(location["engine_on"]=="0") car_icon = "red.png";
     var capture_time = location['capture_time'];
@@ -139,7 +172,7 @@
           function( marker, i ) {
             return function() {
               var infowindow = new google.maps.InfoWindow();
-              infowindow.setContent("engine on: "+locations[i]["engine_on"]+"<br>direction: "+locations[i]["direction"]+"<br>License Plate: "+locations[i]["VNO"]+"<br>ID: "+locations[i]["terminal_id"]+"<br>Latitude: "+locations[i]["latitude"]+"<br>Longitude: "+locations[i]["longitude"]+"<br>Speed: "+locations[i]["ground_speed"]+"<br>Mileage(km): "+locations[i]["odometer"]);
+              infowindow.setContent("engine on: "+engine_on+"<br>direction: "+dir+"<br>License Plate: "+locations[i]["VNO"]+"<br>ID: "+locations[i]["terminal_id"]+"<br>Latitude: "+locations[i]["latitude"]+"<br>Longitude: "+locations[i]["longitude"]+"<br>Speed: "+locations[i]["ground_speed"]+"<br>Mileage(km): "+locations[i]["odometer"]);
               infowindow.open( map, marker );
             }
           }
