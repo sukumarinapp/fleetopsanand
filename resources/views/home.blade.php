@@ -101,23 +101,23 @@
     var car_icon = "0.png";
     var dir = parseFloat(location['direction']);
     if(dir < 22.5 && dir >= 337.5 ){
-      car_icon = "0.png";
+      location["engine_on"]=="1" ? car_icon = "0.png" : "red.png";
     }else if(dir >= 22.5 && dir < 67.5 ){
-      car_icon = "45.png";
+      location["engine_on"]=="1" ? car_icon = "45.png" : "red.png";
     }else if(dir >= 67.5 && dir < 112.5 ){
-      car_icon = "90.png";
+      location["engine_on"]=="1" ? car_icon = "90.png" : "red.png";
     }else if(dir >= 112.5 && dir < 157.5 ){
-      car_icon = "135.png";
+      location["engine_on"]=="1" ? car_icon = "135.png" : "red.png";
     }else if(dir >= 157.5 && dir < 202.5 ){
-      car_icon = "180.png";
+      location["engine_on"]=="1" ? car_icon = "180.png" : "red.png";
     }else if(dir >= "202.5" && dir < "247.5" ){
-      car_icon = "225.png";
+      location["engine_on"]=="1" ? car_icon = "225.png" : "red.png";
     }else if(dir >= 247.5 && dir < 292.5 ){
-      car_icon = "270.png";
+      location["engine_on"]=="1" ? car_icon = "270.png" : "red.png";
     }else if(dir >= 292.5 && dir < 337.5 ){
-      car_icon = "315.png";
+      location["engine_on"]=="1" ? car_icon = "315.png" : "red.png";
     }
-    if(location["engine_on"]=="0") car_icon = "red.png";
+    //if(location["engine_on"]=="0") car_icon = "red.png";
     var capture_time = location['capture_time'];
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
     if(check_checked(location['VNO'])){
