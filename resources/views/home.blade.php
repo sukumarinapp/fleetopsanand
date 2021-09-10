@@ -100,7 +100,6 @@
     }
     var car_icon = "off0.png";
     var dir = parseFloat(location['direction']);
-    acc = acc + " " + engine_on + " " +dir;
 
     if(dir < 22.5 || dir >= 337.5 ){
       if(engine_on == 1) {
