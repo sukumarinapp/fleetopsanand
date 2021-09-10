@@ -97,6 +97,7 @@
     }else{
       acc = "ACC ON";
     }
+    console.log(dir);
     var car_icon = "blue.png";
     var dir = location['direction'];
     if(dir < 22.5 && dir >= 337.5 ){
