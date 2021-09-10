@@ -99,7 +99,7 @@
       acc = "ACC ON";
     }
     acc = acc + " " + engine_on;
-    var car_icon = "0.png";
+    var car_icon = "red.png";
     var dir = parseFloat(location['direction']);
     if(dir < 22.5 || dir >= 337.5 ){
       if(engine_on == 1) {
@@ -113,7 +113,7 @@
       }else{
         car_icon = "red.png";
       }
-    }else if(dir >= 67.5 && dir < 112.5 ){
+    }else if((dir >= 67.5) && (dir < 112.5)){
       if(engine_on == 1) {
         car_icon = "90.png";
       }else{
