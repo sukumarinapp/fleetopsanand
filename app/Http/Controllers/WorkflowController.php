@@ -120,7 +120,7 @@ class WorkflowController extends Controller
                 }
                 $UAN = $users[0]->UAN;                
                 $OTT = date("H.i");
-                $sql = "update tbl136 set DECL=1 where VNO='$VNO'";
+                $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
                 DB::update($sql);
                 $sql = "insert into tbl024 (DCR,ODT,OTT,CAN,VNO,UAN,OAC) values ($DCR,'$ODT','$OTT','$CAN','$VNO','$UAN','$OAC')";
                 DB::insert($sql);
@@ -217,7 +217,7 @@ class WorkflowController extends Controller
             $TIM = date("Y-m-d H:i:s");
             $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$RMT','$ROI','1','$SSR','$TIM')";
             DB::insert($sql);
-            $sql = "update tbl136 set DECL=1 where VNO='$VNO'";
+            $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
             DB::update($sql);
             $WTP = "Sale Audit Vehicle Unblocked";
             $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$SDT')";
@@ -227,7 +227,7 @@ class WorkflowController extends Controller
             return redirect('/workflow')->with('message', 'Driver Sales Audit Done Successfully')->withInput();
         }else{
            $WTP = "Sale Audit Vehicle Blocked";
-           $sql = "update tbl136 set DECL=0,DES='A4' where id='$DCR'";
+           $sql = "update tbl136 set DECL=0,DES='A4',attempts=0 where id='$DCR'";
            DB::update($sql);
            $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$SDT')";
            DB::insert($sql);
