@@ -36,7 +36,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive" >
-     <table id="example1" class="table table-bordered table-striped">
+     <table id="examplesales" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>Sales Date</th>
@@ -108,6 +108,21 @@
    });
   });
 
-
+  $('#examplesales').DataTable( {
+            responsive: true,
+            initComplete: function() {
+             $('.buttons-excel').html('<i class="fa fa-file-excel" style="color:green"/>')
+             $('.buttons-pdf').html('<i class="fa fa-file-pdf" style="color:red"/>')
+             $('.buttons-print').html('<i class="fa fa-print" style="color:#0d5b9e"/>')
+         },
+         "order": [[ 0, "desc" ]],
+         dom: "<'row'<'col-sm-12 col-md-9'B><'col-sm-12 col-md-3'f>>" +
+         "<'row'<'col-sm-12'tr>>" +
+         "<'row'<'col-sm-12 col-md-2'i><'col-sm-12 col-md-2'l><'col-sm-12 col-md-8'p>>",
+         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],  
+         buttons: [
+         'excel', 'pdf', 'print','columnsToggle'
+         ]
+     } );
 </script>
 @endpush

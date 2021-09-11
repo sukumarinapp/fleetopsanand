@@ -120,8 +120,14 @@ class WorkflowController extends Controller
                 }
                 $UAN = $users[0]->UAN;                
                 $OTT = date("H.i");
-                $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
-                DB::update($sql);
+                if($DES == "A4"){
+                    $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
+                    DB::update($sql);
+                }else{
+                    $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
+                    DB::update($sql);
+                }
+                
                 $sql = "insert into tbl024 (DCR,ODT,OTT,CAN,VNO,UAN,OAC) values ($DCR,'$ODT','$OTT','$CAN','$VNO','$UAN','$OAC')";
                 DB::insert($sql);
                 $WNB = "WFL" . str_pad($DCR,3,'0',STR_PAD_LEFT);
