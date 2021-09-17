@@ -76,7 +76,7 @@ class WorkflowController extends Controller
     {
         $this->check_access("BPJ2");
         $title = 'Collection Report';
-        $sql = "select * from tbl137 where SDT >='$from' and SDT <='$to' order by SDT desc";
+        $sql = "select * from tbl137 where RHN=0 and SDT >='$from' and SDT <='$to' order by SDT desc";
         $sales = DB::select(DB::raw($sql));
         return view('collection',compact('sales','title','from','to'));
     }
