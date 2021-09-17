@@ -57,9 +57,7 @@
          <td>{{ $sale->VNO }}</td>
          <td>{{ $sale->SSA }}</td>
          <td>
-          @if($sale->VBM == "Ride Hailing")
-          RH
-          @elseif($sale->VBM == "Rental")
+          @if($sale->VBM == "Rental")
           RT
           @elseif($sale->VBM == "Hire Purchase")
           HP

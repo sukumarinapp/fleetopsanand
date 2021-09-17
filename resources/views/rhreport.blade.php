@@ -39,27 +39,45 @@
      <table id="examplesales" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Sales Date</th>
-          <th>Declaration No</th>
-          <th>CAN</th>
-          <th>VNO</th>
-          <th>Sales Amount</th>
-          <th>Source</th>
-          <th>Originator</th>
+          <th>Date</th>
+            <th>Dec No</th>
+            <th>PLAT</th>
+            <th>CAN</th>
+            <th>VNO</th>
+            <th>Contact#</th>
+            <th>Amount</th>
+            <th>Operator</th>
+            <th>Tran#</th>
+            <th>Status</th>
+            <th>Source</th>
+            <th>Request Time</th>
+            <th>Response Time</th>
         </tr>
       </thead>
       <tbody>
-       
+       @foreach($rhreport as $sale)
         <tr>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td>
-        </td>
-        <td></td>
+         <td>{{ date("d-m-Y",strtotime($sale->SDT)) }}</td>
+           <td>{{ $sale->DCR }}</td>
+           <td>{{ $sale->PLAT }}</td>
+           <td>{{ $sale->CAN }}</td>
+           <td>{{ $sale->VNO }}</td>
+           <td>{{ $sale->RCN }}</td>
+           <td>{{ $sale->RMT }}</td>
+           <td>{{ $sale->ROI }}</td>
+           <td>{{ $sale->RTN }}</td>
+           <td>
+            @if($sale->RST == 1)
+            Complete
+            @else
+            Incomplete
+            @endif
+          </td>
+          <td>{{ $sale->SSR }}</td>
+          <td>{{ $sale->TIM }}</td>
+          <td>{{ $sale->TIM2 }}</td>
       </tr>
+      @endforeach
 
     </tbody>
   </table>
