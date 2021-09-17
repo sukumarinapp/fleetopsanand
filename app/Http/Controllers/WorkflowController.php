@@ -60,7 +60,6 @@ class WorkflowController extends Controller
         $sql = "select a.*,b.CML,b.CHR,c.RHN as PLAT from tbl137 a,tbl136 b,tbl361 c where a.DCR=b.id and a.RHN <> 0 and a.RHN=c.id and SDT >='$from' and SDT <='$to' order by SDT desc";
         $title = 'RH Daily Report';
         $rhreport = DB::select(DB::raw($sql));
-        
         return view('rhreport',compact('rhreport','title','from','to'));
     }
 
