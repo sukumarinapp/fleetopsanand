@@ -121,7 +121,7 @@ class WorkflowController extends Controller
                 $UAN = $users[0]->UAN;                
                 $OTT = date("H.i");
                 if($DES == "A4"){
-                    $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
+                    $sql = "update tbl136 set DECL=1,attempts=0 where id='$DCR'";
                     DB::update($sql);
                 }else{
                     $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
