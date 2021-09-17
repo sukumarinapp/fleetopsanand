@@ -68,6 +68,7 @@ Route::get('/driverhelpprev3/{VNO}/{DCN}', 'DriverController@driverhelpprev3')->
 
 Route::get('/workflow', 'WorkflowController@index')->name('workflow');
 Route::get('/vehiclelog/{from}/{to}', 'WorkflowController@vehiclelog')->name('vehiclelog');
+Route::get('/rhreport/{from}/{to}', 'WorkflowController@rhreport')->name('rhreport');
 Route::get('/sales/{from}/{to}', 'WorkflowController@sales')->name('sales');
 Route::get('/collection/{from}/{to}', 'WorkflowController@collection')->name('collection');
 Route::get('/notificationslog/{from}/{to}', 'WorkflowController@notificationslog')->name('notificationslog');

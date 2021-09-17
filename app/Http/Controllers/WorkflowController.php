@@ -55,6 +55,13 @@ class WorkflowController extends Controller
         $vehiclelog = DB::select(DB::raw($sql));
         return view('vehiclelog',compact('vehiclelog','title','from','to'));
     }
+ public function rhreport($from,$to)
+    {
+        $sql = "select a.*,b.DNM,b.DSN from vehicle_log a,driver b where LDT >= '$from' and LDT <='$to' and a.DID=b.id order by TIM desc";
+        $title = 'RH Daily Report';
+        $rhreport = DB::select(DB::raw($sql));
+        return view('rhreport',compact('rhreport','title','from','to'));
+    }
 
     public function sales($from,$to)
     {
