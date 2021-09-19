@@ -122,12 +122,13 @@ class Formulae{
     $RML = 0;
     $RMN = 0;
     $RMS = 0;
-    $TPF = 0;
+    $TPF = 1;
     $sql = "SELECT max(TPF) as TRIPS FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $TPF = $result[0]->TRIPS;
     }
+    if($TPF == 0) $TPF = 1;
     $sql = "SELECT * FROM tbl136 where DDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
