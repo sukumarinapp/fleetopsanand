@@ -9,7 +9,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Reports</a></li>
-              <li class="breadcrumb-item">Sales Ledger (Rental/HP)</li>
+              <li class="breadcrumb-item">Expected Sales (RT/HP)</li>
             </ol>
           </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="card-header align-items-center">
       <div class="row">
         <div class="col-md-2">
-          <label>General Sales Ledger</label>
+          <label>Expected Sales (RT/HP)</label>
         </div>
         <div class="col-md-10">
          <form class="form-inline" >
@@ -43,8 +43,8 @@
           <th>Declaration No</th>
           <th>CAN</th>
           <th>VNO</th>
+          <th>VBM</th>
           <th>Sales Amount</th>
-          <th>Source</th>
           <th>Originator</th>
         </tr>
       </thead>
@@ -55,14 +55,14 @@
          <td>{{ $sale->DCR }}</td>
          <td>{{ $sale->CAN }}</td>
          <td>{{ $sale->VNO }}</td>
-         <td>{{ $sale->SSA }}</td>
          <td>
           @if($sale->VBM == "Rental")
           RT
           @elseif($sale->VBM == "Hire Purchase")
           HP
           @endif
-        </td>
+         </td>
+         <td>{{ $sale->SSA }}</td>         
         <td>{{ $sale->DNM }} {{ $sale->DSN }}</td>
       </tr>
       @endforeach

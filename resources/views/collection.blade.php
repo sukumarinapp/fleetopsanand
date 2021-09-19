@@ -9,7 +9,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Reports</a></li>
-              <li class="breadcrumb-item">Collection</li>
+              <li class="breadcrumb-item">General Sales Ledger</li>
             </ol>
           </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="card-header align-items-center">
       <div class="row">
         <div class="col-md-2">
-          <label>Collection</label>
+          <label>General Sales Ledger</label>
         </div>
         <div class="col-md-10">
          <form class="form-inline" >
@@ -43,6 +43,7 @@
             <th>Dec No</th>
             <th>CAN</th>
             <th>VNO</th>
+            <th>VBM</th>
             <th>Contact#</th>
             <th>Amount</th>
             <th>Operator</th>
@@ -60,6 +61,13 @@
            <td>{{ $sale->DCR }}</td>
            <td>{{ $sale->CAN }}</td>
            <td>{{ $sale->VNO }}</td>
+           @if($sale->VBM == "Ride Hailing")
+            <td>RH</td>
+           @elseif($sale->VBM == "Rental")
+            <td>RT</td>
+           @elseif($sale->VBM == "Hire Purchase")
+            <td>HP</td>
+           @endif
            <td>{{ $sale->RCN }}</td>
            <td>{{ $sale->RMT }}</td>
            <td>{{ $sale->ROI }}</td>

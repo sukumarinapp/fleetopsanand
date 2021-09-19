@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use App\SMSFleetops;
 use Illuminate\Support\Facades\Hash;
+use App\Formulae;
 
 class WorkflowController extends Controller
 {
@@ -60,13 +61,19 @@ class WorkflowController extends Controller
         $sql = "select a.*,b.CML,b.CHR,c.RHN as PLAT from tbl137 a,tbl136 b,tbl361 c where a.DCR=b.id and a.RHN <> 0 and a.RHN=c.id and SDT >='$from' and SDT <='$to' order by SDT desc";
         $title = 'RH Daily Report';
         $rhreport = DB::select(DB::raw($sql));
+        foreach($rhreport as $sale){
+            $sale->EXPS = round(Formulae::EXPS($sale->SDT,$sale->VNO),2);
+            $sale->CCEI = round(Formulae::CCEI($sale->SDT,$sale->VNO),2);
+            $sale->FTP = round(Formulae::FTP($sale->SDT,$sale->VNO),2);
+            $sale->CWI = round(Formulae::CWI($sale->SDT,$sale->VNO),2);
+        }
         return view('rhreport',compact('rhreport','title','from','to'));
     }
 
     public function sales($from,$to)
     {
         $this->check_access("BPJ2");
-        $title = 'General Sales Ledger';
+        $title = 'Expected Sales (RT/HP)';
         $sql="select a.VBM,b.*,c.DNM,c.DSN from tbl136 a,sales_rental b,driver c where a.id=b.DCR and a.driver_id=c.id and b.SDT >='$from' and b.SDT <='$to' order by b.SDT desc";
         $sales = DB::select(DB::raw($sql));
         return view('sales',compact('sales','title','from','to'));
@@ -75,7 +82,7 @@ class WorkflowController extends Controller
     public function collection($from,$to)
     {
         $this->check_access("BPJ2");
-        $title = 'Collection Report';
+        $title = 'General Sales Ledger';
         $sql = "select * from tbl137 where RHN=0 and SDT >='$from' and SDT <='$to' order by SDT desc";
         $sales = DB::select(DB::raw($sql));
         return view('collection',compact('sales','title','from','to'));

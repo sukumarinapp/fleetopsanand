@@ -161,7 +161,7 @@ class Formulae{
     $CML = self::CML($SDT,$VNO);
     $fuel_mileage = $CML * $CON;
     $FTP = 0;
-    if($fuel_sales < $fuel_mileage){
+    if($fuel_sales >= $fuel_mileage){
       $FTP = $fuel_sales;
     }else{      
       $FTP = $fuel_mileage;

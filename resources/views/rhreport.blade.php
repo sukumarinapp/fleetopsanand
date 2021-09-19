@@ -40,18 +40,17 @@
       <thead>
         <tr>
           <th>Date</th>
-            <th>Dec No</th>
-            <th>PLAT</th>
-            <th>CAN</th>
-            <th>VNO</th>
-            <th>Contact#</th>
-            <th>Amount</th>
-            <th>Operator</th>
-            <th>Tran#</th>
-            <th>Status</th>
-            <th>Source</th>
-            <th>Request Time</th>
-            <th>Response Time</th>
+          <th>Declaration No</th>
+          <th>CAN</th>
+          <th>VNO</th>
+          <th>RHN</th>
+          <th>Contact#</th>
+          <th>CML</th>
+          <th>CHR</th>
+          <th>EXPS</th>
+          <th>CCEI</th>
+          <th>FTP</th>
+          <th>CWI</th>
         </tr>
       </thead>
       <tbody>
@@ -59,23 +58,16 @@
         <tr>
          <td>{{ date("d-m-Y",strtotime($sale->SDT)) }}</td>
            <td>{{ $sale->DCR }}</td>
-           <td>{{ $sale->PLAT }}</td>
            <td>{{ $sale->CAN }}</td>
            <td>{{ $sale->VNO }}</td>
+           <td>{{ $sale->PLAT }}</td>
            <td>{{ $sale->RCN }}</td>
-           <td>{{ $sale->RMT }}</td>
-           <td>{{ $sale->ROI }}</td>
-           <td>{{ $sale->RTN }}</td>
-           <td>
-            @if($sale->RST == 1)
-            Complete
-            @else
-            Incomplete
-            @endif
-          </td>
-          <td>{{ $sale->SSR }}</td>
-          <td>{{ $sale->TIM }}</td>
-          <td>{{ $sale->TIM2 }}</td>
+           <td>{{ $sale->CML }}</td>
+           <td>{{ $sale->CHR }}</td>
+           <td>{{ $sale->EXPS }}</td>
+           <td>{{ $sale->CCEI }}</td>
+           <td>{{ $sale->FTP }}</td>
+           <td>{{ $sale->CWI }}</td>
       </tr>
       @endforeach
 
@@ -99,7 +91,7 @@
 
 @push('page_scripts')
 <script>
-	var sales = "{{ url('sales') }}";
+	var rhreport = "{{ url('rhreport') }}";
   function load_report(){
     var from = $("#from").val();
     var to = $("#to").val();
@@ -108,7 +100,7 @@
     }else if(to == ""){
       alert("Please select To Date");
     }else{
-      var url =  sales + "/" + from + "/" +to;  
+      var url =  rhreport + "/" + from + "/" +to;  
       window.location.href = url;
     }   
   }
