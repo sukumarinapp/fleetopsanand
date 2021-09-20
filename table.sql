@@ -1,3 +1,13 @@
+drop TABLE `alarm` ;
+CREATE TABLE `alarm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `alert_time` varchar(50) DEFAULT NULL,
+  `terminal_id` varchar(50) DEFAULT NULL,
+  `command` varchar(20) DEFAULT NULL,
+  `alert` varchar(2000) DEFAULT NULL,
+  `packet` varchar(5000) DEFAULT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `sms_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

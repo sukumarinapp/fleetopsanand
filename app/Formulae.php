@@ -102,9 +102,10 @@ class Formulae{
     if(count($result)>0){
       $ECY = $result[0]->ECY;
     }
-    $ECY = $ECY * 10000;
+    //$ECY = $ECY * 10000;
     $ECY = pow($ECY,0.52);
-    $CON = 100 * (0.195 + 0.141 * $ECY);
+    //$CON = 100 * (0.195 + 0.141 * $ECY);
+    $CON =  0.195 + 0.141 * $ECY;
     return $CON;
   }
 
@@ -125,7 +126,7 @@ class Formulae{
     $TPF = 1;
     $sql = "SELECT max(TPF) as TRIPS FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
     $result = DB::select(DB::raw($sql));
-    if(count($result)>0){
+    if(count($result) >0 ){
       $TPF = $result[0]->TRIPS;
     }
     if($TPF == 0) $TPF = 1;
