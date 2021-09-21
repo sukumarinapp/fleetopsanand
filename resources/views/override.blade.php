@@ -30,7 +30,13 @@
             </div>
             <div class="col-md-8">
               <!-- <h4 class="m-0"> Workflow: Sales Declaration Enforcement</h4> -->
-              <h5 class="m-0" style="text-align: right;">Override - Vehicle Buzzer On/Blocked&nbsp;&nbsp;<img src="{{ URL::to('/') }}/images/car.png"></h5>
+              <h5 class="m-0" style="text-align: right;">
+                @if($vehicle->DES == "A3")
+                  Override - Vehicle Buzzer On
+                @else
+                  Override - Vehicle Blocked
+                @endif
+                &nbsp;&nbsp;<img src="{{ URL::to('/') }}/images/car.png"></h5>
             </div>
 
             <div class="col-md-3">

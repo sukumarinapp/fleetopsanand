@@ -101,7 +101,7 @@ class WorkflowController extends Controller
     {
         $this->check_access("BPJ2");
         $id = $VNO;
-        $sql = "SELECT a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id";
+        $sql = "SELECT d.DES,a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c,tbl136 d where d.DECL=0 and a.VNO=d.VNO and a.CAN=b.UAN and a.driver_id=c.id and a.id=$id";
         $vehicle = DB::select(DB::raw($sql));
         $vehicle = $vehicle[0];
         return view('override',compact('vehicle'));
@@ -136,9 +136,11 @@ class WorkflowController extends Controller
                 $OTT = date("H.i");
                 if($DES == "A4"){
                     $sql = "update tbl136 set DECL=1,attempts=0 where id='$DCR'";
+                    echo $sql;die;
                     DB::update($sql);
                 }else{
-                    $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
+                    $sql = "update tbl136 set alarm_off=1,alarm_off_attempts=0 where id='$DCR'";
+                    echo $sql;die;
                     DB::update($sql);
                 }
                 
