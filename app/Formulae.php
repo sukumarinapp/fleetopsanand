@@ -102,10 +102,10 @@ class Formulae{
     if(count($result)>0){
       $ECY = $result[0]->ECY;
     }
-    //$ECY = $ECY * 10000;
+    $ECY = ($ECY * 1000);
     $ECY = pow($ECY,0.52);
-    //$CON = 100 * (0.195 + 0.141 * $ECY);
-    $CON =  0.195 + 0.141 * $ECY;
+    $ECY = 0.141 * $ECY;
+    $CON = 100 * (0.195 + $ECY);
     return $CON;
   }
 

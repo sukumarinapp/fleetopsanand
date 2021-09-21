@@ -58,14 +58,14 @@ class WorkflowController extends Controller
     }
  public function rhreport($from,$to)
     {
-        $sql = "select a.*,b.CML,b.CHR,c.RHN as PLAT from tbl137 a,tbl136 b,tbl361 c where a.DCR=b.id and a.RHN <> 0 and a.RHN=c.id and SDT >='$from' and SDT <='$to' order by SDT desc";
+        $sql = "select a.*,b.DCN from tbl136 a,driver b where a.driver_id=b.id and a.VBM = 'Ride Hailing' and DDT >='$from' and DDT <='$to' order by DDT desc";
         $title = 'RH Daily Report';
         $rhreport = DB::select(DB::raw($sql));
         foreach($rhreport as $sale){
-            $sale->EXPS = round(Formulae::EXPS($sale->SDT,$sale->VNO),2);
-            $sale->CCEI = round(Formulae::CCEI($sale->SDT,$sale->VNO),2);
-            $sale->FTP = round(Formulae::FTP($sale->SDT,$sale->VNO),2);
-            $sale->CWI = round(Formulae::CWI($sale->SDT,$sale->VNO),2);
+            $sale->EXPS = round(Formulae::EXPS($sale->DDT,$sale->VNO),2);
+            $sale->CCEI = round(Formulae::CCEI($sale->DDT,$sale->VNO),2);
+            $sale->FTP = round(Formulae::FTP($sale->DDT,$sale->VNO),2);
+            $sale->CWI = round(Formulae::CWI($sale->DDT,$sale->VNO),2);
         }
         return view('rhreport',compact('rhreport','title','from','to'));
     }

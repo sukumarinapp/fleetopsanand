@@ -43,7 +43,6 @@
           <th>Declaration No</th>
           <th>CAN</th>
           <th>VNO</th>
-          <th>RHN</th>
           <th>Contact#</th>
           <th>CML</th>
           <th>CHR</th>
@@ -55,18 +54,21 @@
       </thead>
       <tbody>
        @foreach($rhreport as $sale)
+        @php
+          $FTP = $sale->FTP / 10000;
+          $FTP = round($FTP,2);
+        @endphp
         <tr>
-         <td>{{ date("d-m-Y",strtotime($sale->SDT)) }}</td>
-           <td>{{ $sale->DCR }}</td>
+         <td>{{ date("d-m-Y",strtotime($sale->DDT)) }}</td>
+           <td>{{ $sale->id }}</td>
            <td>{{ $sale->CAN }}</td>
            <td>{{ $sale->VNO }}</td>
-           <td>{{ $sale->PLAT }}</td>
-           <td>{{ $sale->RCN }}</td>
+           <td>{{ $sale->DCN }}</td>
            <td>{{ $sale->CML }}</td>
            <td>{{ $sale->CHR }}</td>
            <td>{{ $sale->EXPS }}</td>
            <td>{{ $sale->CCEI }}</td>
-           <td>{{ $sale->FTP }}</td>
+           <td>{{ $FTP }}</td>
            <td>{{ $sale->CWI }}</td>
       </tr>
       @endforeach
