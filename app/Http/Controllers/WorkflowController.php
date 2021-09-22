@@ -136,11 +136,9 @@ class WorkflowController extends Controller
                 $OTT = date("H.i");
                 if($DES == "A4"){
                     $sql = "update tbl136 set DECL=1,attempts=0 where id='$DCR'";
-                    echo $sql;die;
                     DB::update($sql);
                 }else{
                     $sql = "update tbl136 set alarm_off=1,alarm_off_attempts=0 where id='$DCR'";
-                    echo $sql;die;
                     DB::update($sql);
                 }
                 
