@@ -138,7 +138,7 @@
 
                <li><a href="{{ url('rhreport') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'rhreport') ? 'active' : '' }}" class="dropdown-item">RH Daily Report</a></li>
 
-              <li><a href="{{ url('sales') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) =='sales') ? 'active' : '' }}" class="dropdown-item">Expected Sales (RT/HP)</a></li>
+              <li><a href="{{ url('sales') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) =='sales') ? 'active' : '' }}" class="dropdown-item">Pending Sales (RT/HP)</a></li>
 
               <li><a href="{{ url('collection') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'collection') ? 'active' : '' }}" class="dropdown-item">General Sales Ledger</a></li>
 

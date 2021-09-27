@@ -9,7 +9,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Reports</a></li>
-              <li class="breadcrumb-item">Expected Sales (RT/HP)</li>
+              <li class="breadcrumb-item">Pending Sales (RT/HP)</li>
             </ol>
           </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="card-header align-items-center">
       <div class="row">
         <div class="col-md-2">
-          <label>Expected Sales (RT/HP)</label>
+          <label>Pending Sales (RT/HP)</label>
         </div>
         <div class="col-md-10">
          <form class="form-inline" >

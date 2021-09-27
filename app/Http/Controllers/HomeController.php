@@ -234,6 +234,7 @@ class HomeController extends Controller
         if(count($result) > 0){
             $total = $result[0]->total;
         }
+        //dd($usertree);
         return view('home',compact('usertree','type','online','offline','inactive','new','total'));
     }
 
@@ -295,6 +296,7 @@ class HomeController extends Controller
 
         //select * from alarm;
         $markers = DB::select(DB::raw($sql));
+        //dd($markers);
         return response()->json($markers);
     
     }
