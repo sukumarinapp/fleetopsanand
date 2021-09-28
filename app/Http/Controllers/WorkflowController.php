@@ -148,16 +148,38 @@ class WorkflowController extends Controller
                 $WTP = "Vehicle Unblocked";
                 $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$ODT')";
                 DB::insert($sql);
-                $sql = "SELECT * FROM vehicle where id=$VID";
+                $sql = "SELECT a.*,b.DNM,b.DSN,b.DCN FROM vehicle a,driver b where a.driver_id=b.id and a.id=$VID";
                 $vehicle = DB::select(DB::raw($sql));
                 $VZC0 = $vehicle[0]->VZC0;
                 $VBC0 = $vehicle[0]->VBC0; 
                 $TSM = $vehicle[0]->TSM;
+                $DNM = $vehicle[0]->DNM . " " . $vehicle[0]->DSN ;
+                $DCN = $vehicle[0]->DCN;
+                $TSM = $vehicle[0]->TSM;
+
+                $DAT = date("Y-m-d");
+                $TIM = date("H:i:s");
+                
+                
+
                 if($DES == "A4"){
-                    SMSFleetops::send($TSM,$VBC0);
-                    return redirect('/workflow')->with('message', 'Vehicle Mobilized Successfully');
+                    $CTX = "Vehicle Unblocked"; 
+                    $MSG = "Hi ". $DNM." your vehicle has unblocked Successfully.";
+                    
+                    $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$DCN','$MSG','$DAT','$TIM','$CTX','$DNM')";
+                    DB::insert($sql);
+                    SMSFleetops::send($TSM,$VBC0);                    
+                    SMSFleetops::send($DCN,$MSG);
+                    return redirect('/workflow')->with('message', 'Vehicle Mobilized successfully');
                 }else{
+                    $CTX = "Buzzer Turned Offf";
+
+                    $MSG = "Hi ". $DNM." your vehicle buzzer has been turned off successfully.";
+                    
+                    $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$DCN','$MSG','$DAT','$TIM','$CTX','$DNM')";
+                    DB::insert($sql);
                     SMSFleetops::send($TSM,$VZC0);
+                    SMSFleetops::send($DCN,$MSG);
                     return redirect('/workflow')->with('message', 'Vehicle Buzzer Turned off Successfully');
                 }
             } else {
