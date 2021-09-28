@@ -224,7 +224,7 @@ class HomeController extends Controller
         if(count($result) > 0){
             $inactive = $result[0]->inactive;
         }
-        $sql = " select count(VNO) as active from vehicle where VTV=1";
+        $sql = " select count(VNO) as active from vehicle where VTV=1 and driver_id <> ''";
         $result = DB::select(DB::raw($sql));
         if(count($result) > 0){
             $active = $result[0]->active;
