@@ -37,6 +37,7 @@
                 </div>
               </div>   -->   
               <div class="card-body">
+                
                <div id="map_canvas" style="height: 443px;"></div>
              </div>
            </div>

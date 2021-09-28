@@ -1,5 +1,23 @@
-(1)
-Before an "Client Account" can be deactivated, all vehicles under it must be deactivated first. 
-(2)
-This message can be sent from the "Assign Vehicle" page but please add "Resend" button in a column of the "Manage Driver" Grid. The Column can be titled "Business SMS"
+"The grid beneath the map shall be dedicated for alerts. There are principally 4 alerts which are raised whenever there is a business-critical situation. They are as follows:
+1. Vehicle (Tracker) Offline
+2. Vehicle Blocked
+3. Vehicle Buzzer Active
+4. Battery Power Cut
 
+The grid shall have the following headers:
+a. Event Date/Time
+b. Vehicle Reg# (Hyperlinked such that when tapped it displays a tool-tip-text of a brief summary of the vehicle's situation: 
+          - Vehicle Reg#
+          - Vehicle Make/Model/Color
+          - Customer Name
+          - Manager Name
+          - Driver Name (Or None)
+          - Business (Or None)
+c. Alert 
+d. Hours-in-Effect (Records time in hours since the alarm was made active)
+e. Event Location (Provides the Long./Lat. coordinates and hyperlinked such that when tapped it opens a Google map with a pin-drop showing where the event took place. From Google the user can then navigate to the location with directions.)
+
+Generally,
+1. The alerts shall persist until resolved
+2. When the alert has been resolved, it shall disappear from the grid.
+3. The ""Alerts Log"" shall have all the headings of the grid plus an additional one: ""Resolved Date/Time"""

@@ -14,6 +14,25 @@
           <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $manager['name'] }}
         </label>
         <ul>
+          @foreach($manager['client'] as $key2 => $client)
+          <li data-id="{{ $key2+1 }}">
+            <i class="fa fa-plus"></i>
+            <label>
+              <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $client['name'] }}
+            </label>
+            <ul>
+              @foreach($client['vehicle'] as $key3 => $vehicle)
+              <li>
+                <label>
+                  <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
+                </label>
+              </li>
+              @endforeach 
+            </ul>
+          </li>                            
+          @endforeach
+        </ul>
+        <ul>
           @foreach($manager['submanager'] as $key2 => $submanager)
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
