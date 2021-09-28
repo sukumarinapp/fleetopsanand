@@ -214,7 +214,7 @@ class HomeController extends Controller
         if(count($result) > 0){
             $online = $result[0]->online;
         }
-        $sql = " select count(VNO) as offline from vehicle where VTV=1 and driver_id <> '' and TID not in (select distinct terminal_id from current_location where capture_date='$today')";
+        $sql = " select count(VNO) as offline from vehicle where VTV=1 and TID not in (select distinct terminal_id from current_location where capture_date='$today')";
         $result = DB::select(DB::raw($sql));
         if(count($result) > 0){
             $offline = $result[0]->offline;
