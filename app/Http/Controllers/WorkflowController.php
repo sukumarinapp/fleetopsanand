@@ -74,7 +74,7 @@ class WorkflowController extends Controller
     {
         $this->check_access("BPJ2");
         $title = 'Pending Sales (RT/HP)';
-        $sql="select a.VBM,b.*,c.DNM,c.DSN from tbl136 a,sales_rental b,driver c where a.id=b.DCR and a.driver_id=c.id and b.SDT >='$from' and b.SDT <='$to' order by b.SDT desc";
+        $sql="select a.VBM,b.*,c.DNM,c.DSN from tbl136 a,sales_rental b,driver c where a.id=b.DCR and a.driver_id=c.id and b.SDT >='$from' and b.SDT <='$to' and a.id not in (select DCR from tbl137 where RST=1) order by b.SDT desc";
         $sales = DB::select(DB::raw($sql));
         return view('sales',compact('sales','title','from','to'));
     }
