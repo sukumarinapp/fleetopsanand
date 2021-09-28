@@ -11,14 +11,17 @@
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Online: {{ $online }}</p></div>
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Offline: {{ $offline }}</div>
+                <div class="col-sm-6" style="font-weight: bold; font-size: small; padding-bottom: 3px;">Vehicles Online: {{ $online }}</div>
+                <div class="col-sm-6" style="font-weight: bold; font-size: small;">Vehicles Offline: {{ $offline }}</div>
               </div>
               <div class="row">
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">New: {{ $new }}</div>
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Inactive: {{ $inactive }}</div>
-                <div class="col-sm-4" style="font-weight: bold; font-size: small;">Total: {{ $total }}</div>
+                <div class="col-sm-6" style="font-weight: bold; font-size: small; padding-bottom: 3px;">Vehicles Active: {{ $new }}</div>
+                <div class="col-sm-6" style="font-weight: bold; font-size: small;">Vehicles Inactive: {{ $inactive }}</div>
+                 </div>
+                <div class="row">
+                <div class="col-sm-6" style="font-weight: bold; font-size: small;">Total Vehicles: {{ $total }}</div>
               </div>
+           
             </div>
           </div>
         </div> 
@@ -34,7 +37,7 @@
                 </div>
               </div>   -->   
               <div class="card-body">
-               <div id="map_canvas" style="height: 433px;"></div>
+               <div id="map_canvas" style="height: 443px;"></div>
              </div>
            </div>
          </div> 
