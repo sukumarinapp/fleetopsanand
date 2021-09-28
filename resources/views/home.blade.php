@@ -15,7 +15,7 @@
                 <div class="col-sm-6" style="font-weight: bold; font-size: small;">Vehicles Offline: {{ $offline }}</div>
               </div>
               <div class="row">
-                <div class="col-sm-6" style="font-weight: bold; font-size: small; padding-bottom: 3px;">Vehicles Active: {{ $new }}</div>
+                <div class="col-sm-6" style="font-weight: bold; font-size: small; padding-bottom: 3px;">Vehicles Active: {{ $active }}</div>
                 <div class="col-sm-6" style="font-weight: bold; font-size: small;">Vehicles Inactive: {{ $inactive }}</div>
                  </div>
                 <div class="row">
