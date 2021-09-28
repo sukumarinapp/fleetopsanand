@@ -219,7 +219,7 @@ class HomeController extends Controller
         if(count($result) > 0){
             $offline = $result[0]->offline;
         }
-        $sql = " select count(VNO) as inactive from vehicle where VTV = 0";
+        $sql = " select count(VNO) as inactive from vehicle where VTV = 0 or driver_id = ''";
         $result = DB::select(DB::raw($sql));
         if(count($result) > 0){
             $inactive = $result[0]->inactive;
