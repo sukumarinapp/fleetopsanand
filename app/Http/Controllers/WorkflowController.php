@@ -164,13 +164,13 @@ class WorkflowController extends Controller
 
                 if($DES == "A4"){
                     $CTX = "Vehicle Unblocked"; 
-                    $MSG = "Hi ". $DNM." your vehicle has unblocked Successfully.";
+                    $MSG = "Hi ". $DNM." your vehicle has been unblocked successfully.";
                     
                     $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$DCN','$MSG','$DAT','$TIM','$CTX','$DNM')";
                     DB::insert($sql);
                     SMSFleetops::send($TSM,$VBC0);                    
                     SMSFleetops::send($DCN,$MSG);
-                    return redirect('/workflow')->with('message', 'Vehicle Mobilized successfully');
+                    return redirect('/workflow')->with('message', 'Vehicle Mobilized Successfully');
                 }else{
                     $CTX = "Buzzer Turned Offf";
 
