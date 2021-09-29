@@ -234,8 +234,8 @@ class HomeController extends Controller
         if(count($result) > 0){
             $total = $result[0]->total;
         }
-        //dd($usertree);
-        return view('home',compact('usertree','type','online','offline','inactive','active','total'));
+        $alerts = self::alerts();
+        return view('home',compact('usertree','alerts','type','online','offline','inactive','active','total'));
     }
 
     private function get_filter($user_id,$parent_id,$usertype,$CAN){
@@ -299,5 +299,119 @@ class HomeController extends Controller
         //dd($markers);
         return response()->json($markers);
     
+    }
+
+    public function alerts()
+    {
+        $user_id = Auth::user()->id;
+        $parent_id = Auth::user()->parent_id;
+        $usertype = Auth::user()->usertype;
+        $CAN = Auth::user()->UAN;
+        $filter = self::get_filter($user_id,$parent_id,$usertype,$CAN);
+        if($usertype == "Manager"){
+            $sql="select UAN from users where parent_id=$user_id and usertype='Client'";
+            $result = DB::select(DB::raw($sql));
+            $i = 0;
+            foreach($result as $row){
+                if($i == 0) $filter = " AND CAN IN (";
+                $filter = $filter . " '$row->UAN' ";
+                $i++;
+                if($i < count($result)) $filter = $filter . ",";
+            }     
+            $filter = $filter . ") ";
+        }else if($usertype == "Client"){
+            $filter = " AND CAN = '$UAN' ";
+        }
+        $filter = "";
+        
+        $alerts = array();
+        $current_date = date("Y-m-d");
+        $current_time = date("H.i");
+        $sql = "select id,VNO,driver_id,TID from vehicle where VTV=1 and driver_id is not null";
+        $result = DB::select(DB::raw($sql));
+        $i = 0;
+        foreach($result as $key => $res){
+            $VNO = $res->VNO;
+            $TID = $res->TID;
+            $VID = $res->id;
+            $alerts[$i]['VID'] = $VID;
+            $alerts[$i]['VNO'] = $VNO;
+            $alerts[$i]['TID'] = $TID;
+            //if data not coming from tracker for 15 mins tracker is considered off
+            $sql2 = "select id,capture_date,capture_time,latitude,longitude from current_location where terminal_id='$TID' and id =(select max(id) from current_location where terminal_id='$TID')";
+            $tracker_off = DB::select(DB::raw($sql2));
+            if(count($tracker_off) > 0){
+                $id = $tracker_off[0]->id;
+                $alerts[$i]['cap_id'] = $id; 
+                $capture_date = $tracker_off[0]->capture_date;
+                $capture_time = $tracker_off[0]->capture_time;
+                $capture_time = substr($capture_time,0,2).".".substr($capture_time,2,2);
+                $latitude = $tracker_off[0]->latitude;
+                $longitude = $tracker_off[0]->longitude;
+                if($capture_date < $current_date){
+                    $alerts[$i]['tracker'] = "off";    
+                    $alerts[$i]['tracker_off_date'] = $capture_date;
+                    $alerts[$i]['tracker_off_time'] = str_replace(".",":",$capture_time);
+                }else{
+                    if($current_time - $capture_time > .15){
+                        $alerts[$i]['tracker'] = "off"; 
+                        $alerts[$i]['tracker_off_date'] = $capture_date;
+                        $alerts[$i]['tracker_off_time'] = str_replace(".",":",$capture_time);
+                    }else{
+                        $alerts[$i]['tracker'] = "on";    
+                        $alerts[$i]['tracker_off_date'] = "";
+                        $alerts[$i]['tracker_off_time'] = "";
+                    }
+                }
+                
+            }else{
+                $alerts[$i]['tracker'] = "off";
+                $alerts[$i]['tracker_off_date'] = "";
+                $alerts[$i]['tracker_off_time'] = "";                
+            }
+
+            //blocking on/off
+            $sql3 = "select * from tbl136 where VNO='$VNO' and DES='A4' and DECL=0 and id=(select max(id) from tbl136 where VNO='$VNO');";
+            $blocking = DB::select(DB::raw($sql3));
+            if(count($blocking) > 0){
+                $alerts[$i]['blocking'] = "on";
+                $alerts[$i]['blocking_date'] = $blocking[0]->DDT;
+                $alerts[$i]['blocking_time'] = "12:00";
+            }else{
+                $alerts[$i]['blocking'] = "off";
+                $alerts[$i]['blocking_date'] = "";
+                $alerts[$i]['blocking_time'] = "";
+            }
+
+            //buzzer on/off
+            $sql3 = "select * from tbl136 where VNO='$VNO' and DES='A3' and DECL=0 and id=(select max(id) from tbl136 where VNO='$VNO');";
+            $buzzer = DB::select(DB::raw($sql3));
+            if(count($buzzer) > 0){
+                $alerts[$i]['buzzer'] = "on";
+                $alerts[$i]['buzzer_date'] = $buzzer[0]->DDT;
+                $alerts[$i]['buzzer_time'] = "10:00";
+            }else{
+                $alerts[$i]['buzzer'] = "off";
+                $alerts[$i]['buzzer_date'] = "";
+                $alerts[$i]['buzzer_time'] = "";
+            }
+
+            //battery on/off
+            $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999');";
+            $battery = DB::select(DB::raw($sql4));
+            if(count($battery) > 0){
+                $alerts[$i]['battery_status'] = "off";
+                $alert_time = $battery[0]->alert_time;
+                $alerts[$i]['battery_date'] = substr($alert_time,0,10);
+                $alerts[$i]['battery_time'] = substr($alert_time,11,5);
+            }else{
+                $alerts[$i]['battery_status'] = "on";
+                $alerts[$i]['battery_date'] = "";
+                $alerts[$i]['battery_time'] = "";
+            }
+            $i++;
+        }
+        //dd($alerts);        
+        return $alerts;
     }
 }

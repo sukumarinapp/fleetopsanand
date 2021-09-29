@@ -81,6 +81,7 @@ Route::get('/auditing/{VNO}', 'WorkflowController@auditing')->name('auditing');
 Route::post('/auditingsave', 'WorkflowController@auditingsave')->name('auditingsave');
 
 Route::get('/locations', 'HomeController@locations')->name('locations');
+Route::get('/alerts', 'HomeController@alerts')->name('alerts');
 
 Route::get('/fuelsrch', 'FuelController@fuelsrch')->name('fuelsrch');
 Route::get('/fueler/{VNO}', 'FuelController@fueler')->name('fueler');
