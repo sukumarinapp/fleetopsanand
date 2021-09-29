@@ -17,11 +17,11 @@
               <div class="row">
                 <div class="col-sm-6" style="font-weight: bold; font-size: small; padding-bottom: 3px;">Vehicles Active: {{ $active }}</div>
                 <div class="col-sm-6" style="font-weight: bold; font-size: small;">Vehicles Inactive: {{ $inactive }}</div>
-                 </div>
-                <div class="row">
+              </div>
+              <div class="row">
                 <div class="col-sm-6" style="font-weight: bold; font-size: small;">Total Vehicles: {{ $total }}</div>
               </div>
-           
+              
             </div>
           </div>
         </div> 
@@ -37,7 +37,6 @@
                 </div>
               </div>   -->   
               <div class="card-body">
-                
                <div id="map_canvas" style="height: 443px;"></div>
              </div>
            </div>
@@ -64,10 +63,10 @@
             </tbody>
           </table>
         </div> 
-        </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 </div>
 
@@ -84,7 +83,7 @@
   }
   var locations = [];
   function refresh_map() {
-    var myOptions = {
+    var myOptions = { 
     zoom: 12 // set zoom level
     , mapTypeId: google.maps.MapTypeId.ROADMAP // apply tile (options include ROADMAP, SATELLITE, HYBRID and TERRAIN)
   };
@@ -94,7 +93,7 @@
   for ( var i = 0; i < locations.length; i++ )
   {
     var location = locations[i];
-        
+    
     var acc = "";
     var engine_on = parseInt(location["engine_on"]);
     if(engine_on == 0){
@@ -159,10 +158,10 @@
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
     if(check_checked(location['VNO'])){
       $("#header-fixed > tbody").append("<tr><td>"+location['capture_date']+"&nbsp;"+capture_time+"</td><td>"+location['VNO']+"</td>,<td>"+location['terminal_id']+"</td><td>"+acc+"</td><td>"+location['ground_speed']+"</td>,<td>"+location['odometer']+"</td>,<td>"+location['direction']+"</td><td>"+ location['latitude'] +"</td><td>"+ location['longitude'] +"</td></tr>");
-    
+      
 
-    var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
-    bounds.extend( position );
+      var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
+      bounds.extend( position );
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.NONE
@@ -182,27 +181,27 @@
           }
           )( marker, i ) );
       }//if VNO checked
-      }
-      map.fitBounds( bounds );
     }
-      
+    map.fitBounds( bounds );
+  }
+  refresh_map();
   window.onload = fetch_location; 
-    function fetch_location(){
-      locations = [];
-      $.ajax({
-        type: "get",
-        url: '{{ route('locations') }}',
-        success: function(response) {
-          locations = response;
-          refresh_map();
-        },
-        error: function (jqXHR, exception) {
-          console.log(exception);
-        }
-      });
-    }
-    setInterval(fetch_location, 30000);
-  </script>
+  function fetch_location(){
+    locations = [];
+    $.ajax({
+      type: "get",
+      url: '{{ route('locations') }}',
+      success: function(response) {
+        locations = response;
+        refresh_map();
+      },
+      error: function (jqXHR, exception) {
+        console.log(exception);
+      }
+    });
+  }
+  setInterval(fetch_location, 30000);
+</script>
 
-  @endsection
+@endsection
 
