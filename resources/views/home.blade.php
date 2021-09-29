@@ -48,15 +48,11 @@
           <table id="header-fixed" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; ">
             <thead style="width:70%">
               <tr>
-                <th>Time</th>
-                <th>License Plate </th>
-                <th>Tracker ID</th>
-                <th>Tracker Status</th>
-                <th>Speed(km/h)</th>
-                <th>Mileage(km) </th>
-                <th>Direction </th>
-                <th>Longitude </th>
-                <th>Latitude </th>
+                <th>Event Date/Time</th>
+                <th>Vehicle Reg# </th>
+                <th>Alerts</th>
+                <th>Hours-in-Effect</th>
+                <th>Event Location</th>
               </tr>
             </thead>
             <tbody>
