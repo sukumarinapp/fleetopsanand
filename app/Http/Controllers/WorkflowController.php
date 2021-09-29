@@ -101,7 +101,7 @@ class WorkflowController extends Controller
     {
         $this->check_access("BPJ2");
         $id = $VNO;
-        $sql = "SELECT d.DES,a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c,tbl136 d where d.DECL=0 and a.VNO=d.VNO and a.CAN=b.UAN and a.driver_id=c.id and a.id=$id";
+        $sql = "SELECT d.alarm_off,d.DES,a.*,b.name,c.DNO,c.DNM,c.DSN  FROM vehicle a,users b,driver c,tbl136 d where d.DECL=0 and a.VNO=d.VNO and a.CAN=b.UAN and a.driver_id=c.id and a.id=$id";
         $vehicle = DB::select(DB::raw($sql));
         $vehicle = $vehicle[0];
         return view('override',compact('vehicle'));
@@ -134,18 +134,21 @@ class WorkflowController extends Controller
                 }
                 $UAN = $users[0]->UAN;                
                 $OTT = date("H.i");
+                $WTP = "";
                 if($DES == "A4"){
                     $sql = "update tbl136 set DECL=1,attempts=0 where id='$DCR'";
                     DB::update($sql);
+                    $WTP = "Vehicle Unblocked";
                 }else{
                     $sql = "update tbl136 set alarm_off=1,alarm_off_attempts=0 where id='$DCR'";
                     DB::update($sql);
+                    $WTP = "Buzzer Turned Off";
                 }
                 
                 $sql = "insert into tbl024 (DCR,ODT,OTT,CAN,VNO,UAN,OAC) values ($DCR,'$ODT','$OTT','$CAN','$VNO','$UAN','$OAC')";
                 DB::insert($sql);
                 $WNB = "WFL" . str_pad($DCR,3,'0',STR_PAD_LEFT);
-                $WTP = "Vehicle Unblocked";
+                
                 $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$ODT')";
                 DB::insert($sql);
                 $sql = "SELECT a.*,b.DNM,b.DSN,b.DCN FROM vehicle a,driver b where a.driver_id=b.id and a.id=$VID";
@@ -172,7 +175,7 @@ class WorkflowController extends Controller
                     SMSFleetops::send($DCN,$MSG);
                     return redirect('/workflow')->with('message', 'Vehicle Mobilized Successfully');
                 }else{
-                    $CTX = "Buzzer Turned Offf";
+                    $CTX = "Buzzer Turned Off";
 
                     $MSG = "Hi ". $DNM." your vehicle buzzer has been turned off successfully.";
                     

@@ -87,7 +87,8 @@
 				<div class="form-group row">
 					<label for="UCN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Contact Number</label>
 					<div class="col-sm-4">
-						<input onkeyup="duplicateUserContact({{ $user->UCN }})"  value="{{ $user->UCN }}" required="required" type="text" class="form-control Number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+						<input value="{{ $user->UCN }}" required="required" type="text" class="form-control Number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+                        <!-- <input onkeyup="duplicateUserContact({{ $user->UCN }})"  value="{{ $user->UCN }}" required="required" type="text" class="form-control Number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number"> -->
 					</div>
                     <div class="col-sm-4">
                         <span id="dupContact" style="color:red"></span>

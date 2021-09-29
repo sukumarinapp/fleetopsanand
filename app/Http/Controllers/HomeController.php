@@ -337,7 +337,7 @@ class HomeController extends Controller
             $alerts[$i]['VID'] = $VID;
             $alerts[$i]['VNO'] = $VNO;
             $alerts[$i]['TID'] = $TID;
-            //if data not coming from tracker for 15 mins tracker is considered off
+            //if data not coming from tracker for 3 mins tracker is considered off
             $sql2 = "select id,capture_date,capture_time,latitude,longitude from current_location where terminal_id='$TID' and id =(select max(id) from current_location where terminal_id='$TID')";
             $tracker_off = DB::select(DB::raw($sql2));
             if(count($tracker_off) > 0){
@@ -353,7 +353,7 @@ class HomeController extends Controller
                     $alerts[$i]['tracker_off_date'] = $capture_date;
                     $alerts[$i]['tracker_off_time'] = str_replace(".",":",$capture_time);
                 }else{
-                    if($current_time - $capture_time > .15){
+                    if($current_time - $capture_time > .03){
                         $alerts[$i]['tracker'] = "off"; 
                         $alerts[$i]['tracker_off_date'] = $capture_date;
                         $alerts[$i]['tracker_off_time'] = str_replace(".",":",$capture_time);

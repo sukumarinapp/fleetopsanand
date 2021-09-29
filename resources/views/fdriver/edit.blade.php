@@ -99,7 +99,8 @@
  				<div class="form-group row">
 					<label for="DCN" class="col-sm-4 col-form-label"><span style="color:red">*</span>Contact Number</label>
 					<div class="col-sm-4">
-						<input onkeyup="checkDCN({{ $driver->DCN }})" required="required" value="{{ $driver->DCN }}" type="text" class="form-control number" name="DCN" id="DCN" maxlength="15" placeholder="Contact Number">
+						<input required="required" value="{{ $driver->DCN }}" type="text" class="form-control number" name="DCN" id="DCN" maxlength="15" placeholder="Contact Number">
+						<!-- <input onkeyup="checkDCN({{ $driver->DCN }})" required="required" value="{{ $driver->DCN }}" type="text" class="form-control number" name="DCN" id="DCN" maxlength="15" placeholder="Contact Number"> -->
 					</div>
 					<div class="col-sm-4">
         <span id="dupContact" style="color:red"></span>

@@ -78,7 +78,8 @@
 				<div class="form-group row">
 					<label for="UCN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Contact Number</label>
 					<div class="col-sm-4">
-						<input onkeyup="duplicateUserContact(0)" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+						<input required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number">
+                        <!-- <input onkeyup="duplicateUserContact(0)" required="required" type="text" class="form-control number" name="UCN" id="UCN" maxlength="15" placeholder="Contact Number"> -->
 					</div>
                     <div class="col-sm-4">
                         <span id="dupContact" style="color:red"></span>
