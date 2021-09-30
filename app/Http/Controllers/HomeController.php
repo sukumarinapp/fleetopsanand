@@ -324,6 +324,10 @@ class HomeController extends Controller
         }
         $filter = "";
         
+        $msg1 = "Tracker Off";
+        $msg2 = "Blocking On";
+        $msg3 = "Alarm On";
+        $msg4 = "Battery Off";
         $alerts = array();
         $current_date = date("Y-m-d");
         $current_time = date("H.i");
@@ -334,82 +338,87 @@ class HomeController extends Controller
             $VNO = $res->VNO;
             $TID = $res->TID;
             $VID = $res->id;
-            $alerts[$i]['VID'] = $VID;
-            $alerts[$i]['VNO'] = $VNO;
-            $alerts[$i]['TID'] = $TID;
+            
             //if data not coming from tracker for 3 mins tracker is considered off
             $sql2 = "select id,capture_date,capture_time,latitude,longitude from current_location where terminal_id='$TID' and id =(select max(id) from current_location where terminal_id='$TID')";
             $tracker_off = DB::select(DB::raw($sql2));
             if(count($tracker_off) > 0){
                 $id = $tracker_off[0]->id;
-                $alerts[$i]['cap_id'] = $id; 
                 $capture_date = $tracker_off[0]->capture_date;
                 $capture_time = $tracker_off[0]->capture_time;
                 $capture_time = substr($capture_time,0,2).".".substr($capture_time,2,2);
                 $latitude = $tracker_off[0]->latitude;
                 $longitude = $tracker_off[0]->longitude;
                 if($capture_date < $current_date){
-                    $alerts[$i]['tracker'] = "off";    
-                    $alerts[$i]['tracker_off_date'] = $capture_date;
-                    $alerts[$i]['tracker_off_time'] = str_replace(".",":",$capture_time);
+                    $alerts[$i]['cap_id'] = $id;
+                    $alerts[$i]['VID'] = $VID;
+                    $alerts[$i]['VNO'] = $VNO;
+                    $alerts[$i]['TID'] = $TID;
+                    $alerts[$i]['type'] = "tracker";    
+                    $alerts[$i]['alert'] = $msg1;    
+                    $alerts[$i]['date'] = $capture_date;
+                    $alerts[$i]['time'] = str_replace(".",":",$capture_time);
+                    $i++;
                 }else{
                     if($current_time - $capture_time > .03){
-                        $alerts[$i]['tracker'] = "off"; 
-                        $alerts[$i]['tracker_off_date'] = $capture_date;
-                        $alerts[$i]['tracker_off_time'] = str_replace(".",":",$capture_time);
-                    }else{
-                        $alerts[$i]['tracker'] = "on";    
-                        $alerts[$i]['tracker_off_date'] = "";
-                        $alerts[$i]['tracker_off_time'] = "";
+                        $alerts[$i]['cap_id'] = $id;
+                        $alerts[$i]['VID'] = $VID;
+                        $alerts[$i]['VNO'] = $VNO;
+                        $alerts[$i]['TID'] = $TID;
+                        $alerts[$i]['type'] = "tracker";    
+                        $alerts[$i]['alert'] = $msg1;    
+                        $alerts[$i]['date'] = $capture_date;
+                        $alerts[$i]['time'] = str_replace(".",":",$capture_time);
+                        $i++;
                     }
                 }
-                
-            }else{
-                $alerts[$i]['tracker'] = "off";
-                $alerts[$i]['tracker_off_date'] = "";
-                $alerts[$i]['tracker_off_time'] = "";                
             }
 
             //blocking on/off
             $sql3 = "select * from tbl136 where VNO='$VNO' and DES='A4' and DECL=0 and id=(select max(id) from tbl136 where VNO='$VNO');";
             $blocking = DB::select(DB::raw($sql3));
             if(count($blocking) > 0){
-                $alerts[$i]['blocking'] = "on";
-                $alerts[$i]['blocking_date'] = $blocking[0]->DDT;
-                $alerts[$i]['blocking_time'] = "12:00";
-            }else{
-                $alerts[$i]['blocking'] = "off";
-                $alerts[$i]['blocking_date'] = "";
-                $alerts[$i]['blocking_time'] = "";
+                $alerts[$i]['cap_id'] = $id;
+                $alerts[$i]['VID'] = $VID;
+                $alerts[$i]['VNO'] = $VNO;
+                $alerts[$i]['TID'] = $TID;
+                $alerts[$i]['type'] = "blocking";    
+                $alerts[$i]['alert'] = $msg2;    
+                $alerts[$i]['date'] = $blocking[0]->DDT;
+                $alerts[$i]['time'] = "12:00";
+                $i++;
             }
 
             //buzzer on/off
             $sql3 = "select * from tbl136 where VNO='$VNO' and DES='A3' and DECL=0 and id=(select max(id) from tbl136 where VNO='$VNO');";
             $buzzer = DB::select(DB::raw($sql3));
             if(count($buzzer) > 0){
-                $alerts[$i]['buzzer'] = "on";
-                $alerts[$i]['buzzer_date'] = $buzzer[0]->DDT;
-                $alerts[$i]['buzzer_time'] = "10:00";
-            }else{
-                $alerts[$i]['buzzer'] = "off";
-                $alerts[$i]['buzzer_date'] = "";
-                $alerts[$i]['buzzer_time'] = "";
+                $alerts[$i]['cap_id'] = $id;
+                $alerts[$i]['VID'] = $VID;
+                $alerts[$i]['VNO'] = $VNO;
+                $alerts[$i]['TID'] = $TID;                
+                $alerts[$i]['type'] = "buzzer";    
+                $alerts[$i]['alert'] = $msg3;    
+                $alerts[$i]['date'] = $buzzer[0]->DDT;
+                $alerts[$i]['time'] = "10:00";
+                $i++;
             }
 
             //battery on/off
             $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999');";
             $battery = DB::select(DB::raw($sql4));
             if(count($battery) > 0){
-                $alerts[$i]['battery_status'] = "off";
+                $alerts[$i]['cap_id'] = $id;
+                $alerts[$i]['VID'] = $VID;
+                $alerts[$i]['VNO'] = $VNO;
+                $alerts[$i]['TID'] = $TID;     
+                $alerts[$i]['type'] = "battery";    
+                $alerts[$i]['alert'] = $msg4;    
                 $alert_time = $battery[0]->alert_time;
-                $alerts[$i]['battery_date'] = substr($alert_time,0,10);
-                $alerts[$i]['battery_time'] = substr($alert_time,11,5);
-            }else{
-                $alerts[$i]['battery_status'] = "on";
-                $alerts[$i]['battery_date'] = "";
-                $alerts[$i]['battery_time'] = "";
+                $alerts[$i]['date'] = substr($alert_time,0,10);
+                $alerts[$i]['time'] = substr($alert_time,11,5);
+                $i++;
             }
-            $i++;
         }
         //dd($alerts);        
         return $alerts;

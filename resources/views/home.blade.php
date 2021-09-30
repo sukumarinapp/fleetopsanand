@@ -44,18 +44,27 @@
        </div>
        <div class="card">
         <div class="card-body">
-         <div class="table-responsive" style="height:100px">
+         <div class="table-responsive" >
           <table id="header-fixed" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; ">
             <thead style="width:70%">
               <tr>
                 <th>Event Date/Time</th>
                 <th>Vehicle Reg# </th>
-                <th>Alerts</th>
+                <th>Alert</th>
                 <th>Hours-in-Effect</th>
                 <th>Event Location</th>
               </tr>
             </thead>
             <tbody>
+              @foreach($alerts as $alert)
+                <tr>
+                  <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
+                  <td>{{ $alert["VNO"] }}</td>
+                  <td>{{ $alert["alert"] }}</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div> 
@@ -85,7 +94,6 @@
   };
   var map = new google.maps.Map( document.getElementById("map_canvas"), myOptions );
   var bounds = new google.maps.LatLngBounds();
-  $("#header-fixed > tbody").html("");
   for ( var i = 0; i < locations.length; i++ )
   {
     var location = locations[i];
@@ -153,9 +161,6 @@
     var capture_time = location['capture_time'];
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
     if(check_checked(location['VNO'])){
-      $("#header-fixed > tbody").append("<tr><td>"+location['capture_date']+"&nbsp;"+capture_time+"</td><td>"+location['VNO']+"</td>,<td>"+location['terminal_id']+"</td><td>"+acc+"</td><td>"+location['ground_speed']+"</td>,<td>"+location['odometer']+"</td>,<td>"+location['direction']+"</td><td>"+ location['latitude'] +"</td><td>"+ location['longitude'] +"</td></tr>");
-      
-
       var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
       bounds.extend( position );
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
