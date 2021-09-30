@@ -207,6 +207,7 @@
 
 $(document).ready(function(){
   $('#examplegrid').dataTable({
+    searching: false, paging: false,
     drawCallback: function() {
       $('[data-toggle="popover"]').popover();
     }  
