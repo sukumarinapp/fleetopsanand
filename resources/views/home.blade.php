@@ -45,7 +45,7 @@
        <div class="card">
         <div class="card-body">
          <div class="table-responsive" >
-          <table id="header-fixed" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; ">
+          <table id="header-fixed" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">
             <thead style="width:70%">
               <tr>
                 <th>Event Date/Time</th>
