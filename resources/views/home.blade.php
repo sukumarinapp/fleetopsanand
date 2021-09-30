@@ -56,10 +56,16 @@
               </tr>
             </thead>
             <tbody>
+
               @foreach($alerts as $alert)
                 <tr>
                   <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
-                  <td>{{ $alert["VNO"] }}</td>
+                  <td><a 
+                     data-toggle="popover" 
+                     title="maruthi 800 red" 
+                     data-content="Description" 
+                     data-trigger="hover">
+                      {{ $alert["VNO"] }}</a></td>
                   <td>{{ $alert["alert"] }}</td>
                   <td></td>
                   <td></td>
@@ -202,6 +208,13 @@
     });
   }
   setInterval(fetch_location, 30000);
+
+  var table = $('#fixed-header').dataTable({
+  fnDrawCallback : function() {
+     $('[data-toggle="popover"]').popover(); 
+  }
+})  
+
 </script>
 
 @endsection
