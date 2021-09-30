@@ -179,6 +179,7 @@
             return function() {
               var infowindow = new google.maps.InfoWindow();
               infowindow.setContent("License Plate: "+locations[i]["VNO"]+"<br>ID: "+locations[i]["terminal_id"]+"<br>Latitude: "+ locations[i]["latitude"] + "<br>Longitude: "+ locations[i]["longitude"] +"<br>Speed: "+locations[i]["ground_speed"]+"<br>Mileage(km): "+locations[i]["odometer"]);
+              console.log("License Plate: "+locations[i]["VNO"]+"<br>ID: "+locations[i]["terminal_id"]+"<br>Latitude: "+ locations[i]["latitude"] + "<br>Longitude: "+ locations[i]["longitude"] +"<br>Speed: "+locations[i]["ground_speed"]+"<br>Mileage(km): "+locations[i]["odometer"]);
               infowindow.open( map, marker );
             }
           }
