@@ -212,10 +212,9 @@
 @stack('page_scripts')
 <script>
     $(document).ready(function(){
-        $("#treeview").hummingbird();
+        $("#treeview").hummingbird("checkAll");
 
         $('#treeview :checkbox').click(function () {
-            console.log("test");
             fetch_location();
         });
 
