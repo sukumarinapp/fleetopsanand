@@ -331,11 +331,18 @@ class HomeController extends Controller
         $alerts = array();
         $current_date = date("Y-m-d");
         $current_time = date("H.i");
-        $sql = "select id,VNO,driver_id,TID from vehicle where VTV=1 and driver_id is not null";
+        $sql = "select concat(d.name,' ',d.UZS) as manager,c.name as client,a.id,b.VBM,a.VMK,a.VMD,a.VCL,a.VNO,a.driver_id,a.TID,concat(b.DNM,' ',b.DSN) as dname from vehicle a,driver b,users c,users d where c.parent_id=d.id and a.CAN=c.UAN and a.driver_id=b.id and a.VTV=1 and a.driver_id is not null";
         $result = DB::select(DB::raw($sql));
         $i = 0;
         foreach($result as $key => $res){
             $VNO = $res->VNO;
+            $manager = $res->manager;
+            $client = $res->client;
+            $VMK = $res->VMK;
+            $VMD = $res->VMD;
+            $VCL = $res->VCL;
+            $VBM = $res->VBM;
+            $driver = $res->dname;
             $TID = $res->TID;
             $VID = $res->id;
             
@@ -353,6 +360,14 @@ class HomeController extends Controller
                     $alerts[$i]['cap_id'] = $id;
                     $alerts[$i]['VID'] = $VID;
                     $alerts[$i]['VNO'] = $VNO;
+                    $alerts[$i]['manager'] = $VNO;
+                    $alerts[$i]['manager'] = $manager;
+                    $alerts[$i]['client'] = $client;
+                    $alerts[$i]['VMK'] = $VMK;
+                    $alerts[$i]['VMD'] = $VMD;
+                    $alerts[$i]['VCL'] = $VCL;
+                    $alerts[$i]['VBM'] = $VBM;
+                    $alerts[$i]['driver'] = $driver;
                     $alerts[$i]['TID'] = $TID;
                     $alerts[$i]['type'] = "tracker";    
                     $alerts[$i]['alert'] = $msg1;    
@@ -364,6 +379,14 @@ class HomeController extends Controller
                         $alerts[$i]['cap_id'] = $id;
                         $alerts[$i]['VID'] = $VID;
                         $alerts[$i]['VNO'] = $VNO;
+                        $alerts[$i]['manager'] = $VNO;
+                        $alerts[$i]['manager'] = $manager;
+                        $alerts[$i]['client'] = $client;
+                        $alerts[$i]['VMK'] = $VMK;
+                        $alerts[$i]['VMD'] = $VMD;
+                        $alerts[$i]['VCL'] = $VCL;
+                        $alerts[$i]['VBM'] = $VBM;
+                        $alerts[$i]['driver'] = $driver;
                         $alerts[$i]['TID'] = $TID;
                         $alerts[$i]['type'] = "tracker";    
                         $alerts[$i]['alert'] = $msg1;    
@@ -381,6 +404,14 @@ class HomeController extends Controller
                 $alerts[$i]['cap_id'] = $id;
                 $alerts[$i]['VID'] = $VID;
                 $alerts[$i]['VNO'] = $VNO;
+                $alerts[$i]['manager'] = $VNO;
+                $alerts[$i]['manager'] = $manager;
+                $alerts[$i]['client'] = $client;
+                $alerts[$i]['VMK'] = $VMK;
+                $alerts[$i]['VMD'] = $VMD;
+                $alerts[$i]['VCL'] = $VCL;
+                $alerts[$i]['VBM'] = $VBM;
+                $alerts[$i]['driver'] = $driver;
                 $alerts[$i]['TID'] = $TID;
                 $alerts[$i]['type'] = "blocking";    
                 $alerts[$i]['alert'] = $msg2;    
@@ -396,6 +427,14 @@ class HomeController extends Controller
                 $alerts[$i]['cap_id'] = $id;
                 $alerts[$i]['VID'] = $VID;
                 $alerts[$i]['VNO'] = $VNO;
+                $alerts[$i]['manager'] = $VNO;
+                $alerts[$i]['manager'] = $manager;
+                $alerts[$i]['client'] = $client;
+                $alerts[$i]['VMK'] = $VMK;
+                $alerts[$i]['VMD'] = $VMD;
+                $alerts[$i]['VCL'] = $VCL;
+                $alerts[$i]['VBM'] = $VBM;
+                $alerts[$i]['driver'] = $driver;
                 $alerts[$i]['TID'] = $TID;                
                 $alerts[$i]['type'] = "buzzer";    
                 $alerts[$i]['alert'] = $msg3;    
@@ -411,6 +450,14 @@ class HomeController extends Controller
                 $alerts[$i]['cap_id'] = $id;
                 $alerts[$i]['VID'] = $VID;
                 $alerts[$i]['VNO'] = $VNO;
+                $alerts[$i]['manager'] = $VNO;
+                $alerts[$i]['manager'] = $manager;
+                $alerts[$i]['client'] = $client;
+                $alerts[$i]['VMK'] = $VMK;
+                $alerts[$i]['VMD'] = $VMD;
+                $alerts[$i]['VCL'] = $VCL;
+                $alerts[$i]['VBM'] = $VBM;
+                $alerts[$i]['driver'] = $driver;
                 $alerts[$i]['TID'] = $TID;     
                 $alerts[$i]['type'] = "battery";    
                 $alerts[$i]['alert'] = $msg4;    
@@ -420,7 +467,7 @@ class HomeController extends Controller
                 $i++;
             }
         }
-        //dd($alerts);        
+        #dd($alerts);        
         return $alerts;
     }
 }
