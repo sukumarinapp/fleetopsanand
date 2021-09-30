@@ -60,7 +60,7 @@
               @foreach($alerts as $alert)
                 <tr>
                   <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
-                  <td><a data-toggle="popover" data-html="true" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}" data-content="{{ $alert['client'] }}<br />{{ $alert['manager'] }}<br />{{ $alert['driver'] }}<br />{{ $alert['VBM'] }}" data-trigger="hover">
+                  <td><a data-toggle="popover" data-html="true" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}({{ $alert['VBM'] }})" data-content="<b>Customer:</b> {{ $alert['client'] }}<br /><b>Manager:</b> {{ $alert['manager'] }}<br /><b>Driver:</b> {{ $alert['driver'] }}" data-trigger="hover">
                       {{ $alert["VNO"] }}</a></td>
                   <td>{{ $alert["alert"] }}</td>
                   <td></td>
