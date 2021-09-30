@@ -45,7 +45,7 @@
        <div class="card">
         <div class="card-body">
          <div class="table-responsive" style="height:100px" >
-          <table id="header-fixed" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">
+          <table id="examplegrid" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">
             <thead style="width:70%">
               <tr>
                 <th>Event Date/Time</th>
@@ -60,11 +60,7 @@
               @foreach($alerts as $alert)
                 <tr>
                   <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
-                  <td><a 
-                     data-toggle="popover" 
-                     title="maruthi 800 red" 
-                     data-content="Description" 
-                     data-trigger="hover">
+                  <td><a data-toggle="popover" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}" data-content="test \n 3432432" data-trigger="hover">
                       {{ $alert["VNO"] }}</a></td>
                   <td>{{ $alert["alert"] }}</td>
                   <td></td>
@@ -209,12 +205,13 @@
   }
   setInterval(fetch_location, 30000);
 
-  var table = $('#fixed-header').dataTable({
-  fnDrawCallback : function() {
-     $('[data-toggle="popover"]').popover(); 
-  }
-})  
-
+$(document).ready(function(){
+  $('#examplegrid').dataTable({
+    drawCallback: function() {
+      $('[data-toggle="popover"]').popover();
+    }  
+  });
+});  
 </script>
 
 @endsection
