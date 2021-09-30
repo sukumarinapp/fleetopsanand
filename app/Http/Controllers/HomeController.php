@@ -341,7 +341,14 @@ class HomeController extends Controller
             $VMK = $res->VMK;
             $VMD = $res->VMD;
             $VCL = $res->VCL;
-            $VBM = $res->VBM;
+            $VBM = "";
+            if($res->VBM=="Rental"){
+                $VBM="RT";
+            }elseif($res->VBM=="Hire Purchase"){
+                $VBM="HP";
+            }elseif($res->VBM=="Ride Hailing"){
+                $VBM="RH";
+            }
             $driver = $res->dname;
             $TID = $res->TID;
             $VID = $res->id;
