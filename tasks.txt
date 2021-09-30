@@ -1,6 +1,3 @@
-Remove duplicate contact no check user,client,driver
-alarm off check again
-remove VBM from tbl136
 map popover check
 
 "The grid beneath the map shall be dedicated for alerts. There are principally 4 alerts which are raised whenever there is a business-critical situation. They are as follows:
