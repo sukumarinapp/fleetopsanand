@@ -44,7 +44,7 @@
        </div>
        <div class="card">
         <div class="card-body">
-         <div class="table-responsive" style="height:100px" >
+         <div class="table-responsive" style="height:150px" >
           <table id="examplegrid" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">
             <thead style="width:70%">
               <tr>
