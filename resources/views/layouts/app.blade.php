@@ -213,6 +213,8 @@
 <script>
     $(document).ready(function(){
         $("#treeview").hummingbird();
+        $("#treeview").hummingbird("checkAll");
+        //$("#treeview").hummingbird("expandAll");
 
         $('#treeview :checkbox').click(function () {
             fetch_location();

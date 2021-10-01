@@ -117,6 +117,7 @@ class Formulae{
   }
 
   //Expected Sales
+  //This is for cannot retrieve sales data
   public static function EXPS($SDT,$VNO){
     $CHR = 0;
     $CML = 0;
@@ -136,7 +137,8 @@ class Formulae{
       $CHR = $result[0]->CHR;
       $CML = $result[0]->CML;
     }
-    $sql = "select b.* from driver_platform a,tbl361 b where a.PLF=b.id and a.driver_id = (select driver_id from vehicle where VNO='$VNO')";
+    //$sql = "select b.* from driver_platform a,tbl361 b where a.PLF=b.id and a.driver_id = (select driver_id from vehicle where VNO='$VNO')";
+    $sql = "select * from tbl361 where id = 1";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $RML = $result[0]->RML;
