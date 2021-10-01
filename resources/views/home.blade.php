@@ -58,14 +58,32 @@
             <tbody>
 
               @foreach($alerts as $alert)
-                <tr>
-                  <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
-                  <td><a data-toggle="popover" data-html="true" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}({{ $alert['VBM'] }})" data-content="<b>Customer:</b> {{ $alert['client'] }}<br /><b>Manager:</b> {{ $alert['manager'] }}<br /><b>Driver:</b> {{ $alert['driver'] }}" data-trigger="hover">
-                      {{ $alert["VNO"] }}</a></td>
-                  <td>{{ $alert["alert"] }}</td>
-                  <td>{{ round($alert["hours"],2) }}</td>
-                  <td>{{ $alert["latitude"] }} {{ $alert["longitude"] }}</td>
-                </tr>
+              <tr>
+                <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
+                <td><a data-toggle="popover" data-html="true" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}({{ $alert['VBM'] }})" data-content="<b>Customer:</b> {{ $alert['client'] }}<br /><b>Manager:</b> {{ $alert['manager'] }}<br /><b>Driver:</b> {{ $alert['driver'] }}" data-trigger="hover">
+                {{ $alert["VNO"] }}</a></td>
+                <td>{{ $alert["alert"] }}</td>
+                <td>{{ round($alert["hours"],2) }}</td>
+                <td> <a href="#" data-toggle="modal" data-target="#exampleModal">{{ $alert["latitude"] }} {{ $alert["longitude"] }}</a></td>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        ...
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </tr>
               @endforeach
             </tbody>
           </table>
@@ -206,14 +224,18 @@
   }
   setInterval(fetch_location, 300000);
 
-$(document).ready(function(){
-  $('#examplegrid').dataTable({
-    searching: false, paging: false,
-    drawCallback: function() {
-      $('[data-toggle="popover"]').popover();
-    }  
-  });
-});  
+  $(document).ready(function(){
+    $('#examplegrid').dataTable({
+      searching: false, paging: false,
+      drawCallback: function() {
+        $('[data-toggle="popover"]').popover();
+      }  
+    });
+
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+  });  
 </script>
 
 @endsection
