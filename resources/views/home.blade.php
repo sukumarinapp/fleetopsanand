@@ -64,7 +64,7 @@
                 {{ $alert["VNO"] }}</a></td>
                 <td>{{ $alert["alert"] }}</td>
                 <td>{{ round($alert["hours"],2) }}</td>
-                <td> <a href="#" onclick="showmap({{ $alert['latitude'] }},{{ $alert['longitude'] }})" >{{ $alert["latitude"] }} {{ $alert["longitude"] }}</a></td>
+                <td> <a href="#" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >{{ $alert["latitude"] }} {{ $alert["longitude"] }}</a></td>
                 
               </tr>
               @endforeach
@@ -77,17 +77,17 @@
 </div>
 </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="myMapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Event Location</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        ...
+                        <div id="map-canvas" style="width:400px;height: 300px;"></div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -99,9 +99,34 @@
 @section('third_party_scripts')
 
 <script>
-  function showmap(lat,long){
+  var map2;
+  function initialize2(myCenter) {
+    var marker2 = new google.maps.Marker({
+        position: myCenter
+    });
+
+    var mapProp2 = {
+          center: myCenter,
+          zoom: 12,
+          draggable: false,
+          scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+    map2 = new google.maps.Map(document.getElementById("map-canvas"), mapProp2);
+    marker2.setMap(map2);
+  };
+
+  $('#myMapModal').on('shown.bs.modal', function(e) {
+      var element = $(e.relatedTarget);
+      var data = element.data("lat").split(',')
+      initialize2(new google.maps.LatLng(data[0], data[1]));
+  });
+
+  /*function showmap(){
     $('#exampleModal').modal('show');
-  }
+  }*/
+
   function check_checked(VNO){
     if($("."+VNO).is(':checked')){
       return true;
