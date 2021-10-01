@@ -87,7 +87,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <div id="map-canvas" style="width:300px;height: 300px;"></div>
+                        <div id="map-canvas" style="width:400px;height: 300px;"></div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
