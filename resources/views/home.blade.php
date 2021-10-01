@@ -108,8 +108,8 @@
     var mapProp2 = {
           center: myCenter,
           zoom: 12,
-          draggable: false,
-          scrollwheel: false,
+          //draggable: false,
+          //scrollwheel: false,
           mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
