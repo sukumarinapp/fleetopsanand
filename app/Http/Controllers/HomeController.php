@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use DateTime;
 
 class HomeController extends Controller
 {
@@ -301,6 +302,15 @@ class HomeController extends Controller
     
     }
 
+    private function minutes($time){
+        $start_date = new DateTime($time);
+        $since_start = $start_date->diff(new DateTime(date("Y-m-d H:i:s")));
+        $minutes = $since_start->days * 24 * 60;
+        $minutes += $since_start->h * 60;
+        $minutes += $since_start->i;
+        return $minutes;
+    }
+
     public function alerts()
     {
         $user_id = Auth::user()->id;
@@ -331,6 +341,7 @@ class HomeController extends Controller
         $alerts = array();
         $current_date = date("Y-m-d");
         $current_time = date("H.i");
+
         $sql = "select concat(d.name,' ',d.UZS) as manager,c.name as client,a.id,b.VBM,a.VMK,a.VMD,a.VCL,a.VNO,a.driver_id,a.TID,concat(b.DNM,' ',b.DSN) as dname from vehicle a,driver b,users c,users d where c.parent_id=d.id and a.CAN=c.UAN and a.driver_id=b.id and a.VTV=1 and a.driver_id is not null";
         $result = DB::select(DB::raw($sql));
         $i = 0;
@@ -380,6 +391,7 @@ class HomeController extends Controller
                     $alerts[$i]['alert'] = $msg1;    
                     $alerts[$i]['date'] = $capture_date;
                     $alerts[$i]['time'] = str_replace(".",":",$capture_time);
+                    $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
                     $i++;
                 }else{
                     if($current_time - $capture_time > .03){
@@ -399,6 +411,7 @@ class HomeController extends Controller
                         $alerts[$i]['alert'] = $msg1;    
                         $alerts[$i]['date'] = $capture_date;
                         $alerts[$i]['time'] = str_replace(".",":",$capture_time);
+                        $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
                         $i++;
                     }
                 }
@@ -424,6 +437,7 @@ class HomeController extends Controller
                 $alerts[$i]['alert'] = $msg2;    
                 $alerts[$i]['date'] = $blocking[0]->DDT;
                 $alerts[$i]['time'] = "12:00";
+                $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
                 $i++;
             }
 
@@ -447,6 +461,7 @@ class HomeController extends Controller
                 $alerts[$i]['alert'] = $msg3;    
                 $alerts[$i]['date'] = $buzzer[0]->DDT;
                 $alerts[$i]['time'] = "10:00";
+                $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
                 $i++;
             }
 
@@ -471,6 +486,7 @@ class HomeController extends Controller
                 $alert_time = $battery[0]->alert_time;
                 $alerts[$i]['date'] = substr($alert_time,0,10);
                 $alerts[$i]['time'] = substr($alert_time,11,5);
+                $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
                 $i++;
             }
         }
