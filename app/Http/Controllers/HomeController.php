@@ -452,7 +452,7 @@ class HomeController extends Controller
                 
                 $event_date = $blocking[0]->DDT;
                 $event_time = '120000';
-                $event_sql = "select latitude,longitude from current_location where id= (select max(id) from current_location where capture_date <= '$event_date' and capture_time <= '$event_time' )";
+                $event_sql = "select latitude,longitude from current_location where id= (select max(id) from current_location where terminal_id='$TID' and capture_date <= '$event_date' and capture_time <= '$event_time' )";
                 $event_loc = DB::select(DB::raw($event_sql));
                 if(count($event_loc) > 0){
                     $latitude = $event_loc[0]->latitude;
@@ -493,7 +493,7 @@ class HomeController extends Controller
 
                 $event_date = $buzzer[0]->DDT;
                 $event_time = '100000';
-                $event_sql2 = "select latitude,longitude from current_location where id = (select max(id) from current_location where capture_date <= '$event_date' and capture_time <= '$event_time' )";
+                $event_sql2 = "select latitude,longitude from current_location where id = (select max(id) from current_location where terminal_id='$TID' and capture_date <= '$event_date' and capture_time <= '$event_time' )";
                 $event_loc2 = DB::select(DB::raw($event_sql2));
                 if(count($event_loc2) > 0){
                     $latitude = $event_loc2[0]->latitude;
@@ -530,6 +530,19 @@ class HomeController extends Controller
                 $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
                 $alerts[$i]['latitude'] = $latitude;
                 $alerts[$i]['longitude'] = $longitude;
+
+                $event_date = substr($alert_time,0,10);
+                $event_time = str_replace(":","",substr($alert_time,11,5))."00";
+                $event_sql2 = "select latitude,longitude from current_location where id = (select max(id) from current_location where terminal_id='$TID' and capture_date <= '$event_date' and capture_time <= '$event_time' )";
+                $event_loc2 = DB::select(DB::raw($event_sql2));
+                if(count($event_loc2) > 0){
+                    $latitude = $event_loc2[0]->latitude;
+                    $longitude = $event_loc2[0]->longitude;
+                }else{
+                    $latitude = "";
+                    $longitude = "";
+                }
+
                 $i++;
             }
         }
