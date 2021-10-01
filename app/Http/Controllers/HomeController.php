@@ -360,6 +360,10 @@ class HomeController extends Controller
             }elseif($res->VBM=="Ride Hailing"){
                 $VBM="RH";
             }
+
+            $latitude = 0;
+            $longitude = 0;
+
             $driver = $res->dname;
             $TID = $res->TID;
             $VID = $res->id;
@@ -369,6 +373,8 @@ class HomeController extends Controller
             $tracker_off = DB::select(DB::raw($sql2));
             if(count($tracker_off) > 0){
                 $id = $tracker_off[0]->id;
+                $latitude = $tracker_off[0]->latitude;
+                $longitude = $tracker_off[0]->longitude;
                 $capture_date = $tracker_off[0]->capture_date;
                 $capture_time = $tracker_off[0]->capture_time;
                 $capture_time = substr($capture_time,0,2).".".substr($capture_time,2,2);
@@ -392,6 +398,9 @@ class HomeController extends Controller
                     $alerts[$i]['date'] = $capture_date;
                     $alerts[$i]['time'] = str_replace(".",":",$capture_time);
                     $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                    $alerts[$i]['latitude'] = $latitude;
+                    $alerts[$i]['longitude'] = $longitude;
+                    
                     $i++;
                 }else{
                     if($current_time - $capture_time > .03){
@@ -412,6 +421,8 @@ class HomeController extends Controller
                         $alerts[$i]['date'] = $capture_date;
                         $alerts[$i]['time'] = str_replace(".",":",$capture_time);
                         $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                        $alerts[$i]['latitude'] = $latitude;
+                        $alerts[$i]['longitude'] = $longitude;
                         $i++;
                     }
                 }
@@ -438,6 +449,21 @@ class HomeController extends Controller
                 $alerts[$i]['date'] = $blocking[0]->DDT;
                 $alerts[$i]['time'] = "12:00";
                 $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                
+                $event_date = $blocking[0]->DDT;
+                $event_time = '120000';
+                $event_sql = "select latitude,longitude from current_location where id= (select max(id) from current_location where capture_date <= '$event_date' and capture_time <= '$event_time' )";
+                $event_loc = DB::select(DB::raw($event_sql));
+                if(count($event_loc) > 0){
+                    $latitude = $event_loc[0]->latitude;
+                    $longitude = $event_loc[0]->longitude;
+                }else{
+                    $latitude = "";
+                    $longitude = "";
+                }
+                $alerts[$i]['latitude'] = $latitude;
+                $alerts[$i]['longitude'] = $longitude;
+
                 $i++;
             }
 
@@ -462,6 +488,21 @@ class HomeController extends Controller
                 $alerts[$i]['date'] = $buzzer[0]->DDT;
                 $alerts[$i]['time'] = "10:00";
                 $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                $alerts[$i]['latitude'] = $latitude;
+                $alerts[$i]['longitude'] = $longitude;
+
+                $event_date = $buzzer[0]->DDT;
+                $event_time = '100000';
+                $event_sql2 = "select latitude,longitude from current_location where id = (select max(id) from current_location where capture_date <= '$event_date' and capture_time <= '$event_time' )";
+                $event_loc2 = DB::select(DB::raw($event_sql2));
+                if(count($event_loc2) > 0){
+                    $latitude = $event_loc2[0]->latitude;
+                    $longitude = $event_loc2[0]->longitude;
+                }else{
+                    $latitude = "";
+                    $longitude = "";
+                }
+
                 $i++;
             }
 
@@ -487,6 +528,8 @@ class HomeController extends Controller
                 $alerts[$i]['date'] = substr($alert_time,0,10);
                 $alerts[$i]['time'] = substr($alert_time,11,5);
                 $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                $alerts[$i]['latitude'] = $latitude;
+                $alerts[$i]['longitude'] = $longitude;
                 $i++;
             }
         }

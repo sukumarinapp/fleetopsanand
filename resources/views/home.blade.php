@@ -64,7 +64,7 @@
                       {{ $alert["VNO"] }}</a></td>
                   <td>{{ $alert["alert"] }}</td>
                   <td>{{ round($alert["hours"],2) }}</td>
-                  <td></td>
+                  <td>{{ $alert["latitude"] }} {{ $alert["longitude"] }}</td>
                 </tr>
               @endforeach
             </tbody>
