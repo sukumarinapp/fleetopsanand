@@ -16,8 +16,8 @@
    <div class="row justify-content-center">
     <div class="col-md-12">
        <input type="hidden" id="VNO" name="VNO" value="{{ $sales['VNO'] }}">
+       <input type="hidden" id="plat_id_hidden" name="plat_id_hidden" value="{{ $sales['PLF'] }}">
        <input type="hidden" id="DCN" name="DCN" value="{{ $sales['DCN'] }}">
-       <input type="hidden" id="plat_id_hidden" name="plat_id_hidden" value="0">
        <input type="hidden" id="earning_hidden" name="earning_hidden" value="0">
        <input type="hidden" id="cash_hidden" name="cash_hidden" value="{{ $sales['expected_sales'] }}">
        <input type="hidden" id="trips_hidden" name="trips_hidden" value="0">

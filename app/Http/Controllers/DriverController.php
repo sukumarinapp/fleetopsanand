@@ -89,10 +89,17 @@ class DriverController extends Controller
         $sales = array();
         $sales['VNO'] = $VNO;
         $sales['DCN'] = $DCN;
+        $PLF = 0;
+        $sql=" select c.PLF from vehicle a,driver b,driver_platform c where a.driver_id=b.id and b.id=c.driver_id and a.VNO='$VNO'";
+        $platform = DB::select(DB::raw($sql));
+        if(count($platform) > 0){
+            $PLF = $platform[0]->PLF;
+        }
         $SDT = date('Y-m-d');
         $SDT_dMY = date('d-M-Y');
-        $expected_sales = Formulae::EXPS($SDT,$VNO);
+        $expected_sales = Formulae::CCEI($SDT,$VNO);
         $sales['SDT'] = $SDT;
+        $sales['PLF'] = $PLF;
         $sales['SDT_dMY'] = $SDT_dMY;
         $sales['expected_sales'] = $expected_sales;
         return view('driver.driverhelp2',compact('sales'));

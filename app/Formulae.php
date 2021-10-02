@@ -125,13 +125,7 @@ class Formulae{
     $RMN = 0;
     $RMS = 0;
     $TPF = 1;
-    $sql = "SELECT max(TPF) as TRIPS FROM tbl137 where SDT='$SDT' and VNO='$VNO'";
-    $result = DB::select(DB::raw($sql));
-    if(count($result) >0 ){
-      $TPF = $result[0]->TRIPS;
-    }
-    if($TPF == 0) $TPF = 1;
-    $sql = "SELECT * FROM tbl136 where DDT='$SDT' and VNO='$VNO'";
+    $sql = "SELECT * FROM tbl136 where VNO='$VNO' and DECL=0";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $CHR = $result[0]->CHR;
@@ -190,7 +184,7 @@ class Formulae{
     $CCEI = sqrt($CCEI);
     $CCEI = $CCEI_taSe * $CCEI;
     $CCEI = $Y - $CCEI;
-    return $CCEI;
+    return round($CCEI,2);
   }
 
 }
