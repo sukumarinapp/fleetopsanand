@@ -46,6 +46,8 @@
           <th>Contact#</th>
           <th>CML</th>
           <th>CHR</th>
+          <th>EXPS</th>
+          <th>CCEI</th>
         </tr>
       </thead>
       <tbody>
@@ -62,6 +64,8 @@
            <td>{{ $sale->DCN }}</td>
            <td>{{ $sale->CML }}</td>
            <td>{{ $sale->CHR }}</td>
+           <td>{{ $sale->EXPS }}</td>
+           <td>{{ $sale->CCEI }}</td>
       </tr>
       @endforeach
 

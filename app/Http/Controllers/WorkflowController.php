@@ -58,14 +58,24 @@ class WorkflowController extends Controller
     }
     public function rhreport($from,$to)
     {
-        $sql = "select a.*,b.DCN from tbl136 a,driver b where a.driver_id=b.id and a.VBM = 'Ride Hailing' and DDT >='$from' and DDT <='$to' and DECL=0 order by DDT desc";
+        $sql = "select a.*,b.DCN from tbl136 a,driver b where a.driver_id=b.id and a.VBM = 'Ride Hailing' and DDT >='$from' and DDT <='$to' order by DDT desc";
         $title = 'RH Daily Report';
         $rhreport = DB::select(DB::raw($sql));
         foreach($rhreport as $sale){
-            $sale->EXPS = round(Formulae::EXPS($sale->DDT,$sale->VNO),2);
-            $sale->CCEI = round(Formulae::CCEI($sale->DDT,$sale->VNO),2);
-            $sale->FTP = round(Formulae::FTP($sale->DDT,$sale->VNO),2);
-            $sale->CWI = round(Formulae::CWI($sale->DDT,$sale->VNO),2);
+            $DCR = $sale->id;
+            $sql = "select * from tbl137 where DCR=$DCR and SSR='Driver'";
+            $tbl137 = DB::select(DB::raw($sql));
+            if(count($tbl137) > 0){
+                $sale->EXPS = round(Formulae::EXPS2($DCR),2);
+                $sale->CCEI = round(Formulae::CCEI2($DCR),2);
+                $sale->FTP = round(Formulae::FTP($sale->DDT,$sale->VNO),2);
+                $sale->CWI = round(Formulae::CWI($sale->DDT,$sale->VNO),2);
+            }else{
+                $sale->EXPS = "";
+                $sale->CCEI = "";
+                $sale->FTP = 0;
+                $sale->CWI = "";
+            }
         }
         return view('rhreport',compact('rhreport','title','from','to'));
     }
