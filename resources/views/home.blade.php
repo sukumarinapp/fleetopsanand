@@ -107,7 +107,7 @@
 
     var mapProp2 = {
           center: myCenter,
-          zoom: 12,
+          zoom: 16,
           //draggable: false,
           //scrollwheel: false,
           mapTypeId: google.maps.MapTypeId.ROADMAP
