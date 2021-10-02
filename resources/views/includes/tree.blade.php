@@ -6,21 +6,21 @@
       <input id="xnode-0" data-id="custom-{{ Auth::user()->id }}" type="checkbox" /> {{ Auth::user()->name }}
     </label>
     @if($type == "admin")
-    <ul>
+    <ul style="padding-left:15px">
       @foreach($usertree as $key => $manager)
       <li data-id="{{ $key+1 }}">
         <i class="fa fa-plus"></i>
         <label>
           <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $manager['name'] }}
         </label>
-        <ul>
+        <ul style="padding-left:15px">
           @foreach($manager['client'] as $key2 => $client)
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
               <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $client['name'] }}
             </label>
-            <ul>
+            <ul style="padding-left:15px">
               @foreach($client['vehicle'] as $key3 => $vehicle)
               <li>
                 <label>
@@ -32,21 +32,21 @@
           </li>                            
           @endforeach
         </ul>
-        <ul>
+        <ul style="padding-left:15px">
           @foreach($manager['submanager'] as $key2 => $submanager)
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
               <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $submanager['name'] }}
             </label>
-            <ul>
+            <ul style="padding-left:15px">
               @foreach($submanager['client'] as $key3 => $client)
               <li data-id="{{ $key3+1 }}">
                 <i class="fa fa-plus"></i>
                 <label>
                   <input  id="xnode-0-1-2-3" data-id="custom-0-1-2-3" type="checkbox" /> {{ $client['name'] }}
                 </label>
-                <ul>
+                <ul style="padding-left:15px">
                   @foreach($client['vehicle'] as $key4 => $vehicle)
                   <li>
                     <label>
@@ -67,21 +67,21 @@
     @endif
 
     @if($type == "manager")
-    <ul>
+    <ul style="padding-left:15px">
       @foreach($usertree as $key1 => $submanager)
       <li data-id="{{ $key1+1 }}">
         <i class="fa fa-plus"></i>
         <label>
           <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $submanager['name'] }}
         </label>
-        <ul>
+        <ul style="padding-left:15px">
           @foreach($submanager['client'] as $key2 => $client)
           <li data-id="{{ $key2+1 }}">
             <i class="fa fa-plus"></i>
             <label>
               <input  id="xnode-0-1-2" data-id="custom-0-1-2" type="checkbox" /> {{ $client['name'] }}
             </label>
-            <ul>
+            <ul style="padding-left:15px">
               @foreach($client['vehicle'] as $key3 => $vehicle)
               <li>
                 <label>
@@ -99,14 +99,14 @@
     @endif
 
     @if($type == "submanager")
-      <ul>
+      <ul style="padding-left:15px">
       @foreach($usertree as $key1 => $client)
       <li data-id="{{ $key1+1 }}">
         <i class="fa fa-plus"></i>
         <label>
           <input  id="xnode-0-1" data-id="custom-0-1" type="checkbox" /> {{ $client['name'] }}
         </label>
-        <ul>
+        <ul style="padding-left:15px">
               @foreach($client['vehicle'] as $key3 => $vehicle)
               <li>
                 <label>
@@ -121,7 +121,7 @@
     @endif
 
     @if($type == "client")
-      <ul>
+      <ul style="padding-left:15px">
       @foreach($usertree as $key1 => $vehicle)
       <li>
         <label>
