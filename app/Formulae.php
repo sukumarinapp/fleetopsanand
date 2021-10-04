@@ -121,6 +121,7 @@ class Formulae{
   	$sql = "SELECT NWM FROM tbl494";
     $result = DB::select(DB::raw($sql));
     $NWM = $result[0]->NWM;
+    $NWM = $NWM/10000;
   	return $NWM;
   }
 
