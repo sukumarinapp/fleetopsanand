@@ -11,15 +11,15 @@
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-sm-6" style="font-weight: bold; font-size: small; padding-bottom: 3px;">Vehicles Online: {{ $online }}</div>
-                <div class="col-sm-6" style="font-weight: bold; font-size: small;">Vehicles Offline: {{ $offline }}</div>
+                <div class="col-sm-6" style="font-family: sans-serif;font-size: small; padding-bottom: 3px;">Vehicles Online: {{ $online }}</div>
+                <div class="col-sm-6" style="font-family: sans-serif; font-size: small;">Vehicles Offline: {{ $offline }}</div>
               </div>
               <div class="row">
-                <div class="col-sm-6" style="font-weight: bold; font-size: small; padding-bottom: 3px;">Vehicles Active: {{ $active }}</div>
-                <div class="col-sm-6" style="font-weight: bold; font-size: small;">Vehicles Inactive: {{ $inactive }}</div>
+                <div class="col-sm-6" style="font-family: sans-serif;font-size: small; padding-bottom: 3px;">Vehicles Active: {{ $active }}</div>
+                <div class="col-sm-6" style="font-family: sans-serif;font-size: small;">Vehicles Inactive: {{ $inactive }}</div>
               </div>
               <div class="row">
-                <div class="col-sm-6" style="font-weight: bold; font-size: small;">Total Vehicles: {{ $total }}</div>
+                <div class="col-sm-6" style="font-family: sans-serif;font-size: small;">Total Vehicles: {{ $total }}</div>
               </div>
               
             </div>
