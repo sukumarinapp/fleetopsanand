@@ -99,6 +99,7 @@ class Formulae{
     $CWI = $CWI/$CWI_d;
     $CWI = $RHR * $CWI;
     $CWI = $CML * $CWI;
+    $CWI = $CWI/10000;
     return $CWI;
   }
 
