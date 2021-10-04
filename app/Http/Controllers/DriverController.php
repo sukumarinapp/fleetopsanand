@@ -41,10 +41,27 @@ class DriverController extends Controller
             $vehicle->DCN = $DCN; 
             $driver_id = $vehicle->driver_id;
             if($vehicle->VBM == "Ride Hailing"){
-                $rhplatforms = rhplatform::all();
-                $sql = "SELECT * FROM tbl361 where id <> 1 and id in (select PLF from driver_platform where driver_id = $driver_id)";
-                $rhplatforms = DB::select(DB::raw($sql));
-                return view('driver.driverrhsales', compact('rhplatforms','vehicle'));
+                $DCR = 0; 
+                $sql = "select * from tbl136 where replace(VNO, '-', '') = '$VNO' and DECL=0";
+                echo $sql;
+                $result = DB::select(DB::raw($sql));
+                if(count($result) > 0){
+                    $DCR = $result[0]->id;
+                }
+                $ADT = 0;
+                $sql = "select * from sales_audit where DCR=$DCR";
+                $result = DB::select(DB::raw($sql));
+                if(count($result) > 0){
+                    $ADT = 1;
+                }
+                if($ADT == 1){
+                    return redirect("/balance/".$DCR);
+                }else{
+                    $rhplatforms = rhplatform::all();
+                    $sql = "SELECT * FROM tbl361 where id <> 1 and id in (select PLF from driver_platform where driver_id = $driver_id)";
+                    $rhplatforms = DB::select(DB::raw($sql));
+                    return view('driver.driverrhsales', compact('rhplatforms','vehicle'));
+                }
             }else{
                 return view('driver.driverrental',compact('vehicle'));
             }
