@@ -98,7 +98,7 @@ class Formulae{
     $CWI = $CWI_Z + $CWI;
     $CWI = $CWI/$CWI_d;
     $CWI = $RHR * $CWI;
-    $CWi = $CML * $CWI;
+    $CWI = $CML * $CWI;
     return $CWI;
   }
 
@@ -121,7 +121,6 @@ class Formulae{
   	$sql = "SELECT NWM FROM tbl494";
     $result = DB::select(DB::raw($sql));
     $NWM = $result[0]->NWM;
-    $NWM = $NWM/10000;
   	return $NWM;
   }
 
