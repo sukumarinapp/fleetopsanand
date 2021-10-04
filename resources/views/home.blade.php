@@ -11,15 +11,15 @@
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-sm-6" style="font-family: sans-serif;font-size: small; padding-bottom: 3px;">Vehicles Online: {{ $online }}</div>
-                <div class="col-sm-6" style="font-family: sans-serif; font-size: small;">Vehicles Offline: {{ $offline }}</div>
+                <div class="col-sm-6" style="font-style: oblique; font-family: sans-serif;font-size: small; padding-bottom: 3px;">Vehicles Online: {{ $online }}</div>
+                <div class="col-sm-6" style="font-style: oblique;font-family: sans-serif; font-size: small;">Vehicles Offline: {{ $offline }}</div>
               </div>
               <div class="row">
-                <div class="col-sm-6" style="font-family: sans-serif;font-size: small; padding-bottom: 3px;">Vehicles Active: {{ $active }}</div>
-                <div class="col-sm-6" style="font-family: sans-serif;font-size: small;">Vehicles Inactive: {{ $inactive }}</div>
+                <div class="col-sm-6" style="font-style: oblique;font-family: sans-serif;font-size: small; padding-bottom: 3px;">Vehicles Active: {{ $active }}</div>
+                <div class="col-sm-6" style="font-style: oblique;font-family: sans-serif;font-size: small;">Vehicles Inactive: {{ $inactive }}</div>
               </div>
               <div class="row">
-                <div class="col-sm-6" style="font-family: sans-serif;font-size: small;">Total Vehicles: {{ $total }}</div>
+                <div class="col-sm-6" style="font-style: oblique;font-family: sans-serif;font-size: small;">Total Vehicles: {{ $total }}</div>
               </div>
               
             </div>
@@ -64,8 +64,8 @@
                 {{ $alert["VNO"] }}</a></td>
                 <td>{{ $alert["alert"] }}</td>
                 <td>{{ round($alert["hours"],2) }}</td>
-                <td> <a href="#" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >{{ $alert["latitude"] }} {{ $alert["longitude"] }}</a></td>
-                
+                <td> <button type="button"
+        class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >Show</button></td>
               </tr>
               @endforeach
             </tbody>

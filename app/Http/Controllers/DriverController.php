@@ -43,7 +43,6 @@ class DriverController extends Controller
             if($vehicle->VBM == "Ride Hailing"){
                 $DCR = 0; 
                 $sql = "select * from tbl136 where replace(VNO, '-', '') = '$VNO' and DECL=0";
-                echo $sql;
                 $result = DB::select(DB::raw($sql));
                 if(count($result) > 0){
                     $DCR = $result[0]->id;
