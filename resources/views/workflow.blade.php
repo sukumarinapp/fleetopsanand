@@ -62,7 +62,7 @@
 		              <td><a href="{{ url('override') }}/{{ $vehicle->vid }}">Resolve</a></td>
 		            </tr>
 	            @endif
-	            @if($vehicle->VBM == "Ride Hailing")
+	            @if($vehicle->VBM == "Ride Hailing" && $vehicle->RMT > 0 && $vehicle->ADT == 0)
 		            <tr>
 		              <td>{{ date("d-m-Y",strtotime($vehicle->DDT)) }}</td>
 		              <td>{{ $vehicle->VNO }}</td>

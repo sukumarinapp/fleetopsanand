@@ -48,14 +48,12 @@
           <th>CHR</th>
           <th>EXPS</th>
           <th>CCEI</th>
+          <th>FTP</th>
+          <th>CWI</th>
         </tr>
       </thead>
       <tbody>
        @foreach($rhreport as $sale)
-        @php
-          $FTP = $sale->FTP / 10000;
-          $FTP = round($FTP,2);
-        @endphp
         <tr>
          <td>{{ date("d-m-Y",strtotime($sale->DDT)) }}</td>
            <td>{{ $sale->id }}</td>
@@ -66,6 +64,9 @@
            <td>{{ $sale->CHR }}</td>
            <td>{{ $sale->EXPS }}</td>
            <td>{{ $sale->CCEI }}</td>
+           <td>{{ $sale->FTP }}</td>
+           <td>{{ $sale->CWI }}</td>
+           <td></td>
       </tr>
       @endforeach
 

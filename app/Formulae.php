@@ -72,7 +72,15 @@ class Formulae{
   }
 
   //Wastage/Offline Trips
-  public static function CWI($SDT,$VNO) {
+  public static function CWI($DCR) {
+    $SDT = "";
+    $VNO = "";
+    $sql = "SELECT * from tbl136 where id='$DCR'";
+    $result = DB::select(DB::raw($sql));
+    if(count($result)>0){
+      $SDT = $result[0]->DDT;
+      $VNO = $result[0]->VNO;
+    }
     $CWI = 0;
     $CML = self::CML($SDT,$VNO);
     $RHR = self::RHR($VNO);
@@ -199,18 +207,26 @@ class Formulae{
 
 
   //Fuel top up function FTP(min)
-  public static function FTP($SDT,$VNO){
-    $CON = SELF::con($VNO);
+  public static function FTP($DCR){
+    $DDT = "";
+    $VNO = "";
+    $sql = "SELECT * from tbl136 where id='$DCR'";
+    $result = DB::select(DB::raw($sql));
+    if(count($result)>0){
+      $DDT = $result[0]->DDT;
+      $VNO = $result[0]->VNO;
+    }
     $SAL = 0;
-    $sql = "SELECT max(SPF) as SAL from tbl137 where SDT='$SDT' and VNO='$VNO'";
+    $sql = "SELECT sum(RMT) as SAL from tbl137 where DCR='$DCR' and RST=1";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $SAL = $result[0]->SAL;
     }
-    if($SAL ==0 ) $SAL = self::EXPS($SDT,$VNO);
+    $CON = SELF::con($VNO);    
+    if($SAL ==0 ) $SAL = self::EXPS2($DCR);
     $BRM = self::BRM($VNO);
     $fuel_sales = $BRM * $SAL * $CON;
-    $CML = self::CML($SDT,$VNO);
+    $CML = self::CML($DDT,$VNO);
     $fuel_mileage = $CML * $CON;
     $FTP = 0;
     if($fuel_sales >= $fuel_mileage){
@@ -218,6 +234,7 @@ class Formulae{
     }else{      
       $FTP = $fuel_mileage;
     }
+    $FTP = $FTP/10000;
     return $FTP;
   }
 

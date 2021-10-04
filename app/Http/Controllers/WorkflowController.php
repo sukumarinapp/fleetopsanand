@@ -37,6 +37,24 @@ class WorkflowController extends Controller
         $this->check_access("BPJ2");
         $sql = "select d.id as vid,a.*,b.DNM,b.DSN from tbl136 a,driver b,vehicle d where a.driver_id=b.id and a.VNO=d.VNO and a.DECL=0 and a.DDT = (select max(DDT) from tbl136 c where a.VNO=c.VNO and DECL=0 group by VNO) order by DDT";
         $vehicles = DB::select(DB::raw($sql));
+        foreach($vehicles as $vehicle){
+            $DCR = $vehicle->id;
+            $RMT = 0;
+            $sql2 = "select sum(RMT) as PAID from tbl137 where DCR=$DCR and RST=1";
+            $paid = DB::select(DB::raw($sql2));
+            if(count($paid) > 0){
+                if($paid[0]->PAID != "" ) $RMT = $paid[0]->PAID;
+            }
+            $vehicle->ADT = 0;
+            $sql2 = "select * from sales_audit where DCR=$DCR";
+            $result = DB::select(DB::raw($sql2));
+            if(count($result) > 0){
+                $vehicle->ADT = 1;
+            }
+            $CCEI = round(Formulae::CCEI2($DCR),2);
+            $vehicle->RMT = $RMT;
+            $vehicle->CCEI = $CCEI;
+        }
         return view('workflow',compact('vehicles'));
     }
 
@@ -63,17 +81,18 @@ class WorkflowController extends Controller
         $rhreport = DB::select(DB::raw($sql));
         foreach($rhreport as $sale){
             $DCR = $sale->id;
-            $sql = "select * from tbl137 where DCR=$DCR and SSR='Driver'";
+            $VNO = $sale->VNO;
+            $sql = "select * from tbl137 where DCR=$DCR and SSR='Driver' and RST=1";
             $tbl137 = DB::select(DB::raw($sql));
             if(count($tbl137) > 0){
                 $sale->EXPS = round(Formulae::EXPS2($DCR),2);
                 $sale->CCEI = round(Formulae::CCEI2($DCR),2);
-                $sale->FTP = round(Formulae::FTP($sale->DDT,$sale->VNO),2);
-                $sale->CWI = round(Formulae::CWI($sale->DDT,$sale->VNO),2);
+                $sale->FTP = round(Formulae::FTP($DCR),2);
+                $sale->CWI = round(Formulae::CWI($DCR),2);
             }else{
                 $sale->EXPS = "";
                 $sale->CCEI = "";
-                $sale->FTP = 0;
+                $sale->FTP = "";
                 $sale->CWI = "";
             }
         }
@@ -172,8 +191,6 @@ class WorkflowController extends Controller
 
                 $DAT = date("Y-m-d");
                 $TIM = date("H:i:s");
-                
-                
 
                 if($DES == "A4"){
                     $CTX = "Vehicle Unblocked"; 
@@ -244,51 +261,50 @@ class WorkflowController extends Controller
         $RCN = $request->RCN;
         $SPF = $request->SPF;
         $TPF = $request->TPF;
-        $RMT = $request->RMT;
+        $CPF = $request->RMT;
         $RHN = $request->RHN;
-        $ROI = "";
-        $SSR = Auth::user()->UAN;
-        $SDT = date('Y-m-d');
+        $USR = Auth::user()->UAN;
+        $ADT = date('Y-m-d');
         $DCR = 0;
-        $TSM = 0;
-        $VZC0 = 0;
-        $VBC0 = 0;
-        $VBC1 = 0;
-        $WST = 0;
-        $WCI = "";
-        $sql = "SELECT a.DDT,a.id,b.TSM,b.VZC0,b.VBC0,b.VBC1,c.DNM,c.DSN from tbl136 a,vehicle b,driver c where a.VNO=b.VNO and b.driver_id=c.id and a.VNO ='$VNO' and DECL=0";
+        $DCN = "";
+        $DNM = "";
+        $sql = "SELECT a.DDT,a.id,c.DNM,c.DSN,c.DCN from tbl136 a,vehicle b,driver c where a.VNO=b.VNO and b.driver_id=c.id and a.VNO ='$VNO' and DECL=0";
         $result = DB::select(DB::raw($sql));
         if(count($result)>0){
             $DCR = $result[0]->id;
-            $TSM = $result[0]->TSM;
-            $VZC0 = $result[0]->VZC0;
-            $VBC0 = $result[0]->VBC0;
-            $VBC1 = $result[0]->VBC1;
-            $WST = $result[0]->DDT;
-            $WCI = $result[0]->DNM . " " .$result[0]->DSN;
+            $DCN = $result[0]->DCN;
+            $DNM = $result[0]->DNM." ".$result[0]->DSN;
         }
-        $WNB = "WFL" . str_pad($DCR,3,'0',STR_PAD_LEFT);
+        
+        $RMT = 0;
+        $sql = "select RHN,RMT,RCN,VNO from tbl137 where DCR=$DCR and RST=1";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $RMT = $RMT + $result[0]->RMT;
+        }
+
+        $TIM = date("Y-m-d H:i:s");
         if($rhvisibility == 0){
-            $TIM = date("Y-m-d H:i:s");
-            $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$RMT','$ROI','1','$SSR','$TIM')";
-            DB::insert($sql);
-            $sql = "update tbl136 set DECL=1,attempts=0 where VNO='$VNO'";
-            DB::update($sql);
-            $WTP = "Sale Audit Vehicle Unblocked";
-            $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$SDT')";
-            DB::insert($sql);
-            SMSFleetops::send($TSM,$VZC0);
-            SMSFleetops::send($TSM,$VBC0);
-            return redirect('/workflow')->with('message', 'Driver Sales Audit Done Successfully')->withInput();
+            $RHV = 1;
+            $sql = "insert into sales_audit (ADT,DCR,RHN,RHV,SPF,CPF,TPF,TIM,USR) values ('$ADT','$DCR','$RHN','$RHV','$SPF','$CPF','$TPF','$TIM','$USR')";
+            DB::insert($sql);            
         }else{
-           $WTP = "Sale Audit Vehicle Blocked";
-           $sql = "update tbl136 set DECL=0,DES='A4',attempts=0 where id='$DCR'";
-           DB::update($sql);
-           $sql = "insert into tbl140 (DCR,WST,WCI,UAN,CAN,VNO,WNB,WTP,WCD) values ($DCR,'$WST','$WCI','$UAN','$CAN','$VNO','$WNB','$WTP','$SDT')";
-           DB::insert($sql);
-           SMSFleetops::send($TSM,$VBC1); 
-           return redirect('/workflow')->with('message', 'Driver Sales Audit Done and Vehicle blocked Successfully')->withInput();
+           $RHV = 0; 
+           $CPF = round(Formulae::EXPS2($DCR),2);; 
+           $sql = "insert into sales_audit (ADT,DCR,RHN,RHV,SPF,CPF,TPF,TIM,USR) values ('$ADT','$DCR','$RHN','$RHV','0','$CPF','0','$TIM','$USR')";
+            DB::insert($sql);
         }
+        $BAL = $CPF - $RMT;
+        $msg = "Hi ".$DNM.". Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please send remaining cash GHC ".$BAL." immediately else we shall be compelled to enforce the policy. The car owner has been notified of this issue accordingly. Pay here. http://fleetopsgh.com/balance/".$DCR;
+        $DAT = date("Y-m-d");
+        $TIM = date("H:i:s");
+        $CTX = "Sales Audit";
+        $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values (?,?,?,?,?,?)";
+        $values = [$DCN,$msg,$DAT,$TIM,$CTX,$DNM];
+        DB::insert($sql,$values);
+        SMSFleetops::send($DCN,$msg);
+        return redirect('/workflow')->with('message', 'Driver Sales Audit Done Successfully')->withInput();
+
     }
 
     public function help()

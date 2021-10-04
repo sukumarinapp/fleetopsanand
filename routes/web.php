@@ -56,6 +56,7 @@ Route::get('/driverpaysuccess', 'DriverController@driverpaysuccess')->name('driv
 Route::get('/prompt', 'DriverController@prompt')->name('prompt');
 Route::get('/billbox', 'DriverController@billbox')->name('billbox');
 
+Route::get('/balance/{DCR}', 'DriverController@balance')->name('balance');
 Route::get('/driverpayerror', 'DriverController@driverpayerror')->name('driverpayerror');
 Route::get('/driverhelp/{VNO}/{DCN}', 'DriverController@driverhelp')->name('driverhelp');
 Route::get('/resendsms/{VID}', 'VehicleController@resendsms')->name('resendsms');

@@ -174,6 +174,35 @@ class DriverController extends Controller
         }
   }
 
+    public function balance($DCR)
+    {
+        $VNO = "";
+        $RMT = 0;
+        $CPF = 0;
+        $BAL = 0;
+        $RHN = 0;
+        $RCN = "";
+        $sql = "select * from sales_audit where DCR=$DCR";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0 ){
+            $CPF = $result[0]->CPF;
+        }else{
+            return redirect('/driver');
+        }
+        $sql = "select RHN,RMT,RCN,VNO from tbl137 where DCR=$DCR and RST=1";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $RMT = $RMT + $result[0]->RMT;
+            $VNO = $result[0]->VNO;
+            $RCN = $result[0]->RCN;
+            $RHN = $result[0]->RHN;
+        }
+        $BAL = $CPF - $RMT;
+        if($BAL <= 0) return redirect('/driver');
+        return view('driver.balance',compact('VNO','DCR','RCN','BAL','RHN'));
+    }
+
+
     public function driverhelp3($VNO,$DCN)
     {
        $sales = array();

@@ -1,3 +1,18 @@
+DROP TABLE `sales_audit` ;
+
+CREATE TABLE `sales_audit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ADT` date DEFAULT NULL,
+  DCR int(11) DEFAULT 0,
+  RHN int(11) DEFAULT 0,
+  RHV int(11) DEFAULT 0,
+  `SPF` decimal(10,2) DEFAULT NULL,
+  `CPF` decimal(10,2) DEFAULT NULL,
+  `TPF` int(11) DEFAULT NULL,
+`TIM` DATETIME DEFAULT NULL,  
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 drop TABLE `alarm` ;
 CREATE TABLE `alarm` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -7,6 +22,7 @@ CREATE TABLE `alarm` (
   `alert` varchar(2000) DEFAULT NULL,
   `packet` varchar(5000) DEFAULT NULL,
   PRIMARY KEY(id)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `sms_log` (

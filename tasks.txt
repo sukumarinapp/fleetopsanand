@@ -1,4 +1,11 @@
-map popover check
+RHN
+SPF
+CPF
+TPF
+Incorrect Cash Declared
+Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please send remaining cash of GHC 40 immediately else we shall be compelled to enforce the policy. The car owner has been notified of this issue accordingly.
+
+Display GHC339.15 Cash Receipt Confirmed!Thank you for a successful sales declaration.
 
 "The grid beneath the map shall be dedicated for alerts. There are principally 4 alerts which are raised whenever there is a business-critical situation. They are as follows:
 1. Vehicle (Tracker) Offline
