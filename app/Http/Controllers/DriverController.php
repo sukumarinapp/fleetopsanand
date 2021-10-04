@@ -311,10 +311,20 @@ class DriverController extends Controller
     {
         $sales = array();
         $SDT = date('Y-m-d', strtotime("-1 days"));
+        $CML = 0;
+        $DCR = 0;
         $sales['VNO'] = $VNO;
         $sales['DCN'] = $DCN;
+        $sql = "select * from tbl136 where DECL=0 and VNO='$VNO'";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $CML = $result[0]->CML;
+            $SDT = $result[0]->DDT;
+            $DCR = $result[0]->id;
+        }
         $CML = Formulae::CML($SDT,$VNO);
         $NWM = Formulae::NWM();
+        $EXPS = Formulae::EXPS2($DCR);
         if($CML <= $NWM){
             $sql = "update tbl136 set DECL=1 where DDT = '$SDT' AND VNO='$VNO'";
             DB::update($sql);

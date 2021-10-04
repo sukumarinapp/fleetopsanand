@@ -10,7 +10,7 @@
 </div>
 <div class="card card-success">
   <div class="card-header">
-    <h3 class="card-title">Incorrect Cash Declared</h3>
+    <h3 class="card-title">Payment</h3>
   </div>
   <div class="card-body">
        <input type="hidden" id="SSR" name="SSR" value="Driver">
@@ -39,12 +39,18 @@
           </div>
         </div>
       </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="form-group row">
+             <label for="DCN" class="col-sm-3 col-form-label">Amount to Pay in GHC</label>
+             <div class="col-sm-9">
+              <input readonly="readonly" value="{{ $BAL }}" required="required" type="text" class="form-control number" name="BAL" id="BAL" maxlength="15" placeholder="">
+             </div>
+          </div>
+        </div>
+      </div>
   <hr>
-<div class="row">
-  <div class="col-md-12">
-   <p>Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please pay remaining cash of GHC <b>{{ $BAL }}</b>.</p>
-  </div>
-</div>
 <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">      
   <input type="submit"  class="btn btn-info" value="Continue">&nbsp;
   <a href="{{ route('driver') }}" class="btn btn-info">Cancel</a>
