@@ -228,6 +228,7 @@ class HomeController extends Controller
     }
 
     public function track(){
+        dd($request);
         $VNO = $request->get("VNO");
         $starttime = $request->get("starttime");
         $endtime = $request->get("endtime"); 

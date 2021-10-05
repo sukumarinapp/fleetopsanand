@@ -11,7 +11,8 @@
             </div>
             <div class="card-body">
                <div class="col-md-12">
-        <form class="row form">
+        <form class="row form" method="post" action="{{ route('track') }}">
+          @csrf
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -42,13 +43,13 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="email">Start</label>
-                    <input class="form-control" type="datetime-local" name="email" id="email" placeholder="someone@example.com" required="">
+                    <input class="form-control" type="datetime-local" name="starttime" id="starttime"  required="required">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="username">End</label>
-                    <input class="form-control" type="datetime-local" name="username" id="username" placeholder="eg. JDoe12" required="">
+                    <input class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                 </div>
             </div>
             <div class="col-md-2">
