@@ -198,7 +198,7 @@ class DriverController extends Controller
         $BAL = 0;
         $RHN = 0;
         $RCN = "";
-        $CPF = Formulae::CCEI2($DCR);
+        $CPF = Formulae::EXPS2($DCR);
         $sql = "select * from sales_audit where DCR=$DCR";
         $result = DB::select(DB::raw($sql));
         if(count($result) > 0 ){
