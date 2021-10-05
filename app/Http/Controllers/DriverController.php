@@ -356,7 +356,7 @@ class DriverController extends Controller
                 $DNM = $result[0]->DNM." ".$result[0]->DSN;
             }
             $CPF = round(Formulae::EXPS2($DCR),2);
-            $msg = "Hi ".$DNM.". Unfortunately, your claim did not work previous day was not successful. System reset failed. Please proceed to pay an amount of GHC ".$CPF.". http://fleetopsgh.com/balance/".$DCR;
+            $msg = "Hi ".$DNM.". Unfortunately, your claim did not work previous day was not successful. System reset failed. Please proceed to pay an amount of GHC ".$CPF." http://fleetopsgh.com/balance/".$DCR;
             $DAT = date("Y-m-d");
             $TIM = date("H:i:s");
             $CTX = "Did not work claim failure";

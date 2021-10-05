@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+<style type="text/css">
+  @media screen and (min-width: 1000px) {  
+        .whatsappshare {  
+            display: none  
+        }  
+    }  
+</style>
 <div class="container-fluid">
   <div class="content-header">
     <div class="container-fluid">
@@ -65,7 +72,8 @@
                 <td>{{ $alert["alert"] }}</td>
                 <td>{{ round($alert["hours"],2) }}</td>
                 <td> <button type="button"
-        class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >Show</button></td>
+        class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >Show</button>
+        <a  href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a></td>   
               </tr>
               @endforeach
             </tbody>
