@@ -485,7 +485,7 @@ class HomeController extends Controller
             $sql3 = "select * from tbl136 where VNO='$VNO' and DES='A4' and DECL=0 and id=(select max(id) from tbl136 where VNO='$VNO');";
             $blocking = DB::select(DB::raw($sql3));
             if(count($blocking) > 0){
-                $alerts[$i]['cap_id'] = $id;
+                //$alerts[$i]['cap_id'] = $id;
                 $alerts[$i]['VID'] = $VID;
                 $alerts[$i]['VNO'] = $VNO;
                 $alerts[$i]['manager'] = $VNO;
@@ -523,7 +523,7 @@ class HomeController extends Controller
             $sql3 = "select * from tbl136 where VNO='$VNO' and DES='A3' and DECL=0 and id=(select max(id) from tbl136 where VNO='$VNO');";
             $buzzer = DB::select(DB::raw($sql3));
             if(count($buzzer) > 0){
-                $alerts[$i]['cap_id'] = $id;
+                //$alerts[$i]['cap_id'] = $id;
                 $alerts[$i]['VID'] = $VID;
                 $alerts[$i]['VNO'] = $VNO;
                 $alerts[$i]['manager'] = $VNO;
@@ -561,7 +561,7 @@ class HomeController extends Controller
             $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999');";
             $battery = DB::select(DB::raw($sql4));
             if(count($battery) > 0){
-                $alerts[$i]['cap_id'] = $id;
+                //$alerts[$i]['cap_id'] = $id;
                 $alerts[$i]['VID'] = $VID;
                 $alerts[$i]['VNO'] = $VNO;
                 $alerts[$i]['manager'] = $VNO;
