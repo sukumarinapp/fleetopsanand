@@ -203,7 +203,7 @@ class DriverController extends Controller
         if(count($result) > 0 ){
             $CPF = $result[0]->CPF;
         }else{
-            return redirect('/driver');
+            //return redirect('/driver');
         }
         $sql = "select RHN,RMT,RCN,VNO from tbl137 where DCR=$DCR and RST=1";
         $result = DB::select(DB::raw($sql));
