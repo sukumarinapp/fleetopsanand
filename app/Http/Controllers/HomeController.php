@@ -227,8 +227,22 @@ class HomeController extends Controller
         return view('replay',compact('usertree','type'));
     }
 
-    public function track(){
-        dd($request);
+    public function track(Request $request){
+        $user_id = Auth::user()->id;
+        $parent_id = Auth::user()->parent_id;
+        $usertype = Auth::user()->usertype;
+        $type = "admin";
+        
+        if($parent_id == 0){
+            $type = "admin";
+        }else if($parent_id == 1){
+            $type = "manager";
+        }else if($parent_id > 1 && $usertype == "Manager"){
+            $type = "submanager";
+        }else if($parent_id > 1 && $usertype == "Client"){
+            $type = "client";
+        }
+        $usertree = self::usertree();
         $VNO = $request->get("VNO");
         $starttime = $request->get("starttime");
         $endtime = $request->get("endtime"); 
@@ -237,8 +251,8 @@ class HomeController extends Controller
         $endtime = "2021-10-28 23:59:58"; */
         $sql = "select latitude,longitude from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO' and capture_datetime >= '$starttime' and capture_datetime <= '$endtime' order by capture_datetime";
         $locationData = DB::select(DB::raw($sql));
-        dd($locationData);
-        return view('replay',compact('locationData','VNO','starttime'),'endtime');
+        //$locationData = $locationData[0];
+        return view('replay',compact('usertree','type','locationData','VNO','starttime','endtime'));
     }
 
     public function index()
