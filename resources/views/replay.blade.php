@@ -10,11 +10,13 @@
               <h3 class="card-title">Replay</h3>
             </div>
             <div class="card-body">
-             <div class="form-group row">
-               <label for="" class="col-sm-2 col-form-label">Track Replay</label>
-               <div class="col-sm-6">
-                 <select name="VNO" required="required" class="form-control selectpicker select2" id="VNO">
-                @if($type == "admin")
+               <div class="col-md-12">
+        <form class="row form">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <select name="VNO" required="required" class="form-control selectpicker select2" id="VNO">
+                     @if($type == "admin")
                 @foreach($usertree as $key => $manager)
                 <optgroup label="{{ $manager['name'] }}">
                   @foreach($manager['client'] as $key2 => $client)
@@ -35,11 +37,30 @@
                         @endforeach
                         @endif
                       </select>
-                    </div>
-                    <div class="col-sm-3">
-                     <button type="button" class="btn btn-primary">Replay</button>
-                   </div>
-                 </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="email">Start</label>
+                    <input class="form-control" type="datetime-local" name="email" id="email" placeholder="someone@example.com" required="">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="username">End</label>
+                    <input class="form-control" type="datetime-local" name="username" id="username" placeholder="eg. JDoe12" required="">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="">&nbsp;</label>
+                   <input type="submit" name="submit"  value ="Replay" class="btn btn-primary form-control">
+                </div>
+            </div>
+           
+        </form>
+    </div>
+
                </div>
              </div>
            </div> 
