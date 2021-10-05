@@ -24,8 +24,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+
+    public function usertree(){
         $user_id = Auth::user()->id;
         $parent_id = Auth::user()->parent_id;
         $usertype = Auth::user()->usertype;
@@ -204,6 +204,46 @@ class HomeController extends Controller
                 $i++;
             }
         }
+        return $usertree;
+    }
+
+    public function replay(){
+        $user_id = Auth::user()->id;
+        $parent_id = Auth::user()->parent_id;
+        $usertype = Auth::user()->usertype;
+        $type = "admin";
+        
+        if($parent_id == 0){
+            $type = "admin";
+        }else if($parent_id == 1){
+            $type = "manager";
+        }else if($parent_id > 1 && $usertype == "Manager"){
+            $type = "submanager";
+        }else if($parent_id > 1 && $usertype == "Client"){
+            $type = "client";
+        }
+        $usertree = self::usertree();
+        //dd($usertree);
+        return view('replay',compact('usertree','type'));
+    }
+
+    public function index()
+    {
+        $user_id = Auth::user()->id;
+        $parent_id = Auth::user()->parent_id;
+        $usertype = Auth::user()->usertype;
+        $type = "admin";
+        
+        if($parent_id == 0){
+            $type = "admin";
+        }else if($parent_id == 1){
+            $type = "manager";
+        }else if($parent_id > 1 && $usertype == "Manager"){
+            $type = "submanager";
+        }else if($parent_id > 1 && $usertype == "Client"){
+            $type = "client";
+        }
+        $usertree = self::usertree();
         $today = date("Y-m-d");
         $online = 0;
         $offline = 0;
