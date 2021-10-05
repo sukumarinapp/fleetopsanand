@@ -215,7 +215,6 @@ class DriverController extends Controller
             $RHN = $result[0]->RHN;
         }
         $BAL = $CPF - $RMT;
-        echo $BAL;die;
         if($BAL <= 0) return redirect('/driver');
         return view('driver.balance',compact('VNO','DCR','RCN','BAL','RHN'));
     }
