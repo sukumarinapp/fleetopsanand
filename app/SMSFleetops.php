@@ -15,10 +15,11 @@ class SMSFleetops
         $sender_id =  self::$sender_id;
         $url = "https://apps.mnotify.net/smsapi?key=$key&to=$to&sender_id=$sender_id&msg=$msg";
         $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $sms_response = curl_exec($ch);
         #echo $sms_response;die;
         if (curl_errno($ch)) {
-            $error_msg = curl_error($ch);
+            //$error_msg = curl_error($ch);
         }
         curl_close($ch);
     }

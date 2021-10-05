@@ -342,11 +342,27 @@ class DriverController extends Controller
         $NWM = Formulae::NWM();
         $EXPS = Formulae::EXPS2($DCR);
         if($CML <= $NWM){
-            $sql = "update tbl136 set DECL=1 where DDT = '$SDT' AND VNO='$VNO'";
+            $sql = "update tbl136 set DECL=1,attempts=0,alarm_off=1,alarm_off_attempts=0 where DCR = '$DCR'";
             DB::update($sql);
-            TrackerSMS::unblock($VNO);
             return view('driver.driverhelpprev2',compact('sales'));
         }else{
+            $DCN = "";
+            $DNM = "";
+            $sql = "SELECT c.DNM,c.DSN,c.DCN from vehicle b,driver c where b.driver_id=c.id and b.VNO ='$VNO'";
+            $result = DB::select(DB::raw($sql));
+            if(count($result)>0){
+                $DCN = $result[0]->DCN;
+                $DNM = $result[0]->DNM." ".$result[0]->DSN;
+            }
+            $CPF = round(Formulae::EXPS2($DCR),2);
+            $msg = "Hi ".$DNM.". Unfortunately, your claim did not work previous day was not successful. System reset failed. Please proceed to pay an amount of GHC ".$CPF.". http://fleetopsgh.com/balance/".$DCR;
+            $DAT = date("Y-m-d");
+            $TIM = date("H:i:s");
+            $CTX = "Did not work claim failure";
+            $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values (?,?,?,?,?,?)";
+            $values = [$DCN,$msg,$DAT,$TIM,$CTX,$DNM];
+            DB::insert($sql,$values);
+            SMSFleetops::send($DCN,$msg);
             return view('driver.driverhelpprev3',compact('sales'));
         }
     }
