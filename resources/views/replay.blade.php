@@ -13,7 +13,7 @@
              <div class="form-group row">
                <label for="" class="col-sm-2 col-form-label">Track Replay</label>
                <div class="col-sm-6">
-                 <select name="VNO" required="required" class="form-control selectpicker" id="VNO">
+                 <select name="VNO" required="required" class="form-control selectpicker select2" id="VNO">
                 @if($type == "admin")
                 @foreach($usertree as $key => $manager)
                 <optgroup label="{{ $manager['name'] }}">
