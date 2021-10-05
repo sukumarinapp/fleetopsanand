@@ -72,8 +72,11 @@
                 <td>{{ $alert["alert"] }}</td>
                 <td>{{ round($alert["hours"],2) }}</td>
                 <td> <button type="button"
-        class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >Show</button>
-        <a  href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a></td>   
+        class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+        <a  href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a>
+
+        <a class="btn btn-primary btn-xs" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
+        </td> 
               </tr>
               @endforeach
             </tbody>

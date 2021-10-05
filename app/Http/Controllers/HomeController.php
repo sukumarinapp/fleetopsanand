@@ -227,6 +227,19 @@ class HomeController extends Controller
         return view('replay',compact('usertree','type'));
     }
 
+    public function track(){
+        $VNO = $request->get("VNO");
+        $starttime = $request->get("starttime");
+        $endtime = $request->get("endtime"); 
+/*        $VNO = "GT4298-18";
+        $starttime = "2021-07-28 23:59:58";
+        $endtime = "2021-10-28 23:59:58"; */
+        $sql = "select latitude,longitude from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO' and capture_datetime >= '$starttime' and capture_datetime <= '$endtime' order by capture_datetime";
+        $locationData = DB::select(DB::raw($sql));
+        dd($locationData);
+        return view('replay',compact('locationData','VNO','starttime'),'endtime');
+    }
+
     public function index()
     {
         $user_id = Auth::user()->id;
