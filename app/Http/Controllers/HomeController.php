@@ -254,8 +254,15 @@ class HomeController extends Controller
         $endtime = "2021-10-28 23:59:58"; */
         $sql = "select latitude,longitude from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO' and capture_datetime >= '$starttime' and capture_datetime <= '$endtime' order by capture_datetime";
         $locationData = DB::select(DB::raw($sql));
-        //$locationData = $locationData[0];
-        return view('replay',compact('usertree','type','locationData','VNO','starttime','endtime'));
+        $location = array();
+        $i=0;    
+        foreach($locationData as $loc){
+            $location[$i][0] = $loc->latitude;
+            $location[$i][1] = $loc->longitude;
+            $i++;
+        }
+        //dd($location);
+        return view('replay',compact('usertree','type','location','VNO','starttime','endtime'));
     }
 
     public function index()

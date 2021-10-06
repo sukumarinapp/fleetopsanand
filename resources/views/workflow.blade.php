@@ -69,7 +69,7 @@
 		              <td>WFL{{ str_pad($vehicle->id,3,'0',STR_PAD_LEFT) }}</td>
 		              <td>Sales Audit Request</td>
 		              <td>{{ $vehicle->DNM }} {{ $vehicle->DSN }}</td>    
-		              <td><a href="{{ url('auditing') }}/{{ $vehicle->vid }}">Resolve</a></td>          
+		              <td><a href="{{ url('auditing') }}/{{ $vehicle->vid }}/{{ $vehicle->id }}">Resolve</a></td> 
 		            </tr>
 	            @endif
             @endforeach

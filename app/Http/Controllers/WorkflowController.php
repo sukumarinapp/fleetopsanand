@@ -239,13 +239,17 @@ class WorkflowController extends Controller
         
     }
 
-    public function auditing($VNO)
+    public function auditing($VNO,$DCR)
     {
         $this->check_access("BPJ1");
         $id = $VNO;
         $sql = "SELECT d.PLF,e.RHN,a.*,b.UAN,b.name,c.DNO,c.DNM,c.DSN,c.DCN  FROM vehicle a,users b,driver c,driver_platform d,tbl361 e where a.CAN=b.UAN and a.driver_id=c.id and a.id=$id and c.id=d.driver_id and d.PLF=e.id";
         $vehicle = DB::select(DB::raw($sql));
         $vehicle = $vehicle[0];
+        $VNO = $vehicle->VNO;
+        $sql = "SELECT * from tbl137 where DCR=$DCR and id = (select max(id) from tbl137 where DCR=$DCR)";
+        $result = DB::select(DB::raw($sql));
+        $vehicle->RCN = $result[0]->RCN;
         return view('auditing',compact('vehicle'));
     }
 
@@ -299,7 +303,7 @@ class WorkflowController extends Controller
         if($BAL >= 0){
             $msg = "Hi ".$DNM.". Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please send remaining cash GHC ".$BAL." immediately else we shall be compelled to enforce the policy. The car owner has been notified of this issue accordingly. Click here to pay. http://fleetopsgh.com/balance/".$DCR;
         }else{
-            $msg = "Hi ".$DNM.",Thank you for a successful sales declaration."."GHC ".$RMT;
+            $msg = "Hi ".$DNM.",Thank you for a successful sales declaration of GHC ".$RMT;
             $sql = "update tbl136 set DECL = 1,attempts=0,alarm_off=1,alarm_off_attempts=0 where id = '$DCR'";
             DB::update($sql);
         }
@@ -307,9 +311,9 @@ class WorkflowController extends Controller
         $TIM = date("H:i:s");
         $CTX = "Sales Audit";
         $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values (?,?,?,?,?,?)";
-        $values = [$DCN,$msg,$DAT,$TIM,$CTX,$DNM];
+        $values = [$RCN,$msg,$DAT,$TIM,$CTX,$DNM];
         DB::insert($sql,$values);
-        SMSFleetops::send($DCN,$msg);
+        SMSFleetops::send($RCN,$msg);
         return redirect('/workflow')->with('message', 'Driver Sales Audit Done Successfully')->withInput();
 
     }

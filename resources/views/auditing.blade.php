@@ -7,7 +7,7 @@
     <input type="hidden" name="UAN" value="{{ $vehicle->UAN }}">
     <input type="hidden" name="CAN" value="{{ $vehicle->CAN }}">
     <input type="hidden" name="VNO" value="{{ $vehicle->VNO }}">
-    <input type="hidden" name="RCN" value="{{ $vehicle->DCN }}">
+    <input type="hidden" name="RCN" value="{{ $vehicle->RCN }}">
     <input type="hidden" name="RHN" value="{{ $vehicle->PLF }}">
   <div class="row">
     <div class="col-md-12">
