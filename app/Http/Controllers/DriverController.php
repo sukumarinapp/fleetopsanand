@@ -105,10 +105,13 @@ class DriverController extends Controller
         $sales = array();
         $sales['VNO'] = $VNO;
         $sales['DCN'] = $DCN;
+        $DCR = 0;
         $sql = "select * from tbl136 where DECL=0 and VNO='$VNO'";
         $result = DB::select(DB::raw($sql));
         if(count($result) <= 0){
            return view('driver.nopending'); 
+        }else{
+            $DCR = $result[0]->id;
         }
         $PLF = 0;
         $sql=" select c.PLF from vehicle a,driver b,driver_platform c where a.driver_id=b.id and b.id=c.driver_id and a.VNO='$VNO'";
@@ -118,7 +121,7 @@ class DriverController extends Controller
         }
         $SDT = date('Y-m-d');
         $SDT_dMY = date('d-M-Y');
-        $expected_sales = Formulae::CCEI($SDT,$VNO);
+        $expected_sales = Formulae::CCEI2($DCR);
         $sales['SDT'] = $SDT;
         $sales['PLF'] = $PLF;
         $sales['SDT_dMY'] = $SDT_dMY;
