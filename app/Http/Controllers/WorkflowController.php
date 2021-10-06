@@ -92,8 +92,8 @@ class WorkflowController extends Controller
             }else{
                 $sale->EXPS = "";
                 $sale->CCEI = "";
-                $sale->FTP = "";
-                $sale->CWI = "";
+                $sale->FTP = round(Formulae::FTP($DCR),2);
+                $sale->CWI = round(Formulae::CWI($DCR),2);
             }
         }
         return view('rhreport',compact('rhreport','title','from','to'));
@@ -295,7 +295,14 @@ class WorkflowController extends Controller
             DB::insert($sql);
         }
         $BAL = $CPF - $RMT;
-        $msg = "Hi ".$DNM.". Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please send remaining cash GHC ".$BAL." immediately else we shall be compelled to enforce the policy. The car owner has been notified of this issue accordingly. Click here to pay. http://fleetopsgh.com/balance/".$DCR;
+        $msg="";
+        if($BAL >= 0){
+            $msg = "Hi ".$DNM.". Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please send remaining cash GHC ".$BAL." immediately else we shall be compelled to enforce the policy. The car owner has been notified of this issue accordingly. Click here to pay. http://fleetopsgh.com/balance/".$DCR;
+        }else{
+            $msg = "Hi ".$DNM.",Thank you for a successful sales declaration."."GHC ".$RMT;
+            $sql = "update tbl136 set DECL = 1,attempts=0,alarm_off=1,alarm_off_attempts=0 where id = '$DCR'";
+            DB::update($sql);
+        }
         $DAT = date("Y-m-d");
         $TIM = date("H:i:s");
         $CTX = "Sales Audit";

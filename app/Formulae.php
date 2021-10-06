@@ -183,7 +183,7 @@ class Formulae{
     $sql = "SELECT max(TPF) as TRIPS FROM tbl137 where DCR='$DCR'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
-      $TPF = $result[0]->TRIPS;
+      if($result[0]->TRIPS != "") $TPF = $result[0]->TRIPS;
     }
 
     $sql = "SELECT * FROM tbl136 where id='$DCR'";
