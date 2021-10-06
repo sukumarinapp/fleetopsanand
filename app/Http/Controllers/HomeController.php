@@ -223,8 +223,11 @@ class HomeController extends Controller
             $type = "client";
         }
         $usertree = self::usertree();
+        $VNO = "";
+        $starttime = "";
+        $endtime = ""; 
         //dd($usertree);
-        return view('replay',compact('usertree','type'));
+        return view('replay',compact('usertree','type','VNO','starttime','endtime'));
     }
 
     public function track(Request $request){
