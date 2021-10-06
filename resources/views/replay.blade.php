@@ -15,7 +15,7 @@
           @csrf
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Vehicle Reg No</label>
                     <select name="VNO" required="required" class="form-control selectpicker select2" id="VNO">
                      @if($type == "admin")
                 @foreach($usertree as $key => $manager)
