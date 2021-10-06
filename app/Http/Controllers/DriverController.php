@@ -105,6 +105,11 @@ class DriverController extends Controller
         $sales = array();
         $sales['VNO'] = $VNO;
         $sales['DCN'] = $DCN;
+        $sql = "select * from tbl136 where DECL=0 and VNO='$VNO'";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) <= 0){
+           return view('driver.nopending'); 
+        }
         $PLF = 0;
         $sql=" select c.PLF from vehicle a,driver b,driver_platform c where a.driver_id=b.id and b.id=c.driver_id and a.VNO='$VNO'";
         $platform = DB::select(DB::raw($sql));
@@ -199,6 +204,12 @@ class DriverController extends Controller
         $RHN = 0;
         $RCN = "";
         $CPF = Formulae::EXPS2($DCR);
+        $sql = "select * from tbl136 where id=$DCR";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0 ){
+            $VNO = $result[0]->VNO;
+        }
+
         $sql = "select * from sales_audit where DCR=$DCR";
         $result = DB::select(DB::raw($sql));
         if(count($result) > 0 ){
@@ -338,12 +349,13 @@ class DriverController extends Controller
             $CML = $result[0]->CML;
             $SDT = $result[0]->DDT;
             $DCR = $result[0]->id;
+        }else{
+           return view('driver.nopending'); 
         }
-        $CML = Formulae::CML($SDT,$VNO);
         $NWM = Formulae::NWM();
         $EXPS = Formulae::EXPS2($DCR);
         if($CML <= $NWM){
-            $sql = "update tbl136 set DECL=1,attempts=0,alarm_off=1,alarm_off_attempts=0 where DCR = '$DCR'";
+            $sql = "update tbl136 set DECL=1,attempts=0,alarm_off=1,alarm_off_attempts=0 where id = '$DCR'";
             DB::update($sql);
             return view('driver.driverhelpprev2',compact('sales'));
         }else{
