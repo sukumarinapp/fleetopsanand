@@ -322,6 +322,39 @@ class WorkflowController extends Controller
     {
        return view('help'); 
     }
+
+    public function rhresettesting($DCR){
+        $sql = "delete from tbl137 where DCR=$DCR";
+        DB::delete($sql);
+        $sql = "delete from sales_audit where DCR=$DCR";
+        DB::delete($sql);
+        $sql = "update tbl136 set DECL=0 where id=$DCR";
+        DB::update($sql);
+        
+        $from = date('Y-m-d', strtotime('-6 days'));
+        $to = date('Y-m-d');
+        $sql = "select a.*,b.DCN from tbl136 a,driver b where a.driver_id=b.id and a.VBM = 'Ride Hailing' and DDT >='$from' and DDT <='$to' order by DDT desc";
+        $title = 'RH Daily Report';
+        $rhreport = DB::select(DB::raw($sql));
+        foreach($rhreport as $sale){
+            $DCR = $sale->id;
+            $VNO = $sale->VNO;
+            $sql = "select * from tbl137 where DCR=$DCR and SSR='Driver' and RST=1";
+            $tbl137 = DB::select(DB::raw($sql));
+            if(count($tbl137) > 0){
+                $sale->EXPS = round(Formulae::EXPS2($DCR),2);
+                $sale->CCEI = round(Formulae::CCEI2($DCR),2);
+                $sale->FTP = round(Formulae::FTP($DCR),2);
+                $sale->CWI = round(Formulae::CWI($DCR),2);
+            }else{
+                $sale->EXPS = "";
+                $sale->CCEI = "";
+                $sale->FTP = round(Formulae::FTP($DCR),2);
+                $sale->CWI = round(Formulae::CWI($DCR),2);
+            }
+        }
+        return view('rhreport',compact('rhreport','title','from','to'));
+    }
         
 }
 

@@ -50,6 +50,7 @@
           <th>CCEI</th>
           <th>FTP</th>
           <th>CWI</th>
+          <th>Reset (Test Mode)</th>
         </tr>
       </thead>
       <tbody>
@@ -66,7 +67,12 @@
            <td>{{ $sale->CCEI }}</td>
            <td>{{ $sale->FTP }}</td>
            <td>{{ $sale->CWI }}</td>
-           <td></td>
+           <td>
+            <form action="{{ route('rhresettesting', $sale->id)}}" method="post">
+              @csrf
+           <button onclick="return confirm('Do yo want to reset?')" class="btn btn-danger btn-xs" type="submit">Reset</button>
+           </form>
+            </td>
       </tr>
       @endforeach
 
