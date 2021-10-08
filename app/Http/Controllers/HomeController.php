@@ -227,7 +227,8 @@ class HomeController extends Controller
         $starttime = "";
         $endtime = ""; 
         //dd($usertree);
-        return view('replay',compact('usertree','type','VNO','starttime','endtime'));
+        $location = array();
+        return view('replay',compact('location','usertree','type','VNO','starttime','endtime'));
     }
 
     public function track(Request $request){
