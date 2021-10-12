@@ -3,23 +3,23 @@
 <div class="container-fluid">
   <form action="{{ route('saveoverride') }}" method="post">
     @csrf
-  <div class="row">
-    <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
        <div class="content-header">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6">
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('workflow') }}">Workflow Manager</a></li>
-              <li class="breadcrumb-item">Override</li>
-            </ol>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('workflow') }}">Workflow Manager</a></li>
+                <li class="breadcrumb-item">Override</li>
+              </ol>
+            </div>
           </div>
         </div>
       </div>
-    </div>
       <div class="card card-info">
         <div class="card-header">
           <h3 class="card-title">Workflow: Sales Declaration Enforcement</h3>
@@ -27,18 +27,18 @@
 
         <div class="col-md-12">
          <div class="card card-info">
-        @if(session()->has('error'))
-        <div class="alert alert-danger alert-dismissable" style="margin: 15px;">
-          <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong> {{ session('error') }} </strong>
-        </div>
-        @endif
-        @if(session()->has('message'))
-            <div class="alert alert-success alert-dismissable" style="margin: 15px;">
+          @if(session()->has('error'))
+          <div class="alert alert-danger alert-dismissable" style="margin: 15px;">
+            <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> {{ session('error') }} </strong>
+          </div>
+          @endif
+          @if(session()->has('message'))
+          <div class="alert alert-success alert-dismissable" style="margin: 15px;">
             <a href="#" style="color:white !important" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong> {{ session('message') }} </strong>
           </div>
-        @endif
+          @endif
           <div class="card-body row">
             <div class="col-md-1">
               <img src="{{ URL::to('/') }}/images/workflow.png" alt="User Image">
@@ -47,40 +47,46 @@
               <!-- <h4 class="m-0"> Workflow: Sales Declaration Enforcement</h4> -->
               <h5 class="m-0" style="text-align: right;">
                 @if($vehicle->DES == "A3")
-                  Override - Vehicle Buzzer On
+                Override - Vehicle Buzzer On
                 @else
-                  Override - Vehicle Blocked
+                Override - Vehicle Blocked
                 @endif
                 &nbsp;&nbsp;<img src="{{ URL::to('/') }}/images/car.png"></h5>
-            </div>
+              </div>
 
-            <div class="col-md-3">
-              <h6 class="m-0" style="text-align: right;">{{ date("l M d Y")}}</br>{{ date("h:i A") }}</h6>
-            </div>
+              <div class="col-md-3">
+                <h6 class="m-0" style="text-align: right;">{{ date("l M d Y")}}</br>{{ date("h:i A") }}</h6>
+              </div>
 
-            <div class="col-12">
-             <div class="card-header">
+              <div class="col-12">
+               <div class="card-header">
+               </div>
              </div>
-           </div>
 
-           <div class="col-6">
-             <h3 class="card-title">
+             <div class="col-6">
+               <h3 class="card-title">
+                <br>
+                Client
+              </h3>
               <br>
-              Client
-            </h3>
-            <div class="borderless ">
-              <table class="table">
-                <tr>
-                   <td style="width:50%"><label>Account No:</label>   {{ $vehicle->CAN }}</td>
-                </tr>
-                <tr>
-                  <td><label>Account Name:</label> {{ $vehicle->name }}</td>
-                </tr>
-                <tr>
-                  <td><label>Assigned Vehicle:</label>  {{ $vehicle->VNO }}</td>
+              <br>
+              <div class="form-group">
+                <form>
+                 <div class="row">
+                  <div class="col-sm-3"><b>Account Number</b></div>
+                  <div class="col-sm-1"><b>:</b></div>
+                  <div class="col-sm-8">{{ $vehicle->CAN }}</div>
+                  <div class="col-sm-3"><b>Account Name</b></div>
+                  <div class="col-sm-1"><b>:</b></div>
+                  <div class="col-sm-8">{{ $vehicle->name }}</div>
+                  <div class="col-sm-3"><b>Assigned Vehicle</b></div>
+                  <div class="col-sm-1"><b>:</b></div>
+                  <div class="col-sm-8">{{ $vehicle->VNO }}</div>
+                </div>
 
-              </table>
+              </form>
             </div>
+
           </div>
           <div class="col-6 text-center d-flex align-items-center justify-content-center">
             <div class="">
@@ -100,7 +106,7 @@
               <input type="hidden" name="TSM" value="{{ $vehicle->TSM }}">
               <input type="hidden" name="VID" value="{{ $vehicle->id }}">
               <input type="hidden" name="WCI" value="{{ $vehicle->DNM }} {{ $vehicle->DSN }}">
-             <div class="form-group row">
+              <div class="form-group row">
                <label for="UAN" class="col-sm-3 col-form-label"><span style="color:red">*</span>Username</label>
                <div class="col-sm-5">
                 <input required="required" type="text" class="form-control" name="UAN" id="UAN" maxlength="30" placeholder="Userame">
@@ -130,15 +136,15 @@
       </div>
     </div>
   </div>
-  </form>
+</form>
 </div>
 
 
 @endsection
 @push('page_css')
 <style>
-  .borderless td, .borderless th {
-    border: none;
-  }
+.borderless td, .borderless th {
+  border: none;
+}
 </style>
 @endpush
