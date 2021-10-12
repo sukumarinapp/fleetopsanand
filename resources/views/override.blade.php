@@ -78,7 +78,7 @@
                 </tr>
                 <tr>
                   <td><label>Assigned Vehicle:</label>  {{ $vehicle->VNO }}</td>
-
+                 </tr>
               </table>
             </div>
           </div>
