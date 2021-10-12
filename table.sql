@@ -66,8 +66,10 @@ select capture_date,capture_datetime,capture_time from current_location order by
 
 
  
+alter table tbl136 add CRS int(11) DEFAULT 0 after DNW;
 
 alter table tbl136 add attempts int(11) DEFAULT 0 after driver_id;
+
 alter table tbl137 add TIM4 varchar(20) DEFAULT NULL after TIM3;
 alter table tbl137 add TIM5 varchar(20) DEFAULT NULL after TIM4;
 
