@@ -119,6 +119,10 @@ class DriverController extends Controller
         }else{
             $DCR = $result[0]->id;
         }
+
+        $sql = "update tbl136 set CRS=1 where id=$DCR";
+        DB::update(DB::raw($sql));
+
         $PLF = 0;
         $sql=" select c.PLF from vehicle a,driver b,driver_platform c where a.driver_id=b.id and b.id=c.driver_id and a.VNO='$VNO'";
         $platform = DB::select(DB::raw($sql));

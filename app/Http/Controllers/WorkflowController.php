@@ -95,6 +95,24 @@ class WorkflowController extends Controller
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
             }
+
+            $sql = "select * from tbl136 where id=$DCR and DNW=1";
+            $tbl136 = DB::select(DB::raw($sql));
+            if(count($tbl136) > 0){
+                $sale->EXPS = round(Formulae::EXPS2($DCR),2);
+                $sale->CCEI = "";
+                $sale->FTP = round(Formulae::FTP($DCR),2);
+                $sale->CWI = round(Formulae::CWI($DCR),2);
+            }
+
+            $sql = "select * from tbl136 where id=$DCR and CRS=1";
+            $tbl136 = DB::select(DB::raw($sql));
+            if(count($tbl136) > 0){
+                $sale->EXPS = round(Formulae::EXPS2($DCR),2);
+                $sale->CCEI = "";
+                $sale->FTP = round(Formulae::FTP($DCR),2);
+                $sale->CWI = round(Formulae::CWI($DCR),2);
+            }
         }
         return view('rhreport',compact('rhreport','title','from','to'));
     }

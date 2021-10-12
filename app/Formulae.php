@@ -186,12 +186,16 @@ class Formulae{
       if($result[0]->TRIPS != "") $TPF = $result[0]->TRIPS;
     }
 
+    $DNW = 0;
+    $CRS = 0;
     $sql = "SELECT * FROM tbl136 where id='$DCR'";
     $result = DB::select(DB::raw($sql));
     if(count($result)>0){
       $CHR = $result[0]->CHR;
       $CML = $result[0]->CML;
       $VNO = $result[0]->VNO;
+      $DNW = $result[0]->DNW;
+      $CRS = $result[0]->CRS;
     }
 
     $sql = "select b.* from driver_platform a,tbl361 b where a.PLF=b.id and a.driver_id = (select driver_id from vehicle where VNO='$VNO')";
@@ -200,6 +204,16 @@ class Formulae{
       $RML = $result[0]->RML;
       $RMN = $result[0]->RMN;
       $RMS = $result[0]->RMS;
+    }
+
+    if($DNW == 1 || $CRS == 1){
+      $sql = "select * from tbl361 where id=1";
+      $result = DB::select(DB::raw($sql));
+      if(count($result)>0){
+        $RML = $result[0]->RML;
+        $RMN = $result[0]->RMN;
+        $RMS = $result[0]->RMS;
+      }
     }
     $EXPS=0;
     $EXPS = $CML * $RML + 60 * $CHR * $RMN + ($TPF * $RMS);
