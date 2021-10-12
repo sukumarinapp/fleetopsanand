@@ -30,6 +30,12 @@ class DriverController extends Controller
     public function drivervnovalid(Request $request)
     {
         $VNO = trim($request->get("VNO"));
+        $sql = "select * from tbl136 where DECL=0 and VNO='$VNO' and DNW=1";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $DCR = $result[0]->id;
+            return redirect("/balance/".$DCR);
+        }
         $VNO = str_replace(' ', '', $VNO);        
         $VNO = str_replace('-', '', $VNO);        
         $DCN = trim($request->get("DCN"));
@@ -113,6 +119,10 @@ class DriverController extends Controller
         }else{
             $DCR = $result[0]->id;
         }
+
+        $sql = "update tbl136 set CRS=1 where id=$DCR";
+        DB::update(DB::raw($sql));
+
         $PLF = 0;
         $sql=" select c.PLF from vehicle a,driver b,driver_platform c where a.driver_id=b.id and b.id=c.driver_id and a.VNO='$VNO'";
         $platform = DB::select(DB::raw($sql));
@@ -121,7 +131,7 @@ class DriverController extends Controller
         }
         $SDT = date('Y-m-d');
         $SDT_dMY = date('d-M-Y');
-        $expected_sales = Formulae::CCEI2($DCR);
+        $expected_sales = Formulae::EXPS2($DCR);
         $sales['SDT'] = $SDT;
         $sales['PLF'] = $PLF;
         $sales['SDT_dMY'] = $SDT_dMY;
@@ -223,13 +233,15 @@ class DriverController extends Controller
         $sql = "select RHN,RMT,RCN,VNO from tbl137 where DCR=$DCR and RST=1";
         $result = DB::select(DB::raw($sql));
         if(count($result) > 0){
-            $RMT = $RMT + $result[0]->RMT;
-            $VNO = $result[0]->VNO;
-            $RCN = $result[0]->RCN;
-            $RHN = $result[0]->RHN;
+            foreach($result as $res){
+                $RMT = $RMT + $res->RMT;
+                $VNO = $res->VNO;
+                $RCN = $res->RCN;
+                $RHN = $res->RHN;
+            }
         }
         $BAL = $CPF - $RMT;
-        if($BAL <= 0) return redirect('/driver');
+        if($BAL <= 0) return view('driver.nopending');
         return view('driver.balance',compact('VNO','DCR','RCN','BAL','RHN'));
     }
 
@@ -364,6 +376,8 @@ class DriverController extends Controller
         }else{
             $DCN = "";
             $DNM = "";
+            $sql = "UPDATE tbl136 set DNW=1 where id=$DCR";
+            DB::update(DB::raw($sql));
             $sql = "SELECT c.DNM,c.DSN,c.DCN from vehicle b,driver c where b.driver_id=c.id and b.VNO ='$VNO'";
             $result = DB::select(DB::raw($sql));
             if(count($result)>0){

@@ -69,23 +69,27 @@
               <br>
               <u> Client</u>
             </h3>
-            <div class="borderless">
-              <table class="table">
-                <tr>
-                  <td><label>Account No:</label> {{ $vehicle->CAN }}</td>
-                </tr>
-                <tr>
-                  <td><label>Account Name:</label> {{ $vehicle->name }}</td>
-                </tr>
-                <tr>
-                  <td><label>Assigned Vehicle:</label> {{ $vehicle->VNO }}</td>
-                </tr> 
-                 <tr>
-                  <td><label>RH Platform:</label> {{ $vehicle->RHN }}</td>
-                </tr>
+            <br>
+            <br>
+           <div class="form-group">
+            <form>
+ <div class="row">
+  <div class="col-sm-3"><b>Account Number</b></div>
+  <div class="col-sm-1"><b>:</b></div>
+  <div class="col-sm-8">{{ $vehicle->CAN }}</div>
+<div class="col-sm-3"><b>Account Name</b></div>
+<div class="col-sm-1"><b>:</b></div>
+  <div class="col-sm-8">{{ $vehicle->name }}</div>
+  <div class="col-sm-3"><b>Assigned Vehicle</b></div>
+  <div class="col-sm-1"><b>:</b></div>
+  <div class="col-sm-8">{{ $vehicle->VNO }}</div>
+   <div class="col-sm-3"><b>RH Platform</b></div>
+   <div class="col-sm-1"><b>:</b></div>
+  <div class="col-sm-8">{{ $vehicle->RHN }}</div>
+</div>
 
-              </table>
-            </div>
+</form>
+</div>
           </div>
           <div class="col-6 text-center d-flex align-items-center justify-content-center">
             <div class="card-body">

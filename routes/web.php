@@ -82,6 +82,7 @@ Route::post('/saveoverride', 'WorkflowController@saveoverride')->name('saveoverr
 Route::get('/auditsrch', 'WorkflowController@auditsrch')->name('auditsrch');
 Route::get('/auditing/{VNO}/{DCR}', 'WorkflowController@auditing')->name('auditing');
 Route::post('/rhresettesting/{DCR}', 'WorkflowController@rhresettesting')->name('rhresettesting');
+Route::post('/resendsms/{id}', 'WorkflowController@resendsms')->name('resendsms');
 Route::post('/auditingsave', 'WorkflowController@auditingsave')->name('auditingsave');
 
 Route::get('/locations', 'HomeController@locations')->name('locations');

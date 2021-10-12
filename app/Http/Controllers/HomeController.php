@@ -376,7 +376,7 @@ class HomeController extends Controller
 
         //select * from alarm;
         $markers = DB::select(DB::raw($sql));
-        //dd($markers);
+        ///dd($markers);
         return response()->json($markers);
     
     }

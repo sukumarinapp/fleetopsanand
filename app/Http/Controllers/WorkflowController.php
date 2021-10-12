@@ -95,6 +95,24 @@ class WorkflowController extends Controller
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
             }
+
+            $sql = "select * from tbl136 where id=$DCR and DNW=1";
+            $tbl136 = DB::select(DB::raw($sql));
+            if(count($tbl136) > 0){
+                $sale->EXPS = round(Formulae::EXPS2($DCR),2);
+                $sale->CCEI = "";
+                $sale->FTP = round(Formulae::FTP($DCR),2);
+                $sale->CWI = round(Formulae::CWI($DCR),2);
+            }
+
+            $sql = "select * from tbl136 where id=$DCR and CRS=1";
+            $tbl136 = DB::select(DB::raw($sql));
+            if(count($tbl136) > 0){
+                $sale->EXPS = round(Formulae::EXPS2($DCR),2);
+                $sale->CCEI = "";
+                $sale->FTP = round(Formulae::FTP($DCR),2);
+                $sale->CWI = round(Formulae::CWI($DCR),2);
+            }
         }
         return view('rhreport',compact('rhreport','title','from','to'));
     }
@@ -328,7 +346,7 @@ class WorkflowController extends Controller
         DB::delete($sql);
         $sql = "delete from sales_audit where DCR=$DCR";
         DB::delete($sql);
-        $sql = "update tbl136 set DECL=0 where id=$DCR";
+        $sql = "update tbl136 set DECL=0,CRS=0,DNW=0 where id=$DCR";
         DB::update($sql);
         
         $from = date('Y-m-d', strtotime('-6 days'));
@@ -354,6 +372,27 @@ class WorkflowController extends Controller
             }
         }
         return view('rhreport',compact('rhreport','title','from','to'));
+    }
+
+    public function resendsms($id){
+        $sql = "select * from sms_log where id=$id";
+        $sms = DB::select(DB::raw($sql));  
+        if(count($sms) > 0){
+            $DAT = date("Y-m-d");
+            $TIM = date("H:i:s");
+            $PHN = $sms[0]->PHN;
+            $MSG = $sms[0]->MSG;
+            $CTX = $sms[0]->CTX;
+            $NAM = $sms[0]->NAM;
+            $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values (?,?,?,?,?,?)";
+            $values = [$PHN,$MSG,$DAT,$TIM,$CTX,$NAM];
+            DB::insert($sql,$values);
+            SMSFleetops::send($PHN,$MSG);
+            $from = date('Y-m-d', strtotime('-6 days'));
+            $to   = date('Y-m-d');
+            return redirect("/notificationslog/$from/$to")->with('message', 'SMS Resend Successfully');
+
+        }
     }
         
 }

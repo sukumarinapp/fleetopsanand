@@ -44,6 +44,7 @@
             <th>Designation</th>
             <th>Message</th>
             <th>Date</th>
+            <th>Resend</th>
           </tr>
         </thead>
         <tbody>
@@ -54,6 +55,12 @@
            <td>{{ $log->CTX }}</td>
            <td>{{ $log->MSG }}</td>
            <td>{{ date("d-m-Y",strtotime($log->DAT)) }} {{ $log->TIM }}</td>
+           <td>
+            <form action="{{ route('resendsms', $log->id)}}" method="post">
+              @csrf
+           <button onclick="return confirm('Do yo want to resend this message?')" class="btn btn-primary btn-xs" type="submit">Resend</button>
+           </form>
+            </td>
          </tr>
          @endforeach
        </tbody>
