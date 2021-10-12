@@ -131,7 +131,7 @@ class DriverController extends Controller
         }
         $SDT = date('Y-m-d');
         $SDT_dMY = date('d-M-Y');
-        $expected_sales = Formulae::CCEI2($DCR);
+        $expected_sales = Formulae::EXPS2($DCR);
         $sales['SDT'] = $SDT;
         $sales['PLF'] = $PLF;
         $sales['SDT_dMY'] = $SDT_dMY;
