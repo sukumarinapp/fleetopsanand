@@ -227,9 +227,11 @@
       }
       var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
       bounds.extend( position );
+      var zoom = map.getZoom();
+map.setZoom(zoom < 6 ? 6 : zoom);
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
-          animation: google.maps.Animation.NONE
+          animation: google.maps.Animation.DROP
           , icon: car_icon
           , map: map
           , position: position
