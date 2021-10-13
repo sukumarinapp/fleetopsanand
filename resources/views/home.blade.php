@@ -220,15 +220,14 @@
     var capture_time = location['capture_time'];
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
     if(check_checked(location['VNO'])){
-      if(location['VNO']=="GT4298-18"){
+      /*if(location['VNO']=="GT4298-18"){
         console.log(location["latitude"]);
         console.log("\n");
         console.log(location["longitude"]);
-      }
+      }*/
       var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
       bounds.extend( position );
-      var zoom = map.getZoom();
-map.setZoom(zoom < 6 ? 6 : zoom);
+      map.setOptions({ minZoom: 8, maxZoom: 15 });
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
           animation: google.maps.Animation.DROP
@@ -268,7 +267,7 @@ map.setZoom(zoom < 6 ? 6 : zoom);
       }
     });
   }
-  setInterval(fetch_location, 10000);
+  setInterval(fetch_location, 30000);
 
   $(document).ready(function(){
     $('#examplegrid').dataTable({
