@@ -220,6 +220,11 @@
     var capture_time = location['capture_time'];
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
     if(check_checked(location['VNO'])){
+      if(location['VNO']=="GT4298-18"){
+        console.log(location["latitude"]);
+        console.log("\n");
+        console.log(location["longitude"]);
+      }
       var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
       bounds.extend( position );
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
@@ -261,7 +266,7 @@
       }
     });
   }
-  setInterval(fetch_location, 300000);
+  setInterval(fetch_location, 10000);
 
   $(document).ready(function(){
     $('#examplegrid').dataTable({
