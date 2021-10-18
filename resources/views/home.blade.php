@@ -219,8 +219,8 @@
     //if(location["engine_on"]=="0") car_icon = "red.png";
     var capture_time = location['capture_time'];
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
-    console.log(location['VNO']);
     if(check_checked(location['VNO'])){
+      console.log(location['VNO']);
       var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
       bounds.extend( position );
       map.setOptions({ minZoom: 8, maxZoom: 15 });
