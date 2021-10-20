@@ -263,7 +263,7 @@
       }
     });
   }
-  setInterval(fetch_location, 30000);
+  setInterval(fetch_location, 300000);
 
   $(document).ready(function(){
     $('#examplegrid').dataTable({
