@@ -226,7 +226,7 @@
       map.setOptions({ minZoom: 8, maxZoom: 15 });
         // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
         var marker = new google.maps.Marker({
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.NONE
           , icon: car_icon
           , map: map
           , position: position
@@ -263,7 +263,7 @@
       }
     });
   }
-  setInterval(fetch_location, 300000);
+  setInterval(fetch_location, 10000);
 
   $(document).ready(function(){
     $('#examplegrid').dataTable({

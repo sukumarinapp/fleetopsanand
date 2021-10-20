@@ -1,32 +1,8 @@
-RHN
-SPF
-CPF
-TPF
-Incorrect Cash Declared
-Cash Declared is Incorrect. Further to our checks, the cash collected you have accounted for is incorrect. Please send remaining cash of GHC 40 immediately else we shall be compelled to enforce the policy. The car owner has been notified of this issue accordingly.
-
-Display GHC339.15 Cash Receipt Confirmed!Thank you for a successful sales declaration.
-
-"The grid beneath the map shall be dedicated for alerts. There are principally 4 alerts which are raised whenever there is a business-critical situation. They are as follows:
-1. Vehicle (Tracker) Offline
-2. Vehicle Blocked
-3. Vehicle Buzzer Active
-4. Battery Power Cut
-
-The grid shall have the following headers:
-a. Event Date/Time
-b. Vehicle Reg# (Hyperlinked such that when tapped it displays a tool-tip-text of a brief summary of the vehicle's situation: 
-          - Vehicle Reg#
-          - Vehicle Make/Model/Color
-          - Customer Name
-          - Manager Name
-          - Driver Name (Or None)
-          - Business (Or None)
-c. Alert 
-d. Hours-in-Effect (Records time in hours since the alarm was made active)
-e. Event Location (Provides the Long./Lat. coordinates and hyperlinked such that when tapped it opens a Google map with a pin-drop showing where the event took place. From Google the user can then navigate to the location with directions.)
-
-Generally,
-1. The alerts shall persist until resolved
-2. When the alert has been resolved, it shall disappear from the grid.
-3. The ""Alerts Log"" shall have all the headings of the grid plus an additional one: ""Resolved Date/Time"""
+"Place and activate a tool panel on top of the treeview as follow:
+1. Vehicle Search (which enables vehicles to be located faster. Search shall be vehicle specific only for now.)
+2. Locate (Provides the Long./Lat. coordinates and hyperlinked such that when tapped it opens a Google map with a pin-drop showing where the event took place. From Google the user can then navigate to the location with directions.)
+3. Track Replay (When provided with From-date and To-Date, can replay the vehicle's movements within that period)
+4. Live Track (To be used during pursuits of recalcitrant drivers. It display the live tracking of the vehicle being pursued and the current location of the user (phone location) while showing the closeness or distance between the two targets)"
+Treeview, Map and Alerts Grid must be made collapsible and expandable with headings
+Redesign the page to be standard and compact; re-arrange the items, use the appropriate font, reduce the spacing between the elements.
+"First Payment Date" not coordinated with Daily rental model. System sends collection note immediately the next day after setting this step, not on the stated first payment date. 
