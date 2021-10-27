@@ -479,6 +479,8 @@ class HomeController extends Controller
                     $alerts[$i]['date'] = $capture_date;
                     $alerts[$i]['time'] = str_replace(".",":",$capture_time);
                     $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                    $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
+                    $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
                     $alerts[$i]['latitude'] = $latitude;
                     $alerts[$i]['longitude'] = $longitude;
                     
@@ -502,6 +504,8 @@ class HomeController extends Controller
                         $alerts[$i]['date'] = $capture_date;
                         $alerts[$i]['time'] = str_replace(".",":",$capture_time);
                         $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                        $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
+                        $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
                         $alerts[$i]['latitude'] = $latitude;
                         $alerts[$i]['longitude'] = $longitude;
                         $i++;
@@ -530,7 +534,8 @@ class HomeController extends Controller
                 $alerts[$i]['date'] = $blocking[0]->DDT;
                 $alerts[$i]['time'] = "12:00";
                 $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
-                
+                $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
+                $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
                 $event_datetime = $blocking[0]->DDT." 12:00:00";
                 $event_sql = "select latitude,longitude from current_location where id= (select max(id) from current_location where terminal_id='$TID' and capture_datetime <= '$event_datetime')";
                 $event_loc = DB::select(DB::raw($event_sql));
@@ -568,6 +573,8 @@ class HomeController extends Controller
                 $alerts[$i]['date'] = $buzzer[0]->DDT;
                 $alerts[$i]['time'] = "10:00";
                 $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
+                $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
                 $alerts[$i]['latitude'] = $latitude;
                 $alerts[$i]['longitude'] = $longitude;
 
@@ -609,6 +616,8 @@ class HomeController extends Controller
                     $alerts[$i]['date'] = substr($alert_time,0,10);
                     $alerts[$i]['time'] = substr($alert_time,11,5);
                     $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                    $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
+                    $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
                     $alerts[$i]['latitude'] = $latitude;
                     $alerts[$i]['longitude'] = $longitude;
 
@@ -626,7 +635,45 @@ class HomeController extends Controller
                 }
             }
         }
-        //dd($alerts);        
+        dd($alerts);        
         return $alerts;
+    }
+
+    private function secondsToTime($inputSeconds) {
+        $secondsInAMinute = 60;
+        $secondsInAnHour = 60 * $secondsInAMinute;
+        $secondsInADay = 24 * $secondsInAnHour;
+
+        // Extract days
+        $days = floor($inputSeconds / $secondsInADay);
+
+        // Extract hours
+        $hourSeconds = $inputSeconds % $secondsInADay;
+        $hours = floor($hourSeconds / $secondsInAnHour);
+
+        // Extract minutes
+        $minuteSeconds = $hourSeconds % $secondsInAnHour;
+        $minutes = floor($minuteSeconds / $secondsInAMinute);
+
+        // Extract the remaining seconds
+        $remainingSeconds = $minuteSeconds % $secondsInAMinute;
+        $seconds = ceil($remainingSeconds);
+
+        // Format and return
+        $timeParts = [];
+        $sections = [
+            'day' => (int)$days,
+            'hour' => (int)$hours,
+            'minute' => (int)$minutes,
+            'second' => (int)$seconds,
+        ];
+
+        foreach ($sections as $name => $value){
+            if ($value > 0){
+                $timeParts[] = $value. ' '.$name.($value == 1 ? '' : 's');
+            }
+        }
+
+        return implode(', ', $timeParts);
     }
 }

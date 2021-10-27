@@ -61,7 +61,7 @@
                 <th>Event Date/Time</th>
                 <th>Vehicle Reg# </th>
                 <th>Alert</th>
-                <th>Hours-in-Effect</th>
+                <th>Active Duration</th>
                 <th>Event Location</th>
               </tr>
             </thead>
