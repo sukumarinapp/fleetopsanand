@@ -315,7 +315,9 @@ class HomeController extends Controller
             $total = $result[0]->total;
         }
         $alerts = self::alerts();
-        return view('home',compact('usertree','alerts','type','online','offline','inactive','active','total'));
+        $starttime = "";
+        $endtime = ""; 
+        return view('home',compact('usertree','alerts','type','online','offline','inactive','active','total','starttime','endtime'));
     }
 
     private function get_filter($user_id,$parent_id,$usertype,$CAN){

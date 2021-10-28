@@ -15,9 +15,9 @@
           <div class="card">
             <div class="card-body">
               <div class="input-group mb-3">
-  <input type="text" id="search_inp" maxlength="15" onkeyup="search_tree(this)" class="form-control" placeholder="Search" >
-  <input id="toogle_button" onchange="toggle_map(this)" type="checkbox" data-toggle="toggle" data-on="Replay" data-off="Normal" data-onstyle="success" data-offstyle="primary">
-</div>
+                <input type="text" id="search_inp" maxlength="15" onkeyup="search_tree(this)" class="form-control" placeholder="Search" >
+                <input id="toogle_button" onchange="toggle_map(this)" type="checkbox" data-toggle="toggle" data-on="Normal" data-off="Replay" data-onstyle="primary" data-offstyle="primary">
+              </div>
               
               @include("includes.tree")
             </div>
@@ -50,11 +50,32 @@
               </div>   -->   
               <div class="card-body">
                <div id="map_canvas" style="height: 443px;"></div>
-             </div>
-           </div>
-         </div> 
-       </div>
-       <div class="card">
+
+               <div id="map_replay" style="height: 443px;visibility: none;">
+                <form class="row form" >
+                  @csrf
+                  <div class="col-md-2">
+                      <label for="email">Start Time</label>                    
+                  </div>
+                  <div class="col-md-3">
+                      <input value="{{ $starttime }}" class="form-control" type="datetime-local" name="starttime" id="starttime"  required="required">
+                  </div>
+                  <div class="col-md-2">
+                      <label for="email">End Time</label>                    
+                  </div>
+                  <div class="col-md-3">
+                      <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
+                  </div>
+                  <div class="col-md-2">
+                      <input type="button" name="submit"  value ="Replay" class="btn btn-primary form-control">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <div class="card">
         <div class="card-body">
          <div class="table-responsive" style="height:150px" >
           <table id="examplegrid" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">

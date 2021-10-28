@@ -217,7 +217,8 @@
 @stack('page_scripts')
 <script>
     function replay(){
-        alert("Replay Map");
+        $("#map_canvas").hide();
+        $("#map_replay").show();
     }
 
     function toggle_map(arg){
@@ -235,7 +236,8 @@
                 }
             }
         }else{
-            alert("Normal Map");
+            $("#map_canvas").show();
+            $("#map_replay").hide();
         }
     }
 
