@@ -15,8 +15,8 @@
           <div class="card">
             <div class="card-body">
               <div class="input-group mb-3">
-                <input type="text" id="search_inp" maxlength="15" onkeyup="search_tree(this)" class="form-control" placeholder="Search" >
-                <input id="toogle_button" onchange="toggle_map(this)" type="checkbox" data-toggle="toggle" data-on="Normal" data-off="Replay" data-onstyle="success" data-offstyle="danger">
+                <input type="text" style="height:35px" id="search_inp" maxlength="15" onkeyup="search_tree(this)" class="form-control" placeholder="Search" >&nbsp;
+                <input id="toogle_button" onchange="toggle_map(this)" type="checkbox" data-toggle="toggle" data-height="10" data-on="Normal" data-off="Replay" data-onstyle="success" data-offstyle="danger">
               </div>
               
               @include("includes.tree")
