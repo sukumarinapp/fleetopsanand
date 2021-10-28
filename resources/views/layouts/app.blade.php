@@ -21,9 +21,9 @@
     @yield('third_party_stylesheets')
     @stack('page_css')
     <style>
-    .buttons-columnVisibility.active {
-        color: green;
-    }
+        .buttons-columnVisibility.active {
+            color: green;
+        }
         /*.dt-buttons{
             float: left;
             position: absolute;
@@ -76,9 +76,9 @@
                 </a>
             </li>
             <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-             
+
                 <ul class="navbar-nav">
-                   
+
                   @if(Auth::user()->usertype == "Admin")
                   <li class="dropdown dropdown-hover {{ (request()->is('parameter') || request()->is('rhplatform') || request()->is('sms')) ? 'active' : '' }}">
 
@@ -95,7 +95,7 @@
                    @endif
                </ul>
                @endif
-               
+
 
                @if(Auth::user()->usertype != "Client")
                <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'manager' || request()->segment(1) == 'client' || request()->segment(1) == 'vehicle' || request()->segment(1) == 'fdriver' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}">
@@ -104,7 +104,7 @@
 
                 
                 <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                 
+
                   <li><a href="{{ route('manager.index') }}" class="dropdown-item {{ (request()->segment(1) == 'manager') ? 'active' : '' }}" class="dropdown-item">User Account </a></li>
 
                   
@@ -137,7 +137,7 @@
 
               <li><a href="{{ url('vehiclelog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'vehiclelog') ? 'active' : '' }}" class="dropdown-item">Vehicle Assign Log</a></li>
 
-               <li><a href="{{ url('rhreport') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'rhreport') ? 'active' : '' }}" class="dropdown-item">RH Daily Report</a></li>
+              <li><a href="{{ url('rhreport') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'rhreport') ? 'active' : '' }}" class="dropdown-item">RH Daily Report</a></li>
 
               <li><a href="{{ url('sales') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) =='sales') ? 'active' : '' }}" class="dropdown-item">Pending Sales (RT/HP)</a></li>
 
@@ -212,57 +212,183 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-
+<script src="https://unpkg.com/travel-marker/dist/travel-marker.umd.js"></script>
 @stack('page_scripts')
 <script>
-    function replaydata(){
-        var VNO = $("#search_inp").val();
-        var starttime = $("#starttime").val();
-        var endtime = $("#endtime").val();
-        var formData = "VNO="+VNO+"&starttime="+starttime+"&endtime="+endtime;
-        var track = "{{ url('track') }}";
-        var url =  track + "/" + VNO + "/" +starttime + "/" +endtime;  
-        if(starttime == ""){
-            alert("select Start Time");
-            return false;
-        }else if(endtime == ""){
-            alert("select End Time");
-            return false;
-        }else{
-            $.ajax({
-              type: "get",
-              url: url,
-              success: function(response) {
-                response = JSON.parse(response);
-                console.log(response);
-              },
-              error: function (jqXHR, exception) {
-                console.log(exception);
-              }
-            });
+    
+var map, line, marker;
+var directionsService = new google.maps.DirectionsService();
+var TravelMarker = travelMarker.TravelMarker;
+speedMultiplier = 1; 
+var locationData = Array();
+var startlat = "";
+var endlat = "";
+var startlong = "";
+var endlong = "";
+
+function initialize() {
+    var mapOptions = {
+        zoom: 16, 
+        center: new google.maps.LatLng(startlat,startlong),
+    };
+
+    map = new google.maps.Map(document.getElementById('replay-canvas'),
+        mapOptions);  
+    // calcRoute();
+    mockDirections();
+}
+
+function mockDirections() {
+    var locationArray = locationData.map(l => new google.maps.LatLng(l[0], l[1]));
+    line = new google.maps.Polyline({
+      strokeOpacity: 0.5,
+      path: [],
+      map: map
+  });
+    locationArray.forEach(l => this.line.getPath().push(l));
+    
+    var start = new google.maps.LatLng(startlat,startlong);
+    var end = new google.maps.LatLng(endlat,endlong);
+
+    var startMarker = new google.maps.Marker({position: start, map: map, label: 'A'});
+    var endMarker = new google.maps.Marker({position: end, map: map, label: 'B'});
+    initRoute();
+}
+
+function calcRoute() {
+  line = new google.maps.Polyline({
+    strokeOpacity: 0.5,
+    path: [],
+    map: map
+  });
+  
+  var start = new google.maps.LatLng(51.513237, -0.099102);
+  var end = new google.maps.LatLng(51.514786, -0.080799);
+  var request = {
+    origin:start,
+    destination:end,
+    travelMode: google.maps.TravelMode.BICYCLING
+};
+directionsService.route(request, (response, status) => {
+    if (status == google.maps.DirectionsStatus.OK) {
+      var legs = response.routes[0].legs;
+      for (i=0;i<legs.length;i++) {
+        var steps = legs[i].steps;
+        for (j=0;j<steps.length;j++) {
+          var nextSegment = steps[j].path;
+          for (k=0;k<nextSegment.length;k++) {
+            line.getPath().push(nextSegment[k]);
         }
     }
+}
+initRoute();
+}
+});
+}
 
-    function replay(){
-        $("#map_canvas").slideUp("slow");
-        $("#map_replay").slideDown("slow");
+// initialize travel marker
+function initRoute() {
+  var route = line.getPath().getArray();
+  // options
+  var options = {
+    map: map,  // map object
+    speed: 50, // default 10 , animation speed
+    interval: 10, //default 10, marker refresh time
+    speedMultiplier: speedMultiplier,
+    markerOptions: { 
+      title: 'Travel Marker',
+      animation: google.maps.Animation.DROP,
+      icon: {
+        url: 'https://i.imgur.com/eTYW75M.png',
+        animation: google.maps.Animation.DROP,
+        // This marker is 20 pixels wide by 32 pixels high.
+        // size: new google.maps.Size(256, 256),
+        scaledSize: new google.maps.Size(128, 128),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(53, 110)
     }
+},
+};
 
-    function toggle_map(arg){
-        if(arg.checked){
-            var VNO = $("#search_inp").val();
-            if(VNO == ""){
-                alert("Enter vehicle no");
+  // define marker
+  marker = new TravelMarker(options);
+  
+ // add locations from direction service 
+ marker.addLocation(route);
+ 
+ setTimeout(play, 2000);
+}
+
+// play animation
+function play() {
+  marker.play();
+}
+function replaydata(){
+        google.maps.event.addDomListener(window, 'load', initialize);
+    $(document).ajaxStop(initialize);
+
+    var VNO = $("#search_inp").val();
+    var starttime = $("#starttime").val();
+    var endtime = $("#endtime").val();
+    var formData = "VNO="+VNO+"&starttime="+starttime+"&endtime="+endtime;
+    var track = "{{ url('track') }}";
+    var url =  track + "/" + VNO + "/" +starttime + "/" +endtime;  
+    if(starttime == ""){
+        alert("select Start Time");
+        return false;
+    }else if(endtime == ""){
+        alert("select End Time");
+        return false;
+    }else{
+        $.ajax({
+          type: "get",
+          url: url,
+          success: function(response) {
+            response = JSON.parse(response);
+            for (let i = 0; i < response.length; i++) {
+                if(i == 0){
+                    startlat = response[i][0];
+                    startlong = response[i][1];
+                }
+                if(i == response.length-1){
+                    endlat = response[i][0];
+                    endlong = response[i][1];
+                }
+                var series = new Array(response[i][0],response[i][1]);
+                locationData.push(series);
+                
+            }
+            console.log(locationData);
+        },
+        error: function (jqXHR, exception) {
+            console.log(exception);
+        }
+    });
+    }
+}
+
+function replay(){
+    $("#map_canvas").slideUp("slow");
+    $("#map_replay").slideDown("slow");
+}
+
+function toggle_map(arg){
+    if(arg.checked){
+        var VNO = $("#search_inp").val();
+        if(VNO == ""){
+            alert("Enter vehicle no");
+            $("#toogle_button").bootstrapToggle('off');
+        }else{
+            if(!check_checked(VNO)){
+                alert("Vehicle No not found");
                 $("#toogle_button").bootstrapToggle('off');
             }else{
-                if(!check_checked(VNO)){
-                    alert("Vehicle No not found");
-                    $("#toogle_button").bootstrapToggle('off');
-                }else{
-                    replay();
-                }
+                replay();
             }
-        }else{
+        }
+    }else{
 /*            $("#search_inp").val("");
             $("#treeview").hummingbird("collapseAll");
             $("#treeview").hummingbird("checkAll");            */
