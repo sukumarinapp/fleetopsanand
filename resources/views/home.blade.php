@@ -67,7 +67,7 @@
                       <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
                   <div class="col-md-2">
-                      <input type="button" name="submit"  value ="Replay" class="btn btn-primary form-control">
+                      <input type="button" onclick="replaydata()" name="submit"  value ="Replay" class="btn btn-primary form-control">
                   </div>
                 </form>
               </div>

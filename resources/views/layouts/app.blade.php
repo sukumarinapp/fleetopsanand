@@ -130,7 +130,7 @@
              <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="nav-link">Workflow Manager</a>
          </li>
          @endif
-         <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'workflowlog' || request()->segment(1) == 'vehiclelog' ||  request()->segment(1) == 'rhreport' || request()->segment(1) == 'sales' || request()->segment(1) == 'collection' || request()->segment(1) == 'notificationslog' || request()->segment(1) == 'replay') ? 'active' : '' }}">
+         <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'workflowlog' || request()->segment(1) == 'vehiclelog' ||  request()->segment(1) == 'rhreport' || request()->segment(1) == 'sales' || request()->segment(1) == 'collection' || request()->segment(1) == 'notificationslog' ) ? 'active' : '' }}">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Reports</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
               <li><a href="{{ url('workflowlog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) =='workflowlog') ? 'active' : '' }}" class="dropdown-item">Workflow Log </a></li>
@@ -145,7 +145,6 @@
 
               <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li>
 
-              <li><a href="{{ route('replay') }}" class="dropdown-item {{ (request()->segment(1) == 'replay') ? 'active' : '' }}" class="dropdown-item">Tracker Replay</a></li>
           </ul>
       </li>
 
@@ -216,6 +215,33 @@
 
 @stack('page_scripts')
 <script>
+    function replaydata(){
+        var VNO = $("#search_inp").val();
+        var starttime = $("#starttime").val();
+        var endtime = $("#endtime").val();
+        var formData = "VNO="+VNO+"&starttime="+starttime+"&endtime="+endtime;
+        var track = "{{ url('track') }}";
+        var url =  track + "/" + VNO + "/" +starttime + "/" +endtime;  
+        if(starttime == ""){
+            alert("select Start Time");
+            return false;
+        }else if(endtime == ""){
+            alert("select End Time");
+            return false;
+        }else{
+            $.ajax({
+              type: "get",
+              url: url,
+              success: function(response) {
+                console.log(response);
+              },
+              error: function (jqXHR, exception) {
+                console.log(exception);
+              }
+            });
+        }
+    }
+
     function replay(){
         $("#map_canvas").slideUp("slow");
         $("#map_replay").slideDown("slow");
@@ -249,8 +275,7 @@
         $("#treeview").hummingbird("uncheckAll");
         $("#treeview").hummingbird("collapseAll");
         $("#treeview").hummingbird("expandNode",{sel:"id",vals:[srch],expandParents:true});
-        var x= $("#treeview").hummingbird("checkNode",{sel:"id", vals:[srch]});
-        console.log(x);
+        $("#treeview").hummingbird("checkNode",{sel:"id", vals:[srch]});
     }
 
     $(document).ready(function(){

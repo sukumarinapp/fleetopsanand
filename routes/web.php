@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/replay', 'HomeController@replay')->name('replay');
-Route::post('/track','HomeController@track')->name('track');
+Route::get('/track/{VNO}/{starttime}/{endtime}','HomeController@track')->name('track');
 Route::get('/parameter', 'ParameterController@index')->name('parameter');
 Route::post('/paramupdate','ParameterController@update')->name('paramupdate');
 Route::resource('/rhplatform', 'RHPlatformController');

@@ -231,7 +231,7 @@ class HomeController extends Controller
         return view('replay',compact('location','usertree','type','VNO','starttime','endtime'));
     }
 
-    public function track(Request $request){
+    public function track($VNO,$starttime,$endtime){
         $user_id = Auth::user()->id;
         $parent_id = Auth::user()->parent_id;
         $usertype = Auth::user()->usertype;
@@ -247,9 +247,6 @@ class HomeController extends Controller
             $type = "client";
         }
         $usertree = self::usertree();
-        $VNO = $request->get("VNO");
-        $starttime = $request->get("starttime");
-        $endtime = $request->get("endtime"); 
 /*        $VNO = "GT4298-18";
         $starttime = "2021-07-28 23:59:58";
         $endtime = "2021-10-28 23:59:58"; */
@@ -262,8 +259,8 @@ class HomeController extends Controller
             $location[$i][1] = $loc->longitude;
             $i++;
         }
-        //dd($location);
-        return view('replay',compact('usertree','type','location','VNO','starttime','endtime'));
+        echo json_encode($location);
+        //return view('replay',compact('usertree','type','location','VNO','starttime','endtime'));
     }
 
     public function index()
