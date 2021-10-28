@@ -233,6 +233,7 @@
               type: "get",
               url: url,
               success: function(response) {
+                response = JSON.parse(response);
                 console.log(response);
               },
               error: function (jqXHR, exception) {
