@@ -14,10 +14,11 @@
         <div class="col-md-3">
           <div class="card">
             <div class="card-body">
-              <div class="md-form mt-0">
-                <input id="search_inp" maxlength="10" onkeyup="search_tree(this)" class="form-control" type="text" placeholder="Search" aria-label="Search">
-                
-              </div>
+              <div class="input-group mb-3">
+  <input type="text" id="search_inp" maxlength="15" onkeyup="search_tree(this)" class="form-control" placeholder="Search" >
+  <input id="toogle_button" onchange="toggle_map(this)" type="checkbox" data-toggle="toggle" data-on="Replay" data-off="Normal" data-onstyle="success" data-offstyle="primary">
+</div>
+              
               @include("includes.tree")
             </div>
             <div class="col-md-12">

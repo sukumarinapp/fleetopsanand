@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/hummingbird-treeview.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
     @yield('third_party_stylesheets')
     @stack('page_css')
     <style>
@@ -211,8 +212,32 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 @stack('page_scripts')
 <script>
+    function replay(){
+        alert("Replay Map");
+    }
+
+    function toggle_map(arg){
+        if(arg.checked){
+            var VNO = $("#search_inp").val();
+            if(VNO == ""){
+                alert("Enter vehicle no");
+                $("#toogle_button").bootstrapToggle('off');
+            }else{
+                if(!check_checked(VNO)){
+                    alert("Vehicle No not found");
+                    $("#toogle_button").bootstrapToggle('off');
+                }else{
+                    replay();
+                }
+            }
+        }else{
+            alert("Normal Map");
+        }
+    }
 
     function search_tree(arg){
         var srch = arg.value;
