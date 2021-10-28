@@ -219,10 +219,17 @@
         $("#treeview").hummingbird("uncheckAll");
         $("#treeview").hummingbird("collapseAll");
         $("#treeview").hummingbird("expandNode",{sel:"id",vals:[srch],expandParents:true});
-        $("#treeview").hummingbird("checkNode",{sel:"id", vals:[srch]});
+        var x= $("#treeview").hummingbird("checkNode",{sel:"id", vals:[srch]});
+        console.log(x);
     }
 
     $(document).ready(function(){
+
+        $("#search_inp").bind('paste', function(e) {
+            var elem = $(this);
+            search_tree(elem);
+        });
+        
         $("#treeview").hummingbird();
         $("#treeview").hummingbird("checkAll");
         //$("#treeview").hummingbird("expandAll");
