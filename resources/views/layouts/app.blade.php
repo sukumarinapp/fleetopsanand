@@ -236,6 +236,9 @@
                 }
             }
         }else{
+/*            $("#search_inp").val("");
+            $("#treeview").hummingbird("collapseAll");
+            $("#treeview").hummingbird("checkAll");            */
             $("#map_canvas").show();
             $("#map_replay").hide();
         }
