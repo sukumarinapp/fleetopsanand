@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <style type="text/css">
-@media screen and (min-width: 1000px) {  
-  .whatsappshare {  
-    display: none
+  @media screen and (min-width: 1000px) {  
+    .whatsappshare {  
+      display: none
+    }  
   }  
-}  
 </style>
 <div class="container-fluid">
   <div class="content-header">
@@ -150,81 +150,81 @@
     }
   }
   var locations = [];
-  function refresh_map() {
-    var myOptions = { 
-    zoom: 12 // set zoom level
+  var myOptions = { 
+    zoom: 5 // set zoom level
     , mapTypeId: google.maps.MapTypeId.ROADMAP // apply tile (options include ROADMAP, SATELLITE, HYBRID and TERRAIN)
   };
   var map = new google.maps.Map( document.getElementById("map_canvas"), myOptions );
-  var bounds = new google.maps.LatLngBounds();
-  for ( var i = 0; i < locations.length; i++ )
-  {
-    var location = locations[i];
-    
-    var acc = "";
-    var engine_on = parseInt(location["engine_on"]);
-    if(engine_on == 0){
-      acc = "ACC OFF";
-    }else{
-      acc = "ACC ON";
-    }
-    var car_icon = "off0.png";
-    var dir = parseFloat(location['direction']);
 
-    if(dir < 22.5 || dir >= 337.5 ){
-      if(engine_on == 1) {
-        car_icon = "0.png";
+  function refresh_map() {
+    var bounds = new google.maps.LatLngBounds();
+    for ( var i = 0; i < locations.length; i++ )
+    {
+      var location = locations[i];
+
+      var acc = "";
+      var engine_on = parseInt(location["engine_on"]);
+      if(engine_on == 0){
+        acc = "ACC OFF";
       }else{
-        car_icon = "off0.png";
+        acc = "ACC ON";
       }
-    }else if(dir >= 22.5 && dir < 67.5 ){
-      if(engine_on == 1) {
-        car_icon = "45.png";
-      }else{
-        car_icon = "off45.png";
+      var car_icon = "off0.png";
+      var dir = parseFloat(location['direction']);
+
+      if(dir < 22.5 || dir >= 337.5 ){
+        if(engine_on == 1) {
+          car_icon = "0.png";
+        }else{
+          car_icon = "off0.png";
+        }
+      }else if(dir >= 22.5 && dir < 67.5 ){
+        if(engine_on == 1) {
+          car_icon = "45.png";
+        }else{
+          car_icon = "off45.png";
+        }
+      }else if((dir >= 67.5) && (dir < 112.5)){
+        if(engine_on == 1) {
+          car_icon = "90.png";
+        }else{
+          car_icon = "off90.png";
+        }
+      }else if((dir >= 112.5) && (dir < 157.5)){
+        if(engine_on == 1) {
+          car_icon = "135.png";
+        }else{
+          car_icon = "off135.png";
+        }
+      }else if((dir >= 157.5) && (dir < 202.5)){
+        if(engine_on == 1) {
+          car_icon = "180.png";
+        }else{
+          car_icon = "off180.png";
+        }
+      }else if((dir >= 202.5) && (dir < 247.5)){
+        if(engine_on == 1) {
+          car_icon = "225.png";
+        }else{
+          car_icon = "off225.png";
+        }
+      }else if((dir >= 247.5) && (dir < 292.5)){
+        if(engine_on == 1) {
+          car_icon = "270.png";
+        }else{
+          car_icon = "off270.png";
+        }
+      }else if((dir >= 292.5) && (dir < 337.5)){
+        if(engine_on == 1) {
+          car_icon = "315.png";
+        }else{
+          car_icon = "off315.png";
+        }
       }
-    }else if((dir >= 67.5) && (dir < 112.5)){
-      if(engine_on == 1) {
-        car_icon = "90.png";
-      }else{
-        car_icon = "off90.png";
-      }
-    }else if((dir >= 112.5) && (dir < 157.5)){
-      if(engine_on == 1) {
-        car_icon = "135.png";
-      }else{
-        car_icon = "off135.png";
-      }
-    }else if((dir >= 157.5) && (dir < 202.5)){
-      if(engine_on == 1) {
-        car_icon = "180.png";
-      }else{
-        car_icon = "off180.png";
-      }
-    }else if((dir >= 202.5) && (dir < 247.5)){
-      if(engine_on == 1) {
-        car_icon = "225.png";
-      }else{
-        car_icon = "off225.png";
-      }
-    }else if((dir >= 247.5) && (dir < 292.5)){
-      if(engine_on == 1) {
-        car_icon = "270.png";
-      }else{
-        car_icon = "off270.png";
-      }
-    }else if((dir >= 292.5) && (dir < 337.5)){
-      if(engine_on == 1) {
-        car_icon = "315.png";
-      }else{
-        car_icon = "off315.png";
-      }
-    }
     //if(location["engine_on"]=="0") car_icon = "red.png";
     var capture_time = location['capture_time'];
     capture_time = capture_time.substring(0, 2)+":"+capture_time.substring(2, 4)+":"+capture_time.substring(4, 6);
     if(check_checked(location['VNO'])){
-      console.log(location['VNO']);
       var position = new google.maps.LatLng( location["latitude"], location["longitude"] );
       bounds.extend( position );
       map.setOptions({ minZoom: 8, maxZoom: 15 });
@@ -267,7 +267,7 @@
       }
     });
   }
-  setInterval(fetch_location, 30000);
+  setInterval(fetch_location, 10000);
 
   $(document).ready(function(){
     $('#examplegrid').dataTable({
