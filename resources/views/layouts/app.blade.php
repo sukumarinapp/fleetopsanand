@@ -217,8 +217,8 @@
 @stack('page_scripts')
 <script>
     function replay(){
-        $("#map_canvas").hide();
-        $("#map_replay").show();
+        $("#map_canvas").slideUp("slow");
+        $("#map_replay").slideDown("slow");
     }
 
     function toggle_map(arg){
@@ -239,8 +239,8 @@
 /*            $("#search_inp").val("");
             $("#treeview").hummingbird("collapseAll");
             $("#treeview").hummingbird("checkAll");            */
-            $("#map_canvas").show();
-            $("#map_replay").hide();
+            $("#map_canvas").slideDown("slow");
+            $("#map_replay").slideUp("slow");
         }
     }
 
