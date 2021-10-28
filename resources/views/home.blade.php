@@ -49,9 +49,9 @@
                 </div>
               </div>   -->   
               <div class="card-body">
-               <div id="map_canvas" style="height: 443px;"></div>
+               <div id="map_canvas" style="height: 500px;"></div>
 
-               <div id="map_replay" style="height: 443px;display: none;">
+               <div id="map_replay" style="height: 500px;display: none;">
                 <form class="row form" >
                   @csrf
                   <div class="col-md-2">
