@@ -172,13 +172,14 @@
     }
   }
   var locations = [];
-  var myOptions = { 
-    zoom: 5 // set zoom level
-    , mapTypeId: google.maps.MapTypeId.ROADMAP // apply tile (options include ROADMAP, SATELLITE, HYBRID and TERRAIN)
-  };
-  var map = new google.maps.Map( document.getElementById("map_canvas"), myOptions );
+  
 
   function refresh_map() {
+    var myOptions = { 
+    zoom: 5 // set zoom level
+    , mapTypeId: google.maps.MapTypeId.ROADMAP // apply tile (options include ROADMAP, SATELLITE, HYBRID and  TERRAIN)
+    };
+  var map = new google.maps.Map( document.getElementById("map_canvas"), myOptions );
     var bounds = new google.maps.LatLngBounds();
     for ( var i = 0; i < locations.length; i++ )
     {
