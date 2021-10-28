@@ -24,7 +24,7 @@
                 @foreach($client['vehicle'] as $key3 => $vehicle)
                 <li>
                   <label>
-                    <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
+                    <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="{{ $vehicle['VNO'] }}" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
                   </label>
                 </li>
                 @endforeach 
@@ -50,7 +50,7 @@
                     @foreach($client['vehicle'] as $key4 => $vehicle)
                     <li>
                       <label>
-                        <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
+                        <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="{{ $vehicle['VNO'] }}" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
                       </label>
                     </li>
                     @endforeach 
@@ -85,7 +85,7 @@
                 @foreach($client['vehicle'] as $key3 => $vehicle)
                 <li>
                   <label>
-                    <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
+                    <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="{{ $vehicle['VNO'] }}" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
                   </label>
                 </li>
                 @endforeach 
@@ -110,7 +110,7 @@
             @foreach($client['vehicle'] as $key3 => $vehicle)
             <li>
               <label>
-                <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" value="{{ $vehicle['VNO'] }}" type="checkbox" /> {{ $vehicle['VNO'] }}
+                <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="{{ $vehicle['VNO'] }}" data-id="custom-0-1-2-3-1" value="{{ $vehicle['VNO'] }}" type="checkbox" /> {{ $vehicle['VNO'] }}
               </label>
             </li>
             @endforeach 
@@ -125,7 +125,7 @@
         @foreach($usertree as $key1 => $vehicle)
         <li>
           <label>
-            <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="xnode-0-1-2-3-1" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
+            <input class="hummingbird-end-node {{ $vehicle['VNO'] }}" id="{{ $vehicle['VNO'] }}" data-id="custom-0-1-2-3-1" type="checkbox" value="{{ $vehicle['VNO'] }}" /> {{ $vehicle['VNO'] }}
           </label>
         </li>             
         @endforeach

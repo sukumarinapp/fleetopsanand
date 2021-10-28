@@ -15,7 +15,8 @@
           <div class="card">
             <div class="card-body">
               <div class="md-form mt-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                <input id="search_inp" maxlength="10" onkeyup="search_tree(this)" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                
               </div>
               @include("includes.tree")
             </div>

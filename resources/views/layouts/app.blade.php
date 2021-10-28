@@ -213,10 +213,21 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
 @stack('page_scripts')
 <script>
+
+    function search_tree(arg){
+        var srch = arg.value;
+        $("#treeview").hummingbird("uncheckAll");
+        $("#treeview").hummingbird("collapseAll");
+        $("#treeview").hummingbird("expandNode",{sel:"id",vals:[srch],expandParents:true});
+        $("#treeview").hummingbird("checkNode",{sel:"id", vals:[srch]});
+    }
+
     $(document).ready(function(){
         $("#treeview").hummingbird();
         $("#treeview").hummingbird("checkAll");
         //$("#treeview").hummingbird("expandAll");
+
+
 
         $('#treeview :checkbox').click(function () {
             fetch_location();
