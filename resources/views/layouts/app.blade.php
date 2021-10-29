@@ -381,6 +381,7 @@ function toggle_map(arg){
             alert("Enter vehicle no");
             $("#toogle_button").bootstrapToggle('off');
         }else{
+            VNO = VNO.toUpperCase();
             if(!check_checked(VNO)){
                 alert("Vehicle No not found");
                 $("#toogle_button").bootstrapToggle('off');
