@@ -247,7 +247,7 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     mapnormal = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-    setInterval(reloadMarkers, 10000);
+    setInterval(reloadMarkers, 20000);
 }
 initialize();
 
