@@ -75,6 +75,7 @@ Route::get('/rhreport/{from}/{to}', 'WorkflowController@rhreport')->name('rhrepo
 Route::get('/sales/{from}/{to}', 'WorkflowController@sales')->name('sales');
 Route::get('/collection/{from}/{to}', 'WorkflowController@collection')->name('collection');
 Route::get('/notificationslog/{from}/{to}', 'WorkflowController@notificationslog')->name('notificationslog');
+Route::get('/alertlog/{from}/{to}', 'WorkflowController@alertlog')->name('alertlog');
 Route::get('/workflowlog/{from}/{to}', 'WorkflowController@workflowlog')->name('workflowlog');
 Route::get('/override/{VNO}', 'WorkflowController@override')->name('override');
 Route::get('/overrides/{VNO}', 'WorkflowController@overrides')->name('overrides');

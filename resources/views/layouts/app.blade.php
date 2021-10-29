@@ -143,7 +143,9 @@
 
               <li><a href="{{ url('collection') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'collection') ? 'active' : '' }}" class="dropdown-item">General Sales Ledger</a></li>
 
-              <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li>
+              <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li> 
+
+              <li><a href="{{ url('alertlog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'alertlog') ? 'active' : '' }}" class="dropdown-item">Alert Log</a></li>
 
           </ul>
       </li>

@@ -143,6 +143,14 @@ class WorkflowController extends Controller
         $logs = DB::select(DB::raw($sql));
         return view('notificationslog',compact('logs','title','from','to'));
     }
+     public function alertlog($from,$to)
+        {
+        $this->check_access("BPJ2");
+        $title = 'Alert Log';
+        $sql = "select * from sms_log where DAT >='$from' and DAT <='$to' order by DAT desc";
+        $logs = DB::select(DB::raw($sql));
+        return view('alertlog',compact('logs','title','from','to'));
+        }
 
     public function override($VNO)
     {
