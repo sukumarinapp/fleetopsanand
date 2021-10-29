@@ -225,8 +225,10 @@ var startlat = "";
 var endlat = "";
 var startlong = "";
 var endlong = "";
+google.maps.event.addDomListener(window, 'load', initializereplay);
+$(document).ajaxStop(initializereplay);
 
-function initialize() {
+function initializereplay() {
     var mapOptions = {
         zoom: 16, 
         center: new google.maps.LatLng(startlat,startlong),
@@ -326,8 +328,6 @@ function play() {
   marker.play();
 }
 function replaydata(){
-        google.maps.event.addDomListener(window, 'load', initialize);
-    $(document).ajaxStop(initialize);
 
     var VNO = $("#search_inp").val();
     var starttime = $("#starttime").val();
@@ -406,6 +406,11 @@ function toggle_map(arg){
     }
 
     $(document).ready(function(){
+        $('#myMapModal').on('shown.bs.modal', function(e) {
+            var element = $(e.relatedTarget);
+            var data = element.data("lat").split(',')
+            initialize2(new google.maps.LatLng(data[0], data[1]));
+        });
 
         $("#search_inp").bind('paste', function(e) {
             var elem = $(this);
@@ -414,12 +419,11 @@ function toggle_map(arg){
         
         $("#treeview").hummingbird();
         $("#treeview").hummingbird("checkAll");
-        //$("#treeview").hummingbird("expandAll");
-
+        reloadMarkers();
 
 
         $('#treeview :checkbox').click(function () {
-            fetch_location();
+            //reloadMarkers();
         });
 
         $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
