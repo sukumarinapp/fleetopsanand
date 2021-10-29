@@ -225,8 +225,8 @@ var startlat = "";
 var endlat = "";
 var startlong = "";
 var endlong = "";
-google.maps.event.addDomListener(window, 'load', initializereplay);
-$(document).ajaxStop(initializereplay);
+//google.maps.event.addDomListener(window, 'load', initializereplay);
+//$(document).ajaxStop(initializereplay);
 
 function initializereplay() {
     var mapOptions = {
@@ -399,6 +399,9 @@ function toggle_map(arg){
 
     function search_tree(arg){
         var srch = arg.value;
+        if(srch != ""){
+            srch = srch.toUpperCase();
+        }
         $("#treeview").hummingbird("uncheckAll");
         $("#treeview").hummingbird("collapseAll");
         $("#treeview").hummingbird("expandNode",{sel:"id",vals:[srch],expandParents:true});
@@ -423,7 +426,7 @@ function toggle_map(arg){
 
 
         $('#treeview :checkbox').click(function () {
-            //reloadMarkers();
+            reloadMarkers();
         });
 
         $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
