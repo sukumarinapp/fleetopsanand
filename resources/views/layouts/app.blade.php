@@ -404,6 +404,7 @@ function toggle_map(arg){
         }
         $("#treeview").hummingbird("uncheckAll");
         $("#treeview").hummingbird("collapseAll");
+        if(srch == "") return;
         $("#treeview").hummingbird("expandNode",{sel:"id",vals:[srch],expandParents:true});
         $("#treeview").hummingbird("checkNode",{sel:"id", vals:[srch]});
     }
