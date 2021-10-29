@@ -229,7 +229,6 @@ var endlong = "";
 //$(document).ajaxStop(initializereplay);
 
 function initializereplay() {
-    console.log("initializereplay");
     var mapOptions = {
         zoom: 16, 
         center: new google.maps.LatLng(startlat,startlong),
@@ -340,7 +339,7 @@ function replay(){
 function toggle_map(arg){
     if(arg.checked){
         var VNO = $("#search_inp").val();
-        if(VNO == ""){
+        if(typeof(VNO) == "undefined" || VNO == "" ){
             alert("Enter vehicle no");
             $("#toogle_button").bootstrapToggle('off');
         }else{
@@ -363,7 +362,7 @@ function toggle_map(arg){
 
     function search_tree(arg){
         var srch = arg.value;
-        if(srch != ""){
+        if(typeof(srch) != "undefined" && srch != ""){
             srch = srch.toUpperCase();
         }
         $("#treeview").hummingbird("uncheckAll");
