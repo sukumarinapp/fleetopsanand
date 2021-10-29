@@ -261,7 +261,7 @@ function initRoute() {
   // options
   var options = {
     map: map,  // map object
-    speed: 10, // default 10 , animation speed
+    speed: 30, // default 10 , animation speed
     interval: 10, //default 10, marker refresh time
     speedMultiplier: speedMultiplier,
     markerOptions: { 
