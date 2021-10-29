@@ -229,6 +229,7 @@ var endlong = "";
 //$(document).ajaxStop(initializereplay);
 
 function initializereplay() {
+    console.log("initializereplay");
     var mapOptions = {
         zoom: 16, 
         center: new google.maps.LatLng(startlat,startlong),
