@@ -229,14 +229,13 @@ var endlong = "";
 //$(document).ajaxStop(initializereplay);
 
 function initializereplay() {
+    console.log("initializereplay");
     var mapOptions = {
         zoom: 16, 
         center: new google.maps.LatLng(startlat,startlong),
     };
-
     map = new google.maps.Map(document.getElementById('replay-canvas'),
         mapOptions);  
-    // calcRoute();
     mockDirections();
 }
 
@@ -256,53 +255,21 @@ function mockDirections() {
     var endMarker = new google.maps.Marker({position: end, map: map, label: 'B'});
     initRoute();
 }
-
-function calcRoute() {
-  line = new google.maps.Polyline({
-    strokeOpacity: 0.5,
-    path: [],
-    map: map
-  });
-  
-  var start = new google.maps.LatLng(51.513237, -0.099102);
-  var end = new google.maps.LatLng(51.514786, -0.080799);
-  var request = {
-    origin:start,
-    destination:end,
-    travelMode: google.maps.TravelMode.BICYCLING
-};
-directionsService.route(request, (response, status) => {
-    if (status == google.maps.DirectionsStatus.OK) {
-      var legs = response.routes[0].legs;
-      for (i=0;i<legs.length;i++) {
-        var steps = legs[i].steps;
-        for (j=0;j<steps.length;j++) {
-          var nextSegment = steps[j].path;
-          for (k=0;k<nextSegment.length;k++) {
-            line.getPath().push(nextSegment[k]);
-        }
-    }
-}
-initRoute();
-}
-});
-}
-
 // initialize travel marker
 function initRoute() {
   var route = line.getPath().getArray();
   // options
   var options = {
     map: map,  // map object
-    speed: 50, // default 10 , animation speed
+    speed: 10, // default 10 , animation speed
     interval: 10, //default 10, marker refresh time
     speedMultiplier: speedMultiplier,
     markerOptions: { 
       title: 'Travel Marker',
-      animation: google.maps.Animation.DROP,
+      animation: google.maps.Animation.NONE,
       icon: {
         url: 'https://i.imgur.com/eTYW75M.png',
-        animation: google.maps.Animation.DROP,
+        animation: google.maps.Animation.NONE,
         // This marker is 20 pixels wide by 32 pixels high.
         // size: new google.maps.Size(256, 256),
         scaledSize: new google.maps.Size(128, 128),
@@ -320,13 +287,10 @@ function initRoute() {
  // add locations from direction service 
  marker.addLocation(route);
  
- setTimeout(play, 2000);
+ //setTimeout(play, 2000);
+ marker.play();
 }
 
-// play animation
-function play() {
-  marker.play();
-}
 function replaydata(){
 
     var VNO = $("#search_inp").val();
@@ -358,9 +322,8 @@ function replaydata(){
                 }
                 var series = new Array(response[i][0],response[i][1]);
                 locationData.push(series);
-                
             }
-            console.log(locationData);
+            initializereplay();
         },
         error: function (jqXHR, exception) {
             console.log(exception);
@@ -419,7 +382,7 @@ function toggle_map(arg){
 
         $("#search_inp").bind('paste', function(e) {
             var elem = $(this);
-            search_tree(elem);
+            search_tree(e);
         });
         
         $("#treeview").hummingbird();
