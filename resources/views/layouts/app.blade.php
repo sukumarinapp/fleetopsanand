@@ -261,7 +261,7 @@ function initRoute() {
   // options
   var options = {
     map: map,  // map object
-    speed: 10, // default 10 , animation speed
+    speed: 30, // default 10 , animation speed
     interval: 10, //default 10, marker refresh time
     speedMultiplier: speedMultiplier,
     markerOptions: { 
@@ -340,7 +340,7 @@ function replay(){
 function toggle_map(arg){
     if(arg.checked){
         var VNO = $("#search_inp").val();
-        if(VNO == ""){
+        if(typeof(VNO) == "undefined" || VNO == "" ){
             alert("Enter vehicle no");
             $("#toogle_button").bootstrapToggle('off');
         }else{
@@ -363,7 +363,7 @@ function toggle_map(arg){
 
     function search_tree(arg){
         var srch = arg.value;
-        if(srch != ""){
+        if(typeof(srch) != "undefined" && srch != ""){
             srch = srch.toUpperCase();
         }
         $("#treeview").hummingbird("uncheckAll");
