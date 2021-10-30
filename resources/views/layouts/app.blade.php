@@ -145,8 +145,8 @@
 
               <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li> 
 
-              <li><a href="{{ url('alertlog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'alertlog') ? 'active' : '' }}" class="dropdown-item">Alert Log</a></li>
-
+<!--               <li><a href="{{ url('alertlog') }}/{{ date('Y-m-d', strtotime('-6 days'))}}T00:00:00/{{ date('Y-m-d') }}T23:59:00" class="dropdown-item {{ (request()->segment(1) == 'alertlog') ? 'active' : '' }}" class="dropdown-item">Alert Log</a></li>
+ -->
           </ul>
       </li>
 
@@ -376,11 +376,7 @@ function toggle_map(arg){
     }
 
     $(document).ready(function(){
-        $('#myMapModal').on('shown.bs.modal', function(e) {
-            var element = $(e.relatedTarget);
-            var data = element.data("lat").split(',')
-            initialize2(new google.maps.LatLng(data[0], data[1]));
-        });
+        
 
         $("#search_inp").bind('paste', function(e) {
             var elem = $(this);

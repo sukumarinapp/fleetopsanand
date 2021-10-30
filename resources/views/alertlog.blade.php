@@ -23,13 +23,13 @@
           <label>Alert Log</label>
         </div>
         <div class="col-md-10">
-         <form class="form-inline" >
-          <label for="from">&nbsp;From Date&nbsp;</label>
-          <input value="{{ $from }}" class="form-control" type="date" id="from" name="from"  />
-          <label for="to">&nbsp;To Date&nbsp;</label>
-          <input value="{{ $to }}" class="form-control" type="date" id="to" name="to"  />
+         <form class="form-inline" method="post" >
+          <label for="from">&nbsp;Start Time&nbsp;</label>
+          <input value="{{ $from }}" class="form-control" type="datetime-local" id="from" name="from"  />
+          <label for="to">&nbsp;End Time&nbsp;</label>
+          <input value="{{ $to }}" class="form-control" type="datetime-local" id="to" name="to"  />
           <label>&nbsp;</label>
-          <input onclick="load_report()" type="button"  value="Apply" class="form-control text-center btn btn-success btn-sm" />
+          <input onclick="load_report()" type="submit"  value="Apply" class="form-control text-center btn btn-success btn-sm" />
         </form>
       </div>
     </div>
@@ -39,21 +39,13 @@
       <table id="notifylog" class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th>Mobile</th>
-            <th>Receipient Name</th>
-            <th>Designation</th>
-            <th>Message</th>
-            <th>Date</th>
+            <th>Event Date/Time</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($logs as $log)
+          @foreach($alerts as $alert)
           <tr>
-           <td>{{ $log->PHN }}</td>
-           <td>{{ $log->NAM }}</td>
-           <td>{{ $log->CTX }}</td>
-           <td>{{ $log->MSG }}</td>
-           <td>{{ date("d-m-Y",strtotime($log->DAT)) }} {{ $log->TIM }}</td>
+           <td>{{ $alert->alert_time }}</td>
          </tr>
          @endforeach
        </tbody>

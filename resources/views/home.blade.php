@@ -137,6 +137,28 @@
 @section('third_party_scripts')
 
 <script>
+var map2;
+  function initialize2(myCenter) {
+    var marker2 = new google.maps.Marker({
+      position: myCenter
+    });
+    var mapProp2 = {
+          center: myCenter,
+          zoom: 16,
+          //draggable: false,
+          //scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map2 = new google.maps.Map(document.getElementById("map-canvas"), mapProp2);
+        marker2.setMap(map2);
+  };
+
+  $('#myMapModal').on('shown.bs.modal', function(e) {
+    var element = $(e.relatedTarget);
+    var data = element.data("lat").split(',')
+    initialize2(new google.maps.LatLng(data[0], data[1]));
+  });
+
 function check_checked(VNO){
   if($("."+VNO).is(':checked')){
     return true;

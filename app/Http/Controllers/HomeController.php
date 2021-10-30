@@ -675,4 +675,117 @@ class HomeController extends Controller
 
         return implode(', ', $timeParts);
     }
+
+    public function alertlog($from,$to)
+    {
+        $user_id = Auth::user()->id;
+        $parent_id = Auth::user()->parent_id;
+        $usertype = Auth::user()->usertype;
+        $CAN = Auth::user()->UAN;
+        $filter = self::get_filter($user_id,$parent_id,$usertype,$CAN);
+        if($usertype == "Manager"){
+            $sql="select UAN from users where parent_id=$user_id and usertype='Client'";
+            $result = DB::select(DB::raw($sql));
+            $i = 0;
+            foreach($result as $row){
+                if($i == 0) $filter = " AND CAN IN (";
+                $filter = $filter . " '$row->UAN' ";
+                $i++;
+                if($i < count($result)) $filter = $filter . ",";
+            }     
+            $filter = $filter . ") ";
+        }else if($usertype == "Client"){
+            $filter = " AND CAN = '$UAN' ";
+        }
+        $filter = "";
+        
+        $msg1 = "Tracker Off";
+        $msg2 = "Blocking On";
+        $msg3 = "Alarm On";
+        $msg4 = "Battery Off";
+        $alerts = array();
+        $current_date = date("Y-m-d");
+        $current_time = date("H.i");
+
+        $sql = "select concat(d.name,' ',d.UZS) as manager,c.name as client,a.id,b.VBM,a.VMK,a.VMD,a.VCL,a.VNO,a.driver_id,a.TID,concat(b.DNM,' ',b.DSN) as dname from vehicle a,driver b,users c,users d where c.parent_id=d.id and a.CAN=c.UAN and a.driver_id=b.id and a.VTV=1 and a.driver_id is not null";
+        $result = DB::select(DB::raw($sql));
+        $i = 0;
+        foreach($result as $key => $res){
+            $VNO = $res->VNO;
+            $manager = $res->manager;
+            $client = $res->client;
+            $VMK = $res->VMK;
+            $VMD = $res->VMD;
+            $VCL = $res->VCL;
+            $VBM = "";
+            if($res->VBM=="Rental"){
+                $VBM="RT";
+            }elseif($res->VBM=="Hire Purchase"){
+                $VBM="HP";
+            }elseif($res->VBM=="Ride Hailing"){
+                $VBM="RH";
+            }
+
+            $latitude = 0;
+            $longitude = 0;
+
+            $driver = $res->dname;
+            $TID = $res->TID;
+            $VID = $res->id;
+        
+            $msg1 = "Tracker Off";
+            $msg2 = "Blocking On";
+            $msg3 = "Alarm On";
+            $msg4 = "Battery Off";
+            $alerts = array();
+            $current_date = date("Y-m-d");
+            $current_time = date("H.i");
+            //battery on/off
+            $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999')";
+            $battery = DB::select(DB::raw($sql4));
+            if(count($battery) > 0){
+                $alert_time = $battery[0]->alert_time;
+                $sql5 = "select * from current_location where terminal_id='$TID' and capture_datetime > '$alert_time' order by capture_datetime limit 1";
+                $battery_on = DB::select(DB::raw($sql5));
+                if(count($battery_on) > 0){
+                    //if($TID=='233500627989') echo $sql5;die;
+                    $alerts[$i]['VID'] = $VID;
+                    $alerts[$i]['VNO'] = $VNO;
+                    $alerts[$i]['manager'] = $VNO;
+                    $alerts[$i]['manager'] = $manager;
+                    $alerts[$i]['client'] = $client;
+                    $alerts[$i]['VMK'] = $VMK;
+                    $alerts[$i]['VMD'] = $VMD;
+                    $alerts[$i]['VCL'] = $VCL;
+                    $alerts[$i]['VBM'] = $VBM;
+                    $alerts[$i]['driver'] = $driver;
+                    $alerts[$i]['TID'] = $TID;     
+                    $alerts[$i]['type'] = "battery";    
+                    $alerts[$i]['alert'] = $msg4;    
+                    $alerts[$i]['date'] = substr($alert_time,0,10);
+                    $alerts[$i]['time'] = substr($alert_time,11,5);
+                    $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
+                    $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
+                    $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
+                    $alerts[$i]['latitude'] = $latitude;
+                    $alerts[$i]['longitude'] = $longitude;
+                    $alerts[$i]['resolve_time'] = $battery_on[0]->capture_datetime;
+
+                    $event_datetime = substr($alert_time,0,10)." ".substr($alert_time,11,5).":00";
+                    $event_sql2 = "select latitude,longitude from current_location where id = (select max(id) from current_location where terminal_id='$TID' and capture_datetime <= '$event_datetime' )";
+                    $event_loc2 = DB::select(DB::raw($event_sql2));
+                    if(count($event_loc2) > 0){
+                        $latitude = $event_loc2[0]->latitude;
+                        $longitude = $event_loc2[0]->longitude;
+                    }else{
+                        $latitude = "";
+                        $longitude = "";
+                    }
+                    $i++;
+                }
+            }
+        }   
+        //dd($alerts);        
+        return view('alertlog',compact('alerts','title','from','to'));
+    }
 }
