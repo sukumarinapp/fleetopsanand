@@ -1,8 +1,74 @@
-"Place and activate a tool panel on top of the treeview as follow:
-1. Vehicle Search (which enables vehicles to be located faster. Search shall be vehicle specific only for now.)
-2. Locate (Provides the Long./Lat. coordinates and hyperlinked such that when tapped it opens a Google map with a pin-drop showing where the event took place. From Google the user can then navigate to the location with directions.)
-3. Track Replay (When provided with From-date and To-Date, can replay the vehicle's movements within that period)
-4. Live Track (To be used during pursuits of recalcitrant drivers. It display the live tracking of the vehicle being pursued and the current location of the user (phone location) while showing the closeness or distance between the two targets)"
-Treeview, Map and Alerts Grid must be made collapsible and expandable with headings
-Redesign the page to be standard and compact; re-arrange the items, use the appropriate font, reduce the spacing between the elements.
-"First Payment Date" not coordinated with Daily rental model. System sends collection note immediately the next day after setting this step, not on the stated first payment date. 
+SNO	Date Raised	Navigation	Navigation	Fix Detail	Status	Date Fixed	FleetOps Remarks	HubbleClicks Remarks		
+48	17/08/2021	Blocked Vehicles on Map	UI/UX	Use a manifested icon to visually show that vehicle status has been blocked. Icon of vehicle with a padlock at the top is good. If workflow is resolved the vehicle icon returns ro normal.	On-Hold		Awaiting Map completion			
+72d	19/09/2021	Dashboard - Treeview	UI/UX	 Live Track (To be used during pursuits of recalcitrant drivers. It display the live tracking of the vehicle being pursued and the current location of the user (phone location) while showing the closeness or distance between the two targets)	On-hold	30/10/2021		4. Live Track in Google Map is a R&D and will take time. This will be a change request and can be taken in Phase 2.		
+74	19/09/2021	Dashboard	UI/UX	Treeview, Map and Alerts Grid must be made collapsible and expandable with headings	Open					
+77	07/10/2021	Grid Resizing	UI/UX	Make all grids columns resizable	Open			Not possible to resize grid like we do in Excel		
+82	30/10/2021	Re-arrange Main Menu Items	Logic	"Main menu to be re-arranged in the following order and some to be re-named as stated below:
+
+File
+          - User Account
+          - Client Account
+          - Change Password
+
+Settings
+          - Parameter Settings
+          - RH Platform Settings
+          - Notifications Setup
+
+Operations
+          - Manage Vehicle
+          - Manage Driver
+          - Workflows
+
+Sales
+          - RH Daily Report
+          - Pending Sales (RT/HP)
+          - General Sales Ledger
+
+Reports
+          - Workflow Log
+          - Vehicle Assign Log
+          - Notifications Log
+
+Help
+"	Open					
+83	30/10/2021	Sales Summary (General Sales Ledger)	UI/UX	"Display a sales summary at the top of the grid of the ""General Sales Ledger"":
+
+Total Sales Amount: GHC0.00 (Large Font & Bold)
+          - RT Sales: GHC0.00          - RT No Sold: 0
+          - HP Sales: GHC0.00          - HP No Sold: 0
+          - RH Sales: GHC0.00          - RH No Sold: 0
+
+Display 2 pie-charts:
+          a. Proportion Sales split of RT, HP and RH
+          b. Proportion No Sold of RT, HP and RH"	Open					
+84	30/10/2021	Sales Summary (Pending Sales RT/HP))	UI/UX	"Create a pending sales summary at the top of the grid of the ""Pending Sales (RT/HP)"":
+
+Total Pending Sales: GHC0.00 (Large Font & Bold)
+          - RT Pending Sales: GHC0.00           - RT No: 0
+          - HP Pending Sales: GHC0.00          - HP No: 0
+
+Display 2 pie-charts:
+          a. Proportion sales split of RT and HP
+          b. Proportion numbers split of RT and HP"	Open					
+85	30/10/2021	Sales Summary (RH Daily Report))	UI/UX	"Create a data summary at the top of the grid of the ""RH Daily Report)"":
+
+Total Expected Sales: GHC0.00 (Large Font & Bold)
+Total Expected Cash Collected: GHC0.00 (Large Font & Bold)
+          - RH No Sold: 0
+          - Total Mileage Covered: 0
+          - Total Hours Worked: 0
+
+Display 1 pie-charts:
+          a. Proportion split of Expected Sales (EXPS) versus Expected Cash Collected (CCEI)"	Open					
+86	30/10/2021	Buzzer Alarm Alert	Bug	After Buzzer Alarm has been resolved in Workflows, the Alarm Alert in the dashboard does not clear itself.	Open					
+87	31/10/2021	Map - Replay Tools	Logic		Open					
+88	31/10/2021	Map - Replay Tools	Logic		Open					
+89	31/10/2021	Map - Replay Data	UI/UX	"Display the following data summary on top of the map replay mode:
+
+GT8283-17
+Mileage covered: 315 Km
+Engine Active Hours: 14 Hours
+Min. Speed: 15 Km/H
+Max. Speed: 78Km/H"	Open					
+90	31/10/2021	Software Icons	UI/UX	Use Status and Alerts Icons in the grid views as described	Open					

@@ -79,6 +79,19 @@
 
                 <ul class="navbar-nav">
 
+
+
+               @if(Auth::user()->usertype != "Client")
+               <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'manager' || request()->segment(1) == 'client' ) ? 'active' : '' }}">
+
+                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">File</a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                  <li><a href="{{ route('manager.index') }}" class="dropdown-item {{ (request()->segment(1) == 'manager') ? 'active' : '' }}" class="dropdown-item">User Account </a></li>
+                  <li><a href="{{ route('client.index') }}" class="dropdown-item {{ (request()->segment(1) == 'client') ? 'active' : '' }}" class="dropdown-item">Client Account</a></li>
+          </ul>
+          @endif
+
+
                   @if(Auth::user()->usertype == "Admin")
                   <li class="dropdown dropdown-hover {{ (request()->is('parameter') || request()->is('rhplatform') || request()->is('sms')) ? 'active' : '' }}">
 
@@ -98,18 +111,13 @@
 
 
                @if(Auth::user()->usertype != "Client")
-               <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'manager' || request()->segment(1) == 'client' || request()->segment(1) == 'vehicle' || request()->segment(1) == 'fdriver' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}">
+               <li class="dropdown dropdown-hover {{ ( request()->segment(1) == 'vehicle' || request()->segment(1) == 'fdriver' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle' || request()->segment(1) == 'workflow') ? 'active' : '' }}">
 
-                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"> Manage Account</a>
+                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"> Operations</a>
 
                 
                 <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
 
-                  <li><a href="{{ route('manager.index') }}" class="dropdown-item {{ (request()->segment(1) == 'manager') ? 'active' : '' }}" class="dropdown-item">User Account </a></li>
-
-                  
-
-                  <li><a href="{{ route('client.index') }}" class="dropdown-item {{ (request()->segment(1) == 'client') ? 'active' : '' }}" class="dropdown-item">Client Account</a></li>
 
                   @if(Auth::user()->usertype == "Admin" || Auth::user()->BPC == true || Auth::user()->BPF == true)
                   <li><a href="{{ route('vehicle.index') }}" class="dropdown-item {{ (request()->segment(1) == 'vehicle' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}" class="dropdown-item">Manage Vehicle</a></li>
@@ -120,22 +128,22 @@
                   <li><a href="{{ route('fdriver.index') }}" class="dropdown-item {{ (request()->segment(1) == 'fdriver') ? 'active' : '' }}" class="dropdown-item">Manage Driver</a></li>
               </li>
               @endif
+
+               @if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ2==1))
+          <li class="nav-item">
+             <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="nav-link">Workflows</a>
+         </li>
+         @endif
           </ul>
           @endif
 
           
 
-          @if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ2==1))
-          <li class="nav-item">
-             <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="nav-link">Workflow Manager</a>
-         </li>
-         @endif
-         <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'workflowlog' || request()->segment(1) == 'vehiclelog' ||  request()->segment(1) == 'rhreport' || request()->segment(1) == 'sales' || request()->segment(1) == 'collection' || request()->segment(1) == 'notificationslog' ) ? 'active' : '' }}">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Reports</a>
+         
+         <li class="dropdown dropdown-hover {{ ( request()->segment(1) == 'rhreport' || request()->segment(1) == 'sales' || request()->segment(1) == 'collection'  ) ? 'active' : '' }}">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Sales</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="{{ url('workflowlog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) =='workflowlog') ? 'active' : '' }}" class="dropdown-item">Workflow Log </a></li>
 
-              <li><a href="{{ url('vehiclelog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'vehiclelog') ? 'active' : '' }}" class="dropdown-item">Vehicle Assign Log</a></li>
 
               <li><a href="{{ url('rhreport') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'rhreport') ? 'active' : '' }}" class="dropdown-item">RH Daily Report</a></li>
 
@@ -143,13 +151,21 @@
 
               <li><a href="{{ url('collection') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'collection') ? 'active' : '' }}" class="dropdown-item">General Sales Ledger</a></li>
 
-              <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li> 
 
-<!--               <li><a href="{{ url('alertlog') }}/{{ date('Y-m-d', strtotime('-6 days'))}}T00:00:00/{{ date('Y-m-d') }}T23:59:00" class="dropdown-item {{ (request()->segment(1) == 'alertlog') ? 'active' : '' }}" class="dropdown-item">Alert Log</a></li>
- -->
           </ul>
       </li>
 
+  <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'workflowlog' || request()->segment(1) == 'vehiclelog' || request()->segment(1) == 'notificationslog' ) ? 'active' : '' }}">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Reports</a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+              <li><a href="{{ url('workflowlog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) =='workflowlog') ? 'active' : '' }}" class="dropdown-item">Workflow Log </a></li>
+
+              <li><a href="{{ url('vehiclelog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'vehiclelog') ? 'active' : '' }}" class="dropdown-item">Vehicle Assign Log</a></li>
+
+              <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li> 
+
+          </ul>
+      </li>
       @if(Auth::user()->usertype == "Admin" || (Auth::user()->RBA4==1 && (Auth::user()->RBA4A==1 || Auth::user()->RBA4B==1 )))
              <!-- <li class="nav-item">
              <a href="{{ route('fuelsrch') }}" class="nav-link {{ (request()->segment(1) == 'fuelsrch' || request()->segment(1) == 'fuelsrch') ? 'active' : '' }}" class="nav-link"><b>Fueler</b></a>
