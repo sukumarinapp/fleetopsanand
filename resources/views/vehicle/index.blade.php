@@ -1,4 +1,4 @@
-   @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 @php
@@ -73,8 +73,8 @@
             <th>Model</th>
             <th>Color</th>
             <th>Status</th>
-            <th style="width: 100px">Assign/Remove</th>
-            <th style="width: 100px">Action</th>
+            <th style="width: 150px">Assign/Remove</th>
+            <th style="width: 150px">Action</th>
           </tr>
           </thead>
           <tbody>
