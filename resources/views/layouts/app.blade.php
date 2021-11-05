@@ -401,7 +401,7 @@ function toggle_map(arg){
         
         $("#treeview").hummingbird();
         $("#treeview").hummingbird("checkAll");
-        reloadMarkers();
+        //reloadMarkers();
 
 
         $('#treeview :checkbox').click(function () {
