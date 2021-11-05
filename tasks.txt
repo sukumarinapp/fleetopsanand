@@ -1,2 +1,10 @@
 <input {{ (($vehicle->driver_id != "" || $online == 1) ? "disabled=disabled":"") }} {{ (($vehicle->VTV == "1")  ? "checked=checked":"") }} value="1" type="checkbox" name="VTV" class="form-check-input" id="VTV">
 
+@if($vehicle_active == 1)
+            <input {{ ($user->UTV == "1" ? "checked":"") }} value="1" type="checkbox" disabled="disabled" name="UTV" class="form-check-input" id="UTV">
+        @else
+            <input {{ ($user->UTV == "1" ? "checked":"") }} value="1" type="checkbox" name="UTV" class="form-check-input" id="UTV">
+        @endif
+
+
+        <input value="1" type="checkbox" name="UTV" class="form-check-input" id="UTV">

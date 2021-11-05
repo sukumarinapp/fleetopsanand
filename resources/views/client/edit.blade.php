@@ -183,11 +183,7 @@
 <div class="form-group row">
     <div class="col-sm-6">
       <div class="form-check">
-        @if($vehicle_active == 1)
-            <input {{ ($user->UTV == "1" ? "checked":"") }} value="1" type="checkbox" disabled="disabled" name="UTV" class="form-check-input" id="UTV">
-        @else
-            <input {{ ($user->UTV == "1" ? "checked":"") }} value="1" type="checkbox" name="UTV" class="form-check-input" id="UTV">
-        @endif
+        <input value="1" type="checkbox" name="UTV" class="form-check-input" id="UTV">
         <label class="form-check-label text-success" for="UTV"><b>Activate Account</b></label>
     </div>
 </div>
