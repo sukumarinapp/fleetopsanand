@@ -166,13 +166,13 @@ class WorkflowController extends Controller
         $hp_sold = 0;
         foreach($sales as $sale){
             $total_sale = $total_sale + $sale->RMT;
-            if($sale->VBM == "Ride Hailing"){
+            if($sale->VBM == "Ride Hailing" && $sale->RST == 1){
                 $rh_sale = $rh_sale + $sale->RMT;
                 $rh_sold++;
-            }elseif($sale->VBM == "Rental"){
+            }elseif($sale->VBM == "Rental" && $sale->RST == 1){
                 $rt_sale = $rt_sale + $sale->RMT;
                 $rt_sold++;
-            }elseif($sale->VBM == "Hire Purchase"){
+            }elseif($sale->VBM == "Hire Purchase" && $sale->RST == 1){
                 $hp_sale = $hp_sale + $sale->RMT;
                 $hp_sold++;
             }
