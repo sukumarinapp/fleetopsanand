@@ -35,6 +35,13 @@
     </div>
   </div>
   <div class="card-body">
+    <div class="row">
+      <div class="col-md-2"><div class="info-box bg-danger"><b>Total Expected Sales<br>GHC {{ $total_exps }}</b></div></div>
+      <div class="col-md-4"><div class="info-box bg-success"><b>Total Expected Cash Collected<br>GHC {{ $total_ccei }}</b></div></div>
+      <div class="col-md-2"><div class="info-box bg-primary">RH No Sold<br>{{ $rh_sold }}</div></div>
+      <div class="col-md-2"><div class="info-box bg-info">Total Mileage Covered<br>{{ $total_cml }}</div></div>
+      <div class="col-md-2"><div class="info-box bg-success">Total Hours Worked<br>{{ $total_chr }}</div></div>
+    </div>
     <div class="table-responsive" >
      <table id="examplesales" class="table table-bordered table-striped">
       <thead>

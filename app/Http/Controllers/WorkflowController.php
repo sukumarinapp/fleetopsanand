@@ -79,7 +79,15 @@ class WorkflowController extends Controller
         $sql = "select a.*,b.DCN from tbl136 a,driver b where a.driver_id=b.id and a.VBM = 'Ride Hailing' and DDT >='$from' and DDT <='$to' order by DDT desc";
         $title = 'RH Daily Report';
         $rhreport = DB::select(DB::raw($sql));
+        $total_exps = 0;
+        $total_ccei = 0;
+        $total_cml = 0;
+        $total_chr = 0;
+        $rh_sold = 0 ;
         foreach($rhreport as $sale){
+            $rh_sold++;
+            $total_cml = $total_cml + $sale->CML;
+            $total_chr = $total_chr + $sale->CHR;
             $DCR = $sale->id;
             $VNO = $sale->VNO;
             $sql = "select * from tbl137 where DCR=$DCR and SSR='Driver' and RST=1";
@@ -87,6 +95,8 @@ class WorkflowController extends Controller
             if(count($tbl137) > 0){
                 $sale->EXPS = round(Formulae::EXPS2($DCR),2);
                 $sale->CCEI = round(Formulae::CCEI2($DCR),2);
+                $total_exps = $total_exps + $sale->EXPS;
+                $total_ccei = $total_ccei + $sale->CCEI;
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
             }else{
@@ -114,7 +124,7 @@ class WorkflowController extends Controller
                 $sale->CWI = round(Formulae::CWI($DCR),2);
             }
         }
-        return view('rhreport',compact('rhreport','title','from','to'));
+        return view('rhreport',compact('rhreport','title','from','to','total_exps','total_ccei','rh_sold','total_cml','total_chr'));
     }
 
     public function sales($from,$to)
@@ -123,7 +133,22 @@ class WorkflowController extends Controller
         $title = 'Pending Sales (RT/HP)';
         $sql="select a.VBM,b.*,c.DNM,c.DSN from tbl136 a,sales_rental b,driver c where a.id=b.DCR and a.driver_id=c.id and b.SDT >='$from' and b.SDT <='$to' and DECL=0 and a.id not in (select DCR from tbl137 where RST=1) order by b.SDT desc";
         $sales = DB::select(DB::raw($sql));
-        return view('sales',compact('sales','title','from','to'));
+        $total_sale = 0;
+        $rt_sale = 0;
+        $hp_sale = 0;
+        $rt_sold = 0;
+        $hp_sold = 0;
+        foreach($sales as $sale){
+            $total_sale = $total_sale + $sale->SSA;
+            if($sale->VBM == "Rental"){
+                $rt_sale = $rt_sale + $sale->SSA;
+                $rt_sold++;
+            }elseif($sale->VBM == "Hire Purchase"){
+                $hp_sale = $hp_sale + $sale->SSA;
+                $hp_sold++;
+            }
+        }
+        return view('sales',compact('sales','title','from','to','total_sale','rt_sale','hp_sale','rt_sold','hp_sold'));
     }
 
     public function collection($from,$to)
@@ -132,7 +157,27 @@ class WorkflowController extends Controller
         $title = 'General Sales Ledger';
         $sql = "select * from tbl137 where SDT >='$from' and SDT <='$to' order by SDT desc";
         $sales = DB::select(DB::raw($sql));
-        return view('collection',compact('sales','title','from','to'));
+        $total_sale = 0;
+        $rt_sale = 0;
+        $rh_sale = 0;
+        $hp_sale = 0;
+        $rt_sold = 0;
+        $rh_sold = 0;
+        $hp_sold = 0;
+        foreach($sales as $sale){
+            $total_sale = $total_sale + $sale->RMT;
+            if($sale->VBM == "Ride Hailing"){
+                $rh_sale = $rh_sale + $sale->RMT;
+                $rh_sold++;
+            }elseif($sale->VBM == "Rental"){
+                $rt_sale = $rt_sale + $sale->RMT;
+                $rt_sold++;
+            }elseif($sale->VBM == "Hire Purchase"){
+                $hp_sale = $hp_sale + $sale->RMT;
+                $hp_sold++;
+            }
+        }
+        return view('collection',compact('sales','title','from','to','total_sale','rt_sale','rh_sale','hp_sale','rt_sold','rh_sold','hp_sold'));
     }
 
     public function notificationslog($from,$to)

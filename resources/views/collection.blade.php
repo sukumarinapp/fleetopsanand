@@ -35,6 +35,15 @@
     </div>
   </div>
   <div class="card-body">
+    <div class="row">
+      <div class="col-md-2"><div class="info-box bg-danger"><b>Total Sales<br>GHC {{ $total_sale }}</b></div></div>
+      <div class="col-md-2"><div class="info-box bg-success">RT Sales<br>GHC {{ $rt_sale }}</div></div>
+      <div class="col-md-2"><div class="info-box bg-primary">HP Sales<br>GHC {{ $hp_sale }}</div></div>
+      <div class="col-md-2"><div class="info-box bg-info">RH Sales<br>GHC  {{ $rh_sale }}</div></div>
+      <div class="col-md-1"><div class="info-box bg-success">RT Sold<br>{{ $rt_sold }}</div></div>
+      <div class="col-md-1"><div class="info-box bg-primary">HP Sold<br>{{ $hp_sold }}</div></div>
+      <div class="col-md-1"><div class="info-box bg-info">RH Sold<br>{{ $rh_sold }}</div></div>
+    </div>
     <div class="table-responsive" >
       <table id="example1" class="table table-bordered table-striped">
         <thead>

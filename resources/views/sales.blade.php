@@ -35,6 +35,14 @@
     </div>
   </div>
   <div class="card-body">
+    <div class="row">
+      <div class="col-md-3"><div class="info-box bg-danger"><b>Total Pending Sales<br>GHC {{ $total_sale }}</b></div></div>
+      <div class="col-md-2"><div class="info-box bg-success">RT Pending Sales<br>GHC {{ $rt_sale }}</div></div>
+      <div class="col-md-2"><div class="info-box bg-primary">HP Pending Sales<br>GHC {{ $hp_sale }}</div></div>
+      <div class="col-md-2"><div class="info-box bg-success">RT No<br>{{ $rt_sold }}</div></div>
+      <div class="col-md-2"><div class="info-box bg-primary">HP No<br>{{ $hp_sold }}</div></div>
+    </div>
+
     <div class="table-responsive" >
      <table id="examplesales" class="table table-bordered table-striped">
       <thead>
