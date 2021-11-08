@@ -308,6 +308,14 @@ function initRoute() {
  marker.play();
 }
 
+function pause() {
+  marker.pause();
+}
+
+function reset() {
+  marker.reset();
+}
+
 function replaydata(){
 
     var VNO = $("#search_inp").val();

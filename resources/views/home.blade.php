@@ -57,17 +57,23 @@
                   <div class="col-md-2">
                       <label for="email">Start Time</label>                    
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                       <input value="{{ $starttime }}" class="form-control" type="datetime-local" name="starttime" id="starttime"  required="required">
                   </div>
                   <div class="col-md-2">
                       <label for="email">End Time</label>                    
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                       <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
-                  <div class="col-md-2">
-                      <input type="button" onclick="replaydata()" name="submit"  value ="Replay" class="btn btn-primary form-control">
+                  <div class="col-md-1">
+                      <input type="button" onclick="replaydata()" name="submit"  value ="Play" class="btn btn-success form-control">
+                  </div>
+                  <div class="col-md-1">
+                      <input type="button" onclick="pause()" name="submit"  value ="Pause" class="btn btn-danger form-control">
+                  </div>
+                  <div class="col-md-1">
+                      <input type="button" onclick="reset()" name="submit"  value ="Reset" class="btn btn-primary form-control">
                   </div>
                 </form>
                 <div class="bg-success" id="replay-summary" ></div>
