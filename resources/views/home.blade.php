@@ -70,6 +70,7 @@
                       <input type="button" onclick="replaydata()" name="submit"  value ="Replay" class="btn btn-primary form-control">
                   </div>
                 </form>
+                <div class="bg-info" id="replay-summary" ></div>
                 <div id="replay-canvas" style="height: 460px"></div>
               </div>
             </div>

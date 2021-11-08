@@ -6,14 +6,16 @@
             <input {{ ($user->UTV == "1" ? "checked":"") }} value="1" type="checkbox" name="UTV" class="form-check-input" id="UTV">
         @endif
 
-"Create a data summary at the top of the grid of the ""RH Daily Report)"":
+"Display the following data summary on top of the map replay mode:
 
-Total Expected Sales: GHC0.00 (Large Font & Bold)
-Total Expected Cash Collected: GHC0.00 (Large Font & Bold)
-          - RH No Sold: 0
-          - Total Mileage Covered: 0
-          - Total Hours Worked: 0
+GT8283-17
+Mileage covered: 315 Km
+Engine Active Hours: 14 Hours
+Min. Speed: 15 Km/H
+Max. Speed: 78Km/H" Open
+Use Status and Alerts Icons in the grid views as described  Open
 
-Display 1 pie-charts:
-          a. Proportion split of Expected Sales (EXPS) versus Expected Cash Collected (CCEI)"
-          b. Proportion numbers split of RT and HP"
+     | decimal(10,2) | YES  |     | NULL    |                |
+| odometer         | varchar(20)   | YES  |     | NULL    |                |
+| direction        | varchar(10)   | YES  |     | NULL    |                |
+| engine_on

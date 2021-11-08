@@ -250,15 +250,38 @@ class HomeController extends Controller
 /*        $VNO = "GT4298-18";
         $starttime = "2021-07-28 23:59:58";
         $endtime = "2021-10-28 23:59:58"; */
-        $sql = "select latitude,longitude from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO' and capture_datetime >= '$starttime' and capture_datetime <= '$endtime' order by a.id";
+        $sql = "select latitude,longitude,ground_speed,odometer,engine_on,capture_datetime from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO' and capture_datetime >= '$starttime' and capture_datetime <= '$endtime' order by a.id";
         $locationData = DB::select(DB::raw($sql));
         $location = array();
+        $location["VNO"] = $VNO;
+        $location["starttime"] = $starttime;
+        $location["endtime"] = $endtime;
         $i=0;    
+        $min_speed = 999999;
+        $max_speed = 0;
+        $odometer_start = 0;
+        $odometer_end = 0;
+        $total_seconds = 0;
         foreach($locationData as $loc){
-            $location[$i][0] = $loc->latitude;
-            $location[$i][1] = $loc->longitude;
+            if($loc->ground_speed > $max_speed ) $max_speed = $loc->ground_speed; 
+            if($loc->ground_speed != "0.00" && $loc->ground_speed < $min_speed ) $min_speed = $loc->ground_speed; 
+            if($i == 0) $odometer_start = $loc->odometer;
+            $location['loc'][$i][0] = $loc->latitude;
+            $location['loc'][$i][1] = $loc->longitude;
+            $odometer_end = $loc->odometer;
+            $ground_speed = $loc->ground_speed;
+            if($i>0 && $ground_speed <> 0 && $previous_ground_speed <> 0){
+                $total_seconds = $total_seconds + strtotime($loc->capture_datetime) - strtotime($previous_time);
+            }
+            $previous_time = $loc->capture_datetime;
+            $previous_ground_speed = $loc->ground_speed;
             $i++;
         }
+        $hours_worked = round($total_seconds/3600,2);        
+        $location["mileage"] = round($odometer_end - $odometer_start,2);
+        $location["max_speed"] = $max_speed;
+        $location["min_speed"] = $min_speed;
+        $location["hours_worked"] = $hours_worked;
         echo json_encode($location);
         //return view('replay',compact('usertree','type','location','VNO','starttime','endtime'));
     }
@@ -552,7 +575,7 @@ class HomeController extends Controller
             }
 
             //buzzer on/off
-            $sql3 = "select * from tbl136 where VNO='$VNO' and DES='A3' and DECL=0 and id=(select max(id) from tbl136 where VNO='$VNO');";
+            $sql3 = "select * from tbl136 where VNO='$VNO' and DES='A3' and alarm_off = 0 and DECL=0 and id=(select max(id) from tbl136 where VNO='$VNO');";
             $buzzer = DB::select(DB::raw($sql3));
             if(count($buzzer) > 0){
                 //$alerts[$i]['cap_id'] = $id;

@@ -247,7 +247,6 @@ var endlong = "";
 //$(document).ajaxStop(initializereplay);
 
 function initializereplay() {
-    console.log("initializereplay");
     var mapOptions = {
         zoom: 16, 
         center: new google.maps.LatLng(startlat,startlong),
@@ -286,7 +285,7 @@ function initRoute() {
       title: 'Travel Marker',
       animation: google.maps.Animation.NONE,
       icon: {
-        url: 'https://i.imgur.com/eTYW75M.png',
+        url: 'track.png',
         animation: google.maps.Animation.NONE,
         // This marker is 20 pixels wide by 32 pixels high.
         // size: new google.maps.Size(256, 256),
@@ -329,16 +328,17 @@ function replaydata(){
           url: url,
           success: function(response) {
             response = JSON.parse(response);
-            for (let i = 0; i < response.length; i++) {
+            $("#replay-summary").html("VNO:"+response['VNO']+" "+"Mileage covered:"+response['mileage']+" "+"Engine Active Hours:"+response['hours_worked']+" "+"Min. Speed:"+response['min_speed']+" "+"Max. Speed: "+response['max_speed']);
+            for (let i = 0; i < response["loc"].length; i++) {
                 if(i == 0){
-                    startlat = response[i][0];
-                    startlong = response[i][1];
+                    startlat = response["loc"][i][0];
+                    startlong = response["loc"][i][1];
                 }
-                if(i == response.length-1){
-                    endlat = response[i][0];
-                    endlong = response[i][1];
+                if(i == response["loc"].length-1){
+                    endlat = response["loc"][i][0];
+                    endlong = response["loc"][i][1];
                 }
-                var series = new Array(response[i][0],response[i][1]);
+                var series = new Array(response["loc"][i][0],response["loc"][i][1]);
                 locationData.push(series);
             }
             initializereplay();
