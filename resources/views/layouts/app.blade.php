@@ -233,7 +233,7 @@
 <script src="https://unpkg.com/travel-marker/dist/travel-marker.umd.js"></script>
 @stack('page_scripts')
 <script>
-    
+//https://codepen.io/manpreetsingh80/pen/aEpzjB    
 var map, line, marker;
 var directionsService = new google.maps.DirectionsService();
 var TravelMarker = travelMarker.TravelMarker;
