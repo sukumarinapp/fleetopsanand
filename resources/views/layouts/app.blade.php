@@ -243,6 +243,7 @@ var startlat = "";
 var endlat = "";
 var startlong = "";
 var endlong = "";
+speedMultiplier = 1; // speedMultiplier to control animation speed
 //google.maps.event.addDomListener(window, 'load', initializereplay);
 //$(document).ajaxStop(initializereplay);
 
@@ -315,6 +316,20 @@ function pause() {
 function reset() {
   marker.reset();
 }
+
+function fast() {
+  speedMultiplier*=2;
+  document.getElementById('speed').innerHTML = speedMultiplier + 'x';
+  marker.setSpeedMultiplier(speedMultiplier)
+}
+
+// slow motion
+function slow() {
+  speedMultiplier/=2;
+  document.getElementById('speed').innerHTML = speedMultiplier + 'x';
+  marker.setSpeedMultiplier(speedMultiplier)
+}
+
 
 function replaydata(){
 

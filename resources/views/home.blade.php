@@ -5,7 +5,13 @@
     .whatsappshare {  
       display: none
     }  
-  }  
+  }
+  #speed{
+    color: red;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+  }    
 </style>
 <div class="container-fluid">
   <div class="content-header">
@@ -54,29 +60,39 @@
                <div id="map_replay" style="height: 500px;display: none;">
                 <form class="row form" >
                   @csrf
-                  <div class="col-md-2">
+                  <div class="col-md-1">
                       <label for="email">Start Time</label>                    
                   </div>
                   <div class="col-md-2">
                       <input value="{{ $starttime }}" class="form-control" type="datetime-local" name="starttime" id="starttime"  required="required">
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-1">
                       <label for="email">End Time</label>                    
                   </div>
                   <div class="col-md-2">
                       <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
                   <div class="col-md-1">
-                      <input type="button" onclick="replaydata()" name="submit"  value ="Play" class="btn btn-success form-control">
+                      <input type="button" onclick="replaydata()" name="submit"  value ="Play" class="btn btn-success btn-sm form-control">
                   </div>
                   <div class="col-md-1">
-                      <input type="button" onclick="pause()" name="submit"  value ="Pause" class="btn btn-danger form-control">
+                      <input type="button" onclick="pause()" name="submit"  value ="Pause" class="btn btn-danger btn-sm form-control">
                   </div>
                   <div class="col-md-1">
-                      <input type="button" onclick="reset()" name="submit"  value ="Reset" class="btn btn-primary form-control">
+                      <input type="button" onclick="reset()" name="submit"  value ="Reset" class="btn btn-primary btn-sm form-control">
                   </div>
+                  <div class="col-md-1">
+                      <input type="button" onclick="fast()" name="submit"  value ="Fast" class="btn btn-primary btn-sm form-control">
+                  </div>
+                  <div class="col-md-1">
+                      <span id="speed">1x</span>
+                  </div>
+                  <div class="col-md-1">
+                      <input type="button" onclick="slow()" name="submit"  value ="Slow" class="btn btn-primary btn-sm form-control">
+                  </div>
+
                 </form>
-                <div class="bg-success" id="replay-summary" ></div>
+                <div class="bg-danger" id="replay-summary" ></div>
                 <div id="replay-canvas" style="height: 460px"></div>
               </div>
             </div>
