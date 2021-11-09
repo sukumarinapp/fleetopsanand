@@ -35,9 +35,14 @@
     </div>
   </div>
   <div class="card-body">
+    <div class="row" style="margin-bottom: 5px;">
+      <div class="col-md-12">
+        <canvas id="pieChart" style="min-height: 150px; height: 150px; max-height: 150px; max-width: 100%;"></canvas>
+      </div>
+    </div>
     <div class="row">
-      <div class="col-md-2"><div class="info-box bg-danger"><b>Total Expected Sales<br>GHC {{ $total_exps }}</b></div></div>
-      <div class="col-md-4"><div class="info-box bg-success"><b>Total Expected Cash Collected<br>GHC {{ $total_ccei }}</b></div></div>
+      <div class="col-md-3"><div class="info-box bg-danger"><b>Total Expected Sales<br>GHC {{ $total_exps }}</b></div></div>
+      <div class="col-md-3"><div class="info-box bg-success"><b>Total Expected Cash Collected<br>GHC {{ $total_ccei }}</b></div></div>
       <div class="col-md-2"><div class="info-box bg-primary">RH No Sold<br>{{ $rh_sold }}</div></div>
       <div class="col-md-2"><div class="info-box bg-info">Total Mileage Covered<br>{{ $total_cml }}</div></div>
       <div class="col-md-2"><div class="info-box bg-success">Total Hours Worked<br>{{ $total_chr }}</div></div>
@@ -102,8 +107,34 @@
 @endpush
 
 @push('page_scripts')
+<script type="text/javascript" language="javascript" src="{{ asset('js/Chart.min.js') }}"></script>
 <script>
-	var rhreport = "{{ url('rhreport') }}";
+  var pieData  = {
+    labels: [
+    'Expected Sales',
+    'Expected Cash Collected',
+    ],
+    datasets: [
+    {
+      data: [{{ $total_exps }},{{ $total_ccei }}],
+      backgroundColor : ['#d9534f','#4CAF50'],
+    }
+    ]
+  }  
+  
+  var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+  var pieOptions     = {
+    maintainAspectRatio : false,
+    responsive : true,
+  }
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
+    })
+
+
+    var rhreport = "{{ url('rhreport') }}";
   function load_report(){
     var from = $("#from").val();
     var to = $("#to").val();

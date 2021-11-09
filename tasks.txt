@@ -6,16 +6,10 @@
             <input {{ ($user->UTV == "1" ? "checked":"") }} value="1" type="checkbox" name="UTV" class="form-check-input" id="UTV">
         @endif
 
-"Display the following data summary on top of the map replay mode:
+Proportion Sales split of RT, HP and RH
+Proportion No Sold of RT, HP and RH
 
-GT8283-17
-Mileage covered: 315 Km
-Engine Active Hours: 14 Hours
-Min. Speed: 15 Km/H
-Max. Speed: 78Km/H" Open
-Use Status and Alerts Icons in the grid views as described  Open
 
-     | decimal(10,2) | YES  |     | NULL    |                |
-| odometer         | varchar(20)   | YES  |     | NULL    |                |
-| direction        | varchar(10)   | YES  |     | NULL    |                |
-| engine_on
+
+backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+

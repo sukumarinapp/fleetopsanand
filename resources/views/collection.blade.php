@@ -35,6 +35,14 @@
     </div>
   </div>
   <div class="card-body">
+    <div class="row" style="margin-bottom: 5px;">
+      <div class="col-md-6">
+        <canvas id="pieChart" style="min-height: 150px; height: 150px; max-height: 150px; max-width: 100%;"></canvas>
+      </div>
+      <div class="col-md-6">
+        <canvas id="pieChart2" style="min-height: 150px; height: 150px; max-height: 150px; max-width: 100%;"></canvas>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-2"><div class="info-box bg-danger"><b>Total Sales<br>GHC {{ $total_sale }}</b></div></div>
       <div class="col-md-2"><div class="info-box bg-success">RT Sales<br>GHC {{ $rt_sale }}</div></div>
@@ -44,6 +52,7 @@
       <div class="col-md-1"><div class="info-box bg-primary">HP Sold<br>{{ $hp_sold }}</div></div>
       <div class="col-md-1"><div class="info-box bg-info">RH Sold<br>{{ $rh_sold }}</div></div>
     </div>
+    
     <div class="table-responsive" >
       <table id="example1" class="table table-bordered table-striped">
         <thead>
@@ -71,11 +80,11 @@
            <td>{{ $sale->CAN }}</td>
            <td>{{ $sale->VNO }}</td>
            @if($sale->VBM == "Ride Hailing")
-            <td>RH</td>
+           <td>RH</td>
            @elseif($sale->VBM == "Rental")
-            <td>RT</td>
+           <td>RT</td>
            @elseif($sale->VBM == "Hire Purchase")
-            <td>HP</td>
+           <td>HP</td>
            @endif
            <td>{{ $sale->RCN }}</td>
            <td>{{ $sale->RMT }}</td>
@@ -108,27 +117,72 @@
 @endpush
 
 @push('page_scripts')
+<script type="text/javascript" language="javascript" src="{{ asset('js/Chart.min.js') }}"></script>
 <script>
-	var collection = "{{ url('collection') }}";
-  function load_report(){
-    var from = $("#from").val();
-    var to = $("#to").val();
-    if(from == ""){
-      alert("Please select from Date");
-    }else if(to == ""){
-      alert("Please select To Date");
-    }else{
-      var url =  collection + "/" + from + "/" +to;  
-      window.location.href = url;
-    }   
+  var pieData  = {
+    labels: [
+    'RT Sales',
+    'HP Sales',
+    'RH Sales',
+    ],
+    datasets: [
+    {
+      data: [{{ $rt_sale }},{{ $hp_sale }},{{ $rh_sale }}],
+      backgroundColor : ['#4CAF50', '#1976D2', '#2196F3'],
+    }
+    ]
+  }  
+  var pieData2  = {
+    labels: [
+    'RT Sold',
+    'HP Sold',
+    'RH Sold',
+    ],
+    datasets: [
+    {
+      data: [{{ $rt_sold }},{{ $hp_sold }},{{ $rh_sold }}],
+      backgroundColor : ['#4CAF50', '#1976D2', '#2196F3'],
+    }
+    ]
+  }  
+  var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+  var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
+  var pieOptions     = {
+    maintainAspectRatio : false,
+    responsive : true,
   }
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
+    })
 
-  $(document).ready(function(){
-    $('.select2').select2({
-     theme: 'bootstrap4'
-   });
-  });
+    new Chart(pieChartCanvas2, {
+      type: 'pie',
+      data: pieData2,
+      options: pieOptions
+    })
+
+    var collection = "{{ url('collection') }}";
+    function load_report(){
+      var from = $("#from").val();
+      var to = $("#to").val();
+      if(from == ""){
+        alert("Please select from Date");
+      }else if(to == ""){
+        alert("Please select To Date");
+      }else{
+        var url =  collection + "/" + from + "/" +to;  
+        window.location.href = url;
+      }   
+    }
+
+    $(document).ready(function(){
+      $('.select2').select2({
+       theme: 'bootstrap4'
+     });
+    });
 
 
-</script>
-@endpush
+  </script>
+  @endpush

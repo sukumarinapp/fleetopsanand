@@ -35,6 +35,14 @@
     </div>
   </div>
   <div class="card-body">
+    <div class="row" style="margin-bottom: 5px;">
+      <div class="col-md-6">
+        <canvas id="pieChart" style="min-height: 150px; height: 150px; max-height: 150px; max-width: 100%;"></canvas>
+      </div>
+      <div class="col-md-6">
+        <canvas id="pieChart2" style="min-height: 150px; height: 150px; max-height: 150px; max-width: 100%;"></canvas>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-3"><div class="info-box bg-danger"><b>Total Pending Sales<br>GHC {{ $total_sale }}</b></div></div>
       <div class="col-md-2"><div class="info-box bg-success">RT Pending Sales<br>GHC {{ $rt_sale }}</div></div>
@@ -93,7 +101,50 @@
 @endpush
 
 @push('page_scripts')
+
+<script type="text/javascript" language="javascript" src="{{ asset('js/Chart.min.js') }}"></script>
 <script>
+  var pieData  = {
+    labels: [
+    'RT Pending Sales',
+    'HP Pending Sales',
+    ],
+    datasets: [
+    {
+      data: [{{ $rt_sale }},{{ $hp_sale }}],
+      backgroundColor : ['#4CAF50', '#1976D2'],
+    }
+    ]
+  }  
+  var pieData2  = {
+    labels: [
+    'RT No',
+    'HP No',
+    ],
+    datasets: [
+    {
+      data: [{{ $rt_sold }},{{ $hp_sold }}],
+      backgroundColor : ['#4CAF50', '#1976D2'],
+    }
+    ]
+  }  
+  var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+  var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
+  var pieOptions     = {
+    maintainAspectRatio : false,
+    responsive : true,
+  }
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
+    })
+
+    new Chart(pieChartCanvas2, {
+      type: 'pie',
+      data: pieData2,
+      options: pieOptions
+    })
 	var sales = "{{ url('sales') }}";
   function load_report(){
     var from = $("#from").val();
