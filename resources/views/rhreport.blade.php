@@ -41,11 +41,56 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3"><div class="info-box bg-danger"><b>Total Expected Sales<br>GHC {{ $total_exps }}</b></div></div>
-      <div class="col-md-3"><div class="info-box bg-success"><b>Total Expected Cash Collected<br>GHC {{ $total_ccei }}</b></div></div>
-      <div class="col-md-2"><div class="info-box bg-primary">RH No Sold<br>{{ $rh_sold }}</div></div>
-      <div class="col-md-2"><div class="info-box bg-info">Total Mileage Covered<br>{{ $total_cml }}</div></div>
-      <div class="col-md-2"><div class="info-box bg-success">Total Hours Worked<br>{{ $total_chr }}</div></div>
+       <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h4>GHC {{ $total_exps }}</h4>
+
+                <p>Total Expected Sales</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h4>GHC {{ $total_ccei }}</h4>
+
+                <p>Total Expected Cash Collected</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h4>{{ $rh_sold }}</h4>
+
+                <p>RH No Sold</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h4>{{ $total_cml }}</h4>
+
+                <p>Total Mileage Covered</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h4>{{ $total_chr }}</h4>
+
+                <p>Total Hours Worked</p>
+              </div>
+            </div>
+          </div>
     </div>
     <div class="table-responsive" >
      <table id="examplesales" class="table table-bordered table-striped">

@@ -130,8 +130,8 @@
               @endif
 
                @if(Auth::user()->usertype == "Admin" || (Auth::user()->BPJ==1 && Auth::user()->BPJ2==1))
-          <li class="nav-item">
-             <a href="{{ route('workflow') }}" class="nav-link {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="nav-link">Workflows</a>
+          <li>
+             <a href="{{ route('workflow') }}" class="dropdown-item {{ (request()->segment(1) == 'workflow' || request()->segment(1) == 'override') ? 'active' : '' }}" class="dropdown-item">Workflows</a>
          </li>
          @endif
           </ul>
