@@ -83,10 +83,16 @@
               <td>{{ $vehicle->CAN }}<br><small class="text-success">{{ $vehicle->name }}</small></td>
               <td>
                 @php
-                if(check_online($vehicle->TID,$tracker)){
-                  echo "<span><img src='online.jpg'></span>";
+                if($vehicle->VTV == 0){
+                   echo "<span><img src='inactive.jpg'></span>";
+                }else if($vehicle->VTV == 1 && $vehicle->DNM ==""){
+                  echo "<span><img src='parked.jpg'></span>";
                 }else{
-                  echo "<span><img src='offline.jpg'></span>";
+                  if(check_online($vehicle->TID,$tracker)){
+                    echo "<span><img src='online.jpg'></span>";
+                  }else{
+                    echo "<span><img src='offline.jpg'></span>";
+                  }
                 }
                 @endphp
                 {{ $vehicle->VNO }} 
