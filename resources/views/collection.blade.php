@@ -44,13 +44,78 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2"><div class="info-box bg-danger"><b>Total Sales<br>GHC {{ $total_sale }}</b></div></div>
-      <div class="col-md-2"><div class="info-box bg-success">RT Sales<br>GHC {{ $rt_sale }}</div></div>
-      <div class="col-md-2"><div class="info-box bg-primary">HP Sales<br>GHC {{ $hp_sale }}</div></div>
-      <div class="col-md-2"><div class="info-box bg-info">RH Sales<br>GHC  {{ $rh_sale }}</div></div>
-      <div class="col-md-1"><div class="info-box bg-success">RT Sold<br>{{ $rt_sold }}</div></div>
-      <div class="col-md-1"><div class="info-box bg-primary">HP Sold<br>{{ $hp_sold }}</div></div>
-      <div class="col-md-1"><div class="info-box bg-info">RH Sold<br>{{ $rh_sold }}</div></div>
+       <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h4>GHC {{ $total_sale }}</h4>
+
+                <p>Total Sales</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h4>GHC {{ $rt_sale }}</h4>
+
+                <p>RT Sales</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h4>GHC {{ $hp_sale }}</h4>
+
+                <p>HP Sales</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h4>GHC {{ $rh_sale }}</h4>
+
+                <p>RH Sales</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h4>{{ $rt_sold }}</h4>
+
+                <p>RT Sold</p>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-1">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h4>{{ $hp_sold }}</h4>
+
+                <p>HP Sold</p>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-1">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h4>{{ $rh_sold }}</h4>
+
+                <p>RH Sold</p>
+              </div>
+            </div>
+          </div>
     </div>
     
     <div class="table-responsive" >

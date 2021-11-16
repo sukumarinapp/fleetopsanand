@@ -44,11 +44,56 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3"><div class="info-box bg-danger"><b>Total Pending Sales<br>GHC {{ $total_sale }}</b></div></div>
-      <div class="col-md-2"><div class="info-box bg-success">RT Pending Sales<br>GHC {{ $rt_sale }}</div></div>
-      <div class="col-md-2"><div class="info-box bg-primary">HP Pending Sales<br>GHC {{ $hp_sale }}</div></div>
-      <div class="col-md-2"><div class="info-box bg-success">RT No<br>{{ $rt_sold }}</div></div>
-      <div class="col-md-2"><div class="info-box bg-primary">HP No<br>{{ $hp_sold }}</div></div>
+       <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h4>GHC {{ $total_sale }}</h4>
+
+                <p>Total Pending Sales</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h4>GHC {{ $rt_sale }}</h4>
+
+                <p>RT Pending Sales</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h4>GHC {{ $hp_sale }}</h4>
+
+                <p>HP Pending Sales</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h4>{{ $rt_sold }}</h4>
+
+                <p>RT No</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h4>{{ $hp_sold }}</h4>
+
+                <p>HP No</p>
+              </div>
+            </div>
+          </div>
     </div>
 
     <div class="table-responsive" >
