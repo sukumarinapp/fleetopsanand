@@ -523,7 +523,8 @@ class HomeController extends Controller
                         $alerts[$i]['driver'] = $driver;
                         $alerts[$i]['TID'] = $TID;
                         $alerts[$i]['type'] = "tracker";    
-                        $alerts[$i]['alert'] = $msg1;    
+                        $alerts[$i]['alert'] = $msg1;  
+                        $alerts[$i]['icon'] = "trackoff.jpg";      
                         $alerts[$i]['date'] = $capture_date;
                         $alerts[$i]['time'] = str_replace(".",":",$capture_time);
                         $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
