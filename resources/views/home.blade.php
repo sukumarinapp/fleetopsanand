@@ -120,7 +120,7 @@
                 <td><a data-toggle="popover" data-html="true" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}({{ $alert['VBM'] }})" data-content="<b>Customer:</b> {{ $alert['client'] }}<br /><b>Manager:</b> {{ $alert['manager'] }}<br /><b>Driver:</b> {{ $alert['driver'] }}" data-trigger="hover">
                 {{ $alert["VNO"] }}</a></td>
                 <td>
-                <img src='{{ $alert["icon"] }}' />
+                <img src="{{ $alert['icon'] }}" />
                 {{ $alert["alert"] }}
                 </td>
                 <td>{{ $alert["hours"] }}</td>
