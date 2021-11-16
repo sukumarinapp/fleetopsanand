@@ -449,6 +449,7 @@ class HomeController extends Controller
         $result = DB::select(DB::raw($sql));
         $i = 0;
         foreach($result as $key => $res){
+            $alerts[$i]['icon'] = "";
             $VNO = $res->VNO;
             $manager = $res->manager;
             $client = $res->client;
