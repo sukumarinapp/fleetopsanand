@@ -498,6 +498,7 @@ class HomeController extends Controller
                     $alerts[$i]['TID'] = $TID;
                     $alerts[$i]['type'] = "tracker";    
                     $alerts[$i]['alert'] = $msg1;    
+                    $alerts[$i]['icon'] = "trackoff.jpg";    
                     $alerts[$i]['date'] = $capture_date;
                     $alerts[$i]['time'] = str_replace(".",":",$capture_time);
                     $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
@@ -552,7 +553,8 @@ class HomeController extends Controller
                 $alerts[$i]['driver'] = $driver;
                 $alerts[$i]['TID'] = $TID;
                 $alerts[$i]['type'] = "blocking";    
-                $alerts[$i]['alert'] = $msg2;    
+                $alerts[$i]['alert'] = $msg2;   
+                $alerts[$i]['icon'] = "blocked.jpg";     
                 $alerts[$i]['date'] = $blocking[0]->DDT;
                 $alerts[$i]['time'] = "12:00";
                 $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
@@ -591,7 +593,8 @@ class HomeController extends Controller
                 $alerts[$i]['driver'] = $driver;
                 $alerts[$i]['TID'] = $TID;                
                 $alerts[$i]['type'] = "buzzer";    
-                $alerts[$i]['alert'] = $msg3;    
+                $alerts[$i]['alert'] = $msg3;  
+                $alerts[$i]['icon'] = "buzzer.jpg";      
                 $alerts[$i]['date'] = $buzzer[0]->DDT;
                 $alerts[$i]['time'] = "10:00";
                 $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
@@ -634,7 +637,8 @@ class HomeController extends Controller
                     $alerts[$i]['driver'] = $driver;
                     $alerts[$i]['TID'] = $TID;     
                     $alerts[$i]['type'] = "battery";    
-                    $alerts[$i]['alert'] = $msg4;    
+                    $alerts[$i]['alert'] = $msg4; 
+                    $alerts[$i]['icon'] = "batoff.jpg";         
                     $alerts[$i]['date'] = substr($alert_time,0,10);
                     $alerts[$i]['time'] = substr($alert_time,11,5);
                     $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;

@@ -119,7 +119,10 @@
                 <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
                 <td><a data-toggle="popover" data-html="true" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}({{ $alert['VBM'] }})" data-content="<b>Customer:</b> {{ $alert['client'] }}<br /><b>Manager:</b> {{ $alert['manager'] }}<br /><b>Driver:</b> {{ $alert['driver'] }}" data-trigger="hover">
                 {{ $alert["VNO"] }}</a></td>
-                <td>{{ $alert["alert"] }}</td>
+                <td>
+                <img src={{ $alert["icon"] }}" />
+                {{ $alert["alert"] }}
+                </td>
                 <td>{{ $alert["hours"] }}</td>
                 <td> <button type="button"
                   class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
