@@ -73,13 +73,13 @@
                       <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
                   <div class="col-md-1">
-                      <input type="button" onclick="replaydata()" name="submit"  value ="Play" class="btn btn-success btn-sm form-control">
+                      <input type="button" onclick="replaydata()"  value ="Play" class="btn btn-success btn-sm form-control">
                   </div>
                   <div class="col-md-1">
-                      <input type="button" onclick="pause()" name="submit"  value ="Pause" class="btn btn-danger btn-sm form-control">
+                      <input type="button" onclick="pause()" value ="Pause" class="btn btn-danger btn-sm form-control">
                   </div>
                   <div class="col-md-1">
-                      <input type="button" onclick="reset()" name="submit"  value ="Reset" class="btn btn-primary btn-sm form-control">
+                      <input type="button" onclick="reset()" value ="Reset" class="btn btn-primary btn-sm form-control">
                   </div>
                   <div class="col-md-1">
                       <input type="button" onclick="fast()" name="submit"  value ="Fast" class="btn btn-primary btn-sm form-control">
