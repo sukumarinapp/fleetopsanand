@@ -185,7 +185,13 @@ class ClientController extends Controller
         if(count($vehicle) > 0){
             $vehicle_active = 1;
         }
-        return view('client.edit', compact('user','managers','vehicle_active'));
+        $deactivate = 1;
+        $sql = "select * from vehicle where VTV=1 and CAN='$CAN'";
+        $result = DB::select(DB::raw($sql));
+        if(count($result) > 0){
+            $deactivate = 0;
+        }
+        return view('client.edit', compact('user','managers','vehicle_active','deactivate'));
     }
     
    
