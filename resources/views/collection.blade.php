@@ -48,9 +48,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h4>GHC {{ $total_sale }}</h4>
+                <h4>Total Sales</h4>
 
-                <h6>Total Sales</h6>
+                <h6>GHC {{ $total_sale }}</h6>
               </div>
  <a class="small-box-footer"><h6>&nbsp;&nbsp;</h6></a>
 

@@ -48,9 +48,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h4>GHC {{ $total_sale }}</h4>
+                <h4>Total Pending Sales</h4>
 
-                <h6>Total Pending Sales</h6>
+                <h6>GHC {{ $total_sale }}</h6>
               </div>
                <a class="small-box-footer"><h6>&nbsp;&nbsp;</h6></a>
             </div>
@@ -63,7 +63,7 @@
 
                 <h6>GHC {{ $rt_sale }}</h6>
               </div>
-              <a class="small-box-footer"><h6>NO : {{ $rt_sold }}</h6></a>
+              <a class="small-box-footer"><h6>No : {{ $rt_sold }}</h6></a>
             </div>
           </div>
           <div class="col-md-3">
@@ -74,7 +74,7 @@
 
                 <h6>GHC {{ $hp_sale }}</h6>
               </div>
-              <a class="small-box-footer"><h6>NO : {{ $hp_sold }}</h6></a>
+              <a class="small-box-footer"><h6>No : {{ $hp_sold }}</h6></a>
             </div>
           </div>
     </div>
