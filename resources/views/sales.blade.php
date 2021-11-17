@@ -48,7 +48,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h4>Total Pending Sales</h4>
+                <h4>Total Pending</h4>
 
                 <h6>GHC {{ $total_sale }}</h6>
               </div>
@@ -62,7 +62,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h4>RT Pending Sales</h4>
+                <h4>RT Pending</h4>
 
                 <h6>GHC {{ $rt_sale }}</h6>
               </div>
@@ -77,7 +77,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h4>HP Pending Sales</h4>
+                <h4>HP Pending</h4>
 
                 <h6>GHC {{ $hp_sale }}</h6>
               </div>
