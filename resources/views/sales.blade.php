@@ -44,54 +44,37 @@
       </div>
     </div>
     <div class="row">
-       <div class="col-md-2">
+       <div class="col-md-3">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
                 <h4>GHC {{ $total_sale }}</h4>
 
-                <p>Total Pending Sales</p>
+                <h6>Total Pending Sales</h6>
               </div>
+               <a class="small-box-footer"><h6>&nbsp;&nbsp;</h6></a>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h4>GHC {{ $rt_sale }}</h4>
+                <h4>RT Pending Sales</h4>
 
-                <p>RT Pending Sales</p>
+                <h6>GHC {{ $rt_sale }}</h6>
               </div>
+              <a class="small-box-footer"><h6>NO : {{ $rt_sold }}</h6></a>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h4>GHC {{ $hp_sale }}</h4>
+                <h4>HP Pending Sales</h4>
 
-                <p>HP Pending Sales</p>
+                <h6>GHC {{ $hp_sale }}</h6>
               </div>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h4>{{ $rt_sold }}</h4>
-
-                <p>RT No</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h4>{{ $hp_sold }}</h4>
-
-                <p>HP No</p>
-              </div>
+              <a class="small-box-footer"><h6>NO : {{ $hp_sold }}</h6></a>
             </div>
           </div>
     </div>

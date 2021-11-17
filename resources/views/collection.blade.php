@@ -44,76 +44,52 @@
       </div>
     </div>
     <div class="row">
-       <div class="col-md-2">
+       <div class="col-md-3">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
                 <h4>GHC {{ $total_sale }}</h4>
 
-                <p>Total Sales</p>
+                <h6>Total Sales</h6>
               </div>
+ <a class="small-box-footer"><h6>&nbsp;&nbsp;</h6></a>
+
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h4>GHC {{ $rt_sale }}</h4>
+                <h4>RT Sales</h4>
 
-                <p>RT Sales</p>
+                <h6>GHC {{ $rt_sale }}</h6>
               </div>
+           <a class="small-box-footer"><h6>Sold : {{ $rt_sold }}</h6></a>
+
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h4>GHC {{ $hp_sale }}</h4>
+                <h4>HP Sales</h4>
 
-                <p>HP Sales</p>
+                <h6>GHC {{ $hp_sale }}</h6>
               </div>
+          <a class="small-box-footer"><h6>Sold : {{ $hp_sold }}</h6></a>
+
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h4>GHC {{ $rh_sale }}</h4>
+                <h4>RH Sales</h4>
 
-                <p>RH Sales</p>
+                <h6>GHC {{ $rh_sale }}</h6>
               </div>
-            </div>
-          </div>
-          <div class="col-md-1">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h4>{{ $rt_sold }}</h4>
+             <a class="small-box-footer"><h6>Sold : {{ $rh_sold }}</h6></a>
 
-                <p>RT Sold</p>
-              </div>
-            </div>
-          </div> 
-
-          <div class="col-md-1">
-            <!-- small box -->
-            <div class="small-box bg-primary">
-              <div class="inner">
-                <h4>{{ $hp_sold }}</h4>
-
-                <p>HP Sold</p>
-              </div>
-            </div>
-          </div> 
-
-          <div class="col-md-1">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h4>{{ $rh_sold }}</h4>
-
-                <p>RH Sold</p>
-              </div>
             </div>
           </div>
     </div>
