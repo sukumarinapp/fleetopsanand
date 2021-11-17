@@ -41,13 +41,16 @@
       </div>
     </div>
     <div class="row">
-       <div class="col-md-2">
+       <div class="col-md-3">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
                 <h4>GHC {{ $total_exps }}</h4>
 
                 <p>Total Expected Sales</p>
+              </div>
+              <div class="icon">
+                <i class="far fa-money-bill-alt"></i>
               </div>
             </div>
           </div>
@@ -59,6 +62,10 @@
 
                 <p>Total Expected Cash Collected</p>
               </div>
+               <div class="icon">
+              <i class="fas fa-money-bill-alt"></i>
+              </div>
+              
             </div>
           </div>
           <div class="col-md-2">
@@ -69,6 +76,10 @@
 
                 <p>RH No Sold</p>
               </div>
+              <div class="icon">
+              <i class="fas fa-coins"></i>
+              </div>
+              
             </div>
           </div>
           <div class="col-md-2">
@@ -78,6 +89,9 @@
                 <h4>{{ $total_cml }}</h4>
 
                 <p>Total Mileage Covered</p>
+              </div>
+              <div class="icon">
+              <i class="fas fa-tachometer-alt"></i>
               </div>
             </div>
           </div>
@@ -89,6 +103,10 @@
 
                 <p>Total Hours Worked</p>
               </div>
+              <div class="icon">
+              <i class="far fa-clock"></i>
+              </div>
+             
             </div>
           </div>
     </div>
