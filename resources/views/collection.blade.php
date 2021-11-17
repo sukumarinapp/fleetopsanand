@@ -52,6 +52,9 @@
 
                 <h6>GHC {{ $total_sale }}</h6>
               </div>
+              <div class="icon">
+                <i class="far fa-money-bill-alt"></i>
+              </div>
  <a class="small-box-footer"><h6>&nbsp;&nbsp;</h6></a>
 
             </div>
@@ -63,6 +66,9 @@
                 <h4>RT Sales</h4>
 
                 <h6>GHC {{ $rt_sale }}</h6>
+              </div>
+               <div class="icon">
+                <i class="fas fa-chart-line"></i>
               </div>
            <a class="small-box-footer"><h6>Sold : {{ $rt_sold }}</h6></a>
 
@@ -76,6 +82,9 @@
 
                 <h6>GHC {{ $hp_sale }}</h6>
               </div>
+               <div class="icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
           <a class="small-box-footer"><h6>Sold : {{ $hp_sold }}</h6></a>
 
             </div>
@@ -87,6 +96,9 @@
                 <h4>RH Sales</h4>
 
                 <h6>GHC {{ $rh_sale }}</h6>
+              </div>
+               <div class="icon">
+                <i class="fas fa-chart-line"></i>
               </div>
              <a class="small-box-footer"><h6>Sold : {{ $rh_sold }}</h6></a>
 

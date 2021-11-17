@@ -16,6 +16,15 @@
 <div class="container-fluid">
   <div class="content-header">
     <div class="container-fluid">
+      <!--  <div class="card card-success">
+              <div class="card-header">
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body"> -->
       <div class="row">
         <div class="col-md-3">
           <div class="card">
@@ -98,7 +107,7 @@
             </div>
           </div>
         </div> 
-      </div>
+         </div>
       <div class="card">
         <div class="card-body">
          <div class="table-responsive" style="height:150px" >

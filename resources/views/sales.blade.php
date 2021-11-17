@@ -52,6 +52,9 @@
 
                 <h6>GHC {{ $total_sale }}</h6>
               </div>
+              <div class="icon">
+                <i class="far fa-money-bill-alt"></i>
+              </div>
                <a class="small-box-footer"><h6>&nbsp;&nbsp;</h6></a>
             </div>
           </div>
@@ -63,6 +66,10 @@
 
                 <h6>GHC {{ $rt_sale }}</h6>
               </div>
+              <div class="icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              
               <a class="small-box-footer"><h6>No : {{ $rt_sold }}</h6></a>
             </div>
           </div>
@@ -73,6 +80,9 @@
                 <h4>HP Pending Sales</h4>
 
                 <h6>GHC {{ $hp_sale }}</h6>
+              </div>
+               <div class="icon">
+                <i class="fas fa-chart-line"></i>
               </div>
               <a class="small-box-footer"><h6>No : {{ $hp_sold }}</h6></a>
             </div>
