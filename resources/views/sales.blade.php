@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="row">
-       <div class="col-md-3">
+       <div class="col-md-4">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
@@ -58,7 +58,7 @@
                <a class="small-box-footer"><h6>&nbsp;&nbsp;</h6></a>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
@@ -73,7 +73,7 @@
               <a class="small-box-footer"><h6>No : {{ $rt_sold }}</h6></a>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
