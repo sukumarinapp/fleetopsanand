@@ -25,8 +25,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Manage Account</a></li>
-              <li class="breadcrumb-item">User</a></li>
+              <li class="breadcrumb-item"><a>File</a></li>
+              <li class="breadcrumb-item">User</li>
             </ol>
           </div>
         </div>
@@ -53,7 +53,7 @@
             </div>
         @endif
         <div class="card-body" style="overflow-x: auto;" >
-			<table id="example1" class="table table-bordered table-striped">
+			<table id="example1" class="table table-bordered">
           <thead>
           <tr>
             <th>UAN</th>

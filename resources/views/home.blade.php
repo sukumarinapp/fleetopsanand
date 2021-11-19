@@ -73,13 +73,13 @@
                   <div class="col-md-1">
                     <label for="email">Start Time</label>                    
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-1">
                     <input value="{{ $starttime }}" class="form-control" type="datetime-local" name="starttime" id="starttime"  required="required">
                   </div>
                   <div class="col-md-1">
                     <label for="email">End Time</label>                    
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-1">
                     <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
                   <div class="col-md-1">
@@ -89,7 +89,15 @@
                     <input type="button" onclick="pause()" value ="Pause" class="btn btn-danger btn-sm form-control">
                   </div>
                   <div class="col-md-1">
-                    <input type="button" onclick="reset()" value ="Reset" class="btn btn-primary btn-sm form-control">
+                    <input type="button" onclick="reset()" value ="Stop" class="btn btn-primary btn-sm form-control">
+                  </div>
+
+                  <div class="col-md-1">
+                    <input type="button" onclick="next()" value ="Next" class="btn btn-primary btn-sm form-control">
+                  </div>
+
+                  <div class="col-md-1">
+                    <input type="button" onclick="prev()" value ="Previous" class="btn btn-primary btn-sm form-control">
                   </div>
                   <div class="col-md-1">
                     <input type="button" onclick="fast()" name="submit"  value ="Fast" class="btn btn-primary btn-sm form-control">
@@ -122,7 +130,7 @@
     </div>
     <div class="card-body">
          <div class="table-responsive">
-          <table id="examplegrid" class="table table-bordered table-striped" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">
+          <table id="examplegrid" class="table table-bordered" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">
             <thead style="width:70%">
               <tr>
                 <th>Event Date/Time</th>

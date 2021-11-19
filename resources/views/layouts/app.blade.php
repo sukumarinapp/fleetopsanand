@@ -313,6 +313,14 @@ function pause() {
   marker.pause();
 }
 
+function next() {
+  marker.next();
+}
+
+function prev() {
+  marker.prev();
+}
+
 function reset() {
   marker.reset();
 }

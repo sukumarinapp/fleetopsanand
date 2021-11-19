@@ -31,7 +31,7 @@
 				@endif
 					<form action=" {{ route('smsupdate') }}" method="post" class="form-horizontal">
 					@csrf
-					<table width="100%" class="table table-bordered table-striped">
+					<table width="100%" class="table table-bordered">
           				<thead>
           					<tr> 
 					            <th width="10%">SMS ID</th>

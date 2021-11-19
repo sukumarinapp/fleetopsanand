@@ -13,7 +13,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Manage Account</a></li>
+              <li class="breadcrumb-item">Operations</li>
               <li class="breadcrumb-item">Driver</li>
             </ol>
           </div>
@@ -38,7 +38,7 @@
               <strong> {{ session('message') }} </strong>
           </div>
         @endif
-			<table id="example1" class="table table-bordered table-striped">
+			<table id="example1" class="table table-bordered">
           <thead>
           <tr>
             <th>Driver Name</th>

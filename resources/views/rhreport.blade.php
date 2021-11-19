@@ -8,7 +8,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Reports</a></li>
+              <li class="breadcrumb-item">Sales</li>
               <li class="breadcrumb-item">RH Daily Report</li>
             </ol>
           </div>
@@ -111,7 +111,7 @@
           </div>
     </div>
     <div class="table-responsive" >
-     <table id="examplesales" class="table table-bordered table-striped">
+     <table id="examplesales" class="table table-bordered">
       <thead>
         <tr>
           <th>Date</th>

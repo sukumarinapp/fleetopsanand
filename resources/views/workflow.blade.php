@@ -11,6 +11,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+              <li class="breadcrumb-item">Operations</li>
               <li class="breadcrumb-item">Workflow Manager</li>
             </ol>
           </div>
@@ -34,7 +35,7 @@
 					<h3 class="card-title">WorkFlow</h3>
 				</div>
 				<div class="card-body" style="overflow-x: auto;" >
-						<table id="example1" class="table table-bordered table-striped">
+						<table id="example1" class="table table-bordered">
           <thead>
           <tr>
             <th>Open Date</th>
