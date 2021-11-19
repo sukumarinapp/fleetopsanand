@@ -57,7 +57,14 @@
               style="color: #FFC300;"
             @endif
             >
-              <td>{{ $driver->DNM }} {{ $driver->DSN }}
+              <td>
+               @php
+                if($driver->VNO != ""){
+                   echo "<span><img src='assign.jpg'></span>";
+                 }
+                 @endphp
+
+                {{ $driver->DNM }} {{ $driver->DSN }}
               @if($driver->VNO !="")
                 <br><small class="text-success"><a href="{{ route('vehicle.edit',$driver->vid) }}">{{ $driver->VNO }}</a></small>
               @endif
