@@ -68,20 +68,23 @@
                <div id="map_canvas" style="height: 500px;"></div>
 
                <div id="map_replay" style="height: 500px;display: none;">
-                <form class="row form" >
+                <form class="form" >
                   @csrf
-                  <div class="col-md-1">
+                  <div class="row">
+                  <div class="col-md-2">
                     <label for="email">Start Time</label>                    
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-3">
                     <input value="{{ $starttime }}" class="form-control" type="datetime-local" name="starttime" id="starttime"  required="required">
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <label for="email">End Time</label>                    
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-3">
                     <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
+                </div>
+                <div class="row">
                   <div class="col-md-1">
                     <button type="button" class="btn btn-success btn-xs form-control" onclick="replaydata()" value ="Play"><i class="fa fa-play"></i></button>
                   </div>
@@ -110,10 +113,11 @@
               <div class="col-md-1">
                 <button type="button" class="btn btn-primary btn-xs form-control" onclick="fast()" value ="fast"><i class="fa fa-fast-forward"></i></button>
               </div>
+            </div>
 
 
             </form>
-            <div class="bg-danger" id="replay-summary" ></div>
+            <div class="bg-info" style="font-size: large;" id="replay-summary" ></div>
             <div id="replay-canvas" style="height: 400px"></div>
           </div>
         </div>
