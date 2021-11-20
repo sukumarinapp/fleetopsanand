@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <style type="text/css">
-@media screen and (min-width: 1000px) {  
-  .whatsappshare {  
-    display: none
-  }  
-}
-#speed{
-  color: red;
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-}    
+  @media screen and (min-width: 1000px) {  
+    .whatsappshare {  
+      display: none
+    }  
+  }
+  #speed{
+    color: red;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+  }    
 </style>
 <div class="container-fluid">
   <div class="content-header">
@@ -83,92 +83,91 @@
                     <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
                   <div class="col-md-1">
-                    <button type="button" class="btn btn-success btn-xs form-control" onclick="replaydata()" value ="Play"><i class="fa fa-play"></i>&nbsp;play</button>
-                  </div>
-                   <div class="col-md-1">
-                    <button type="button" class="btn btn-danger btn-xs form-control" onclick="pause()" value ="Pause"><i class="fa fa-pause"></i>pause</button>
+                    <button type="button" class="btn btn-success btn-xs form-control" onclick="replaydata()" value ="Play"><i class="fa fa-play"></i></button>
                   </div>
                   <div class="col-md-1">
-                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="reset()" value ="reset"><i class="fa fa-stop"></i>&nbsp;stop</button>
+                    <button type="button" class="btn btn-danger btn-xs form-control" onclick="pause()" value ="Pause"><i class="fa fa-pause"></i></button>
                   </div>
-
                   <div class="col-md-1">
-                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="next()" value ="next"><i class="fa fa-angle-double-right"></i>&nbsp;next</button>
+                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="reset()" value ="reset"><i class="fa fa-stop"></i></button>
                   </div>
 
                   <div class="col-md-1">
-                     <button type="button" class="btn btn-primary btn-xs form-control" onclick="prev()" value ="prev"><i class="fa fa-angle-double-left"></i>&nbsp;prev</button>
-                   </div>
-
-                  <div class="col-md-1">
-                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="fast()" value ="fast"><i class="fa fa-fast-forward"></i>&nbsp;fast</button>
-                   </div>
-
-                  <div class="col-md-1">
-                    <span id="speed">1x</span>
-                  </div>
-
-                  <div class="col-md-1">
-                     <button type="button" class="btn btn-primary btn-xs form-control" onclick="slow()" value ="slow"><i class="fa fa-fast-backward"></i>&nbsp;slow</button>
-                   </div>
+                   <button type="button" class="btn btn-primary btn-xs form-control" onclick="prev()" value ="prev"><i class="fa fa-angle-double-left"></i></button>
+                 </div>
+                 <div class="col-md-1">
+                  <button type="button" class="btn btn-primary btn-xs form-control" onclick="next()" value ="next"><i class="fa fa-angle-double-right"></i></button>
+                </div>
 
 
-                </form>
-                <div class="bg-danger" id="replay-summary" ></div>
-                <div id="replay-canvas" style="height: 400px"></div>
+                <div class="col-md-1">
+                  <button type="button" class="btn btn-primary btn-xs form-control" onclick="slow()" value ="slow"><i class="fa fa-fast-backward"></i></button>
+               </div>
+               <div class="col-md-1">
+                <span id="speed">1x</span>
               </div>
-            </div>
+
+              <div class="col-md-1">
+                <button type="button" class="btn btn-primary btn-xs form-control" onclick="fast()" value ="fast"><i class="fa fa-fast-forward"></i></button>
+              </div>
+
+
+            </form>
+            <div class="bg-danger" id="replay-summary" ></div>
+            <div id="replay-canvas" style="height: 400px"></div>
           </div>
-        </div> 
+        </div>
       </div>
+    </div> 
+  </div>
+</div>
+</div>
+<div class="card card-info">
+  <div class="card-header">
+    <h3 class="card-title">Alert</h3>
+
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool btn-secondary" data-card-widget="collapse"><i class="fas fa-minus"></i>
+      </button>
     </div>
   </div>
-  <div class="card card-info">
-    <div class="card-header">
-      <h3 class="card-title">Alert</h3>
+  <div class="card-body">
+   <div class="table-responsive">
+    <table id="examplegrid" class="table table-bordered" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">
+      <thead style="width:70%">
+        <tr>
+          <th>Event Date/Time</th>
+          <th>Vehicle Reg# </th>
+          <th>Alert</th>
+          <th>Active Duration</th>
+          <th>Event Location</th>
+        </tr>
+      </thead>
+      <tbody>
 
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool btn-secondary" data-card-widget="collapse"><i class="fas fa-minus"></i>
-        </button>
-      </div>
-    </div>
-    <div class="card-body">
-         <div class="table-responsive">
-          <table id="examplegrid" class="table table-bordered" style="overflow-y:auto; padding-bottom: 0; height: 100px; ">
-            <thead style="width:70%">
-              <tr>
-                <th>Event Date/Time</th>
-                <th>Vehicle Reg# </th>
-                <th>Alert</th>
-                <th>Active Duration</th>
-                <th>Event Location</th>
-              </tr>
-            </thead>
-            <tbody>
+        @foreach($alerts as $alert)
+        <tr>
+          <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
+          <td><a data-toggle="popover" data-html="true" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}({{ $alert['VBM'] }})" data-content="<b>Customer:</b> {{ $alert['client'] }}<br /><b>Manager:</b> {{ $alert['manager'] }}<br /><b>Driver:</b> {{ $alert['driver'] }}" data-trigger="hover">
+          {{ $alert["VNO"] }}</a></td>
+          <td>
+            <img src="{{ $alert['icon'] }}" />
+            {{ $alert["alert"] }}
+          </td>
+          <td>{{ $alert["hours"] }}</td>
+          <td> <button type="button"
+            class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+            <a  href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a>
 
-              @foreach($alerts as $alert)
-              <tr>
-                <td>{{ $alert["date"] }} {{ $alert["time"] }}</td>
-                <td><a data-toggle="popover" data-html="true" title="{{ $alert['VMK'] }} {{ $alert['VMD'] }} {{ $alert['VCL'] }}({{ $alert['VBM'] }})" data-content="<b>Customer:</b> {{ $alert['client'] }}<br /><b>Manager:</b> {{ $alert['manager'] }}<br /><b>Driver:</b> {{ $alert['driver'] }}" data-trigger="hover">
-                {{ $alert["VNO"] }}</a></td>
-                <td>
-                  <img src="{{ $alert['icon'] }}" />
-                  {{ $alert["alert"] }}
-                </td>
-                <td>{{ $alert["hours"] }}</td>
-                <td> <button type="button"
-                  class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
-                  <a  href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a>
-
-                  <a class="btn btn-primary btn-xs" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
-                </td> 
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div> 
-    </div>
-  </div>
+            <a class="btn btn-primary btn-xs" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
+          </td> 
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div> 
+</div>
+</div>
 </div>
 </div>
 </div>
