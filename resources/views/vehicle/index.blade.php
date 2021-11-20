@@ -76,7 +76,7 @@
             <th style="width: 150px">Assign/Remove</th>
             <th style="width: 150px">Action</th>
           </tr>
-          </thead>
+          </thead> 
           <tbody>
             @foreach($vehicles as $vehicle)
             <tr>

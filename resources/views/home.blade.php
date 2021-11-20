@@ -83,31 +83,35 @@
                     <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
                   <div class="col-md-1">
-                    <input type="button" onclick="replaydata()"  value ="Play" class="btn btn-success btn-sm form-control">
+                    <button type="button" class="btn btn-success btn-xs form-control" onclick="replaydata()" value ="Play"><i class="fa fa-play"></i>&nbsp;play</button>
+                  </div>
+                   <div class="col-md-1">
+                    <button type="button" class="btn btn-danger btn-xs form-control" onclick="pause()" value ="Pause"><i class="fa fa-pause"></i>pause</button>
                   </div>
                   <div class="col-md-1">
-                    <input type="button" onclick="pause()" value ="Pause" class="btn btn-danger btn-sm form-control">
-                  </div>
-                  <div class="col-md-1">
-                    <input type="button" onclick="reset()" value ="Stop" class="btn btn-primary btn-sm form-control">
+                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="reset()" value ="reset"><i class="fa fa-stop"></i>&nbsp;stop</button>
                   </div>
 
                   <div class="col-md-1">
-                    <input type="button" onclick="next()" value ="Next" class="btn btn-primary btn-sm form-control">
+                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="next()" value ="next"><i class="fa fa-angle-double-right"></i>&nbsp;next</button>
                   </div>
 
                   <div class="col-md-1">
-                    <input type="button" onclick="prev()" value ="Previous" class="btn btn-primary btn-sm form-control">
-                  </div>
+                     <button type="button" class="btn btn-primary btn-xs form-control" onclick="prev()" value ="prev"><i class="fa fa-angle-double-left"></i>&nbsp;prev</button>
+                   </div>
+
                   <div class="col-md-1">
-                    <input type="button" onclick="fast()" name="submit"  value ="Fast" class="btn btn-primary btn-sm form-control">
-                  </div>
+                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="fast()" value ="fast"><i class="fa fa-fast-forward"></i>&nbsp;fast</button>
+                   </div>
+
                   <div class="col-md-1">
                     <span id="speed">1x</span>
                   </div>
+
                   <div class="col-md-1">
-                    <input type="button" onclick="slow()" name="submit"  value ="Slow" class="btn btn-primary btn-sm form-control">
-                  </div>
+                     <button type="button" class="btn btn-primary btn-xs form-control" onclick="slow()" value ="slow"><i class="fa fa-fast-backward"></i>&nbsp;slow</button>
+                   </div>
+
 
                 </form>
                 <div class="bg-danger" id="replay-summary" ></div>
