@@ -159,7 +159,7 @@
             {{ $alert["alert"] }}
           </td>
           <td>{{ $alert["hours"] }}</td>
-          <td> <button type="button"
+          <td style="padding-top: 10px;"> <button type="button"
             class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
             <a  href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a>
 
