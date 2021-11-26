@@ -40,12 +40,18 @@
         <thead>
           <tr>
             <th>Event Date/Time</th>
+            <th>Vehicle Reg#</th>
+            <th>Alert</th>
+            <th>Resolved Date/Time</th>
           </tr>
         </thead>
         <tbody>
           @foreach($alerts as $alert)
           <tr>
-           <td>{{ $alert->alert_time }}</td>
+           <td>{{ $alert['alert_time'] }}</td>
+           <td>{{ $alert['VNO'] }}</td>
+           <td>{{ $alert['alert'] }}</td>
+           <td>{{ $alert['resolve_time'] }}</td>
          </tr>
          @endforeach
        </tbody>

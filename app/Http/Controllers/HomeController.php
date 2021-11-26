@@ -706,6 +706,7 @@ class HomeController extends Controller
 
     public function alertlog($from,$to)
     {
+        $title = "Alert Log";
         $user_id = Auth::user()->id;
         $parent_id = Auth::user()->parent_id;
         $usertype = Auth::user()->usertype;
@@ -738,6 +739,7 @@ class HomeController extends Controller
         $sql = "select concat(d.name,' ',d.UZS) as manager,c.name as client,a.id,b.VBM,a.VMK,a.VMD,a.VCL,a.VNO,a.driver_id,a.TID,concat(b.DNM,' ',b.DSN) as dname from vehicle a,driver b,users c,users d where c.parent_id=d.id and a.CAN=c.UAN and a.driver_id=b.id and a.VTV=1 and a.driver_id is not null";
         $result = DB::select(DB::raw($sql));
         $i = 0;
+        $alerts = array();
         foreach($result as $key => $res){
             $VNO = $res->VNO;
             $manager = $res->manager;
@@ -765,7 +767,7 @@ class HomeController extends Controller
             $msg2 = "Blocking On";
             $msg3 = "Alarm On";
             $msg4 = "Battery Off";
-            $alerts = array();
+            
             $current_date = date("Y-m-d");
             $current_time = date("H.i");
             //battery on/off
@@ -776,7 +778,6 @@ class HomeController extends Controller
                 $sql5 = "select * from current_location where terminal_id='$TID' and capture_datetime > '$alert_time' order by capture_datetime limit 1";
                 $battery_on = DB::select(DB::raw($sql5));
                 if(count($battery_on) > 0){
-                    //if($TID=='233500627989') echo $sql5;die;
                     $alerts[$i]['VID'] = $VID;
                     $alerts[$i]['VNO'] = $VNO;
                     $alerts[$i]['manager'] = $VNO;
@@ -789,7 +790,8 @@ class HomeController extends Controller
                     $alerts[$i]['driver'] = $driver;
                     $alerts[$i]['TID'] = $TID;     
                     $alerts[$i]['type'] = "battery";    
-                    $alerts[$i]['alert'] = $msg4;    
+                    $alerts[$i]['alert'] = $msg4;  
+                    $alerts[$i]['alert_time'] = $alert_time;  
                     $alerts[$i]['date'] = substr($alert_time,0,10);
                     $alerts[$i]['time'] = substr($alert_time,11,5);
                     $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
