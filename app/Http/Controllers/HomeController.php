@@ -818,7 +818,7 @@ class HomeController extends Controller
         }   
 
         //buzzer on
-        $sql = "select * from tbl136 where alarm_off_time <> '' and  DDT >= '$from' and DDT <='$to'";
+        $sql = "select * from tbl136 where alarm_off_time is not null and  DDT >= '$from' and DDT <='$to'";
         $result = DB::select(DB::raw($sql));
         foreach($result as $key => $res){
             $i++;
@@ -829,7 +829,7 @@ class HomeController extends Controller
         } 
 
         //blocking on
-        $sql = "select * from tbl136 where block_off_time <> '' and  DDT >= '$from' and DDT <='$to'";
+        $sql = "select * from tbl136 where block_off_time is not null and  DDT >= '$from' and DDT <='$to'";
         $result = DB::select(DB::raw($sql));
         foreach($result as $key => $res){
             $i++;
