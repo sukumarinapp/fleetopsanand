@@ -39,18 +39,19 @@
       <table id="example1" class="table table-bordered">
         <thead>
           <tr>
-            <th>Event Time</th>
             <th>Vehicle Reg#</th>
             <th>Alert</th>
+            <th>Event Time</th>
             <th>Resolved Time</th>
           </tr>
         </thead>
         <tbody>
           @foreach($alerts as $alert)
           <tr>
-           <td>{{ $alert['alert_time'] }}</td>
            <td>{{ $alert['VNO'] }}</td>
            <td>{{ $alert['alert'] }}</td>
+           <td>{{ $alert['alert_time'] }}</td>
+           
            <td>{{ $alert['resolve_time'] }}</td>
          </tr>
          @endforeach

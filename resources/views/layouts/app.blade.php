@@ -341,7 +341,7 @@ function slow() {
 }
 
 
-function replaydata(){
+function play(){
 
     var VNO = $("#search_inp").val();
     var starttime = $("#starttime").val();
@@ -361,7 +361,7 @@ function replaydata(){
           url: url,
           success: function(response) {
             response = JSON.parse(response);
-            $("#replay-summary").html("VNO:"+response['VNO']+" "+"Mileage covered:"+response['mileage']+" "+"Engine Active Hours:"+response['hours_worked']+" "+"Min. Speed:"+response['min_speed']+" "+"Max. Speed: "+response['max_speed']);
+            $("#replay-summary").html("<div style='font-size:large' class='bg-danger text-center'><b>"+response['VNO']+"</b></div><div class='text-center'>"+"<b>Mileage covered: </b>"+response['mileage']+"  "+"<b>Engine Active Hours: </b>"+response['hours_worked']+"  "+"<b>Min. Speed: </b>"+response['min_speed']+"  "+"<b>Max. Speed: </b> "+response['max_speed']+"</div>");
             for (let i = 0; i < response["loc"].length; i++) {
                 if(i == 0){
                     startlat = response["loc"][i][0];

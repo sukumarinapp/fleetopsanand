@@ -727,10 +727,10 @@ class HomeController extends Controller
         }
         $filter = "";
         
-        $msg1 = "Tracker Off";
-        $msg2 = "Blocking On";
-        $msg3 = "Alarm On";
-        $msg4 = "Battery Off";
+        $msg1 = "Vehicle (Tracker) Offline";
+        $msg2 = "Vehicle Blocked";
+        $msg3 = "Vehicle Buzzer Active";
+        $msg4 = "Battery Power Cut";
         $alerts = array();
         $current_date = date("Y-m-d");
         $current_time = date("H.i");
@@ -761,12 +761,7 @@ class HomeController extends Controller
             $driver = $res->dname;
             $TID = $res->TID;
             $VID = $res->id;
-        
-            $msg1 = "Tracker Off";
-            $msg2 = "Blocking On";
-            $msg3 = "Alarm On";
-            $msg4 = "Battery Off";
-            
+                    
             $current_date = date("Y-m-d");
             $current_time = date("H.i");
             //battery on/off

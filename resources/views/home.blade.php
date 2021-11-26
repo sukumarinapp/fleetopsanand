@@ -86,7 +86,7 @@
                 </div>
                 <div style="padding-bottom:5px" class="row">
                   <div class="col-md-1">
-                    <button type="button" class="btn btn-success btn-xs form-control" onclick="replaydata()" value ="Play"><i class="fa fa-play"></i></button>
+                    <button type="button" class="btn btn-success btn-xs form-control" onclick="play()" value ="Play"><i class="fa fa-play"></i></button>
                   </div>
                   <div class="col-md-1">
                     <button type="button" class="btn btn-danger btn-xs form-control" onclick="pause()" value ="Pause"><i class="fa fa-pause"></i></button>
@@ -106,7 +106,7 @@
                 <div class="col-md-1">
                   <button type="button" class="btn btn-primary btn-xs form-control" onclick="slow()" value ="slow"><i class="fa fa-fast-backward"></i></button>
                </div>
-               <div class="col-md-1">
+               <div class="col-md-2">
                 <span id="speed">1x</span>
               </div>
 
@@ -117,7 +117,7 @@
 
 
             </form>
-            <div class="bg-info" style="font-size: large;" id="replay-summary" ></div>
+            <div class="bg-success"  id="replay-summary" ></div>
             <div id="replay-canvas" style="height: 400px"></div>
           </div>
         </div>
