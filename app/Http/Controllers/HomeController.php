@@ -628,7 +628,6 @@ class HomeController extends Controller
                 if(count($battery_on) == 0){
                     $alerts[$i]['VID'] = $VID;
                     $alerts[$i]['VNO'] = $VNO;
-                    $alerts[$i]['manager'] = $VNO;
                     $alerts[$i]['manager'] = $manager;
                     $alerts[$i]['client'] = $client;
                     $alerts[$i]['VMK'] = $VMK;
@@ -814,7 +813,32 @@ class HomeController extends Controller
                     $i++;
                 }
             }
+
+           
         }   
+
+        //buzzer on
+        $sql = "select * from tbl136 where alarm_off_time <> '' and  DDT >= '$from' and DDT <='$to'";
+        $result = DB::select(DB::raw($sql));
+        foreach($result as $key => $res){
+            $i++;
+            $alerts[$i]['VNO'] = $res->VNO;
+            $alerts[$i]['alert_time'] = $res->DDT." "."10:00";  
+            $alerts[$i]['alert'] = $msg3;  
+            $alerts[$i]['resolve_time'] = $res->alarm_off_time;
+        } 
+
+        //blocking on
+        $sql = "select * from tbl136 where block_off_time <> '' and  DDT >= '$from' and DDT <='$to'";
+        $result = DB::select(DB::raw($sql));
+        foreach($result as $key => $res){
+            $i++;
+            $alerts[$i]['VNO'] = $res->VNO;
+            $alerts[$i]['alert_time'] = $res->DDT." "."12:00";  
+            $alerts[$i]['alert'] = $msg2;  
+            $alerts[$i]['resolve_time'] = $res->block_off_time;
+        } 
+
         //dd($alerts);        
         return view('alertlog',compact('alerts','title','from','to'));
     }
