@@ -39,10 +39,10 @@
       <table id="notifylog" class="table table-bordered">
         <thead>
           <tr>
-            <th>Event Date/Time</th>
+            <th>Event Time</th>
             <th>Vehicle Reg#</th>
             <th>Alert</th>
-            <th>Resolved Date/Time</th>
+            <th>Resolved Time</th>
           </tr>
         </thead>
         <tbody>
