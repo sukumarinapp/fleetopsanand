@@ -823,7 +823,7 @@ class HomeController extends Controller
         foreach($result as $key => $res){
             $i++;
             $alerts[$i]['VNO'] = $res->VNO;
-            $alerts[$i]['alert_time'] = $res->DDT." "."10:00";  
+            $alerts[$i]['alert_time'] = $res->DDT." "."10:00:00";  
             $alerts[$i]['alert'] = $msg3;  
             $alerts[$i]['resolve_time'] = $res->alarm_off_time;
         } 
@@ -834,7 +834,7 @@ class HomeController extends Controller
         foreach($result as $key => $res){
             $i++;
             $alerts[$i]['VNO'] = $res->VNO;
-            $alerts[$i]['alert_time'] = $res->DDT." "."12:00";  
+            $alerts[$i]['alert_time'] = $res->DDT." "."12:00:00";  
             $alerts[$i]['alert'] = $msg2;  
             $alerts[$i]['resolve_time'] = $res->block_off_time;
         } 

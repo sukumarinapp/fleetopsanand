@@ -1,3 +1,7 @@
+alter table tbl136 add alarm_off_time DATETIME DEFAULT NULL after CRS;
+alter table tbl136 add block_off_time DATETIME DEFAULT NULL after alarm_off_time;
+
+
 DROP TABLE `sales_audit` ;
 
 CREATE TABLE `sales_audit` (
