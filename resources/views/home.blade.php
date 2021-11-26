@@ -160,10 +160,10 @@
           </td>
           <td>{{ $alert["hours"] }}</td>
           <td style="padding-top: 10px;"> <button type="button"
-            class="btn btn-primary btn-xs" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+            class="btn btn-primary btn-sm" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
             <a  href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a>
 
-            <a class="btn btn-primary btn-xs" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
+            <a class="btn btn-primary btn-sm" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
           </td> 
         </tr>
         @endforeach
