@@ -65,7 +65,7 @@
                 </div>
               </div>   -->   
               <div class="card-body">
-               <div id="map_canvas" style="height: 500px;"></div>
+               <div id="map_canvas" style="height: 500px;transition: transform;transition-timing-function: cubic-bezier(.51, .61, .66, .52);"></div>
 
                <div id="map_replay" style="height: 500px;display: none;">
                 <form class="form" >
