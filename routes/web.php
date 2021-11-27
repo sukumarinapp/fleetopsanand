@@ -94,6 +94,8 @@ Route::get('/fueler/{VNO}', 'FuelController@fueler')->name('fueler');
 
 Route::get('/help', 'WorkflowController@help')->name('help');
 
+Route::get('/test', 'HomeController@test')->name('test');
+
 
 
 

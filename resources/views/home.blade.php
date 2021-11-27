@@ -92,7 +92,7 @@
                     <button type="button" class="btn btn-danger btn-xs form-control" onclick="pause()" value ="Pause"><i class="fa fa-pause"></i></button>
                   </div>
                   <div class="col-md-1">
-                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="reset()" value ="reset"><i class="fa fa-stop"></i></button>
+                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="reset2()" value ="reset"><i class="fa fa-stop"></i></button>
                   </div>
 
                   <div class="col-md-1">

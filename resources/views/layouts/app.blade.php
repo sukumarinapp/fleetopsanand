@@ -323,7 +323,7 @@ function prev() {
   marker.prev();
 }
 
-function reset() {
+function reset2() {
   marker.reset();
 }
 

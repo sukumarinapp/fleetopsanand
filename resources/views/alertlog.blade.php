@@ -41,6 +41,7 @@
           <tr>
             <th>Vehicle Reg#</th>
             <th>Alert</th>
+            <th>Active Duration</th>
             <th>Event Time</th>
             <th>Resolved Time</th>
           </tr>
@@ -50,8 +51,8 @@
           <tr>
            <td>{{ $alert['VNO'] }}</td>
            <td>{{ $alert['alert'] }}</td>
+           <td>{{ $alert['hours'] }}</td>
            <td>{{ $alert['alert_time'] }}</td>
-           
            <td>{{ $alert['resolve_time'] }}</td>
          </tr>
          @endforeach
