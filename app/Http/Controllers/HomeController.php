@@ -816,7 +816,7 @@ class HomeController extends Controller
             $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
         } 
 
-        $sql2 = "select capture_datetime,id,capture_date,capture_time,latitude,longitude from current_location a where id =(select max(id) from current_location b where a.terminal_id=b.terminal_id)";
+        /*$sql2 = "select capture_datetime,id,capture_date,capture_time,latitude,longitude from current_location a where id =(select max(id) from current_location b where a.terminal_id=b.terminal_id)";
             $tracker_off = DB::select(DB::raw($sql2));
             if(count($tracker_off) > 0){
                 $id = $tracker_off[0]->id;
@@ -845,7 +845,7 @@ class HomeController extends Controller
                     $alerts[$i]['latitude'] = $latitude;
                     $alerts[$i]['longitude'] = $longitude;
                 }
-            }
+            }*/
 
 
         //dd($alerts);        
