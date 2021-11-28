@@ -1,3 +1,12 @@
+CREATE TABLE `tracker_status` (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  TID varchar(20) DEFAULT NULL,
+  off_time DATETIME DEFAULT NULL,
+  on_time DATETIME DEFAULT NULL,
+  status tinyint(1) DEFAULT 0,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 alter table tbl136 add alarm_off_time DATETIME DEFAULT NULL after CRS;
 alter table tbl136 add block_off_time DATETIME DEFAULT NULL after alarm_off_time;
 
