@@ -40,11 +40,27 @@ class VehicleController extends Controller
         $today = date("Y-m-d");
         $sql = "SELECT a.*,b.id as did,b.DNM,b.DSN,b.VBM,c.name FROM vehicle a LEFT JOIN driver b ON a.driver_id = b.id INNER JOIN users c ON a.CAN = c.UAN";
         $vehicles = DB::select(DB::raw($sql));
-        $sql2 = "select VNO from tbl136 where DECL=0";
-        $DECL = DB::select(DB::raw($sql2));
-        $sql3 = " select distinct terminal_id from current_location where capture_date='$today'";
-        $tracker = DB::select(DB::raw($sql3));
-        return view('vehicle.index', compact('vehicles','DECL','tracker'));
+        
+        foreach($vehicles as $vehicle){
+            $TID = $vehicle->TID;
+            $VNO = $vehicle->VNO;
+            $sql3 = "SELECT * from tracker_status where TID='$TID' and status=0";
+            $offline = DB::select(DB::raw($sql3));
+            if(count($offline) > 0){
+                $vehicle->offline  = 1;
+            }else{
+                $vehicle->offline  = 0;
+            }
+            $sql4 = "select VNO from tbl136 where DECL=0 and VNO='$VNO'";
+            $DECL = DB::select(DB::raw($sql4));
+            if(count($DECL) > 0){
+                $vehicle->DECL  = 0;
+            }else{
+                $vehicle->DECL  = 1;
+            }
+        }
+        //dd($vehicles);
+        return view('vehicle.index', compact('vehicles'));
     }
    
     public function create()

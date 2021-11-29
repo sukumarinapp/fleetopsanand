@@ -1,29 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-@php
-  function check_decl($DECL,$VNO){
-    $pending = false;
-    foreach($DECL as $DEC){
-      if($DEC->VNO == $VNO){
-        $pending = true;
-        break;
-      }
-    }
-    return $pending;
-  }
-
-  function check_online($TID,$tracker){
-    $online = false;
-    foreach($tracker as $track){
-      if($track->terminal_id == $TID){
-        $online = true;
-        break;
-      }
-    }
-    return $online;
-  }
-@endphp
 <div class="container-fluid">
 	<div class="row">
   		<div class="col-md-12">
@@ -88,7 +64,7 @@
                 }else if($vehicle->VTV == 1 && $vehicle->DNM ==""){
                   echo "<span><img src='parked.jpg'></span>";
                 }else{
-                  if(check_online($vehicle->TID,$tracker)){
+                  if($vehicle->offline == 0){
                     echo "<span><img src='online.jpg'></span>";
                   }else{
                     echo "<span><img src='offline.jpg'></span>";
@@ -121,7 +97,7 @@
                           <button class="btn btn-info btn-xs disabled" >Assign Vehicle</button>
                         @endif
                       @else
-                        @if(check_decl($DECL,$vehicle->VNO))
+                        @if($vehicle->DECL == 0)
                         <button class="btn btn-primary btn-xs disabled" >  Payment Pending</button>
                         @else
                         <a href="{{ route('removevehicle',$vehicle->id) }}" class="btn btn-danger btn-xs">Unassign Vehicle</a>
@@ -133,7 +109,7 @@
                 @if($vehicle->VTV == 0 && $vehicle->DNM == "")
                 <form action="{{ route('vehicle.destroy', $vehicle->id)}}" method="post">
                 @endif
-                    @if(check_decl($DECL,$vehicle->VNO))
+                    @if($vehicle->DECL == 0)
                         <button class="btn btn-primary btn-xs disabled" >Edit</button>
                     @else
                     <a href="{{ route('vehicle.edit',$vehicle->id) }}" class="btn btn-primary btn-xs">Edit</a>
