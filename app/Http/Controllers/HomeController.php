@@ -473,7 +473,6 @@ class HomeController extends Controller
             
             //if data not coming from tracker for 10 mins tracker is considered off
             $sql2 = "select * from tracker_status where TID='$TID' and status =0 order by off_time desc";
-            echo $sql2;
             $tracker_off = DB::select(DB::raw($sql2));
             if(count($tracker_off) > 0){
                 $off_time = $tracker_off[0]->off_time;
@@ -640,7 +639,7 @@ class HomeController extends Controller
                 }
             }
         }
-        dd($alerts);        
+        //dd($alerts);        
         return $alerts;
     }
 
