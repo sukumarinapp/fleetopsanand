@@ -95,19 +95,19 @@
                     <button type="button" class="btn btn-primary btn-xs form-control" onclick="reset2()" value ="reset"><i class="fa fa-stop"></i></button>
                   </div>
 
-                  <div class="col-md-1">
+                  <!-- <div class="col-md-1">
                    <button type="button" class="btn btn-primary btn-xs form-control" onclick="prev()" value ="prev"><i class="fa fa-angle-double-left"></i></button>
                  </div>
                  <div class="col-md-1">
                   <button type="button" class="btn btn-primary btn-xs form-control" onclick="next()" value ="next"><i class="fa fa-angle-double-right"></i></button>
-                </div>
+                </div> -->
 
 
                 <div class="col-md-1">
                   <button type="button" class="btn btn-primary btn-xs form-control" onclick="slow()" value ="slow"><i class="fa fa-fast-backward"></i></button>
                </div>
-               <div class="col-md-2">
-                <span id="speed">1x</span>
+               <div class="col-md-2 text-center">
+                <label id="speed">1x</label>
               </div>
 
               <div class="col-md-1">
