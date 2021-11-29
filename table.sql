@@ -1,3 +1,5 @@
+alter table current_location modify odometer decimal(12,3);
+
  insert into current_location (terminal_id,capture_date,capture_datetime,capture_time,latitude,longitude,ground_speed,odometer,direction,engine_on) values ('233500623977','2021-11-28','2021-11-28 00:00:08','000008.000','5.569616666666667','-0.16900333333333334','0.00','41775.977','212.36','0');
 
 select * from current_location where terminal_id='233500623977' group by capture_datetime order by  capture_datetime desc LIMIT 3;
