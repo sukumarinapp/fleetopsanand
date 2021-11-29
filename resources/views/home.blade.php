@@ -111,7 +111,7 @@
                 <div class="col-md-1">
                   <button type="button" class="btn btn-primary btn-xs form-control" onclick="slow()" value ="slow"><i class="fa fa-fast-backward"></i></button>
                </div>
-               <div class="col-md-2 text-center">
+               <div class="col-md-1 text-center">
                 <label id="speed">1x</label>
               </div>
 
