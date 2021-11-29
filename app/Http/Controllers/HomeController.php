@@ -471,46 +471,50 @@ class HomeController extends Controller
             $TID = $res->TID;
             $VID = $res->id;
             
-            //if data not coming from tracker for 3 mins tracker is considered off
-            $sql2 = "select capture_datetime,id,capture_date,capture_time,latitude,longitude from current_location where terminal_id='$TID' and id =(select max(id) from current_location where terminal_id='$TID')";
+            //if data not coming from tracker for 10 mins tracker is considered off
+            $sql2 = "select * from tracker_status where TID='$TID' and status =0 order by off_time desc";
             $tracker_off = DB::select(DB::raw($sql2));
             if(count($tracker_off) > 0){
-                $id = $tracker_off[0]->id;
-                $latitude = $tracker_off[0]->latitude;
-                $longitude = $tracker_off[0]->longitude;
-                $capture_date = $tracker_off[0]->capture_date;
-                $capture_time = $tracker_off[0]->capture_time;
-                $capture_time = substr($capture_time,0,2).".".substr($capture_time,2,2);
-                $capture_datetime =  new DateTime($tracker_off[0]->capture_datetime);
-                $current_time = date("Y-m-d H.i.s");
-                $since_start = $capture_datetime->diff(new DateTime($current_time));
-                $minutes_elapsed = $since_start->i.' minutes<br>';
-                if($minutes_elapsed > 3){
-                    $alerts[$i]['cap_id'] = $id;
-                    $alerts[$i]['VID'] = $VID;
-                    $alerts[$i]['VNO'] = $VNO;
-                    $alerts[$i]['manager'] = $VNO;
-                    $alerts[$i]['manager'] = $manager;
-                    $alerts[$i]['client'] = $client;
-                    $alerts[$i]['VMK'] = $VMK;
-                    $alerts[$i]['VMD'] = $VMD;
-                    $alerts[$i]['VCL'] = $VCL;
-                    $alerts[$i]['VBM'] = $VBM;
-                    $alerts[$i]['driver'] = $driver;
-                    $alerts[$i]['TID'] = $TID;
-                    $alerts[$i]['type'] = "tracker";    
-                    $alerts[$i]['alert'] = $msg1;    
-                    $alerts[$i]['icon'] = "trackoff.jpg";    
-                    $alerts[$i]['capture_datetime'] = $capture_datetime;
-                    $alerts[$i]['date'] = $capture_date;
-                    $alerts[$i]['time'] = str_replace(".",":",$capture_time);
-                    $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
-                    $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
-                    $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
-                    $alerts[$i]['latitude'] = $latitude;
-                    $alerts[$i]['longitude'] = $longitude;
-                    $i++;
+                $off_time = $tracker_off[0]->off_time;
+                $on_time = $tracker_off[0]->on_time;
+                $alerts[$i]['latitude'] = $tracker_off[0]->latitude;
+                $alerts[$i]['longitude'] = $tracker_off[0]->longitude;
+                $alerts[$i]['manager'] = $manager;
+                $alerts[$i]['client'] = $client;
+                $alerts[$i]['driver'] = $driver;
+                $alerts[$i]['VBM'] = $VBM;
+                $alerts[$i]['VMK'] = $VMK;
+                $alerts[$i]['VMD'] = $VMD;
+                $alerts[$i]['VCL'] = $VCL;
+                $alerts[$i]['alert_time'] = $off_time;
+                $temp_datetime = explode(" ",$off_time);
+                $alerts[$i]['date'] = $temp_datetime[0];
+                $alerts[$i]['time'] = $temp_datetime[1];
+                $alerts[$i]['VNO'] = $VNO;
+                $alerts[$i]['alert'] = $msg1;
+                $alerts[$i]['type'] = "tracker"; 
+                $alerts[$i]['icon'] = "trackoff.jpg";     
+                $alerts[$i]['resolve_time'] = $on_time;
+                $start_date = new DateTime($off_time);
+                $since_start = $start_date->diff(new DateTime($on_time));
+                $days = $since_start->d.' days<br>';
+                $hours = $since_start->h.' hours<br>';
+                $minutes = $since_start->i.' minutes<br>';
+                $seconds = $since_start->s.' seconds<br>';
+                $timeParts = [];
+                $sections = [
+                    'day' => (int)$days,
+                    'hour' => (int)$hours,
+                    'minute' => (int)$minutes,
+                    'second' => (int)$seconds,
+                ];
+                foreach ($sections as $name => $value){
+                    if ($value > 0){
+                        $timeParts[] = $value. ' '.$name.($value == 1 ? '' : 's');
+                    }
                 }
+                $alerts[$i]['hours'] = implode(', ', $timeParts);
+                $i++;
             }
 
             //blocking on/off
@@ -549,7 +553,6 @@ class HomeController extends Controller
                 }
                 $alerts[$i]['latitude'] = $latitude;
                 $alerts[$i]['longitude'] = $longitude;
-
                 $i++;
             }
 
@@ -590,7 +593,6 @@ class HomeController extends Controller
                     $latitude = "";
                     $longitude = "";
                 }
-
                 $i++;
             }
 
@@ -816,37 +818,41 @@ class HomeController extends Controller
             $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
         } 
 
-        /*$sql2 = "select capture_datetime,id,capture_date,capture_time,latitude,longitude from current_location a where id =(select max(id) from current_location b where a.terminal_id=b.terminal_id)";
-            $tracker_off = DB::select(DB::raw($sql2));
-            if(count($tracker_off) > 0){
-                $id = $tracker_off[0]->id;
-                $latitude = $tracker_off[0]->latitude;
-                $longitude = $tracker_off[0]->longitude;
-                $capture_date = $tracker_off[0]->capture_date;
-                $capture_time = $tracker_off[0]->capture_time;
-                $capture_time = substr($capture_time,0,2).".".substr($capture_time,2,2);
-                $capture_datetime =  new DateTime($tracker_off[0]->capture_datetime);
-                $current_time = date("Y-m-d H.i.s");
-                $since_start = $capture_datetime->diff(new DateTime($current_time));
-                $minutes_elapsed = $since_start->i.' minutes<br>';
-                if($minutes_elapsed > 3){
-                    $i++;
-                    $alerts[$i]['alert_time'] = $tracker_off[0]->capture_datetime;
-                    $alerts[$i]['VNO'] = $VNO;
-                    $alerts[$i]['alert'] = $msg1;
-                    $alerts[$i]['type'] = "tracker";     
-                    $alerts[$i]['resolve_time'] = "";
-                    $alerts[$i]['manager'] = $VNO;
-                    $alerts[$i]['date'] = $capture_date;
-                    $alerts[$i]['time'] = str_replace(".",":",$capture_time);
-                    $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
-                    $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
-                    $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
-                    $alerts[$i]['latitude'] = $latitude;
-                    $alerts[$i]['longitude'] = $longitude;
+        $sql2 = "select a.VNO,b.TID,b.off_time,b.on_time from vehicle a,tracker_status b where a.TID=b.TID and b.status =1 order by off_time desc";
+        $result = DB::select(DB::raw($sql2));
+        foreach($result as $key => $res){
+            $off_time = $res->off_time;
+            $on_time = $res->on_time;
+            $VNO = $res->VNO;
+            $i++;
+            $alerts[$i]['alert_time'] = $off_time;
+            $alerts[$i]['VNO'] = $VNO;
+            $alerts[$i]['alert'] = $msg1;
+            $alerts[$i]['type'] = "tracker";     
+            $alerts[$i]['resolve_time'] = $on_time;
+            $start_date = new DateTime($off_time);
+            $since_start = $start_date->diff(new DateTime($on_time));
+            //echo $since_start->days.' days total<br>';
+            //echo $since_start->y.' years<br>';
+            //echo $since_start->m.' months<br>';
+            $days = $since_start->d.' days<br>';
+            $hours = $since_start->h.' hours<br>';
+            $minutes = $since_start->i.' minutes<br>';
+            $seconds = $since_start->s.' seconds<br>';
+            $timeParts = [];
+            $sections = [
+                'day' => (int)$days,
+                'hour' => (int)$hours,
+                'minute' => (int)$minutes,
+                'second' => (int)$seconds,
+            ];
+            foreach ($sections as $name => $value){
+                if ($value > 0){
+                    $timeParts[] = $value. ' '.$name.($value == 1 ? '' : 's');
                 }
-            }*/
-
+            }
+            $alerts[$i]['hours'] = implode(', ', $timeParts);
+        }
 
         //dd($alerts);        
         return view('alertlog',compact('alerts','title','from','to'));

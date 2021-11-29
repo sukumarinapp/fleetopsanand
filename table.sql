@@ -1,6 +1,16 @@
+ insert into current_location (terminal_id,capture_date,capture_datetime,capture_time,latitude,longitude,ground_speed,odometer,direction,engine_on) values ('233500623977','2021-11-28','2021-11-28 00:00:08','000008.000','5.569616666666667','-0.16900333333333334','0.00','41775.977','212.36','0');
+
+select * from current_location where terminal_id='233500623977' group by capture_datetime order by  capture_datetime desc LIMIT 3;
+
+SELECT * FROM current_location A where terminal_id='233500623977' and 2 = (SELECT count(1)   FROM current_location B WHERE B.capture_datetime>A.capture_datetime);
+
+DROP TABLE `tracker_status`;
+
 CREATE TABLE `tracker_status` (
   id int(11) NOT NULL AUTO_INCREMENT,
   TID varchar(20) DEFAULT NULL,
+  latitude varchar(50) DEFAULT NULL,
+  longitude varchar(50) DEFAULT NULL,
   off_time DATETIME DEFAULT NULL,
   on_time DATETIME DEFAULT NULL,
   status tinyint(1) DEFAULT 0,
