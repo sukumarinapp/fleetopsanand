@@ -766,13 +766,10 @@ class HomeController extends Controller
                     $alerts[$i]['alert_time'] = $alert_time;  
                     $alerts[$i]['date'] = substr($alert_time,0,10);
                     $alerts[$i]['time'] = substr($alert_time,11,5);
-                    $alerts[$i]['hours'] = self::minutes($alerts[$i]['date']." ".$alerts[$i]['time'])/60;
-                    $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
-                    $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
                     $alerts[$i]['latitude'] = $latitude;
                     $alerts[$i]['longitude'] = $longitude;
                     $alerts[$i]['resolve_time'] = $battery_on[0]->capture_datetime;
-
+                    $alerts[$i]['hours'] = $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
                     $event_datetime = substr($alert_time,0,10)." ".substr($alert_time,11,5).":00";
                     $event_sql2 = "select latitude,longitude from current_location where id = (select max(id) from current_location where terminal_id='$TID' and capture_datetime <= '$event_datetime' )";
                     $event_loc2 = DB::select(DB::raw($event_sql2));
@@ -799,9 +796,7 @@ class HomeController extends Controller
             $alerts[$i]['alert_time'] = $res->DDT." "."10:00:00";  
             $alerts[$i]['alert'] = $msg3;  
             $alerts[$i]['resolve_time'] = $res->alarm_off_time;
-            $alerts[$i]['hours'] = self::minutes($res->alarm_off_time)/60;
-            $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
-            $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
+            $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
         } 
 
         //blocking on
@@ -813,9 +808,7 @@ class HomeController extends Controller
             $alerts[$i]['alert_time'] = $res->DDT." "."12:00:00";  
             $alerts[$i]['alert'] = $msg2;  
             $alerts[$i]['resolve_time'] = $res->block_off_time;
-            $alerts[$i]['hours'] = self::minutes($res->block_off_time)/60;
-            $alerts[$i]['hours'] = $alerts[$i]['hours'] * 60 * 60;
-            $alerts[$i]['hours'] = self::secondsToTime($alerts[$i]['hours']);
+            $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
         } 
 
         $sql2 = "select a.VNO,b.TID,b.off_time,b.on_time from vehicle a,tracker_status b where a.TID=b.TID and b.status =1 order by off_time desc";
@@ -830,32 +823,32 @@ class HomeController extends Controller
             $alerts[$i]['alert'] = $msg1;
             $alerts[$i]['type'] = "tracker";     
             $alerts[$i]['resolve_time'] = $on_time;
-            $start_date = new DateTime($off_time);
-            $since_start = $start_date->diff(new DateTime($on_time));
-            //echo $since_start->days.' days total<br>';
-            //echo $since_start->y.' years<br>';
-            //echo $since_start->m.' months<br>';
-            $days = $since_start->d.' days<br>';
-            $hours = $since_start->h.' hours<br>';
-            $minutes = $since_start->i.' minutes<br>';
-            $seconds = $since_start->s.' seconds<br>';
-            $timeParts = [];
-            $sections = [
-                'day' => (int)$days,
-                'hour' => (int)$hours,
-                'minute' => (int)$minutes,
-                'second' => (int)$seconds,
-            ];
-            foreach ($sections as $name => $value){
-                if ($value > 0){
-                    $timeParts[] = $value. ' '.$name.($value == 1 ? '' : 's');
-                }
-            }
-            $alerts[$i]['hours'] = implode(', ', $timeParts);
+            $alerts[$i]['hours'] = self::active_duration($off_time,$on_time);
         }
-
         //dd($alerts);        
         return view('alertlog',compact('alerts','title','from','to'));
+    }
+
+    private function active_duration($start_time,$end_time){
+        $start_date = new DateTime($start_time);
+        $since_start = $start_date->diff(new DateTime($end_time));
+        $days = $since_start->d.' days<br>';
+        $hours = $since_start->h.' hours<br>';
+        $minutes = $since_start->i.' minutes<br>';
+        $seconds = $since_start->s.' seconds<br>';
+        $timeParts = [];
+        $sections = [
+            'day' => (int)$days,
+            'hour' => (int)$hours,
+            'minute' => (int)$minutes,
+            'second' => (int)$seconds,
+        ];
+        foreach ($sections as $name => $value){
+            if ($value > 0){
+                $timeParts[] = $value. ' '.$name.($value == 1 ? '' : 's');
+            }
+        }
+        return implode(', ', $timeParts);
     }
 
     public function test(){
