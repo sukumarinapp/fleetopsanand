@@ -390,6 +390,11 @@ class WorkflowController extends Controller
     }
 
     public function rhresettesting($DCR){
+        $total_exps = 0;
+        $total_ccei = 0;
+        $total_cml = 0;
+        $total_chr = 0;
+        $rh_sold = 0 ;
         $sql = "delete from tbl137 where DCR=$DCR";
         DB::delete($sql);
         $sql = "delete from sales_audit where DCR=$DCR";
@@ -419,7 +424,7 @@ class WorkflowController extends Controller
                 $sale->CWI = round(Formulae::CWI($DCR),2);
             }
         }
-        return view('rhreport',compact('rhreport','title','from','to'));
+        return view('rhreport',compact('rhreport','title','from','to','total_exps','total_ccei','rh_sold','total_cml','total_chr'));
     }
 
     public function resendsms($id){
