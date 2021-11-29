@@ -311,6 +311,10 @@ function initRoute() {
  marker.play();
 }
 
+function pauseandplay(){
+    marker.play();
+}
+
 function pause() {
   marker.pause();
 }

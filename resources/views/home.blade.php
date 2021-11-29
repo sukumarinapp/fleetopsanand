@@ -83,11 +83,16 @@
                   <div class="col-md-3">
                     <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">
                   </div>
+                  <div class="col-md-1">
+                    <button type="button" class="btn btn-success btn-xs form-control" onclick="play()" value ="Apply">Apply</button>
+                  </div>
                 </div>
                 <div style="padding-bottom:5px" class="row">
+                  
                   <div class="col-md-1">
-                    <button type="button" class="btn btn-success btn-xs form-control" onclick="play()" value ="Play"><i class="fa fa-play"></i></button>
+                    <button type="button" class="btn btn-success btn-xs form-control" onclick="pauseandplay()" value ="Play"><i class="fa fa-play"></i></button>
                   </div>
+                  
                   <div class="col-md-1">
                     <button type="button" class="btn btn-danger btn-xs form-control" onclick="pause()" value ="Pause"><i class="fa fa-pause"></i></button>
                   </div>
