@@ -575,7 +575,6 @@ class HomeController extends Controller
 
             //battery on/off
             $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999')";
-            echo $sql4;
             $battery = DB::select(DB::raw($sql4));
             if(count($battery) > 0){
                 $alert_time = $battery[0]->alert_time;
@@ -615,7 +614,7 @@ class HomeController extends Controller
                 }
             }
         }
-        dd($alerts);        
+        //dd($alerts);        
         return $alerts;
     }
 
