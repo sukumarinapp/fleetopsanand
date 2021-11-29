@@ -614,7 +614,7 @@ class HomeController extends Controller
                 }
             }
         }
-        //dd($alerts);        
+        dd($alerts);        
         return $alerts;
     }
 
