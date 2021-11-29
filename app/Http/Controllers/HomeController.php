@@ -730,20 +730,8 @@ class HomeController extends Controller
                     $alerts[$i]['alert_time'] = $alert_time;  
                     $alerts[$i]['date'] = substr($alert_time,0,10);
                     $alerts[$i]['time'] = substr($alert_time,11,5);
-                    $alerts[$i]['latitude'] = $latitude;
-                    $alerts[$i]['longitude'] = $longitude;
                     $alerts[$i]['resolve_time'] = $battery_on[0]->capture_datetime;
                     $alerts[$i]['hours'] = $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
-                    $event_datetime = substr($alert_time,0,10)." ".substr($alert_time,11,5).":00";
-                    $event_sql2 = "select latitude,longitude from current_location where id = (select max(id) from current_location where terminal_id='$TID' and capture_datetime <= '$event_datetime' )";
-                    $event_loc2 = DB::select(DB::raw($event_sql2));
-                    if(count($event_loc2) > 0){
-                        $latitude = $event_loc2[0]->latitude;
-                        $longitude = $event_loc2[0]->longitude;
-                    }else{
-                        $latitude = "";
-                        $longitude = "";
-                    }
                     $i++;
                 }
             }
