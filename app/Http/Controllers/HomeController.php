@@ -574,13 +574,13 @@ class HomeController extends Controller
             }
 
             //battery on/off
-            $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999')";
+            $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999' and alert='50')";
             $battery = DB::select(DB::raw($sql4));
             if(count($battery) > 0){
                 $alert_time = $battery[0]->alert_time;
-                $sql5 = "select * from current_location where terminal_id='$TID' and capture_datetime > '$alert_time' limit 1";
+                $sql5 = "select * from current_location where terminal_id='$TID' and capture_datetime <= '$alert_time' limit 1";
                 $battery_on = DB::select(DB::raw($sql5));
-                if(count($battery_on) == 0){
+                if(count($battery_on) > 0){
                     $alerts[$i]['VID'] = $VID;
                     $alerts[$i]['VNO'] = $VNO;
                     $alerts[$i]['manager'] = $manager;
@@ -597,19 +597,8 @@ class HomeController extends Controller
                     $alerts[$i]['date'] = substr($alert_time,0,10);
                     $alerts[$i]['time'] = substr($alert_time,11,5);
                     $alerts[$i]['hours'] = self::active_duration($alert_time,date("Y-m-d H:i:s"));
-                    $alerts[$i]['latitude'] = $latitude;
-                    $alerts[$i]['longitude'] = $longitude;
-
-                    $event_datetime = substr($alert_time,0,10)." ".substr($alert_time,11,5).":00";
-                    $event_sql2 = "select latitude,longitude from current_location where id = (select max(id) from current_location where terminal_id='$TID' and capture_datetime <= '$event_datetime' )";
-                    $event_loc2 = DB::select(DB::raw($event_sql2));
-                    if(count($event_loc2) > 0){
-                        $latitude = $event_loc2[0]->latitude;
-                        $longitude = $event_loc2[0]->longitude;
-                    }else{
-                        $latitude = "";
-                        $longitude = "";
-                    }
+                    $alerts[$i]['latitude'] = $battery_on[0]->latitude;
+                    $alerts[$i]['longitude'] = $battery_on[0]->longitude;
                     $i++;
                 }
             }
