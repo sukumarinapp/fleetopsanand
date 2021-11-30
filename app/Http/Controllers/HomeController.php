@@ -574,7 +574,7 @@ class HomeController extends Controller
             }
 
             //battery on/off
-            $sql4 = "select * from alarm where terminal_id='$TID' and command='9999' and alert='50' and resolved = 0";
+            $sql4 = "select * from alarm where terminal_id='$TID' and command='9999' and alert='50' and resolved = 0 order by alert_time";
             $battery = DB::select(DB::raw($sql4));
             foreach($battery as $res){
                 $alert_time = $res->alert_time;
@@ -670,33 +670,30 @@ class HomeController extends Controller
             $current_date = date("Y-m-d");
             $current_time = date("H.i");
             //battery on/off
-            $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999')";
+            $sql4 = "select * from alarm where terminal_id='$TID' and command='9999' and alert='50' and resolved = 1";
             $battery = DB::select(DB::raw($sql4));
-            if(count($battery) > 0){
-                $alert_time = $battery[0]->alert_time;
-                $sql5 = "select * from current_location where terminal_id='$TID' and capture_datetime > '$alert_time' order by capture_datetime limit 1";
-                $battery_on = DB::select(DB::raw($sql5));
-                if(count($battery_on) > 0){
-                    $alerts[$i]['VID'] = $VID;
-                    $alerts[$i]['VNO'] = $VNO;
-                    $alerts[$i]['manager'] = $VNO;
-                    $alerts[$i]['manager'] = $manager;
-                    $alerts[$i]['client'] = $client;
-                    $alerts[$i]['VMK'] = $VMK;
-                    $alerts[$i]['VMD'] = $VMD;
-                    $alerts[$i]['VCL'] = $VCL;
-                    $alerts[$i]['VBM'] = $VBM;
-                    $alerts[$i]['driver'] = $driver;
-                    $alerts[$i]['TID'] = $TID;     
-                    $alerts[$i]['type'] = "battery";    
-                    $alerts[$i]['alert'] = $msg4;  
-                    $alerts[$i]['alert_time'] = $alert_time;  
-                    $alerts[$i]['date'] = substr($alert_time,0,10);
-                    $alerts[$i]['time'] = substr($alert_time,11,5);
-                    $alerts[$i]['resolve_time'] = $battery_on[0]->capture_datetime;
-                    $alerts[$i]['hours'] = $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
-                    $i++;
-                }
+            foreach($battery as $res){
+                $alert_time = $res->alert_time;
+                $alerts[$i]['resolve_time'] = $res->resolved_time;
+                $alerts[$i]['resolved_by'] = $res->resolved_by;
+                $alerts[$i]['VID'] = $VID;
+                $alerts[$i]['VNO'] = $VNO;
+                $alerts[$i]['manager'] = $VNO;
+                $alerts[$i]['manager'] = $manager;
+                $alerts[$i]['client'] = $client;
+                $alerts[$i]['VMK'] = $VMK;
+                $alerts[$i]['VMD'] = $VMD;
+                $alerts[$i]['VCL'] = $VCL;
+                $alerts[$i]['VBM'] = $VBM;
+                $alerts[$i]['driver'] = $driver;
+                $alerts[$i]['TID'] = $TID;     
+                $alerts[$i]['type'] = "battery";    
+                $alerts[$i]['alert'] = $msg4;  
+                $alerts[$i]['alert_time'] = $alert_time;  
+                $alerts[$i]['date'] = substr($alert_time,0,10);
+                $alerts[$i]['time'] = substr($alert_time,11,5);
+                $alerts[$i]['hours'] = $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
+                $i++;
             }
 
            
@@ -709,7 +706,8 @@ class HomeController extends Controller
             $i++;
             $alerts[$i]['VNO'] = $res->VNO;
             $alerts[$i]['alert_time'] = $res->DDT." "."10:00:00";  
-            $alerts[$i]['alert'] = $msg3;  
+            $alerts[$i]['alert'] = "buzzer";  
+            $alerts[$i]['type'] = $msg3;  
             $alerts[$i]['resolve_time'] = $res->alarm_off_time;
             $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
         } 
@@ -722,6 +720,7 @@ class HomeController extends Controller
             $alerts[$i]['VNO'] = $res->VNO;
             $alerts[$i]['alert_time'] = $res->DDT." "."12:00:00";  
             $alerts[$i]['alert'] = $msg2;  
+            $alerts[$i]['type'] = "blocking";  
             $alerts[$i]['resolve_time'] = $res->block_off_time;
             $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
         } 
