@@ -610,6 +610,8 @@ class HomeController extends Controller
 
     public function alertlog($from,$to)
     {
+        $from = str_replace("T"," ",$from);
+        $to = str_replace("T"," ",$to);
         $title = "Alert Log";
         $user_id = Auth::user()->id;
         $parent_id = Auth::user()->parent_id;
@@ -670,7 +672,7 @@ class HomeController extends Controller
             $current_date = date("Y-m-d");
             $current_time = date("H.i");
             //battery on/off
-            $sql4 = "select * from alarm where terminal_id='$TID' and command='9999' and alert='50' and resolved = 1";
+            $sql4 = "select * from alarm where terminal_id='$TID' and command='9999' and alert='50' and resolved = 1 and alert_time >= '$from' and alert_time <= '$to' order by alert_time desc";
             $battery = DB::select(DB::raw($sql4));
             foreach($battery as $res){
                 $alert_time = $res->alert_time;

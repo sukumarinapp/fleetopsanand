@@ -55,7 +55,7 @@
            <td>{{ $alert['alert_time'] }}</td>
            <td>{{ $alert['resolve_time'] }}
            @if($alert['type'] == "battery")
-            <br>Resolved By: {{ $alert['resolved_by'] }}
+            <br><b>Resolved By:</b> {{ $alert['resolved_by'] }}
            @endif 
            </td>
          </tr>
