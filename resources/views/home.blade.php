@@ -150,6 +150,7 @@
           <th>Alert</th>
           <th>Active Duration</th>
           <th>Event Location</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -164,15 +165,19 @@
             {{ $alert["alert"] }}
           </td>
           <td>{{ $alert["hours"] }}</td>
-          <td style="padding-top: 10px;"> 
+          <td > 
             
             <button type="button" class="btn btn-primary btn-sm" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
             <a  href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a>
 
             <a class="btn btn-primary btn-sm" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
 
+            </td>
+            <td>
             @if($alert['type'] == "battery")
-              <a class="btn btn-primary btn-sm" onclick="acknowledgealert({{ $alert['id'] }})">Acknowledge</a>
+             <a class="btn btn-primary btn-sm" onclick="acknowledgealert({{ $alert['id'] }})" >Acknowledge</a>
+            @else
+              &nbsp; 
             @endif
           </td> 
         </tr>
