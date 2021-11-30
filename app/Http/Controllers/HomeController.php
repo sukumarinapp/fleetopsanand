@@ -708,8 +708,8 @@ class HomeController extends Controller
             $i++;
             $alerts[$i]['VNO'] = $res->VNO;
             $alerts[$i]['alert_time'] = $res->DDT." "."10:00:00";  
-            $alerts[$i]['alert'] = "buzzer";  
-            $alerts[$i]['type'] = $msg3;  
+            $alerts[$i]['alert'] = $msg3;  
+            $alerts[$i]['type'] = "buzzer";  
             $alerts[$i]['resolve_time'] = $res->alarm_off_time;
             $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
         } 
