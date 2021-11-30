@@ -574,13 +574,14 @@ class HomeController extends Controller
             }
 
             //battery on/off
-            $sql4 = "select * from alarm where terminal_id='$TID' and id = (select max(id) from alarm where terminal_id='$TID' and command='9999' and alert='50')";
+            $sql4 = "select * from alarm where terminal_id='$TID' and command='9999' and alert='50' and resolved = 0";
             $battery = DB::select(DB::raw($sql4));
-            if(count($battery) > 0){
-                $alert_time = $battery[0]->alert_time;
+            foreach($battery as $res){
+                $alert_time = $res->alert_time;
                 $sql5 = "select * from current_location where terminal_id='$TID' and capture_datetime <= '$alert_time' limit 1";
                 $battery_on = DB::select(DB::raw($sql5));
                 if(count($battery_on) > 0){
+                    $alerts[$i]['id'] = $res->id;
                     $alerts[$i]['VID'] = $VID;
                     $alerts[$i]['VNO'] = $VNO;
                     $alerts[$i]['manager'] = $manager;
@@ -605,44 +606,6 @@ class HomeController extends Controller
         }
         //dd($alerts);        
         return $alerts;
-    }
-
-    private function secondsToTime($inputSeconds) {
-        $secondsInAMinute = 60;
-        $secondsInAnHour = 60 * $secondsInAMinute;
-        $secondsInADay = 24 * $secondsInAnHour;
-
-        // Extract days
-        $days = floor($inputSeconds / $secondsInADay);
-
-        // Extract hours
-        $hourSeconds = $inputSeconds % $secondsInADay;
-        $hours = floor($hourSeconds / $secondsInAnHour);
-
-        // Extract minutes
-        $minuteSeconds = $hourSeconds % $secondsInAnHour;
-        $minutes = floor($minuteSeconds / $secondsInAMinute);
-
-        // Extract the remaining seconds
-        $remainingSeconds = $minuteSeconds % $secondsInAMinute;
-        $seconds = ceil($remainingSeconds);
-
-        // Format and return
-        $timeParts = [];
-        $sections = [
-            'day' => (int)$days,
-            'hour' => (int)$hours,
-            'minute' => (int)$minutes,
-            'second' => (int)$seconds,
-        ];
-
-        foreach ($sections as $name => $value){
-            if ($value > 0){
-                $timeParts[] = $value. ' '.$name.($value == 1 ? '' : 's');
-            }
-        }
-
-        return implode(', ', $timeParts);
     }
 
     public function alertlog($from,$to)
@@ -805,6 +768,17 @@ class HomeController extends Controller
             }
         }
         return implode(', ', $timeParts);
+    }
+
+    public function acknowledge($id)
+    {
+        $user_id = Auth::user()->id;
+        $resolved_by = Auth::user()->UAN;
+        $resolved_time = date("Y-m-d H:i.s");
+        $resolved = 1;
+        $sql = "update alarm set resolved=$resolved,resolved_by='$resolved_by',resolved_time='$resolved_time' where id=$id";
+        DB::update($sql);
+        return redirect('/home');
     }
 
     public function test(){

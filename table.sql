@@ -1,3 +1,7 @@
+alter table alarm add resolved tinyint(1) DEFAULT 0 after packet;
+alter table alarm add resolved_time DATETIME DEFAULT NULL after resolved;
+alter table alarm add resolved_by varchar(20) DEFAULT NULL after resolved_time;
+
 alter table current_location modify odometer decimal(12,3);
 
  insert into current_location (terminal_id,capture_date,capture_datetime,capture_time,latitude,longitude,ground_speed,odometer,direction,engine_on) values ('233500623977','2021-11-28','2021-11-28 00:00:08','000008.000','5.569616666666667','-0.16900333333333334','0.00','41775.977','212.36','0');
@@ -19,7 +23,7 @@ CREATE TABLE `tracker_status` (
   PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-alter table tbl136 add alarm_off_time DATETIME DEFAULT NULL after CRS;
+
 alter table tbl136 add block_off_time DATETIME DEFAULT NULL after alarm_off_time;
 
 
