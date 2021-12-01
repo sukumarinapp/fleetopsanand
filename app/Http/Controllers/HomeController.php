@@ -610,8 +610,6 @@ class HomeController extends Controller
 
     public function alertlog($from,$to)
     {
-        $from = str_replace("T"," ",$from);
-        $to = str_replace("T"," ",$to);
         $title = "Alert Log";
         $user_id = Auth::user()->id;
         $parent_id = Auth::user()->parent_id;
@@ -672,7 +670,7 @@ class HomeController extends Controller
             $current_date = date("Y-m-d");
             $current_time = date("H.i");
             //battery on/off
-            $sql4 = "select * from alarm where terminal_id='$TID' and command='9999' and alert='50' and resolved = 1 and alert_time >= '$from' and alert_time <= '$to' order by alert_time desc";
+            $sql4 = "select * from alarm where terminal_id='$TID' and command='9999' and alert='50' and resolved = 1 and alert_date >= '$from' and alert_date <= '$to' order by alert_time desc";
             $battery = DB::select(DB::raw($sql4));
             foreach($battery as $res){
                 $alert_time = $res->alert_time;
@@ -727,7 +725,7 @@ class HomeController extends Controller
             $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
         } 
 
-        $sql2 = "select a.VNO,b.TID,b.off_time,b.on_time from vehicle a,tracker_status b where a.TID=b.TID and b.status =1 order by off_time desc";
+        $sql2 = "select a.VNO,b.TID,b.off_time,b.on_time from vehicle a,tracker_status b where a.TID=b.TID and substring(off_time,1,10) >= '$from' and substring(off_time,1,10) <='$to' and b.status =1 order by off_time desc";
         $result = DB::select(DB::raw($sql2));
         foreach($result as $key => $res){
             $off_time = $res->off_time;

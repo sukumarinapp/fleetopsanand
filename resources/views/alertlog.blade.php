@@ -24,10 +24,10 @@
         </div>
         <div class="col-md-10">
          <form class="form-inline" >
-          <label for="from">&nbsp;Start Time&nbsp;</label>
-          <input value="{{ $from }}" class="form-control" type="datetime-local" id="from" name="from"  />
-          <label for="to">&nbsp;End Time&nbsp;</label>
-          <input value="{{ $to }}" class="form-control" type="datetime-local" id="to" name="to"  />
+          <label for="from">&nbsp;From Date&nbsp;</label>
+          <input value="{{ $from }}" class="form-control" type="date" id="from" name="from"  />
+          <label for="to">&nbsp;To Date&nbsp;</label>
+          <input value="{{ $to }}" class="form-control" type="date" id="to" name="to"  />
           <label>&nbsp;</label>
           <input onclick="load_report()" type="button"  value="Apply" class="form-control text-center btn btn-success btn-sm" />
         </form>

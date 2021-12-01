@@ -1,3 +1,7 @@
+SELECT substring("off_time", 1, 10) from tracker_status;
+
+alter table alarm add alert_date date DEFAULT NULL after id;
+
 alter table alarm add resolved tinyint(1) DEFAULT 0 after packet;
 alter table alarm add resolved_time DATETIME DEFAULT NULL after resolved;
 alter table alarm add resolved_by varchar(20) DEFAULT NULL after resolved_time;
