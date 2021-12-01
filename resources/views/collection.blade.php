@@ -142,7 +142,7 @@
            @endif
            <td>{{ $sale->RCN }}</td>
             @if($sale->RST == 1)
-              <td>{{ $sale->RTN }}</td>
+              <td>{{ $sale->RNO }}</td>
             @else
               <td>&nbsp;</td>
             @endif
