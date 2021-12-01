@@ -346,10 +346,13 @@
             console.log(vehicle["latitude"]);
             if (typeof(vehicle_old["latitude"]) != "undefined"){
               console.log(vehicle_old["latitude"]);
+              deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
+              deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
+            }else{
+              deltaLat = (vehicle["latitude"];
+              deltaLng = (vehicle["longitude"]
             }
-            break;
-            deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
-            deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
+            
             var myLatLng = new google.maps.LatLng(deltaLat, deltaLng);
             //var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
             var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + vehicle["ground_speed"]; 
@@ -375,10 +378,14 @@
           success: function(response) {
             vehicles = response;
             //setMarkers(vehicles);
-            iter=0;
-            if(i!=numDeltas){
-              iter++;
-              setTimeout(setMarkers(vehicles,vehicles_old), delay);
+            if (typeof(vehicle_old["latitude"]) != "undefined"){
+              iter=0;
+              if(i!=numDeltas){
+                iter++;
+                setTimeout(setMarkers(vehicles,vehicles_old), delay);
+              }
+            }else{
+              setMarkers(vehicles,vehicles_old);
             }
             vehicles_old = response;
           },
