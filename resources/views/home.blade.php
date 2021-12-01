@@ -347,8 +347,8 @@
               console.log("moving car");
               deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
               deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
-            deltaLat = vehicle["latitude"] + .1;
-            deltaLng = vehicle["longitude"] + .1;
+            deltaLat = deltaLat + .1;
+            deltaLng = deltaLng + .1;
 
             }else{
               deltaLat = vehicle["latitude"];
