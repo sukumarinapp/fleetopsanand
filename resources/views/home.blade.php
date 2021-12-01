@@ -257,7 +257,7 @@
       var vehicles = [];
       var vehicles_old = [];
 
-      var numDeltas = 100;
+      var numDeltas = 10;
       var delay = 10; //milliseconds
       var iter = 0;
       var deltaLat;
@@ -371,7 +371,7 @@
         for (var i=0; i<markers.length; i++) {
           //markers[i].setMap(null);
         }
-        markers = [];
+        //markers = [];
         $.ajax({
           type: "get",
           url: '{{ route('locations') }}',
