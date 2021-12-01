@@ -183,7 +183,13 @@
 <div class="form-group row">
     <div class="col-sm-6">
       <div class="form-check">
-        <input {{ ($deactivate == "0" && $user->UTV == "1" ? "disabled":"") }} {{ ($user->UTV == "1" ? "checked":"") }} value="1" type="checkbox" name="UTV" class="form-check-input" id="UTV">
+        <input 
+        @php
+        if($deactivate == 0 && $user->UTV == "1"){
+            echo "onclick='return false'";
+        }
+        @endphp
+         {{ ($user->UTV == "1" ? "checked":"") }} value="1" type="checkbox" name="UTV" class="form-check-input" id="UTV">
         <label class="form-check-label text-success" for="UTV"><b>Activate Account</b></label>
     </div>
 </div>
