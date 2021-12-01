@@ -343,8 +343,8 @@
           }
           if(check_checked(vehicle['VNO'])){
 
-            deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
-            deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
+            deltaLat = (vehicle["latitude"] - vehicles_old[i]["latitude"])/numDeltas;
+            deltaLng = (vehicle["longitude"] - vehicles_old[i]["longitude"])/numDeltas;
             var myLatLng = new google.maps.LatLng(deltaLat, deltaLng);
             //var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
             var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + vehicle["ground_speed"]; 
@@ -370,9 +370,9 @@
           success: function(response) {
             vehicles = response;
             //setMarkers(vehicles);
-            i=0;
+            iter=0;
             if(i!=numDeltas){
-              i++;
+              iter++;
               setTimeout(setMarkers(vehicles), delay);
             }
             vehicles_old = response;
