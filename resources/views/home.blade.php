@@ -349,8 +349,8 @@
               deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
               deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
             }else{
-              deltaLat = (vehicle["latitude"];
-              deltaLng = (vehicle["longitude"];
+              deltaLat = vehicle["latitude"];
+              deltaLng = vehicle["longitude"];
             }
             
             var myLatLng = new google.maps.LatLng(deltaLat, deltaLng);
