@@ -256,7 +256,7 @@
       var markers = []; 
       var vehicles = [];
       var vehicles_old = [];
-
+      var animate_car  = 0;
       var numDeltas = 10;
       var delay = 10; //milliseconds
       var iter = 0;
@@ -344,8 +344,8 @@
           }
           if(check_checked(vehicle['VNO'])){
             console.log(vehicle["latitude"]);
-            if (typeof(vehicle_old) != "undefined" && typeof(vehicle_old["latitude"]) != "undefined"){
-              console.log(vehicle_old["latitude"]);
+            if(animate_car == 1){
+              console.log("moving car");
               deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
               deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
             }else{
@@ -378,7 +378,7 @@
           success: function(response) {
             vehicles = response;
             //setMarkers(vehicles);
-            if (typeof(vehicle_old) != "undefined" && typeof(vehicle_old["latitude"]) != "undefined"){
+            if(animate_car == 1){
               iter=0;
               if(i!=numDeltas){
                 iter++;
@@ -388,6 +388,7 @@
               setMarkers(vehicles,vehicles_old);
             }
             vehicles_old = response;
+            animate_car = 1;
           },
           error: function (jqXHR, exception) {
             console.log(exception);
