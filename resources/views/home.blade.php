@@ -255,6 +255,30 @@
       var mapnormal;
       var markers = []; 
       var vehicles = [];
+      var vehicles_old = [];
+
+      var numDeltas = 100;
+      var delay = 10; //milliseconds
+      var iter = 0;
+      var deltaLat;
+      var deltaLng;
+      /*function transition(result){
+          i = 0;
+          deltaLat = (result[0] - position[0])/numDeltas;
+          deltaLng = (result[1] - position[1])/numDeltas;
+          moveMarker();
+      }
+
+      function moveMarker(){
+          position[0] += deltaLat;
+          position[1] += deltaLng;
+          var latlng = new google.maps.LatLng(position[0], position[1]);
+          marker.setPosition(latlng);
+          if(i!=numDeltas){
+              i++;
+              setTimeout(moveMarker, delay);
+          }
+      }*/
       function setMarkers(locations) {
         for (var i = 0; i < locations.length; i++) {
           var vehicle = locations[i];
@@ -318,7 +342,11 @@
             }
           }
           if(check_checked(vehicle['VNO'])){
-            var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
+
+            deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
+            deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
+            var myLatLng = new google.maps.LatLng(deltaLat, deltaLng);
+            //var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
             var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + vehicle["ground_speed"]; 
             var marker = new google.maps.Marker({
               position: myLatLng,
@@ -341,7 +369,13 @@
           url: '{{ route('locations') }}',
           success: function(response) {
             vehicles = response;
-            setMarkers(vehicles);
+            //setMarkers(vehicles);
+            i=0;
+            if(i!=numDeltas){
+              i++;
+              setTimeout(setMarkers(vehicles), delay);
+            }
+            vehicles_old = response;
           },
           error: function (jqXHR, exception) {
             console.log(exception);
