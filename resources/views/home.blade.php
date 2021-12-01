@@ -343,11 +343,13 @@
             }
           }
           if(check_checked(vehicle['VNO'])){
-            console.log(vehicle["latitude"]);
             if(animate_car == 1){
               console.log("moving car");
               deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
               deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
+            deltaLat = vehicle["latitude"] + .1;
+            deltaLng = vehicle["longitude"] + .1;
+
             }else{
               deltaLat = vehicle["latitude"];
               deltaLng = vehicle["longitude"];
