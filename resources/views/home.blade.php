@@ -379,7 +379,7 @@
             //setMarkers(vehicles);
             if(animate_car == 1){
               iter=0;
-              if(i!=numDeltas){
+              if(iter!=numDeltas){
                 iter++;
                 console.log(iter);
                 setTimeout(setMarkers(vehicles,vehicles_old), delay);
