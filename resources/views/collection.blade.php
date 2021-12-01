@@ -116,6 +116,7 @@
             <th>VNO</th>
             <th>VBM</th>
             <th>Contact#</th>
+            <th>Receipt No</th>
             <th>Amount</th>
             <th>Operator</th>
             <th>Tran#</th>
@@ -140,6 +141,11 @@
            <td>HP</td>
            @endif
            <td>{{ $sale->RCN }}</td>
+            @if($sale->RST == 1)
+              <td>{{ $sale->RTN }}</td>
+            @else
+              <td>&nbsp;</td>
+            @endif
            <td>{{ $sale->RMT }}</td>
            <td>{{ $sale->ROI }}</td>
            <td>{{ $sale->RTN }}</td>
