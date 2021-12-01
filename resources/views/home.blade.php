@@ -173,9 +173,9 @@
             <a class="btn btn-primary btn-sm  btn-block" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
 
             </td>
-            <td>
+            <td style="padding-top: 20px;">
             @if($alert['type'] == "battery")
-             <a class="btn btn-primary btn-sm" onclick="acknowledgealert({{ $alert['id'] }})" >Acknowledge</a>
+             <a  class="btn btn-primary btn-sm btn-block"  onclick="acknowledgealert({{ $alert['id'] }})" >Acknowledge</a>
             @else
               &nbsp; 
             @endif
