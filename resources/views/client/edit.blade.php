@@ -172,7 +172,7 @@
 <div class="form-group row">
     <label {{ $user->CMT == 'A' ? "style=display:none" : '' }} id="CMBLBL" for="CMB" class="col-sm-4 col-form-label">Account Branch</label>
     <div {{ $user->CMT == 'A' ? "style=display:none" : '' }} class="col-sm-8" id="branch_div">
-      <input value="{{ $user->CMT == 'B' ? $user->CMB : '' }}" type='text' class='form-control' name='CMB' id='CMB' maxlength='50' placeholder='Account Branch'>
+      <input value="{{ $user->CMT == 'B' ? $user->CMB : '' }}" type='text' class='form-control' name='CMBR' id='CMBR' maxlength='50' placeholder='Account Branch'>
   </div>
 </div>
 

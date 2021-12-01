@@ -228,7 +228,11 @@ class ClientController extends Controller
             $user->UCN =  $request->get('UCN');
             $user->CMN =  $request->get('CMN');
             $user->email =  $request->get('email');
-            $user->CMB =  $request->get('CMB');
+            if($user->CMT == "B"){
+                $user->CMB =  $request->get('CMBR');
+            }else{
+                $user->CMB =  $request->get('CMB');
+            }
             $user->CBK =  $request->get('CBK');
             $user->UTV   =  $UTV;            
             $user->RBA   =  $RBA;            
