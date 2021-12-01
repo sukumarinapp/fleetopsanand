@@ -273,7 +273,7 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
       </div>
     </div>
-  </div>
+  </div> 
   @endsection
 @push('page_scripts')
 <script>
