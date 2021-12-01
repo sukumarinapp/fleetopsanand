@@ -357,7 +357,7 @@
             
             var myLatLng = new google.maps.LatLng(deltaLat, deltaLng);
             //var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
-            var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + vehicle["ground_speed"]+ "\n" + vehicle["latitude"]+ "," + vehicle["longitude"]; 
+            var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + vehicle["ground_speed"]+ "\n" + deltaLat+ "," + deltaLng; 
             var marker = new google.maps.Marker({
               position: myLatLng,
               map: mapnormal,
