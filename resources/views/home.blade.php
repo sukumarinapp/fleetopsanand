@@ -70,7 +70,7 @@
                <div id="map_replay" style="height: 500px;display: none;">
                 <form class="form" >
                   @csrf
-                  <div class="row">
+                  <div style="padding-bottom:5px" class="row">
                   <div class="col-md-2">
                     <label for="email">Start Time</label>                    
                   </div>
@@ -123,7 +123,7 @@
 
             </form>
             <div class="bg-success"  id="replay-summary" ></div>
-            <div id="replay-canvas" style="height: 400px"></div>
+            <div id="replay-canvas" style="height: 350px"></div>
           </div>
         </div>
       </div>

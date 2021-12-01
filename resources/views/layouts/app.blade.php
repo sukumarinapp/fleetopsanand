@@ -232,7 +232,7 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-<script src="https://unpkg.com/travel-marker/dist/travel-marker.umd.js"></script>
+<script type="text/javascript" language="javascript" src="{{ asset('js/travel-marker.umd.js') }}"></script>
 @stack('page_scripts')
 <script>
 //https://codepen.io/manpreetsingh80/pen/aEpzjB    
