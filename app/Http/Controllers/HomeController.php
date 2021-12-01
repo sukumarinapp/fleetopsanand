@@ -772,7 +772,7 @@ class HomeController extends Controller
     public function acknowledge($id)
     {
         $user_id = Auth::user()->id;
-        $resolved_by = Auth::user()->UAN;
+        $resolved_by = Auth::user()->name." ".Auth::user()->UZS."(".Auth::user()->UAN.")";
         $resolved_time = date("Y-m-d H:i.s");
         $resolved = 1;
         $sql = "update alarm set resolved=$resolved,resolved_by='$resolved_by',resolved_time='$resolved_time' where id=$id";
