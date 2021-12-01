@@ -279,9 +279,10 @@
               setTimeout(moveMarker, delay);
           }
       }*/
-      function setMarkers(locations) {
+      function setMarkers(locations,locations_old) {
         for (var i = 0; i < locations.length; i++) {
           var vehicle = locations[i];
+          var vehicle_old = locations_old[i];
           var acc = "";
           var engine_on = parseInt(vehicle["engine_on"]);
           if(engine_on == 0){
@@ -343,8 +344,8 @@
           }
           if(check_checked(vehicle['VNO'])){
 
-            deltaLat = (vehicle["latitude"] - vehicles_old[i]["latitude"])/numDeltas;
-            deltaLng = (vehicle["longitude"] - vehicles_old[i]["longitude"])/numDeltas;
+            deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
+            deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
             var myLatLng = new google.maps.LatLng(deltaLat, deltaLng);
             //var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
             var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + vehicle["ground_speed"]; 
@@ -373,7 +374,7 @@
             iter=0;
             if(i!=numDeltas){
               iter++;
-              setTimeout(setMarkers(vehicles), delay);
+              setTimeout(setMarkers(vehicles,vehicles_old), delay);
             }
             vehicles_old = response;
           },
