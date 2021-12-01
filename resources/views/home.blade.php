@@ -343,7 +343,9 @@
             }
           }
           if(check_checked(vehicle['VNO'])){
-
+            console.log(vehicle["latitude"]);
+            console.log(vehicle_old["latitude"]);
+            break;
             deltaLat = (vehicle["latitude"] - vehicle_old["latitude"])/numDeltas;
             deltaLng = (vehicle["longitude"] - vehicle_old["longitude"])/numDeltas;
             var myLatLng = new google.maps.LatLng(deltaLat, deltaLng);
