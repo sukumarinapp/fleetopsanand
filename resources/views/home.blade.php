@@ -371,9 +371,9 @@
       }
       function reloadMarkers() {
         for (var i=0; i<markers.length; i++) {
-          //markers[i].setMap(null);
+          markers[i].setMap(null);
         }
-        //markers = [];
+        markers = [];
         $.ajax({
           type: "get",
           url: '{{ route('locations') }}',
