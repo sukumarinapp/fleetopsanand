@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/test', 'HomeController@test')->name('test');
 Route::get('/replay', 'HomeController@replay')->name('replay');
 Route::get('/track/{VNO}/{starttime}/{endtime}','HomeController@track')->name('track');
 Route::get('/parameter', 'ParameterController@index')->name('parameter');

@@ -781,12 +781,6 @@ class HomeController extends Controller
     }
 
     public function test(){
-        $capture_datetime =  new DateTime("2021-11-27 06:10:12");
-        $current_time = date("Y-m-d H.i.s");
-        echo $current_time."<br>";
-        $since_start = $capture_datetime->diff(new DateTime($current_time));
-        $minutes_elapsed = $since_start->i.' minutes<br>';
-        echo $minutes_elapsed."<br>";
-        die;
+        return view('test');
     }
 }
