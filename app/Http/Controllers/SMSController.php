@@ -23,7 +23,7 @@ class SMSController extends Controller
     public function index()
     {
         $this->check_access();
-        $notifications = NotificationSetup::all();
+        $notifications = NotificationSetup::all()->sortBy("sms_id");
         return view('sms.index',compact('notifications'));
     }
 

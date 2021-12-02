@@ -1,3 +1,7 @@
+insert into notification (sms_id,sms_text) values ('SMSB08','');
+insert into notification (sms_id,sms_text) values ('SMSB09','');
+
+
 alter table tbl137 add RNO varchar(20) DEFAULT NULL after TIM2;
 
 
