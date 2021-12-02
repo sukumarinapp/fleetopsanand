@@ -1,4 +1,5 @@
-SELECT substring("off_time", 1, 10) from tracker_status;
+alter table tbl137 add RNO varchar(20) DEFAULT NULL after TIM2;
+
 
 alter table alarm add alert_date date DEFAULT NULL after id;
 
