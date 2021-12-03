@@ -1,3 +1,8 @@
+CREATE TABLE `receipt_no` (
+  RNO int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+insert into receipt_no (RNO) values (99999);
+
 insert into notification (sms_id,sms_text) values ('SMSB08','');
 insert into notification (sms_id,sms_text) values ('SMSB09','');
 
