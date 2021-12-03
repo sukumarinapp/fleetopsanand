@@ -48,7 +48,7 @@
         });
     }
 
-    setInterval(animateMarkers, 10000);
+    setInterval(animateMarkers, 60000);
 
     var numDeltas = 100;
     var delay = 100; //milliseconds
