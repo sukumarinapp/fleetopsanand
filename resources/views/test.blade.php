@@ -23,7 +23,7 @@
             position: latlng,
             map: map,
             icon: "cartop.png",
-            title: "GT6014-17\n233500627699"
+            title: "GT9323-17"
         });
         google.maps.event.addListener(map, 'click', function(me) {
             var result = [me.latLng.lat(), me.latLng.lng()];
@@ -37,6 +37,9 @@
           type: "get",
           url: '{{ route('vehicle_location') }}',
           success: function(response) {
+            console.log(response[0]['latitude']);
+            console.log(response[0]['longitude']);
+            console.log(response[0]['ground_speed']);
             result = [response[0]['latitude'], response[0]['longitude']];
             transition(result);
           },
