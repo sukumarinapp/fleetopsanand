@@ -38,7 +38,6 @@
           type: "get",
           url: '{{ route('vehicle_location') }}',
           success: function(response) {
-            console.log(response[0]['ground_speed']);
             result = [response[0]['latitude'], response[0]['longitude']];
             ground_speed = response[0]['ground_speed'];
             transition(result);
