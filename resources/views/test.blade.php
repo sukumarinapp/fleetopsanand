@@ -23,7 +23,7 @@
             position: latlng,
             map: map,
             icon: "cartop.png",
-            title: "GT9323-17"
+            title: "GN7128-17"
         });
         google.maps.event.addListener(map, 'click', function(me) {
             var result = [me.latLng.lat(), me.latLng.lng()];
