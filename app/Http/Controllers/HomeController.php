@@ -783,4 +783,11 @@ class HomeController extends Controller
     public function test(){
         return view('test');
     }
+
+    public function vehicle_location(){
+        $sql = "select latitude,longitude from current_location where id = (select max(id) from current_location where terminal_id='233500627699')";
+        $markers = DB::select(DB::raw($sql));
+        //dd($markers);
+        return response()->json($markers);
+    }
 }

@@ -89,6 +89,7 @@ Route::post('/resendsms/{id}', 'WorkflowController@resendsms')->name('resendsms'
 Route::post('/auditingsave', 'WorkflowController@auditingsave')->name('auditingsave');
 
 Route::get('/locations', 'HomeController@locations')->name('locations');
+Route::get('/vehicle_location', 'HomeController@vehicle_location')->name('vehicle_location');
 Route::get('/alerts', 'HomeController@alerts')->name('alerts');
 
 Route::get('/fuelsrch', 'FuelController@fuelsrch')->name('fuelsrch');

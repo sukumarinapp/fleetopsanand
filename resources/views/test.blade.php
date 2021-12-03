@@ -9,7 +9,7 @@
     var map = undefined;
     var marker = undefined;
 
-    var position = [5.645639620885456, -0.2198167890615671];
+    var position = [5.637381666666666, -0.2816216666666667];
     
     function initialize() {
         var latlng = new google.maps.LatLng(position[0], position[1]);
@@ -23,7 +23,7 @@
             position: latlng,
             map: map,
             icon: "cartop.png",
-            title: "Ghanna"
+            title: "GT6014-17\n233500627699"
         });
         google.maps.event.addListener(map, 'click', function(me) {
             var result = [me.latLng.lat(), me.latLng.lng()];
@@ -32,11 +32,21 @@
     }
     
     function animateMarkers(){
-        var result = [5.645390050765706, -0.21941848102285055];
-        transition(result);
+        var result;
+        $.ajax({
+          type: "get",
+          url: '{{ route('vehicle_location') }}',
+          success: function(response) {
+            result = [response[0]['latitude'], response[0]['longitude']];
+            transition(result);
+          },
+          error: function (jqXHR, exception) {
+            console.log(exception);
+          }
+        });
     }
 
-    setInterval(animateMarkers, 20000);
+    setInterval(animateMarkers, 10000);
 
     var numDeltas = 100;
     var delay = 100; //milliseconds
