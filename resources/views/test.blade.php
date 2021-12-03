@@ -69,6 +69,7 @@
         position[1] += deltaLng;
         var latlng = new google.maps.LatLng(position[0], position[1]);
         marker.setPosition(latlng);
+        map.panTo(new google.maps.LatLng(position[0], position[1]));
         marker.setTitle("GN7128-17\n" + ground_speed);
         if(i!=numDeltas){
             i++;
