@@ -9,7 +9,7 @@
     var map = undefined;
     var marker = undefined;
 
-    var position = [5.637381666666666, -0.2816216666666667];
+    var position = [ {{ $latitude }} , {{ $longitude }} ];
     
     function initialize() {
         var latlng = new google.maps.LatLng(position[0], position[1]);

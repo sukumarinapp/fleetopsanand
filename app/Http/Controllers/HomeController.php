@@ -781,7 +781,11 @@ class HomeController extends Controller
     }
 
     public function test(){
-        return view('test');
+        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='GN7128-17')";
+        $markers = DB::select(DB::raw($sql));
+        $latitude = $markers[0]->latitude;
+        $longitude = $markers[0]->longitude;
+        return view('test',compact('latitude','longitude'));
     }
 
     public function vehicle_location(){
