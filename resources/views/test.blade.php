@@ -8,9 +8,9 @@
 <script>
     var map = undefined;
     var marker = undefined;
-
+    var ground_speed = 0;
     var position = [ {{ $latitude }} , {{ $longitude }} ];
-    var ground_speed = "{{ $ground_speed }}";
+    ground_speed = "{{ $ground_speed }}";
 
     function initialize() {
         var latlng = new google.maps.LatLng(position[0], position[1]);
@@ -38,6 +38,7 @@
           type: "get",
           url: '{{ route('vehicle_location') }}',
           success: function(response) {
+            console.log(response[0]['ground_speed']);
             result = [response[0]['latitude'], response[0]['longitude']];
             ground_speed = response[0]['ground_speed'];
             transition(result);
