@@ -69,6 +69,7 @@
         position[1] += deltaLng;
         var latlng = new google.maps.LatLng(position[0], position[1]);
         marker.setPosition(latlng);
+        marker.panTo(latlng);
         marker.setTitle("GT9323-17\n" + ground_speed);
         if(i!=numDeltas){
             i++;
