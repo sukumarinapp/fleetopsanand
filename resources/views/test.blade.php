@@ -9,8 +9,13 @@
     var map = undefined;
     var marker = undefined;
     var ground_speed = 0;
+    var vehicle_no = "";
+    var live_track = "";
     var position = [ {{ $latitude }} , {{ $longitude }} ];
-    ground_speed = "{{ $ground_speed }}";
+    vehicle_no = "{{ $VNO }}";
+    live_track = "{{ url('vehicle_location') }}";
+    live_track = live_track + "/" + vehicle_no;
+    console.log(live_track);
 
     function initialize() {
         var latlng = new google.maps.LatLng(position[0], position[1]);
@@ -24,7 +29,7 @@
             position: latlng,
             map: map,
             icon: "carblue.png",
-            title: "GT4298-18\n" + ground_speed
+            title: vehicle_no + "\n" + ground_speed
         });
         google.maps.event.addListener(map, 'click', function(me) {
             var result = [me.latLng.lat(), me.latLng.lng()];
@@ -36,9 +41,8 @@
         var result;
         $.ajax({
           type: "get",
-          url: '{{ route('vehicle_location') }}',
+          url: live_track,
           success: function(response) {
-            console.log(response[0]['ground_speed']);
             result = [response[0]['latitude'], response[0]['longitude']];
             ground_speed = response[0]['ground_speed'];
             transition(result);
@@ -69,8 +73,8 @@
         position[1] += deltaLng;
         var latlng = new google.maps.LatLng(position[0], position[1]);
         marker.setPosition(latlng);
-        map.panTo(new google.maps.LatLng(position[0], position[1]));
-        marker.setTitle("GT4298-18\n" + ground_speed);
+        //map.panTo(new google.maps.LatLng(position[0], position[1]));
+        marker.setTitle(vehicle_no + "\n" + ground_speed);
         if(i!=numDeltas){
             i++;
             setTimeout(moveMarker, delay);

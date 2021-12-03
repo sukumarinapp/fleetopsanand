@@ -19,7 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test', 'HomeController@test')->name('test');
+Route::get('/test/{VNO}', 'HomeController@test')->name('test');
 Route::get('/replay', 'HomeController@replay')->name('replay');
 Route::get('/track/{VNO}/{starttime}/{endtime}','HomeController@track')->name('track');
 Route::get('/parameter', 'ParameterController@index')->name('parameter');
@@ -89,7 +89,7 @@ Route::post('/resendsms/{id}', 'WorkflowController@resendsms')->name('resendsms'
 Route::post('/auditingsave', 'WorkflowController@auditingsave')->name('auditingsave');
 
 Route::get('/locations', 'HomeController@locations')->name('locations');
-Route::get('/vehicle_location', 'HomeController@vehicle_location')->name('vehicle_location');
+Route::get('/vehicle_location/{VNO}', 'HomeController@vehicle_location')->name('vehicle_location');
 Route::get('/alerts', 'HomeController@alerts')->name('alerts');
 
 Route::get('/fuelsrch', 'FuelController@fuelsrch')->name('fuelsrch');
