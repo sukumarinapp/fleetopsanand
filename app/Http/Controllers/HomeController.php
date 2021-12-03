@@ -785,7 +785,8 @@ class HomeController extends Controller
         $markers = DB::select(DB::raw($sql));
         $latitude = $markers[0]->latitude;
         $longitude = $markers[0]->longitude;
-        return view('test',compact('latitude','longitude'));
+        $ground_speed = $markers[0]->ground_speed;
+        return view('test',compact('latitude','longitude','ground_speed'));
     }
 
     public function vehicle_location(){

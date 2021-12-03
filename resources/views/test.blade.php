@@ -10,7 +10,8 @@
     var marker = undefined;
 
     var position = [ {{ $latitude }} , {{ $longitude }} ];
-    
+    var ground_speed = "{{ $ground_speed }}";
+
     function initialize() {
         var latlng = new google.maps.LatLng(position[0], position[1]);
         var myOptions = {
@@ -23,7 +24,7 @@
             position: latlng,
             map: map,
             icon: "carblue.png",
-            title: "GN7128-17"
+            title: "GN7128-17\n" + ground_speed
         });
         google.maps.event.addListener(map, 'click', function(me) {
             var result = [me.latLng.lat(), me.latLng.lng()];
@@ -38,6 +39,7 @@
           url: '{{ route('vehicle_location') }}',
           success: function(response) {
             result = [response[0]['latitude'], response[0]['longitude']];
+            ground_speed = response[0]['ground_speed'];
             transition(result);
           },
           error: function (jqXHR, exception) {
@@ -66,6 +68,7 @@
         position[1] += deltaLng;
         var latlng = new google.maps.LatLng(position[0], position[1]);
         marker.setPosition(latlng);
+        marker.setTitle("GN7128-17\n" + ground_speed);
         if(i!=numDeltas){
             i++;
             setTimeout(moveMarker, delay);
