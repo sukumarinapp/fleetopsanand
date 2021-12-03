@@ -780,21 +780,17 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-    public function test($VNO){
-        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO')";
+    public function test(){
+        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='GT4298-18')";
         $markers = DB::select(DB::raw($sql));
-        if(count($markers) > 0){
-            $latitude = $markers[0]->latitude;
-            $longitude = $markers[0]->longitude;
-            $ground_speed = $markers[0]->ground_speed;
-            return view('test',compact('VNO','latitude','longitude','ground_speed'));
-        }else{
-            echo "VNO not found";
-        }
+        $latitude = $markers[0]->latitude;
+        $longitude = $markers[0]->longitude;
+        $ground_speed = $markers[0]->ground_speed;
+        return view('test',compact('latitude','longitude','ground_speed'));
     }
 
-    public function vehicle_location($VNO){
-        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO')";
+    public function vehicle_location(){
+        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='GT4298-18')";
         $markers = DB::select(DB::raw($sql));
         //dd($markers);
         return response()->json($markers);
