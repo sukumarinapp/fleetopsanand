@@ -22,7 +22,7 @@
         marker = new google.maps.Marker({
             position: latlng,
             map: map,
-            icon: "cartop.png",
+            icon: "carblue.png",
             title: "GN7128-17"
         });
         google.maps.event.addListener(map, 'click', function(me) {
@@ -37,9 +37,6 @@
           type: "get",
           url: '{{ route('vehicle_location') }}',
           success: function(response) {
-            console.log(response[0]['latitude']);
-            console.log(response[0]['longitude']);
-            console.log(response[0]['ground_speed']);
             result = [response[0]['latitude'], response[0]['longitude']];
             transition(result);
           },
