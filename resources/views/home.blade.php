@@ -260,14 +260,18 @@
           var vehicle = locations[i];
           var acc = "";
           var engine_on = parseInt(vehicle["engine_on"]);
+          var car_icon = "carred.png";
           if(engine_on == 0){
             acc = "ACC OFF";
+            car_icon = "carred.png";
           }else{
             acc = "ACC ON";
+            car_icon = "carblue.png";
           }
-          var car_icon = "off0.png";
+          //var car_icon = "off0.png";
+          
           var dir = parseFloat(vehicle['direction']);
-
+          /*
           if(dir < 22.5 || dir >= 337.5 ){
             if(engine_on == 1) {
               car_icon = "0.png";
@@ -317,6 +321,7 @@
               car_icon = "off315.png";
             }
           }
+          */
           if(check_checked(vehicle['VNO'])){
             var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
             var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + vehicle["ground_speed"]; 
