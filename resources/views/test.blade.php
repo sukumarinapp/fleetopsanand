@@ -13,6 +13,7 @@
     var live_track = "";
     var position = [ {{ $latitude }} , {{ $longitude }} ];
     vehicle_no = "{{ $VNO }}";
+    console.log(vehicle_no);
     live_track = "{{ url('vehicle_location') }}";
     live_track = live_track + "/" + vehicle_no;
     console.log(live_track);
