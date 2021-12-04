@@ -24,7 +24,7 @@
             position: latlng,
             map: map,
             icon: "carblue.png",
-            title: "GT9323-17\n" + ground_speed
+            title: "GN7128-17\n" + ground_speed
         });
         google.maps.event.addListener(map, 'click', function(me) {
             var result = [me.latLng.lat(), me.latLng.lng()];
@@ -69,7 +69,7 @@
         var latlng = new google.maps.LatLng(position[0], position[1]);
         marker.setPosition(latlng);
         map.panTo(latlng);
-        marker.setTitle("GT9323-17\n" + ground_speed);
+        marker.setTitle("GN7128-17\n" + ground_speed);
         if(i!=numDeltas){
             i++;
             setTimeout(moveMarker, delay);
