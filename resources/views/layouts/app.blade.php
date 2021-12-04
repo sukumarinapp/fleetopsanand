@@ -393,28 +393,38 @@ function replay(){
 }
 
 function toggle_map(arg){
-    if(arg.checked){
-        var VNO = $("#search_inp").val();
-        if(typeof(VNO) == "undefined" || VNO == "" ){
-            alert("Enter vehicle no");
+    var VNO = $("#search_inp").val();
+    if(typeof(VNO) == "undefined" || VNO == "" ){
+        alert("Enter vehicle no");
+        $("#toogle_button").bootstrapToggle('off');
+    }else{
+        VNO = VNO.toUpperCase();
+        if(!check_checked(VNO)){
+            alert("Vehicle No not found");
             $("#toogle_button").bootstrapToggle('off');
         }else{
-            VNO = VNO.toUpperCase();
-            if(!check_checked(VNO)){
-                alert("Vehicle No not found");
-                $("#toogle_button").bootstrapToggle('off');
-            }else{
-                replay();
+            if(arg.value == "replay"){
+                $("#map_canvas").slideUp("slow");
+                $("#map_replay").slideDown("slow");
+                $("#gmapreplay").text("Normal");
+                $("#gmapreplay").attr('value', 'normal'); 
+                $("#gmaplive").hide();
+            }else if(arg.value == "live"){
+                $("#map_canvas").slideUp("slow");
+                $("#map_replay").slideDown("slow");
+                $("#gmapreplay").text("Normal");
+                $("#gmapreplay").prop('value', 'normal');
+                $("#gmaplive").hide();
+            }else if(arg.value == "normal"){
+                $("#map_canvas").slideDown("slow");
+                $("#map_replay").slideUp("slow");
+                $("#gmapreplay").text("Replay");
+                $("#gmapreplay").prop('value', 'replay');
+                $("#gmaplive").show();
             }
         }
-    }else{
-/*            $("#search_inp").val("");
-            $("#treeview").hummingbird("collapseAll");
-            $("#treeview").hummingbird("checkAll");            */
-            $("#map_canvas").slideDown("slow");
-            $("#map_replay").slideUp("slow");
-        }
     }
+}
 
     function search_tree(arg){
         var srch = arg.value;
