@@ -312,8 +312,8 @@ class DriverController extends Controller
                             $sql = "update tbl136 set DECL = 1 where id = '$DCR'";
                             DB::update($sql);
                             $msg = "Thank you for a successful sales declaration.Fuel consumed for the sales declared and offline trips (if any) are being measured and shall be communicated to you in a separate message.";                  
-                            SMSFleetops::send($TSM,$VBC0);
-                            echo $msg."<br>";
+                            //SMSFleetops::send($TSM,$VBC0);
+                            //echo $msg."<br>";
                             $DAT = date("Y-m-d");
                             $TIM = date("H:i:s");
                             $CTX = "Sales Declaration";
@@ -334,7 +334,7 @@ class DriverController extends Controller
                         }
                     }
                 }else{
-                    SMSFleetops::send($TSM,$VBC0);
+                    //SMSFleetops::send($TSM,$VBC0);
                     $msg="Thank you for a successful payment of GHC ".$RMT.".";
                     echo $msg."<br>";
                     SMSFleetops::send($RCN,$msg);

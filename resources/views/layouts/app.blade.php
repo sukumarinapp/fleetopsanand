@@ -352,8 +352,14 @@ function play(){
     var endtime = $("#endtime").val();
     var formData = "VNO="+VNO+"&starttime="+starttime+"&endtime="+endtime;
     var track = "{{ url('track') }}";
-    var url =  track + "/" + VNO + "/" +starttime + "/" +endtime;  
-    if(starttime == ""){
+    var url =  track + "/" + VNO + "/" +starttime + "/" +endtime; 
+    if(typeof(VNO) == "undefined" || VNO == "" ){
+        alert("Enter vehicle no");
+        return false;
+    }else if(!check_checked(VNO.toUpperCase())){
+        alert("Vehicle No not found");
+        return false;
+    }else if(starttime == ""){
         alert("select Start Time");
         return false;
     }else if(endtime == ""){
@@ -401,7 +407,6 @@ function toggle_map(arg){
         VNO = VNO.toUpperCase();
         if(!check_checked(VNO)){
             alert("Vehicle No not found");
-            $("#toogle_button").bootstrapToggle('off');
         }else{
             if(arg.value == "replay"){
                 $("#map_canvas").slideUp("slow");
