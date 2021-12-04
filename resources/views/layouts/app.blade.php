@@ -408,19 +408,19 @@ function toggle_map(arg){
                 $("#map_replay").slideDown("slow");
                 $("#gmapreplay").text("Normal");
                 $("#gmapreplay").attr('value', 'normal'); 
-                $("#gmaplive").hide();
+                //$("#gmaplive").hide();
             }else if(arg.value == "live"){
                 $("#map_canvas").slideUp("slow");
                 $("#map_replay").slideDown("slow");
                 $("#gmapreplay").text("Normal");
                 $("#gmapreplay").prop('value', 'normal');
-                $("#gmaplive").hide();
+                //$("#gmaplive").hide();
             }else if(arg.value == "normal"){
                 $("#map_canvas").slideDown("slow");
                 $("#map_replay").slideUp("slow");
                 $("#gmapreplay").text("Replay");
                 $("#gmapreplay").prop('value', 'replay');
-                $("#gmaplive").show();
+                //$("#gmaplive").show();
             }
         }
     }
