@@ -31,8 +31,9 @@
             <div class="card">
               <div class="card-body">
                 <div class="input-group mb-3">
-                  <input type="text" style="height:35px" id="search_inp" maxlength="15" onkeyup="search_tree(this)" onpaste="search_tree(this)" onchange="search_tree(this)" class="form-control" placeholder="Search" >&nbsp;
-                  <input id="toogle_button" onchange="toggle_map(this)"  type="checkbox" data-toggle="toggle" data-height="10" data-on="Normal" data-off="Replay" data-onstyle="success" data-offstyle="danger">
+                  <input type="text" style="height:35px;width:50%" id="search_inp" maxlength="15" onkeyup="search_tree(this)" onpaste="search_tree(this)" onchange="search_tree(this)" class="form-control-xs" placeholder="Search" >&nbsp;
+                  <input id="toogle_button" onchange="toggle_map(this)"  type="checkbox" data-toggle="toggle" data-height="10" data-width="10" data-on="Normal" data-off="<i class='fa fa-repeat'></i>" data-onstyle="success" data-offstyle="danger">&nbsp;
+                  <button type="button" class="btn btn-primary btn-xs form-control"style="height:35px" value ="reset"><i class="fa fa-stop"></i></button>
                 </div>
 
                 @include("includes.tree")
