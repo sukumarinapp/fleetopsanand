@@ -26,10 +26,10 @@
             icon: "carblue.png",
             title: "GN7128-17\n" + ground_speed
         });
-        google.maps.event.addListener(map, 'click', function(me) {
+        /*google.maps.event.addListener(map, 'click', function(me) {
             var result = [me.latLng.lat(), me.latLng.lng()];
             transition(result);
-        });
+        });*/
     }
     
     function animateMarkers(){
