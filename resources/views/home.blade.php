@@ -34,7 +34,7 @@
                   <input type="text" style="height:35px;width:50%" id="search_inp" maxlength="15" onkeyup="search_tree(this)" onpaste="search_tree(this)" onchange="search_tree(this)" class="form-control-xs" placeholder="Search" >&nbsp;
                  <!--  <input id="toogle_button" onchange="toggle_map(this)"  type="checkbox" data-toggle="toggle" data-height="10" data-width="10" data-on="Normal" data-off="<i class='fa fa-record'></i>" data-onstyle="success" data-offstyle="danger">&nbsp; -->
                  <button type="button" onclick="toggle_map(this)" class="btn btn-danger btn-xs form-control" id="gmapreplay" value="replay" >Replay</button>&nbsp;
-                  <button id="gmaplive" type="button" onclick="toggle_map(this)" value="live" class="btn btn-success btn-xs form-control" >Live</button>
+                 <!--  <button id="gmaplive" type="button" onclick="toggle_map(this)" value="live" class="btn btn-success btn-xs form-control" >Live</button> -->
                 </div>
 
                 @include("includes.tree")
