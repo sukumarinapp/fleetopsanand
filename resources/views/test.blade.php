@@ -11,7 +11,10 @@
     var ground_speed = 0;
     var position = [ {{ $latitude }} , {{ $longitude }} ];
     ground_speed = "{{ $ground_speed }}";
-
+//
+%2C ,
+%7c |
+https://roads.googleapis.com/v1/snapToRoads?interpolate=true&path=-35.27801%2C149.12958%7C-35.28032%2C149.12907%7C-35.28099%2C149.12929%7C-35.28144%2C149.12984%7C-35.28194%2C149.13003%7C-35.28282%2C149.12956%7C-35.28302%2C149.12881%7C-35.28473%2C149.12836&key=AIzaSyCQTnsGhNv6Q7H0E8uOhRDDeGk4J4uWnjA
     function initialize() {
         var latlng = new google.maps.LatLng(position[0], position[1]);
         var myOptions = {
@@ -50,8 +53,8 @@
 
     setInterval(animateMarkers, 10000);
 
-    var numDeltas = 100;
-    var delay = 100; //milliseconds
+    var numDeltas = 200;
+    var delay = 50; //milliseconds
     var i = 0;
     var deltaLat;
     var deltaLng;

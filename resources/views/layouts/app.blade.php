@@ -215,7 +215,7 @@
 </div>
 </div>
 <script src="{{ mix('js/app.js') }}" ></script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBGD4U0YDBCpPd54yleIeEcFIVfjQ8q9JY"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMFPPAlejgNNF0FPoxBNjqVpThqXRvy_s"></script>
 @yield('third_party_scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
 
@@ -413,19 +413,19 @@ function toggle_map(arg){
                 $("#map_replay").slideDown("slow");
                 $("#gmapreplay").text("Normal");
                 $("#gmapreplay").attr('value', 'normal'); 
-                //$("#gmaplive").hide();
+                $("#gmaplive").hide();
             }else if(arg.value == "live"){
                 $("#map_canvas").slideUp("slow");
                 $("#map_replay").slideDown("slow");
                 $("#gmapreplay").text("Normal");
                 $("#gmapreplay").prop('value', 'normal');
-                //$("#gmaplive").hide();
+                $("#gmaplive").hide();
             }else if(arg.value == "normal"){
                 $("#map_canvas").slideDown("slow");
                 $("#map_replay").slideUp("slow");
                 $("#gmapreplay").text("Replay");
                 $("#gmapreplay").prop('value', 'replay');
-                //$("#gmaplive").show();
+                $("#gmaplive").show();
             }
         }
     }
