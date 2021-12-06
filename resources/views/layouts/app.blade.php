@@ -355,9 +355,11 @@ function play(){
     var url =  track + "/" + VNO + "/" +starttime + "/" +endtime; 
     if(typeof(VNO) == "undefined" || VNO == "" ){
         alert("Enter vehicle no");
+        $("#search_inp").focus();
         return false;
     }else if(!check_checked(VNO.toUpperCase())){
         alert("Vehicle No not found");
+        $("#search_inp").focus();
         return false;
     }else if(starttime == ""){
         alert("select Start Time");
