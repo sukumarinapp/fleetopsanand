@@ -168,12 +168,13 @@
           </td>
           <td>{{ $alert["hours"] }}</td>
           <td > 
-            
-            <button type="button" class="btn btn-primary btn-sm btn-block" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
-            <a class="btn btn-success btn-sm btn-block whatsappshare" href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a>
-
-            <a class="btn btn-primary btn-sm  btn-block" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
-
+            @if($alert["date"] == "")
+            &nbsp;
+            @else
+              <button type="button" class="btn btn-primary btn-sm btn-block" data-lat="{{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+              <a class="btn btn-success btn-sm btn-block whatsappshare" href="whatsapp://send?text=https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" data-action="share/whatsapp/share" target="_blank"><img class="whatsappshare" src="whatsapp.png" /></a>
+              <a class="btn btn-primary btn-sm  btn-block" href="https://maps.google.com/?q={{ $alert['latitude'] }},{{ $alert['longitude'] }}" target="_blank">Open Map</a>
+            @endif
             </td>
             <td style="padding-top: 20px;">
             @if($alert['type'] == "battery")

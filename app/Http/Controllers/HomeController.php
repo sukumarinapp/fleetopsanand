@@ -471,7 +471,7 @@ class HomeController extends Controller
             $TID = $res->TID;
             $VID = $res->id;
             
-            //if data not coming from tracker for 10 mins tracker is considered off
+            //if data not coming from tracker for 3 mins tracker is considered off
             $sql2 = "select * from tracker_status where TID='$TID' and status =0 order by off_time desc";
             $tracker_off = DB::select(DB::raw($sql2));
             if(count($tracker_off) > 0){
@@ -487,15 +487,26 @@ class HomeController extends Controller
                 $alerts[$i]['VMD'] = $VMD;
                 $alerts[$i]['VCL'] = $VCL;
                 $alerts[$i]['alert_time'] = $off_time;
-                $temp_datetime = explode(" ",$off_time);
-                $alerts[$i]['date'] = $temp_datetime[0];
-                $alerts[$i]['time'] = $temp_datetime[1];
-                $alerts[$i]['VNO'] = $VNO;
+                if($off_time != ""){
+                    $temp_datetime = explode(" ",$off_time);
+                    $alerts[$i]['date'] = $temp_datetime[0];
+                    $alerts[$i]['time'] = $temp_datetime[1];
+                }else{
+                    $alerts[$i]['date'] = "";
+                    $alerts[$i]['time'] = "";
+                }
+                $alerts[$i]['VNO'] = $VNO;                
                 $alerts[$i]['alert'] = $msg1;
                 $alerts[$i]['type'] = "tracker"; 
-                $alerts[$i]['icon'] = "trackoff.jpg";     
-                $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],date("Y-m-d H:i:s"));
+                $alerts[$i]['icon'] = "trackoff.jpg"; 
+                if($off_time != ""){
+                    $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],date("Y-m-d H:i:s"));
+                }else{
+                    $alerts[$i]['hours'] = "";
+                }    
                 $i++;
+            }else{
+
             }
 
             //blocking on/off
@@ -738,6 +749,21 @@ class HomeController extends Controller
             $alerts[$i]['type'] = "tracker";     
             $alerts[$i]['resolve_time'] = $on_time;
             $alerts[$i]['hours'] = self::active_duration($off_time,$on_time);
+        }
+
+        $sql2 = "select a.VNO,b.TID,b.off_time,b.on_time from vehicle a,tracker_status b where a.TID=b.TID and off_time is null and b.status =1 order by off_time desc";
+        $result = DB::select(DB::raw($sql2));
+        foreach($result as $key => $res){
+            $off_time = $res->off_time;
+            $on_time = $res->on_time;
+            $VNO = $res->VNO;
+            $i++;
+            $alerts[$i]['alert_time'] = $off_time;
+            $alerts[$i]['VNO'] = $VNO;
+            $alerts[$i]['alert'] = $msg1;
+            $alerts[$i]['type'] = "tracker";     
+            $alerts[$i]['resolve_time'] = $on_time;
+            $alerts[$i]['hours'] = "";
         }
         //dd($alerts);        
         return view('alertlog',compact('alerts','title','from','to'));
