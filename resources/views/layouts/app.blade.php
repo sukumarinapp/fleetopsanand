@@ -404,11 +404,12 @@ function toggle_map(arg){
     var VNO = $("#search_inp").val();
     if(typeof(VNO) == "undefined" || VNO == "" ){
         alert("Enter vehicle no");
-        $("#toogle_button").bootstrapToggle('off');
+        $("#search_inp").focus();
     }else{
         VNO = VNO.toUpperCase();
         if(!check_checked(VNO)){
             alert("Vehicle No not found");
+            $("#search_inp").focus();
         }else{
             if(arg.value == "replay"){
                 $("#map_canvas").slideUp("slow");
