@@ -111,7 +111,7 @@ class WorkflowController extends Controller
                 $sale->CPF = $tbl137[0]->CPF2;
                 $sale->TPF = $tbl137[0]->TPF2;
                 echo "test";
-                echo tbl137[0]->SPF2;
+                echo $tbl137[0]->SPF2;
             }else{
                 $sale->EXPS = "";
                 $sale->EXPS_EARNING = "";
