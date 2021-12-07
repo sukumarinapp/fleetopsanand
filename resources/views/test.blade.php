@@ -35,8 +35,6 @@
 		  success: function(response) {
 				position[0] = response[0]['latitude'];
 				position[1] = response[0]['longitude'];
-				console.log(position[0]);
-				console.log(position[1]);
 				ground_speed = response[0]['ground_speed'];
 				var latlng = new google.maps.LatLng(position[0], position[1]);
 				var myOptions = {
@@ -57,10 +55,10 @@
 		  }
 		});
 		
-		/*google.maps.event.addListener(map, 'click', function(me) {
+		google.maps.event.addListener(map, 'click', function(me) {
 			var result = [me.latLng.lat(), me.latLng.lng()];
 			transition(result);
-		});*/
+		});
 	}
 	
 	function animateMarkers(){
@@ -76,7 +74,7 @@
 				transition(result);
 		  },
 		  error: function (jqXHR, exception) {
-			console.log(exception);
+				console.log(exception);
 		  }
 		});
 	}
@@ -93,9 +91,7 @@
 	function transition(result){
 		i = 0;
 		deltaLat = (result[0] - position[0])/numDeltas;
-		console.log("deltaLat:"+deltaLat);
 		deltaLng = (result[1] - position[1])/numDeltas;
-		console.log("deltaLat:"+deltaLng);
 		moveMarker();
 	}
 	
@@ -113,14 +109,11 @@
 			j++;
 		}
 		roadapi = roadapi + "&key=AIzaSyCQTnsGhNv6Q7H0E8uOhRDDeGk4J4uWnjA";
-		console.log(roadapi);
 		$.ajax({
 		  type: "get",
 		  url: roadapi,
 		  success: function(response) {
-		  	console.log(response);
 				snappedPoints = response.snappedPoints;
-				console.log(snappedPoints);
 				i = 0;
 				moveMarkerRepeat();
 		  },
