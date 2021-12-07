@@ -98,6 +98,7 @@ class WorkflowController extends Controller
                 $RHF = $service[0]->RHF;
             }
             $sql = "select max(SPF) as SPF2,sum(RMT) as CPF2,max(TPF) as TPF2 from tbl137 where DCR=$DCR and SSR='Driver' and RST=1";
+            echo $sql;
             $tbl137 = DB::select(DB::raw($sql));
             if(count($tbl137) > 0){
                 $sale->EXPS = round(Formulae::EXPS2($DCR),2);
@@ -110,8 +111,6 @@ class WorkflowController extends Controller
                 $sale->SPF = $tbl137[0]->SPF2;
                 $sale->CPF = $tbl137[0]->CPF2;
                 $sale->TPF = $tbl137[0]->TPF2;
-                echo "test";
-                echo $tbl137[0]->SPF2;
             }else{
                 $sale->EXPS = "";
                 $sale->EXPS_EARNING = "";
