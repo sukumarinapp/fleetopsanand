@@ -101,7 +101,7 @@ class WorkflowController extends Controller
             $tbl137 = DB::select(DB::raw($sql));
             if(count($tbl137) > 0 && $tbl137[0]->CPF2 != "" && $tbl137[0]->CPF2 != null){
                 $sale->EXPS = round(Formulae::EXPS2($DCR),2);
-                $sale->EXPS_EARNING = ($sale->EXPS * $RHF)/100;
+                $sale->EXPS_EARNING = $sale->EXPS * (1 - $RHF/100);
                 $sale->CCEI = round(Formulae::CCEI2($DCR),2);
                 $total_exps = $total_exps + $sale->EXPS;
                 $total_ccei = $total_ccei + $sale->CCEI;
