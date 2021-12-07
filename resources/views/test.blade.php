@@ -55,10 +55,10 @@
 		  }
 		});
 		
-		google.maps.event.addListener(map, 'click', function(me) {
+		/*google.maps.event.addListener(map, 'click', function(me) {
 			var result = [me.latLng.lat(), me.latLng.lng()];
 			transition(result);
-		});
+		});*/
 	}
 	
 	function animateMarkers(){
@@ -81,7 +81,7 @@
 
 	setInterval(animateMarkers, 20000);
 
-	var numDeltas = 200;
+	var numDeltas = 100;
 	var delay = 200;
 	var i = 0;
 	var deltaLat=0.0;
