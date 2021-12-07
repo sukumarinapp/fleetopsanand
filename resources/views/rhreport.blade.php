@@ -121,33 +121,34 @@
           <th>Contact#</th>
           <th>CML</th>
           <th>CHR</th>
-          <th>EXPS</th>
+          <th>SPF</th>
+          <th>CPF</th>
+          <th>TPF</th>
+          <th>EXPS (Sale)</th>
+          <th>EXPS (Earning)</th>
           <th>CCEI</th>
           <th>FTP</th>
           <th>CWI</th>
-          <th>Reset (Test Mode)</th>
         </tr>
       </thead>
       <tbody>
        @foreach($rhreport as $sale)
-        <tr>
-         <td>{{ date("d-m-Y",strtotime($sale->DDT)) }}</td>
+       <tr>
+           <td>{{ date("d-m-Y",strtotime($sale->DDT)) }}</td>
            <td>{{ $sale->id }}</td>
            <td>{{ $sale->CAN }}</td>
            <td>{{ $sale->VNO }}</td>
            <td>{{ $sale->DCN }}</td>
            <td>{{ $sale->CML }}</td>
            <td>{{ $sale->CHR }}</td>
+           <td>{{ $sale->SPF }}</td>
+           <td>{{ $sale->CPF }}</td>
+           <td>{{ $sale->TPF }}</td>
            <td>{{ $sale->EXPS }}</td>
+           <td>{{ $sale->EXPS_EARNING }}</td>
            <td>{{ $sale->CCEI }}</td>
            <td>{{ $sale->FTP }}</td>
            <td>{{ $sale->CWI }}</td>
-           <td>
-            <form action="{{ route('rhresettesting', $sale->id)}}" method="post">
-              @csrf
-           <button onclick="return confirm('Do yo want to reset?')" class="btn btn-danger btn-xs" type="submit">Reset</button>
-           </form>
-            </td>
       </tr>
       @endforeach
 

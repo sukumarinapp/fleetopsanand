@@ -76,7 +76,7 @@ class WorkflowController extends Controller
     }
     public function rhreport($from,$to)
     {
-        $sql = "select a.*,b.DCN from tbl136 a,driver b where a.driver_id=b.id and a.VBM = 'Ride Hailing' and DDT >='$from' and DDT <='$to' order by DDT desc";
+        $sql = "select a.*,b.DCN,b.id as driver_id from tbl136 a,driver b where a.driver_id=b.id and a.VBM = 'Ride Hailing' and DDT >='$from' and DDT <='$to' order by DDT desc";
         $title = 'RH Daily Report';
         $rhreport = DB::select(DB::raw($sql));
         $total_exps = 0;
@@ -90,20 +90,34 @@ class WorkflowController extends Controller
             $total_chr = $total_chr + $sale->CHR;
             $DCR = $sale->id;
             $VNO = $sale->VNO;
-            $sql = "select * from tbl137 where DCR=$DCR and SSR='Driver' and RST=1";
+            $driver_id = $sale->driver_id;
+            $sql2 = "select RHF from tbl361 a,driver_platform b where a.id=b.PLF and b.driver_id=$driver_id";
+            $service = DB::select(DB::raw($sql2));
+            $RHF = 0;
+            if(count($service) > 0){
+                $RHF = $service[0]->RHF;
+            }
+            $sql = "select max(SPF) as SPF2,sum(RMT) as CPF2,max(TPF) as TPF2 from tbl137 where DCR=$DCR and SSR='Driver' and RST=1";
             $tbl137 = DB::select(DB::raw($sql));
             if(count($tbl137) > 0){
                 $sale->EXPS = round(Formulae::EXPS2($DCR),2);
+                $sale->EXPS_EARNING = ($sale->EXPS * $RHF)/100;
                 $sale->CCEI = round(Formulae::CCEI2($DCR),2);
                 $total_exps = $total_exps + $sale->EXPS;
                 $total_ccei = $total_ccei + $sale->CCEI;
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
+                $sale->SPF = $tbl137[0]->SPF2;
+                $sale->CPF = $tbl137[0]->CPF2;
+                $sale->TPF = $tbl137[0]->TPF2;
             }else{
                 $sale->EXPS = "";
                 $sale->CCEI = "";
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
+                $sale->SPF = "";
+                $sale->CPF = "";
+                $sale->TPF = "";
             }
 
             $sql = "select * from tbl136 where id=$DCR and DNW=1";
