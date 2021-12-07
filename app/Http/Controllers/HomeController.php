@@ -807,7 +807,7 @@ class HomeController extends Controller
     }
 
     public function test(){
-        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='GT9323-17')";
+        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='GN8488-17')";
         $markers = DB::select(DB::raw($sql));
         $latitude = $markers[0]->latitude;
         $longitude = $markers[0]->longitude;
@@ -816,7 +816,7 @@ class HomeController extends Controller
     }
 
     public function vehicle_location(){
-        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='GT9323-17')";
+        $sql = "select latitude,longitude,ground_speed from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='GN8488-17')";
         $markers = DB::select(DB::raw($sql));
         //dd($markers);
         return response()->json($markers);
