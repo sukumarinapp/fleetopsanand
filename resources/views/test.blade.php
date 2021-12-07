@@ -1,49 +1,79 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
+<label>Enter VNO</label>
+<input type="text" name="search_inp" id="search_inp">
+<input onclick="live_track_play()" type="button" value="Live Track" class="btn btn-success">
 <div id="map_canvas" style="width:1000px;height:500px"></div>
 </div>
 @endsection
 @section('third_party_scripts')
 <script>
+	var VNO = "";
 	var map = undefined;
 	var marker = undefined;
 	var ground_speed = 0;
-	var position = [ {{ $latitude }} , {{ $longitude }} ];
-	ground_speed = "{{ $ground_speed }}";
-//
-//%2C ,
-//%7c |
-//https://roads.googleapis.com/v1/snapToRoads?interpolate=true&path=-35.27801%2C149.12958%7C-35.28032%2C149.12907%7C-35.28099%2C149.12929%7C-35.28144%2C149.12984%7C-35.28194%2C149.13003%7C-35.28282%2C149.12956%7C-35.28302%2C149.12881%7C-35.28473%2C149.12836&key=AIzaSyCQTnsGhNv6Q7H0E8uOhRDDeGk4J4uWnjA
-	function initialize() {
-		var latlng = new google.maps.LatLng(position[0], position[1]);
-		var myOptions = {
-			zoom: 20,
-			center: latlng,
-			mapTypeId: google.maps.MapTypeId.SATELLITE
-		};
-		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		marker = new google.maps.Marker({
-			position: latlng,
-			map: map,
-			icon: "carblue.png",
-			title: "GN8488-17\n" + ground_speed
+	var position = [];
+
+	function live_track_play(){
+		VNO = $("#search_inp").val();
+		if(typeof(VNO) == "undefined" || VNO == "" ){
+        alert("Enter vehicle no");
+        $("#search_inp").focus();
+        return false;
+    }else{
+			initialize_live_track();
+    }
+	}
+
+	function initialize_live_track() {
+		var vehicle_location = '{{ url('vehicle_location') }}';
+		vehicle_location = vehicle_location + "/" + VNO;
+		$.ajax({
+		  type: "get",
+		  url: vehicle_location,
+		  success: function(response) {
+				position[0] = response[0]['latitude'];
+				position[1] = response[0]['longitude'];
+				console.log(position[0]);
+				console.log(position[1]);
+				ground_speed = response[0]['ground_speed'];
+				var latlng = new google.maps.LatLng(position[0], position[1]);
+				var myOptions = {
+					zoom: 20,
+					center: latlng,
+					mapTypeId: google.maps.MapTypeId.SATELLITE
+				};
+				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+				marker = new google.maps.Marker({
+					position: latlng,
+					map: map,
+					icon: "carblue.png",
+					title: VNO + "\n" + ground_speed
+				});
+		  },
+		  error: function (jqXHR, exception) {
+				console.log(exception);
+		  }
 		});
-		google.maps.event.addListener(map, 'click', function(me) {
+		
+		/*google.maps.event.addListener(map, 'click', function(me) {
 			var result = [me.latLng.lat(), me.latLng.lng()];
 			transition(result);
-		});
+		});*/
 	}
 	
 	function animateMarkers(){
 		var result;
+		var vehicle_location = '{{ url('vehicle_location') }}';
+		vehicle_location = vehicle_location + "/" + VNO;
 		$.ajax({
 		  type: "get",
-		  url: '{{ route('vehicle_location') }}',
+		  url: vehicle_location,
 		  success: function(response) {
-			result = [response[0]['latitude'], response[0]['longitude']];
-			ground_speed = response[0]['ground_speed'];
-			transition(result);
+				result = [response[0]['latitude'], response[0]['longitude']];
+				ground_speed = response[0]['ground_speed'];
+				transition(result);
 		  },
 		  error: function (jqXHR, exception) {
 			console.log(exception);
@@ -54,35 +84,43 @@
 	setInterval(animateMarkers, 10000);
 
 	var numDeltas = 100;
-	var delay = 100; //milliseconds
+	var delay = 100;
 	var i = 0;
-	var deltaLat;
-	var deltaLng;
+	var deltaLat=0.0;
+	var deltaLng=0.0;
 	var snappedPoints;
 	
 	function transition(result){
 		i = 0;
 		deltaLat = (result[0] - position[0])/numDeltas;
+		console.log("deltaLat:"+deltaLat);
 		deltaLng = (result[1] - position[1])/numDeltas;
+		console.log("deltaLat:"+deltaLng);
 		moveMarker();
 	}
 	
 	function moveMarker(){
+		var latitude = 0.0,longitude = 0.0;
+		latitude = parseFloat(position[0]);
+		longitude = parseFloat(position[1]);
 		var roadapi = "https://roads.googleapis.com/v1/snapToRoads?interpolate=true&path=";
 		var j = 0;
 		while(j < numDeltas){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			roadapi = roadapi + position[0] + "," + position[1];
+			latitude = latitude + deltaLat;
+			longitude = longitude + deltaLng;
+			roadapi = roadapi + latitude + "," + longitude;
 			if(j != numDeltas-1) roadapi = roadapi + "|";
 			j++;
 		}
 		roadapi = roadapi + "&key=AIzaSyCQTnsGhNv6Q7H0E8uOhRDDeGk4J4uWnjA";
+		console.log(roadapi);
 		$.ajax({
 		  type: "get",
 		  url: roadapi,
 		  success: function(response) {
+		  	console.log(response);
 				snappedPoints = response.snappedPoints;
+				console.log(snappedPoints);
 				i = 0;
 				moveMarkerRepeat();
 		  },
@@ -96,7 +134,7 @@
 	  var latlng = new google.maps.LatLng(snappedPoints[i].location.latitude, snappedPoints[i].location.longitude);
 	  marker.setPosition(latlng);
 		map.panTo(latlng);
-		marker.setTitle("GN8488-17\n" + ground_speed);
+		marker.setTitle(VNO + "\n" + ground_speed);
 		if(i < numDeltas-1){
 			i++;
 			setTimeout(moveMarkerRepeat, delay);
@@ -104,7 +142,7 @@
 	}
 
 	$(document).ready(function() {
-		initialize();
+		
 	});
 	
 </script>
