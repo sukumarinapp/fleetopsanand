@@ -110,8 +110,11 @@ class WorkflowController extends Controller
                 $sale->SPF = $tbl137[0]->SPF2;
                 $sale->CPF = $tbl137[0]->CPF2;
                 $sale->TPF = $tbl137[0]->TPF2;
+                echo "test";
+                echo tbl137[0]->SPF2;
             }else{
                 $sale->EXPS = "";
+                $sale->EXPS_EARNING = "";
                 $sale->CCEI = "";
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
