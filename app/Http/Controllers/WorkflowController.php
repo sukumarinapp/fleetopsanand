@@ -125,7 +125,6 @@ class WorkflowController extends Controller
             $tbl136 = DB::select(DB::raw($sql));
             if(count($tbl136) > 0){
                 $sale->EXPS = round(Formulae::EXPS2($DCR),2);
-                echo $sale->EXPS;
                 $sale->CCEI = "";
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
@@ -135,7 +134,6 @@ class WorkflowController extends Controller
             $tbl136 = DB::select(DB::raw($sql));
             if(count($tbl136) > 0){
                 $sale->EXPS = round(Formulae::EXPS2($DCR),2);
-                echo $sale->EXPS;
                 $sale->CCEI = "";
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
