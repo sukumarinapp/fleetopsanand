@@ -333,7 +333,7 @@
               position: myLatLng,
               map: mapnormal,
               icon: car_icon,
-              animation: google.maps.Animation.NONE,
+              animation: google.maps.Animation.DROP,
               title: title
             });
             markers.push(marker);
