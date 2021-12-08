@@ -397,7 +397,6 @@ class HomeController extends Controller
         $today = date("Y-m-d");
 
         $sql = "select a.VNO,b.capture_date,b.capture_time,b.direction,terminal_id,latitude,longitude,ground_speed,odometer,engine_on from vehicle a,current_location b where a.TID=b.terminal_id ".$filter." and b.id in (select max(id) from current_location where capture_date='$today' group by terminal_id)";
-
         //select * from alarm;
         $markers = DB::select(DB::raw($sql));
         ///dd($markers);
@@ -685,8 +684,8 @@ class HomeController extends Controller
           $battery = DB::select(DB::raw($sql4));
           foreach($battery as $res){
             $alert_time = $res->alert_time;
-            $resolved_time = $resolved_time;
-            $alerts[$i]['resolve_time'] = $res->resolved_time;
+            $resolved_time = $res->resolved_time;
+            $alerts[$i]['resolve_time'] = $resolved_time;
             $alerts[$i]['resolved_by'] = $res->resolved_by;
             $alerts[$i]['VID'] = $VID;
             $alerts[$i]['VNO'] = $VNO;
