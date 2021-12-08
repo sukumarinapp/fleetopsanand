@@ -59,7 +59,7 @@
              @if($alert["ev_latitude"] == "")
             &nbsp;
             @else
-            <button type="button" class="btn btn-primary btn-sm btn-block" data-lat="{{ $alert['ev_latitude'] }},{{ $alert['ev_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+            <button type="button" class="btn btn-primary btn-sm" data-lat="{{ $alert['ev_latitude'] }},{{ $alert['ev_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
           @endif 
         </td>
            <td>{{ $alert['resolve_time'] }}
@@ -71,7 +71,7 @@
              @if($alert["res_latitude"] == "")
             &nbsp;
             @else
-            <button type="button" class="btn btn-primary btn-sm btn-block" data-lat="{{ $alert['res_latitude'] }},{{ $alert['res_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+            <button type="button" class="btn btn-primary btn-sm" data-lat="{{ $alert['res_latitude'] }},{{ $alert['res_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
             @endif
           </td>
          </tr>
