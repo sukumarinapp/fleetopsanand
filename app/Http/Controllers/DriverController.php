@@ -148,7 +148,7 @@ class DriverController extends Controller
         $sales['SDT'] = $SDT;
         $sales['PLF'] = $PLF;
         $sales['SDT_dMY'] = $SDT_dMY;
-        $sales['expected_sales'] = $expected_sales;
+        $sales['expected_sales'] = round($expected_sales,2);
         return view('driver.driverhelp2',compact('sales'));
     }
 
@@ -200,10 +200,12 @@ class DriverController extends Controller
         $TPF = $request->trips_hidden;
         $SSR = $request->SSR;
         $DCR = 0;
+        $CRS = 0;
         $sql = "SELECT * from tbl136 where DECL=0 and VNO='$VNO'";
         $result = DB::select(DB::raw($sql));
         if(count($result) > 0){        
             $DCR = $result[0]->id;
+            $CRS = $result[0]->CRS;
             $requestId = uniqid();
             $requestId = $VNO . "-" .$requestId;
             $response = Billbox::payNow($requestId,$request->cash_hidden,$request->options,$request->DCN,$cust_name);
@@ -211,6 +213,32 @@ class DriverController extends Controller
                 $TIM = date("Y-m-d H:i:s");
                 $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN,TIM) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$CPF','$ROI','0','$SSR','$requestId','$TIM')";
                 DB::insert($sql);
+
+                $sql2 = "select * from notification where sms_id='SMSE11'";
+                $result2 = DB::select(DB::raw($sql2));
+                if(count($result2) > 0){
+                    $msg = $result2[0]->sms_text;
+                    $sql3 = "select name,UZS,UCN from users where UAN='$CAN'";
+                    $result3 = DB::select(DB::raw($sql3));
+                    $CZN = "";
+                    $UCN = "";
+                    if(count($result3) > 0){
+                        $CZN = $result3[0]->name." ".$result3[0]->UZS;
+                        $UCN = $result3[0]->UCN;
+                    }
+                    $msg = str_replace("#{CZN}#",$CZN,$msg);
+                    $msg = str_replace("#{DNM}#",$cust_name,$msg);
+                    $msg = str_replace("#{VNO}#",$VNO,$msg);
+                    //$msg = str_replace("#{EXPS}#",$CPF,$msg);
+                    //$FTP = round(Formulae::FTP($DCR),2);
+                    //$msg = str_replace("#{FTP}#",$FTP,$msg);
+                    SMSFleetops::send($UCN,$msg);
+                    $DAT = date("Y-m-d");
+                    $TIM = date("H:i:s");
+                    $CTX = "Client";
+                    $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$UCN','$msg','$DAT','$TIM','$CTX','$CZN')";
+                    DB::insert($sql);
+                }
                 return view('driver.prompt');
             }else{
                 $message = $response->statusMessage;
