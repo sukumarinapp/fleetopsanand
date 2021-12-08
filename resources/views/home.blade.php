@@ -261,7 +261,7 @@
       function setMarkers(locations) {
         for (var i = 0; i < locations.length; i++) {
           var vehicle = locations[i];
-          console.log(vehicle['VNO']);
+          console.log(vehicle['VNO']+":"+vehicle['latitude']+":"+vehicle['longitude']);
           var acc = "";
           var engine_on = parseInt(vehicle["engine_on"]);
           var car_icon = "carred.png";
