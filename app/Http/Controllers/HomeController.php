@@ -685,6 +685,7 @@ class HomeController extends Controller
           $battery = DB::select(DB::raw($sql4));
           foreach($battery as $res){
             $alert_time = $res->alert_time;
+            $resolved_time = $resolved_time;
             $alerts[$i]['resolve_time'] = $res->resolved_time;
             $alerts[$i]['resolved_by'] = $res->resolved_by;
             $alerts[$i]['VID'] = $VID;
@@ -705,6 +706,24 @@ class HomeController extends Controller
             $alerts[$i]['time'] = substr($alert_time,11,5);
             $alerts[$i]['hours'] = $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
             $i++;
+            
+            $alerts[$i]['ev_latitude'] = "";
+            $alerts[$i]['ev_longitude'] = "";
+            $alerts[$i]['res_latitude'] = "";
+            $alerts[$i]['res_longitude'] = "";
+            $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$alert_time' order by capture_datetime desc limit 1";
+            $ev_location = DB::select(DB::raw($sql6));
+            if(count($ev_location) > 0){
+              $alerts[$i]['ev_latitude'] = $ev_location[0]->latitude;
+              $alerts[$i]['ev_longitude'] = $ev_location[0]->longitude;
+            }
+            $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$resolved_time' order by capture_datetime desc limit 1";
+            $res_location = DB::select(DB::raw($sql6));
+            if(count($res_location) > 0){
+              $alerts[$i]['res_latitude'] = $res_location[0]->latitude;
+              $alerts[$i]['res_longitude'] = $res_location[0]->longitude;
+            }
+
           }
 
 
@@ -715,12 +734,31 @@ class HomeController extends Controller
         $result = DB::select(DB::raw($sql));
         foreach($result as $key => $res){
           $i++;
+          $ev_datetime = $res->DDT." "."10:00:00";
+          $res_datetime = $res->alarm_off_time;
           $alerts[$i]['VNO'] = $res->VNO;
-          $alerts[$i]['alert_time'] = $res->DDT." "."10:00:00";  
+          $alerts[$i]['alert_time'] = $ev_datetime;  
           $alerts[$i]['alert'] = $msg3;  
           $alerts[$i]['type'] = "buzzer";  
-          $alerts[$i]['resolve_time'] = $res->alarm_off_time;
-          $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
+          $alerts[$i]['resolve_time'] = $res_datetime;
+          $alerts[$i]['hours'] = self::active_duration($ev_datetime,$res_datetime);
+
+          $alerts[$i]['ev_latitude'] = "";
+          $alerts[$i]['ev_longitude'] = "";
+          $alerts[$i]['res_latitude'] = "";
+          $alerts[$i]['res_longitude'] = "";
+          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$ev_datetime' order by capture_datetime desc limit 1";
+          $ev_location = DB::select(DB::raw($sql6));
+          if(count($ev_location) > 0){
+            $alerts[$i]['ev_latitude'] = $ev_location[0]->latitude;
+            $alerts[$i]['ev_longitude'] = $ev_location[0]->longitude;
+          }
+          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$res_datetime' order by capture_datetime desc limit 1";
+          $res_location = DB::select(DB::raw($sql6));
+          if(count($res_location) > 0){
+            $alerts[$i]['res_latitude'] = $res_location[0]->latitude;
+            $alerts[$i]['res_longitude'] = $res_location[0]->longitude;
+          }
         } 
 
         //blocking on
@@ -728,12 +766,31 @@ class HomeController extends Controller
         $result = DB::select(DB::raw($sql));
         foreach($result as $key => $res){
           $i++;
+          $ev_datetime = $res->DDT." "."12:00:00";
+          $res_datetime = $res->block_off_time;
           $alerts[$i]['VNO'] = $res->VNO;
-          $alerts[$i]['alert_time'] = $res->DDT." "."12:00:00";  
+          $alerts[$i]['alert_time'] = $ev_datetime;  
           $alerts[$i]['alert'] = $msg2;  
           $alerts[$i]['type'] = "blocking";  
-          $alerts[$i]['resolve_time'] = $res->block_off_time;
-          $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
+          $alerts[$i]['resolve_time'] = $res_datetime;
+          $alerts[$i]['hours'] = self::active_duration($ev_datetime,$res_datetime);
+
+          $alerts[$i]['ev_latitude'] = "";
+          $alerts[$i]['ev_longitude'] = "";
+          $alerts[$i]['res_latitude'] = "";
+          $alerts[$i]['res_longitude'] = "";
+          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$ev_datetime' order by capture_datetime desc limit 1";
+          $ev_location = DB::select(DB::raw($sql6));
+          if(count($ev_location) > 0){
+            $alerts[$i]['ev_latitude'] = $ev_location[0]->latitude;
+            $alerts[$i]['ev_longitude'] = $ev_location[0]->longitude;
+          }
+          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$res_datetime' order by capture_datetime desc limit 1";
+          $res_location = DB::select(DB::raw($sql6));
+          if(count($res_location) > 0){
+            $alerts[$i]['res_latitude'] = $res_location[0]->latitude;
+            $alerts[$i]['res_longitude'] = $res_location[0]->longitude;
+          }
         } 
 
         $sql2 = "select a.VNO,b.TID,b.off_time,b.on_time from vehicle a,tracker_status b where a.TID=b.TID and substring(off_time,1,10) >= '$from' and substring(off_time,1,10) <='$to' and b.status =1 order by off_time desc";
@@ -749,6 +806,23 @@ class HomeController extends Controller
           $alerts[$i]['type'] = "tracker";     
           $alerts[$i]['resolve_time'] = $on_time;
           $alerts[$i]['hours'] = self::active_duration($off_time,$on_time);
+
+          $alerts[$i]['ev_latitude'] = "";
+          $alerts[$i]['ev_longitude'] = "";
+          $alerts[$i]['res_latitude'] = "";
+          $alerts[$i]['res_longitude'] = "";
+          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$off_time' order by capture_datetime desc limit 1";
+          $ev_location = DB::select(DB::raw($sql6));
+          if(count($ev_location) > 0){
+            $alerts[$i]['ev_latitude'] = $ev_location[0]->latitude;
+            $alerts[$i]['ev_longitude'] = $ev_location[0]->longitude;
+          }
+          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$on_time' order by capture_datetime desc limit 1";
+          $res_location = DB::select(DB::raw($sql6));
+          if(count($res_location) > 0){
+            $alerts[$i]['res_latitude'] = $res_location[0]->latitude;
+            $alerts[$i]['res_longitude'] = $res_location[0]->longitude;
+          }
         }
 
         $sql2 = "select a.VNO,b.TID,b.off_time,b.on_time from vehicle a,tracker_status b where a.TID=b.TID and off_time is null and b.status =1 order by off_time desc";
@@ -764,6 +838,23 @@ class HomeController extends Controller
           $alerts[$i]['type'] = "tracker";     
           $alerts[$i]['resolve_time'] = $on_time;
           $alerts[$i]['hours'] = "";
+
+          $alerts[$i]['ev_latitude'] = "";
+          $alerts[$i]['ev_longitude'] = "";
+          $alerts[$i]['res_latitude'] = "";
+          $alerts[$i]['res_longitude'] = "";
+          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$off_time' order by capture_datetime desc limit 1";
+          $ev_location = DB::select(DB::raw($sql6));
+          if(count($ev_location) > 0){
+            $alerts[$i]['ev_latitude'] = $ev_location[0]->latitude;
+            $alerts[$i]['ev_longitude'] = $ev_location[0]->longitude;
+          }
+          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$on_time' order by capture_datetime desc limit 1";
+          $res_location = DB::select(DB::raw($sql6));
+          if(count($res_location) > 0){
+            $alerts[$i]['res_latitude'] = $res_location[0]->latitude;
+            $alerts[$i]['res_longitude'] = $res_location[0]->longitude;
+          }
         }
         //dd($alerts);        
         return view('alertlog',compact('alerts','title','from','to'));
