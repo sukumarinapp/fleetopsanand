@@ -364,7 +364,7 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         mapnormal = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-        setInterval(reloadMarkers, 60000);
+        setInterval(reloadMarkers, 30000);
       }
       initialize();
 
