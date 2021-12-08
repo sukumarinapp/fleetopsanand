@@ -81,6 +81,8 @@ class WorkflowController extends Controller
         $rhreport = DB::select(DB::raw($sql));
         $total_exps = 0;
         $total_ccei = 0;
+        $total_sal = 0;
+        $total_cpf = 0;
         $total_cml = 0;
         $total_chr = 0;
         $rh_sold = 0 ;
@@ -103,13 +105,15 @@ class WorkflowController extends Controller
                 $sale->EXPS = round(Formulae::EXPS2($DCR),2);
                 $sale->EXPS_EARNING = $sale->EXPS * (1 - $RHF/100);
                 $sale->CCEI = round(Formulae::CCEI2($DCR),2);
-                $total_exps = $total_exps + $sale->EXPS;
+                $total_exps = $total_exps + $sale->EXPS_EARNING;
                 $total_ccei = $total_ccei + $sale->CCEI;
                 $sale->FTP = round(Formulae::FTP($DCR),2);
                 $sale->CWI = round(Formulae::CWI($DCR),2);
                 $sale->SPF = $tbl137[0]->SPF2;
                 $sale->CPF = $tbl137[0]->CPF2;
                 $sale->TPF = $tbl137[0]->TPF2;
+                $total_sal = $total_sal + $sale->SPF;
+                $total_cpf = $total_cpf + $sale->CPF;
             }else{
                 $sale->EXPS = "";
                 $sale->EXPS_EARNING = "";
@@ -139,7 +143,7 @@ class WorkflowController extends Controller
                 $sale->CWI = round(Formulae::CWI($DCR),2);
             }
         }
-        return view('rhreport',compact('rhreport','title','from','to','total_exps','total_ccei','rh_sold','total_cml','total_chr'));
+        return view('rhreport',compact('rhreport','title','from','to','total_exps','total_ccei','total_sal','total_cpf','rh_sold','total_cml','total_chr'));
     }
 
     public function sales($from,$to)
@@ -407,6 +411,7 @@ class WorkflowController extends Controller
     public function rhresettesting($DCR){
         $total_exps = 0;
         $total_ccei = 0;
+        
         $total_cml = 0;
         $total_chr = 0;
         $rh_sold = 0 ;

@@ -36,8 +36,11 @@
   </div>
   <div class="card-body">
     <div class="row" style="margin-bottom: 5px;">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <canvas id="pieChart" style="min-height: 150px; height: 150px; max-height: 150px; max-width: 100%;"></canvas>
+      </div>
+      <div class="col-md-6">
+        <canvas id="pieChart2" style="min-height: 150px; height: 150px; max-height: 150px; max-width: 100%;"></canvas>
       </div>
     </div>
     <div class="row">
@@ -175,30 +178,49 @@
 <script>
   var pieData  = {
     labels: [
-    'Expected Sales',
-    'Expected Cash Collected',
+    'EXPS(Earnings)',
+    'SAL',
     ],
     datasets: [
     {
-      data: [{{ $total_exps }},{{ $total_ccei }}],
+      data: [{{ $total_exps }},{{ $total_sal }}],
+      backgroundColor : ['#d9534f','#4CAF50'],
+    }
+    ]
+  }  
+
+  var pieData2  = {
+    labels: [
+    'CCEI',
+    'CPF',
+    ],
+    datasets: [
+    {
+      data: [{{ $total_ccei }},{{ $total_cpf }}],
       backgroundColor : ['#d9534f','#4CAF50'],
     }
     ]
   }  
   
   var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+  var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
   var pieOptions     = {
     maintainAspectRatio : false,
     responsive : true,
   }
-    new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: pieData,
-      options: pieOptions
-    })
+  new Chart(pieChartCanvas, {
+    type: 'pie',
+    data: pieData,
+    options: pieOptions
+  })
+  new Chart(pieChartCanvas2, {
+    type: 'pie',
+    data: pieData2,
+    options: pieOptions
+  })
 
 
-    var rhreport = "{{ url('rhreport') }}";
+  var rhreport = "{{ url('rhreport') }}";
   function load_report(){
     var from = $("#from").val();
     var to = $("#to").val();
