@@ -704,7 +704,7 @@ class HomeController extends Controller
             $alerts[$i]['date'] = substr($alert_time,0,10);
             $alerts[$i]['time'] = substr($alert_time,11,5);
             $alerts[$i]['hours'] = $alerts[$i]['hours'] = self::active_duration($alerts[$i]['alert_time'],$alerts[$i]['resolve_time']);
-            $i++;
+            
             
             $alerts[$i]['ev_latitude'] = "";
             $alerts[$i]['ev_longitude'] = "";
@@ -722,7 +722,7 @@ class HomeController extends Controller
               $alerts[$i]['res_latitude'] = $res_location[0]->latitude;
               $alerts[$i]['res_longitude'] = $res_location[0]->longitude;
             }
-
+            $i++;
           }
 
 

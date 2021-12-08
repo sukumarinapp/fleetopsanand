@@ -55,13 +55,25 @@
            <td>{{ $alert['alert'] }}</td>
            <td>{{ $alert['hours'] }}</td>
            <td>{{ $alert['alert_time'] }}</td>
-           <td><button type="button" class="btn btn-primary btn-sm btn-block" data-lat="{{ $alert['ev_latitude'] }},{{ $alert['ev_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button></td>
+           <td>
+             @if($alert["ev_latitude"] == "")
+            &nbsp;
+            @else
+            <button type="button" class="btn btn-primary btn-sm btn-block" data-lat="{{ $alert['ev_latitude'] }},{{ $alert['ev_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+          @endif 
+        </td>
            <td>{{ $alert['resolve_time'] }}
            @if($alert['type'] == "battery")
             <b>Resolved By:</b> {{ $alert['resolved_by'] }}
            @endif 
            </td>
-           <td><button type="button" class="btn btn-primary btn-sm btn-block" data-lat="{{ $alert['res_latitude'] }},{{ $alert['res_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button></td>
+           <td>
+             @if($alert["res_latitude"] == "")
+            &nbsp;
+            @else
+            <button type="button" class="btn btn-primary btn-sm btn-block" data-lat="{{ $alert['res_latitude'] }},{{ $alert['res_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+            @endif
+          </td>
          </tr>
          @endforeach
        </tbody>
@@ -112,6 +124,21 @@
     }		
   }
 
+  var map2;
+  function initialize2(myCenter) {
+    var marker2 = new google.maps.Marker({
+      position: myCenter
+    });
+    var mapProp2 = {
+      center: myCenter,
+      zoom: 16,
+          //draggable: false,
+          //scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map2 = new google.maps.Map(document.getElementById("map-canvas"), mapProp2);
+        marker2.setMap(map2);
+      };
    $('#myMapModal').on('shown.bs.modal', function(e) {
         var element = $(e.relatedTarget);
         var data = element.data("lat").split(',')
