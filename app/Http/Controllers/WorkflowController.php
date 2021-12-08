@@ -12,7 +12,7 @@ class WorkflowController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('fuel_consumed');
     }
 
     private function check_access($BP){
@@ -461,6 +461,13 @@ class WorkflowController extends Controller
             return redirect("/notificationslog/$from/$to")->with('message', 'SMS Resend Successfully');
 
         }
+    }
+
+    public function fuel_consumed($DCR){
+        $FTP = round(Formulae::FTP($DCR),2);
+        $response = array();
+        $response['FTP'] = $FTP;
+        echo json_encode($response);
     }
         
 }

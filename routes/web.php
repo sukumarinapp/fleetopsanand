@@ -94,6 +94,7 @@ Route::get('/alerts', 'HomeController@alerts')->name('alerts');
 
 Route::get('/fuelsrch', 'FuelController@fuelsrch')->name('fuelsrch');
 Route::get('/fueler/{VNO}', 'FuelController@fueler')->name('fueler');
+Route::get('/fuel_consumed/{DCR}', 'WorkflowController@fuel_consumed')->name('fuel_consumed');
 
 Route::get('/help', 'WorkflowController@help')->name('help');
 
