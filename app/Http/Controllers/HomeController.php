@@ -684,8 +684,8 @@ class HomeController extends Controller
           $battery = DB::select(DB::raw($sql4));
           foreach($battery as $res){
             $alert_time = $res->alert_time;
-            $resolved_time = $resolved_time;
-            $alerts[$i]['resolve_time'] = $res->resolved_time;
+            $resolved_time = $res->resolved_time;
+            $alerts[$i]['resolve_time'] = $resolved_time;
             $alerts[$i]['resolved_by'] = $res->resolved_by;
             $alerts[$i]['VID'] = $VID;
             $alerts[$i]['VNO'] = $VNO;
