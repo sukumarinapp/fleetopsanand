@@ -55,11 +55,11 @@
            <td>{{ $alert['alert'] }}</td>
            <td>{{ $alert['hours'] }}</td>
            <td>{{ $alert['alert_time'] }}</td>
-           <td>
+           <td style="text-align:center;">
              @if($alert["ev_latitude"] == "")
             &nbsp;
             @else
-            <button type="button" class="btn btn-primary btn-sm" data-lat="{{ $alert['ev_latitude'] }},{{ $alert['ev_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+            <button type="button" style="" class="btn btn-primary btn-xs" data-lat="{{ $alert['ev_latitude'] }},{{ $alert['ev_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
           @endif 
         </td>
            <td>{{ $alert['resolve_time'] }}
@@ -67,11 +67,11 @@
             <b>Resolved By:</b> {{ $alert['resolved_by'] }}
            @endif 
            </td>
-           <td>
+           <td style="text-align: center";>
              @if($alert["res_latitude"] == "")
             &nbsp;
             @else
-            <button type="button" class="btn btn-primary btn-sm" data-lat="{{ $alert['res_latitude'] }},{{ $alert['res_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+            <button type="button" class="btn btn-primary btn-xs" data-lat="{{ $alert['res_latitude'] }},{{ $alert['res_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
             @endif
           </td>
          </tr>
