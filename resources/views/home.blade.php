@@ -333,7 +333,7 @@
               position: myLatLng,
               map: mapnormal,
               icon: car_icon,
-              animation: google.maps.Animation.NONE,
+              animation: google.maps.Animation.DROP,
               title: title
             });
             markers.push(marker);
@@ -364,7 +364,7 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         mapnormal = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-        setInterval(reloadMarkers, 60000);
+        setInterval(reloadMarkers, 30000);
       }
       initialize();
 
