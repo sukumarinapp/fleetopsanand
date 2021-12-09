@@ -265,7 +265,7 @@ class WorkflowController extends Controller
                     $sql = "update tbl136 set DECL = 1,attempts=3 where id = '$DCR'";
                     DB::update($sql);
                 }
-                
+
                 if($DES == "A4"){
                     $WTP = "Vehicle Unblocked";
                 }else{
@@ -404,7 +404,7 @@ class WorkflowController extends Controller
             DB::update($sql);
 
             $hour = date("H");
-            if($hour > 10 and $hour < 11){
+            if($hour >= 10 and $hour < 11){
                 $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=0 where id = '$DCR'";
                 DB::update($sql);
             }else{
