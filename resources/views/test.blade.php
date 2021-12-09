@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
 <label>Enter VNO</label>
-<input type="text" name="search_inp" id="search_inp">
+<input value="GT6014-17" type="text" name="search_inp" id="search_inp">
 <input onclick="live_track_play()" type="button" value="Live Track" class="btn btn-success">
 <div id="map_canvas" style="width:1000px;height:500px"></div>
 </div>
@@ -13,17 +13,17 @@
 	var map = undefined;
 	var marker = undefined;
 	var ground_speed = 0;
-	var position = [];
+	var position = [5.629031666666666,-0.15723666666666666];
 
 	function live_track_play(){
 		VNO = $("#search_inp").val();
 		if(typeof(VNO) == "undefined" || VNO == "" ){
-        alert("Enter vehicle no");
-        $("#search_inp").focus();
-        return false;
-    }else{
+	        alert("Enter vehicle no");
+	        $("#search_inp").focus();
+	        return false;
+	    }else{
 			initialize_live_track();
-    }
+	    }
 	}
 
 	function initialize_live_track() {
@@ -40,7 +40,7 @@
 				var myOptions = {
 					zoom: 20,
 					center: latlng,
-					mapTypeId: google.maps.MapTypeId.SATELLITE
+					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
 				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 				marker = new google.maps.Marker({
@@ -55,10 +55,7 @@
 		  }
 		});
 		
-		/*google.maps.event.addListener(map, 'click', function(me) {
-			var result = [me.latLng.lat(), me.latLng.lng()];
-			transition(result);
-		});*/
+		
 	}
 	
 	function animateMarkers(){
@@ -79,7 +76,7 @@
 		});
 	}
 
-	setInterval(animateMarkers, 10000);
+	//setInterval(animateMarkers, 10000);
 
 	var numDeltas = 100;
 	var delay = 100;
@@ -135,7 +132,11 @@
 	}
 
 	$(document).ready(function() {
-		
+		google.maps.event.addListener(map, 'click', function(me) {
+			var result = [me.latLng.lat(), me.latLng.lng()];
+			console.debug(result);
+			transition(result);
+		});
 	});
 	
 </script>

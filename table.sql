@@ -1,3 +1,6 @@
+delete from current_location where id = 99383;
+insert into current_location (id,terminal_id,capture_date,capture_datetime,capture_time,latitude,longitude,ground_speed,odometer,direction,engine_on) values (99383,'233500627699','2021-12-09','2021-12-01 00:00:54','000054.000','5.6314166666666665','-0.15366500000000002','22.50','7080.620','69.19','1');         
+
 CREATE TABLE `receipt_no` (
   RNO int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -914,6 +914,7 @@ class HomeController extends Controller
       }
 
       public function vehicle_location($VNO){
+        $capture_datetime = date("Y-m-d H:i:s");
         $sql = "select latitude,longitude,ground_speed,direction from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO')";
         $markers = DB::select(DB::raw($sql));
         if(count($markers) == 0){

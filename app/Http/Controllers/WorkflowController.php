@@ -249,13 +249,26 @@ class WorkflowController extends Controller
                 $UAN = $users[0]->UAN;                
                 $OTT = date("H.i");
                 $WTP = "";
+
+                $hour = date("H");
+                if($hour > 10 and $hour < 11){
+                    $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=0 where id = '$DCR'";
+                    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                }else{
+                    $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=3 where id = '$DCR'";
+                    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                }
+                if($hour >= 12){
+                    $sql = "update tbl136 set DECL = 1,attempts=0 where id = '$DCR'";
+                    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                }else{
+                    $sql = "update tbl136 set DECL = 1,attempts=3 where id = '$DCR'";
+                    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                }
+                
                 if($DES == "A4"){
-                    $sql = "update tbl136 set DECL=1,attempts=0 where id='$DCR'";
-                    DB::update($sql);
                     $WTP = "Vehicle Unblocked";
                 }else{
-                    $sql = "update tbl136 set alarm_off=1,alarm_off_attempts=0 where id='$DCR'";
-                    DB::update($sql);
                     $WTP = "Buzzer Turned Off";
                 }
                 
