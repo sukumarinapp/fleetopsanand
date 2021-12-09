@@ -265,7 +265,6 @@ class WorkflowController extends Controller
                     $sql = "update tbl136 set DECL = 1,attempts=3 where id = '$DCR'";
                     DB::update($sql);
                 }
-                echo $sql;die;
                 
                 if($DES == "A4"){
                     $WTP = "Vehicle Unblocked";
