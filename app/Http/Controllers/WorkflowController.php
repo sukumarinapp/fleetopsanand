@@ -253,17 +253,17 @@ class WorkflowController extends Controller
                 $hour = date("H");
                 if($hour > 10 and $hour < 11){
                     $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=0 where id = '$DCR'";
-                    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                    DB::update($sql);
                 }else{
                     $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=3 where id = '$DCR'";
-                    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                    DB::update($sql);
                 }
                 if($hour >= 12){
                     $sql = "update tbl136 set DECL = 1,attempts=0 where id = '$DCR'";
-                    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                    DB::update($sql);
                 }else{
                     $sql = "update tbl136 set DECL = 1,attempts=3 where id = '$DCR'";
-                    mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                    DB::update($sql);
                 }
                 
                 if($DES == "A4"){
@@ -404,6 +404,23 @@ class WorkflowController extends Controller
             $msg = "Hi ".$DNM.",Thank you for a successful sales declaration of GHC ".$RMT;
             $sql = "update tbl136 set DECL = 1,attempts=0,alarm_off=1,alarm_off_attempts=0 where id = '$DCR'";
             DB::update($sql);
+
+            $hour = date("H");
+            if($hour > 10 and $hour < 11){
+                $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=0 where id = '$DCR'";
+                DB::update($sql);
+            }else{
+                $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=3 where id = '$DCR'";
+                DB::update($sql);
+            }
+            if($hour >= 12){
+                $sql = "update tbl136 set DECL = 1,attempts=0 where id = '$DCR'";
+                DB::update($sql);
+            }else{
+                $sql = "update tbl136 set DECL = 1,attempts=3 where id = '$DCR'";
+                DB::update($sql);
+            }
+            
         }
         $DAT = date("Y-m-d");
         $TIM = date("H:i:s");
