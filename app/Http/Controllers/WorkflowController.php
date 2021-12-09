@@ -265,6 +265,7 @@ class WorkflowController extends Controller
                     $sql = "update tbl136 set DECL = 1,attempts=3 where id = '$DCR'";
                     DB::update($sql);
                 }
+                echo $sql;die;
                 
                 if($DES == "A4"){
                     $WTP = "Vehicle Unblocked";
@@ -296,7 +297,6 @@ class WorkflowController extends Controller
                     
                     $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$DCN','$MSG','$DAT','$TIM','$CTX','$DNM')";
                     DB::insert($sql);
-                    //SMSFleetops::send($TSM,$VBC0);                    
                     SMSFleetops::send($DCN,$MSG);
                     return redirect('/workflow')->with('message', 'Vehicle Mobilized Successfully');
                 }else{
@@ -306,7 +306,6 @@ class WorkflowController extends Controller
                     
                     $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$DCN','$MSG','$DAT','$TIM','$CTX','$DNM')";
                     DB::insert($sql);
-                    //SMSFleetops::send($TSM,$VZC0);
                     SMSFleetops::send($DCN,$MSG);
                     return redirect('/workflow')->with('message', 'Vehicle Buzzer Turned off Successfully');
                 }
@@ -420,7 +419,7 @@ class WorkflowController extends Controller
                 $sql = "update tbl136 set DECL = 1,attempts=3 where id = '$DCR'";
                 DB::update($sql);
             }
-            
+
         }
         $DAT = date("Y-m-d");
         $TIM = date("H:i:s");
