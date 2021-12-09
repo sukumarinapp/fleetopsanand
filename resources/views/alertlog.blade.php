@@ -43,7 +43,9 @@
             <th>Alert</th>
             <th>Active Duration</th>
             <th>Event Time</th>
+            <th>Event Location</th>
             <th>Resolved Time</th>
+            <th>Resolved Location</th>
           </tr>
         </thead>
         <tbody>
@@ -53,11 +55,25 @@
            <td>{{ $alert['alert'] }}</td>
            <td>{{ $alert['hours'] }}</td>
            <td>{{ $alert['alert_time'] }}</td>
+           <td style="text-align:center;">
+             @if($alert["ev_latitude"] == "")
+            &nbsp;
+            @else
+            <button type="button" style="" class="btn btn-primary btn-xs" data-lat="{{ $alert['ev_latitude'] }},{{ $alert['ev_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+          @endif 
+        </td>
            <td>{{ $alert['resolve_time'] }}
            @if($alert['type'] == "battery")
             <b>Resolved By:</b> {{ $alert['resolved_by'] }}
            @endif 
            </td>
+           <td style="text-align: center";>
+             @if($alert["res_latitude"] == "")
+            &nbsp;
+            @else
+            <button type="button" class="btn btn-primary btn-xs" data-lat="{{ $alert['res_latitude'] }},{{ $alert['res_longitude'] }}" data-toggle="modal" data-target="#myMapModal" >View</button>
+            @endif
+          </td>
          </tr>
          @endforeach
        </tbody>
@@ -65,6 +81,24 @@
    </div>
  </div>
 </div>
+</div>
+<div class="modal fade" id="myMapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Event Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="map-canvas" style="height: 400px;"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
 
@@ -89,6 +123,27 @@
       window.location.href = url;
     }		
   }
+
+  var map2;
+  function initialize2(myCenter) {
+    var marker2 = new google.maps.Marker({
+      position: myCenter
+    });
+    var mapProp2 = {
+      center: myCenter,
+      zoom: 16,
+          //draggable: false,
+          //scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map2 = new google.maps.Map(document.getElementById("map-canvas"), mapProp2);
+        marker2.setMap(map2);
+      };
+   $('#myMapModal').on('shown.bs.modal', function(e) {
+        var element = $(e.relatedTarget);
+        var data = element.data("lat").split(',')
+        initialize2(new google.maps.LatLng(data[0], data[1]));
+      });
 
   $(document).ready(function() {
     $('#notifylog').DataTable( {
