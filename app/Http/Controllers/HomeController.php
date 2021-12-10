@@ -913,9 +913,8 @@ class HomeController extends Controller
         return view('test',compact('latitude','longitude','ground_speed','direction'));
       }
 
-      public function vehicle_location($VNO){
-        $capture_datetime = date("Y-m-d H:i:s");
-        $sql = "select latitude,longitude,ground_speed,direction from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO')";
+      public function initial_location($VNO){
+        $sql = "select capture_datetime,latitude,longitude,ground_speed,direction from current_location where id = (select a.id from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO' order by capture_datetime desc limit 1,1)";
         $markers = DB::select(DB::raw($sql));
         if(count($markers) == 0){
           $markers[0]['latitude'] = "5.604688667802131";
@@ -925,4 +924,17 @@ class HomeController extends Controller
         }
         return response()->json($markers);
       }
-    }
+
+      public function vehicle_location($VNO){
+        $sql = "select capture_datetime,latitude,longitude,ground_speed,direction from current_location where id = (select max(a.id) from current_location a,vehicle b where a.terminal_id=b.TID and b.VNO='$VNO')";
+        $markers = DB::select(DB::raw($sql));
+        if(count($markers) == 0){
+          $markers[0]['latitude'] = "5.604688667802131";
+          $markers[0]['longitude'] = "-0.187207828880368";
+          $markers[0]['ground_speed'] = 0;
+          $markers[0]['direction'] = 0;
+        }
+        return response()->json($markers);
+      }
+
+}

@@ -68,12 +68,14 @@ class DriverController extends Controller
                     return view('driver.driverrhsales', compact('rhplatforms','vehicle'));
                 }
             }else{
-                if($vehicle->VBM == "Hire Purchase"){
+                if($vehicle->VBM == "Hire Purchase" || $vehicle->VBM == "Rental"){
                     $DCR = 0; 
                     $sql = "select * from tbl136 where replace(VNO, '-', '') = '$VNO' and DECL=0";
                     $result = DB::select(DB::raw($sql));
                     if(count($result) > 0){
                         $DCR = $result[0]->id;
+                    }else{
+                        return view('driver.nopending');
                     }
                     $sql = "select sum(SSA) as sales_amount from sales_rental where DCR = $DCR";
                     $result = DB::select(DB::raw($sql));
@@ -214,30 +216,32 @@ class DriverController extends Controller
                 $sql = "insert into tbl137 (SDT,DCR,CAN,VNO,RCN,VBM,RHN,SPF,TPF,RMT,ROI,RST,SSR,RTN,TIM) values ('$SDT','$DCR','$CAN','$VNO','$RCN','$VBM','$RHN','$SPF','$TPF','$CPF','$ROI','0','$SSR','$requestId','$TIM')";
                 DB::insert($sql);
 
-                $sql2 = "select * from notification where sms_id='SMSE11'";
-                $result2 = DB::select(DB::raw($sql2));
-                if(count($result2) > 0){
-                    $msg = $result2[0]->sms_text;
-                    $sql3 = "select name,UZS,UCN from users where UAN='$CAN'";
-                    $result3 = DB::select(DB::raw($sql3));
-                    $CZN = "";
-                    $UCN = "";
-                    if(count($result3) > 0){
-                        $CZN = $result3[0]->name." ".$result3[0]->UZS;
-                        $UCN = $result3[0]->UCN;
+                if($CRS == 1){
+                    $sql2 = "select * from notification where sms_id='SMSE11'";
+                    $result2 = DB::select(DB::raw($sql2));
+                    if(count($result2) > 0){
+                        $msg = $result2[0]->sms_text;
+                        $sql3 = "select name,UZS,UCN from users where UAN='$CAN'";
+                        $result3 = DB::select(DB::raw($sql3));
+                        $CZN = "";
+                        $UCN = "";
+                        if(count($result3) > 0){
+                            $CZN = $result3[0]->name." ".$result3[0]->UZS;
+                            $UCN = $result3[0]->UCN;
+                        }
+                        $msg = str_replace("#{CZN}#",$CZN,$msg);
+                        $msg = str_replace("#{DNM}#",$cust_name,$msg);
+                        $msg = str_replace("#{VNO}#",$VNO,$msg);
+                        //$msg = str_replace("#{EXPS}#",$CPF,$msg);
+                        //$FTP = round(Formulae::FTP($DCR),2);
+                        //$msg = str_replace("#{FTP}#",$FTP,$msg);
+                        SMSFleetops::send($UCN,$msg);
+                        $DAT = date("Y-m-d");
+                        $TIM = date("H:i:s");
+                        $CTX = "Client";
+                        $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$UCN','$msg','$DAT','$TIM','$CTX','$CZN')";
+                        DB::insert($sql);
                     }
-                    $msg = str_replace("#{CZN}#",$CZN,$msg);
-                    $msg = str_replace("#{DNM}#",$cust_name,$msg);
-                    $msg = str_replace("#{VNO}#",$VNO,$msg);
-                    //$msg = str_replace("#{EXPS}#",$CPF,$msg);
-                    //$FTP = round(Formulae::FTP($DCR),2);
-                    //$msg = str_replace("#{FTP}#",$FTP,$msg);
-                    SMSFleetops::send($UCN,$msg);
-                    $DAT = date("Y-m-d");
-                    $TIM = date("H:i:s");
-                    $CTX = "Client";
-                    $sql = "insert into sms_log (PHN,MSG,DAT,TIM,CTX,NAM) values ('$UCN','$msg','$DAT','$TIM','$CTX','$CZN')";
-                    DB::insert($sql);
                 }
                 return view('driver.prompt');
             }else{

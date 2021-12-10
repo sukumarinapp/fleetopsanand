@@ -90,6 +90,7 @@ Route::post('/auditingsave', 'WorkflowController@auditingsave')->name('auditings
 
 Route::get('/locations', 'HomeController@locations')->name('locations');
 Route::get('/vehicle_location/{VNO}', 'HomeController@vehicle_location')->name('vehicle_location');
+Route::get('/initial_location/{VNO}', 'HomeController@initial_location')->name('initial_location');
 Route::get('/alerts', 'HomeController@alerts')->name('alerts');
 
 Route::get('/fuelsrch', 'FuelController@fuelsrch')->name('fuelsrch');
