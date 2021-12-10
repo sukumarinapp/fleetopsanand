@@ -77,7 +77,9 @@
 				}
 				console.log(response[0]['capture_datetime']);
 				console.log(response[0]['latitude']);
+				console.log(response[0]['speed']);
 				console.log(response[0]['longitude']);
+				console.log(response[0]['direction']);
 			},
 			error: function (jqXHR, exception) {
 				console.log(exception);
