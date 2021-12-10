@@ -33,6 +33,8 @@
 			type: "get",
 			url: initial_location,
 			success: function(response) {
+				prevLatitude = response[0]['latitude'];
+				prevLongitude = response[0]['longitude'];
 				position[0] = response[0]['latitude'];
 				position[1] = response[0]['longitude'];
 				ground_speed = response[0]['ground_speed'];
@@ -96,8 +98,10 @@
 	
 	function transition(result){
 		i = 0;
-		deltaLat = (result[0] - position[0])/numDeltas;
-		deltaLng = (result[1] - position[1])/numDeltas;
+		//deltaLat = (result[0] - position[0])/numDeltas;
+		deltaLat = (prevLatitude - position[0])/numDeltas;
+		//deltaLng = (result[1] - position[1])/numDeltas;
+		deltaLng = (prevLongitude - position[1])/numDeltas;
 		moveMarker();
 	}
 	
