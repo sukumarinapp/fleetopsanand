@@ -42,7 +42,7 @@
 				var myOptions = {
 					zoom: 20,
 					center: latlng,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
+					mapTypeId: google.maps.MapTypeId.SATELLITE
 				};
 				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 				marker = new google.maps.Marker({
