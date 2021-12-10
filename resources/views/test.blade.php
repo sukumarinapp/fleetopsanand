@@ -33,7 +33,6 @@
 			type: "get",
 			url: initial_location,
 			success: function(response) {
-				console.log(response[0]['capture_datetime']);
 				position[0] = response[0]['latitude'];
 				position[1] = response[0]['longitude'];
 				ground_speed = response[0]['ground_speed'];
@@ -67,7 +66,6 @@
 			type: "get",
 			url: vehicle_location,
 			success: function(response) {
-				console.log(response[0]['capture_datetime']);
 				if(prevLatitude != response[0]['latitude'] && prevLongitude != response[0]['longitude']){
 					result = [response[0]['latitude'], response[0]['longitude']];
 					ground_speed = response[0]['ground_speed'];
@@ -75,6 +73,9 @@
 					prevLatitude = response[0]['latitude'];
 					prevLongitude = response[0]['longitude'];
 				}
+				console.log(response[0]['capture_datetime']);
+				console.log(response[0]['latitude']);
+				console.log(response[0]['longitude']);
 			},
 			error: function (jqXHR, exception) {
 				console.log(exception);
