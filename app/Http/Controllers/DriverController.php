@@ -68,12 +68,14 @@ class DriverController extends Controller
                     return view('driver.driverrhsales', compact('rhplatforms','vehicle'));
                 }
             }else{
-                if($vehicle->VBM == "Hire Purchase"){
+                if($vehicle->VBM == "Hire Purchase" || $vehicle->VBM == "Rental"){
                     $DCR = 0; 
                     $sql = "select * from tbl136 where replace(VNO, '-', '') = '$VNO' and DECL=0";
                     $result = DB::select(DB::raw($sql));
                     if(count($result) > 0){
                         $DCR = $result[0]->id;
+                    }else{
+                        return redirect('/nopending');
                     }
                     $sql = "select sum(SSA) as sales_amount from sales_rental where DCR = $DCR";
                     $result = DB::select(DB::raw($sql));
