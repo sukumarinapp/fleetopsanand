@@ -75,7 +75,7 @@ class DriverController extends Controller
                     if(count($result) > 0){
                         $DCR = $result[0]->id;
                     }else{
-                        return redirect('/nopending');
+                        return view('driver.nopending');
                     }
                     $sql = "select sum(SSA) as sales_amount from sales_rental where DCR = $DCR";
                     $result = DB::select(DB::raw($sql));
