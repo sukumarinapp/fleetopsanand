@@ -99,9 +99,9 @@
 	function transition(result){
 		i = 0;
 		//deltaLat = (result[0] - position[0])/numDeltas;
-		deltaLat = (prevLatitude - position[0])/numDeltas;
+		deltaLat = (result[0] - prevLatitude)/numDeltas;
 		//deltaLng = (result[1] - position[1])/numDeltas;
-		deltaLng = (prevLongitude - position[1])/numDeltas;
+		deltaLng = (result[1] - prevLongitude)/numDeltas;
 		moveMarker();
 	}
 	
