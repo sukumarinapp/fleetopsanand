@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
 	<label>Enter VNO</label>
-	<input value="GT9324-17" type="text" name="search_inp" id="search_inp">
+	<input value="GN7122-17" type="text" name="search_inp" id="search_inp">
 	<input onclick="live_track_play()" type="button" value="Live Track" class="btn btn-success">
 	<div id="map_canvas" style="width:1000px;height:500px"></div>
 </div>
