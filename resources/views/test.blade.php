@@ -121,7 +121,7 @@
 				snappedPoints = response.snappedPoints;
 				snapLength = snappedPoints.length - 1;
 				position[0] = snappedPoints[snapLength].location.latitude;
-				position[1] = snappedPoints[snapLength].location.location;
+				position[1] = snappedPoints[snapLength].location.longitude;
 				i = 0;
 				moveMarkerRepeat();
 			},
