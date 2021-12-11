@@ -14,6 +14,7 @@
 	var marker_live = undefined;
 	var ground_speed_live = 0;
 	var position_live = [5.629031666666666,-0.15723666666666666];
+	var snapLength = 0;
 
 	function live_track_play(){
 		VNO_live = $("#search_inp").val();
@@ -130,7 +131,7 @@
 				console.log(snapLength);				
 				position_live[0] = snappedPoints[snapLength].location.latitude;
 				position_live[1] = snappedPoints[snapLength].location.longitude;
-				i_live = 5;
+				i_live = 0;
 				moveMarkerRepeat();
 			},
 			error: function (jqXHR, exception) {
@@ -144,9 +145,9 @@
 		marker_live.setPosition(latlng);
 		map_live.panTo(latlng);
 		marker_live.setTitle(VNO_live + "\n" + ground_speed_live);
-		if(i_live < numDeltas-1){
+		if(i_live < snapLength-1){
 			i_live++;
-			setTimeout(moveMarkerRepeat, delay);
+			setTimeousnapLengtht(moveMarkerRepeat, delay);
 		}
 
 	}
