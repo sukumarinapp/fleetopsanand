@@ -145,9 +145,9 @@
 		marker_live.setPosition(latlng);
 		map_live.panTo(latlng);
 		marker_live.setTitle(VNO_live + "\n" + ground_speed_live);
-		if(i_live < snapLength-1){
+		if(i_live < numDeltas-1){
 			i_live++;
-			setTimeousnapLengtht(moveMarkerRepeat, delay);
+			setTimeout(moveMarkerRepeat, delay);
 		}
 
 	}
