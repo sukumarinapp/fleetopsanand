@@ -413,22 +413,18 @@ function toggle_map(arg){
         }else{
             if(arg.value == "replay"){
                 $("#map_canvas").slideUp("slow");
+                $("#map_canvas_live").slideUp("slow");
                 $("#map_replay").slideDown("slow");
                 $("#gmapreplay").text("Normal");
                 $("#gmapreplay").attr('value', 'normal'); 
-                //$("#gmaplive").hide();
-            }else if(arg.value == "live"){
-                $("#map_canvas").slideUp("slow");
-                $("#map_replay").slideDown("slow");
-                $("#gmapreplay").text("Normal");
-                $("#gmapreplay").prop('value', 'normal');
-                //$("#gmaplive").hide();
+                $("#gmaplive").hide();
             }else if(arg.value == "normal"){
                 $("#map_canvas").slideDown("slow");
+                $("#map_canvas_live").slideUp("slow");
                 $("#map_replay").slideUp("slow");
                 $("#gmapreplay").text("Replay");
                 $("#gmapreplay").prop('value', 'replay');
-                //$("#gmaplive").show();
+                $("#gmaplive").show();
             }
         }
     }
