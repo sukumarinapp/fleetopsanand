@@ -235,7 +235,7 @@
       $("#map_canvas").slideUp("slow");
       $("#map_replay").slideUp("slow");
       $("#map_canvas_live").slideDown("slow");
-      $("#gmapreplay").text("Normal");
+      $("#gmapreplay").html("<i class='fa fa-arrow-left'>&nbsp;</i>Normal");
       $("#gmapreplay").attr('value', 'normal'); 
       $("#gmaplive").hide();
       initialize_live_track();
