@@ -286,7 +286,7 @@
         if(prevLatitude != response[0]['latitude'] && prevLongitude != response[0]['longitude']){
           result = [response[0]['latitude'], response[0]['longitude']];
           ground_speed_live = response[0]['ground_speed'];
-          transition(result);
+          transition(result)//////;
           prevLatitude = response[0]['latitude'];
           prevLongitude = response[0]['longitude'];
         }
@@ -341,6 +341,7 @@
       url: roadapi,
       success: function(response) {
         snappedPoints = response.snappedPoints;
+        console.log(snappedPoints);
         snapLength = snappedPoints.length - 1;
         position_live[0] = snappedPoints[snapLength].location.latitude;
         position_live[1] = snappedPoints[snapLength].location.longitude;
@@ -365,6 +366,7 @@
 
   }
 
+//live tracking end
 
   var acknowledge = "{{ url('acknowledge') }}";
   function acknowledgealert(id){
