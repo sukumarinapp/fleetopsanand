@@ -267,9 +267,6 @@ class WorkflowController extends Controller
                     DB::update($sql);
                 }
 
-                echo $sql;
-                die;
-
                 if($DES == "A4"){
                     $WTP = "Vehicle Unblocked";
                 }else{
