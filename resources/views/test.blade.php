@@ -126,6 +126,7 @@
 			url: roadapi,
 			success: function(response) {
 				snappedPoints = response.snappedPoints;
+				console.log(snappedPoints);
 				snapLength = snappedPoints.length - 1;
 				position_live[0] = snappedPoints[snapLength].location.latitude;
 				position_live[1] = snappedPoints[snapLength].location.longitude;
