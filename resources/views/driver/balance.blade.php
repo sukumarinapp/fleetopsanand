@@ -5,6 +5,9 @@
         @csrf
  <div class="row justify-content-center">
   <div class="col-md-12 text-center">
+    <a href="#" class="navbar-brand">
+                <img src="{{ URL::to('/') }}/images/fleetopslogo.png" alt="AdminLTE Logo">
+            </a>
     <h3 style="color: lightgray">Collection Note</h3>
   </div>
 </div>

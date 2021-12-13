@@ -1,6 +1,11 @@
 @extends('layouts.driver')
 @section('content')
 <div class="container" >
+  <div class="row justify-content-center">
+   <a href="#" class="navbar-brand">
+                <img src="{{ URL::to('/') }}/images/fleetopslogo.png" alt="AdminLTE Logo">
+            </a>
+          </div>
   <form method="post" action="{{ route('driverpaysave') }}">
     @csrf
   <div style="padding: 50px; height: 200px;"></div>
