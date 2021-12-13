@@ -74,13 +74,13 @@
                   @csrf
                   <div style="padding-bottom:5px" class="row">
                   <div class="col-md-2">
-                    <label for="email">Start Time</label>                    
+                    <label for="starttime">Start Time</label>
                   </div>
                   <div class="col-md-3">
                     <input value="{{ $starttime }}" class="form-control" type="datetime-local" name="starttime" id="starttime"  required="required">
                   </div>
                   <div class="col-md-2">
-                    <label for="email">End Time</label>                    
+                    <label for="endtime">End Time</label>
                   </div>
                   <div class="col-md-3">
                     <input value="{{ $endtime }}" class="form-control" type="datetime-local" name="endtime" id="endtime"  required="required">

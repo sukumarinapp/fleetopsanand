@@ -224,9 +224,7 @@ class HomeController extends Controller
       }
       $usertree = self::usertree();
       $VNO = "";
-      $starttime = "";
-      $endtime = ""; 
-        //dd($usertree);
+      
       $location = array();
       return view('replay',compact('location','usertree','type','VNO','starttime','endtime'));
     }
@@ -288,6 +286,8 @@ class HomeController extends Controller
 
       public function index()
       {
+        $starttime = date("Y-m-d")."T00:00:00";
+        $endtime = date("Y-m-d")."T23:59:59"; 
         $user_id = Auth::user()->id;
         $parent_id = Auth::user()->parent_id;
         $usertype = Auth::user()->usertype;
@@ -335,8 +335,6 @@ class HomeController extends Controller
           $total = $result[0]->total;
         }
         $alerts = self::alerts();
-        $starttime = "";
-        $endtime = ""; 
         return view('home',compact('usertree','alerts','type','online','offline','inactive','active','total','starttime','endtime'));
       }
 
