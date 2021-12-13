@@ -11,7 +11,7 @@
 </div>
   <div class="card card-danger">
     <div class="card-header">
-      <h3 class="card-title">No pending payments found.</h3>
+      <h3 class="card-title">No pending collection note found.</h3>
     </div>
     <div class="card-body">
        
