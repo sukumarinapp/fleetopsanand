@@ -368,12 +368,17 @@ function play(){
         alert("select End Time");
         return false;
     }else{
+        $("#gmapreplay").html("<i class='fa fa-arrow-left'>&nbsp;</i>Normal");
         $.ajax({
           type: "get",
           url: url,
           success: function(response) {
             response = JSON.parse(response);
             $("#replay-summary").html("<div style='font-size:large' class='bg-danger text-center'><b>"+response['VNO']+"</b></div><div class='text-center'>"+"<b>Mileage covered: </b>"+response['mileage']+"  "+"<b>Engine Active Hours: </b>"+response['hours_worked']+"  "+"<b>Min. Speed: </b>"+response['min_speed']+"  "+"<b>Max. Speed: </b> "+response['max_speed']+"</div>");
+            if(response["loc"] == undefined){
+                alert("No data found");
+                return false;
+            }
             for (let i = 0; i < response["loc"].length; i++) {
                 if(i == 0){
                     startlat = response["loc"][i][0];
@@ -398,6 +403,7 @@ function play(){
 function replay(){
     $("#map_canvas").slideUp("slow");
     $("#map_replay").slideDown("slow");
+    live_play_mode = 0;
 }
 
 function toggle_map(arg){
@@ -405,19 +411,22 @@ function toggle_map(arg){
     if(typeof(VNO) == "undefined" || VNO == "" ){
         alert("Enter vehicle no");
         $("#search_inp").focus();
+        live_play_mode = 0;
     }else{
         VNO = VNO.toUpperCase();
         if(!check_checked(VNO)){
             alert("Vehicle No not found");
             $("#search_inp").focus();
+            live_play_mode = 0;
         }else{
             if(arg.value == "replay"){
                 $("#map_canvas").slideUp("slow");
                 $("#map_canvas_live").slideUp("slow");
                 $("#map_replay").slideDown("slow");
-                $("#gmapreplay").text("Normal");
-                $("#gmapreplay").attr('value', 'normal'); 
+                $("#gmapreplay").prop('value', 'normal');
+                $("#gmapreplay").html("<i class='fa fa-arrow-left'>&nbsp;</i>Normal"); 
                 $("#gmaplive").hide();
+                live_play_mode  = 0;
             }else if(arg.value == "normal"){
                 $("#map_canvas").slideDown("slow");
                 $("#map_canvas_live").slideUp("slow");
@@ -425,6 +434,7 @@ function toggle_map(arg){
                 $("#gmapreplay").text("Replay");
                 $("#gmapreplay").prop('value', 'replay');
                 $("#gmaplive").show();
+                live_play_mode = 0;
             }
         }
     }
@@ -512,7 +522,6 @@ function toggle_map(arg){
         
         $("#VPF").change(function(evt){
             var VPF = $("#VPF").val();
-            console.log(VPF);
             if(VPF=="Daily"){
                 $("#weekdaydiv").hide("slow");
                 $("#monthdaydiv").hide("slow");

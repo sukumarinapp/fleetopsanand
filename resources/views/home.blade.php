@@ -224,14 +224,17 @@
   var ground_speed_live = 0;
   var position_live = [5.629031666666666,-0.15723666666666666];
   var snapLength = 0;
+  var live_play_mode = 0;
 
   function live_track_play(){
     VNO_live = $("#search_inp").val();
     if(typeof(VNO_live) == "undefined" || VNO_live == "" ){
       alert("Enter vehicle no");
       $("#search_inp").focus();
+      live_play_mode = 0;
       return false;
     }else{
+      live_play_mode = 1;
       $("#map_canvas").slideUp("slow");
       $("#map_replay").slideUp("slow");
       $("#map_canvas_live").slideDown("slow");
@@ -291,11 +294,6 @@
           prevLatitude = response[0]['latitude'];
           prevLongitude = response[0]['longitude'];
         }
-        console.log(response[0]['capture_datetime']);
-        console.log(response[0]['latitude']);
-        console.log(response[0]['longitude']);
-        console.log(response[0]['ground_speed']);
-        console.log(response[0]['direction']);
       },
       error: function (jqXHR, exception) {
         console.log(exception);
@@ -303,7 +301,9 @@
     });
   }
 
-  setInterval(animateMarkers, 10000);
+  if(live_play_mode == 1){
+    setInterval(animateMarkers, 10000);
+  }
 
   var numDeltas = 100;
   var delay = 100;
