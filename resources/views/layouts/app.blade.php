@@ -392,6 +392,7 @@ function play(){
                 var series = new Array(response["loc"][i][0],response["loc"][i][1]);
                 locationData.push(series);
             }
+            console.log(startlat);
             initializereplay();
         },
         error: function (jqXHR, exception) {
