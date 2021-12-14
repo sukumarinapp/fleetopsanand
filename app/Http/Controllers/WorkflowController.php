@@ -208,7 +208,14 @@ class WorkflowController extends Controller
         return view('notificationslog',compact('logs','title','from','to'));
     }
 
-    
+     public function telematicslog($from,$to)
+    {
+        $this->check_access("BPJ2");
+        $title = 'Daily Telematics Log';
+        $sql = "select * from sms_log where DAT >='$from' and DAT <='$to' order by DAT desc";
+        $logs = DB::select(DB::raw($sql));
+        return view('telematicslog',compact('logs','title','from','to'));
+    }
 
 
     public function override($VNO)
