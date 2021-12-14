@@ -368,6 +368,7 @@ function play(){
         alert("select End Time");
         return false;
     }else{
+        locationData = Array();
         $("#gmapreplay").html("<i class='fa fa-arrow-left'>&nbsp;</i>Normal");
         $.ajax({
           type: "get",
