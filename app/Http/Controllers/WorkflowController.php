@@ -208,11 +208,45 @@ class WorkflowController extends Controller
         return view('notificationslog',compact('logs','title','from','to'));
     }
 
-     public function telematicslog($date)
-    {
-        $this->check_access("BPJ2");
+    private function get_filter($user_id,$parent_id,$usertype,$CAN){
+        $filter = "";
+        if($parent_id == 1){
+          $sql="select UAN from users where parent_id=$user_id and usertype='Client'";
+          $result = DB::select(DB::raw($sql));
+          $filter = " AND CAN IN ('-1'";
+          foreach($result as $row){
+            $filter = $filter . ",'$row->UAN'";
+          }     
+          $filter = $filter . ") ";
+
+          $sql="select UAN from users where parent_id=$user_id and usertype='Manager'";
+          $result = DB::select(DB::raw($sql));
+          foreach($result as $row){
+            $filter = $filter . ",'$row->UAN'";
+          }     
+        }else if($parent_id > 1 && $usertype == "Manager"){
+          $sql="select UAN from users where parent_id=$user_id and usertype='Client'";
+          $result = DB::select(DB::raw($sql));
+          $filter = " AND CAN IN ('-1'";
+          foreach($result as $row){
+            $filter = $filter . ",'$row->UAN'";
+          }     
+          $filter = $filter . ") ";
+        }else if($parent_id > 1 && $usertype == "Client"){
+          $filter = " and CAN='$CAN' ";
+        }
+        return $filter;
+      }
+
+     public function telematicslog($date){
+        $user_id = Auth::user()->id;
+        $parent_id = Auth::user()->parent_id;
+        $usertype = Auth::user()->usertype;
+        $CAN = Auth::user()->UAN;
+        $filter = self::get_filter($user_id,$parent_id,$usertype,$CAN);
+
         $title = 'Daily Telematics Log';
-        $sql = "select a.*,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD,b.VAM from vehicle a,driver b where a.driver_id=b.id";
+        $sql = "select a.*,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD,b.VAM from vehicle a,driver b where a.driver_id=b.id $filter";
         $vehicles = DB::select(DB::raw($sql));
         foreach($vehicles as $vehicle){
             $VNO = $vehicle->VNO;

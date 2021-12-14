@@ -430,7 +430,7 @@ class HomeController extends Controller
           }     
           $filter = $filter . ") ";
         }else if($usertype == "Client"){
-          $filter = " AND CAN = '$UAN' ";
+          $filter = " AND CAN = '$CAN' ";
         }
         $filter = "";
         
