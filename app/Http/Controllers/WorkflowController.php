@@ -212,61 +212,23 @@ class WorkflowController extends Controller
     {
         $this->check_access("BPJ2");
         $title = 'Daily Telematics Log';
-        $sql = "select a.*,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD,b.VAM from vehicle a,driver b where a.driver_id=b.id";
+        $sql = "select c.DDT,c.CML,c.CHR,a.*,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD,b.VAM from vehicle a,driver b,tbl136 c where a.VNO = c.VNO and c.DDT >= '$from' and c.DDT <= '$to' and a.driver_id=b.id";
         $vehicles = DB::select(DB::raw($sql));
         foreach($vehicles as $vehicle){
             $VNO = $vehicle->VNO;
             $TID = $vehicle->TID;
             $VBM = $vehicle->VBM;
+            $DDT = $vehicle->DDT;
             if($VBM == "Rental"){
-                $VBM = "RT";
+                $vehicle->VBM = "RT";
             }else if($VBM == "Hire Purchase"){
-                $VBM = "HP";
+                $vehicle->VBM = "HP";
             }else if($VBM == "Ride Hailing"){
-                $VBM = "RH";
+                $vehicle->VBM = "RH";
             }
-            $vehicle->VBM = $VBM;
-            $vehicle->date = $date;
-            $start_km = 0; 
-            $end_km = 0; 
-            $sql2 = "select min(odometer) as start_km from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID'";
-            $result2 = DB::select(DB::raw($sql2));
-            if(count($result2) > 0){
-                $start_km = $result2[0]->start_km;
-            }
-            $sql3 = "select max(odometer) as end_km from  current_location where capture_date >='$from' and capture_date <='$to' and terminal_id='$TID'";
-            $result3 = DB::select(DB::raw($sql3));
-            if(count($result3) > 0){
-                $end_km = $result3[0]->end_km;
-            }
-            $CML = round($end_km - $start_km,3);
-            $vehicle->CML = $CML;
-
-            $sql4 = "select capture_time,ground_speed from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID' order by capture_time";
-            $i=0;
-            $total_seconds = 0;
-            $CHR = 0;
-            $result4 = DB::select(DB::raw($sql4));
-            foreach($result4  as $row4){
-                $ground_speed = $row4->ground_speed;
-                $capture_time = explode(".",$row4->capture_time);
-                $capture_time = $capture_time[0];
-                $hour = substr($capture_time,0,2);
-                $minute = substr($capture_time,2,2);
-                $second = substr($capture_time,4,2);
-                $time_seconds = $hour * 3600 + $minute * 60 + $second;
-                if($i>0 && $ground_speed <> 0 && $previous_ground_speed <> 0){
-                    $total_seconds = $total_seconds + ($time_seconds - $previous_time);
-                }
-                $previous_time = $time_seconds;
-                $previous_ground_speed = $row4->ground_speed;
-                $i++;
-            }
-            $CHR = round($total_seconds/3600,2);
-            $vehicle->CHR = $CHR;
 
             $min_speed = 0;
-            $sql5 = "select min(ground_speed) as min_speed from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID' and ground_speed <> 0";
+            $sql5 = "select min(ground_speed) as min_speed from current_location where capture_date = '$DDT' and  terminal_id='$TID' and ground_speed <> 0";
             $result5 = DB::select(DB::raw($sql5));
             if(count($result5) > 0){
                 $min_speed = $result5[0]->min_speed;
@@ -274,7 +236,7 @@ class WorkflowController extends Controller
             $vehicle->min_speed = $min_speed;
             
             $max_speed = 0;
-            $sql6 = "select max(ground_speed) as max_speed from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID'";
+            $sql6 = "select max(ground_speed) as max_speed from current_location where capture_date = '$DDT' and  terminal_id='$TID'";
             $result6 = DB::select(DB::raw($sql6));
             if(count($result6) > 0){
                 $max_speed = $result6[0]->max_speed;
@@ -282,7 +244,7 @@ class WorkflowController extends Controller
             $vehicle->max_speed = $max_speed;
 
             $work_start = "";
-            $sql7 = "select min(capture_datetime) as work_start from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID' and engine_on = 1";
+            $sql7 = "select min(capture_datetime) as work_start from current_location where capture_date = '$DDT' and  terminal_id='$TID' and engine_on = 1";
             $result7 = DB::select(DB::raw($sql7));
             if(count($result7) > 0){
                 $work_start = $result7[0]->work_start;
@@ -290,14 +252,14 @@ class WorkflowController extends Controller
             $vehicle->work_start = substr($work_start,11);
 
             $work_end = "";
-            $sql8 = "select max(capture_datetime) as work_end from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID' and engine_on = 1";
+            $sql8 = "select max(capture_datetime) as work_end from current_location where capture_date >='$DDT' and  terminal_id='$TID' and engine_on = 1";
             $result8 = DB::select(DB::raw($sql8));
             if(count($result8) > 0){
                 $work_end = $result8[0]->work_end;
             }
             $vehicle->work_end = substr($work_end,11);
         }
-        return view('telematicslog',compact('vehicles','title','date','from','to'));
+        return view('telematicslog',compact('vehicles','title','from','to'));
     }
 
 

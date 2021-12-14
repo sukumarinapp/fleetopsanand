@@ -54,7 +54,7 @@
           <tbody>
           @foreach($vehicles as $vehicle)
           <tr>
-           <td>{{ date("d-m-Y",strtotime($vehicle->date)) }}</td>
+           <td>{{ date("d-m-Y",strtotime($vehicle->DDT)) }}</td>
            <td>{{ $vehicle->VNO }}</td>
            <td>{{ $vehicle->CML }}</td>
            <td>{{ $vehicle->CHR }}</td>
