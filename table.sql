@@ -1,3 +1,10 @@
+alter table tbl136 add min_speed decimal(10,2) DEFAULT 0;
+alter table tbl136 add max_speed decimal(10,2) DEFAULT 0;
+alter table tbl136 add work_start varchar(10) DEFAULT NULL;
+alter table tbl136 add work_end varchar(10) DEFAULT NULL;
+
+alter table current_location drop column min_speed, drop column max_speed, drop column work_start, drop column work_end;
+
 delete from current_location where id = 99383;
 insert into current_location (id,terminal_id,capture_date,capture_datetime,capture_time,latitude,longitude,ground_speed,odometer,direction,engine_on) values (99383,'233500627699','2021-12-09','2021-12-01 00:00:54','000054.000','5.6314166666666665','-0.15366500000000002','22.50','7080.620','69.19','1');         
 
