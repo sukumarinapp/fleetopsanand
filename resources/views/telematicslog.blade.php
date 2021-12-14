@@ -26,7 +26,6 @@
          <form class="form-inline" >
           <label for="from">&nbsp;Date&nbsp;</label>
           <input value="{{ $date }}" class="form-control" type="date" id="from" name="from"  />
-          <label>&nbsp;</label>
           <input onclick="load_report()" type="button"  value="Apply" class="form-control text-center btn btn-success btn-sm" />
         </form>
       </div>
