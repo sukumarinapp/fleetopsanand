@@ -280,6 +280,7 @@
   }
   
   function animateMarkers(){
+    if(live_play_mode == 0) return;
     var result;
     var vehicle_location = '{{ url('vehicle_location') }}';
     vehicle_location = vehicle_location + "/" + VNO_live;
@@ -301,9 +302,7 @@
     });
   }
 
-  if(live_play_mode == 1){
-    setInterval(animateMarkers, 10000);
-  }
+  setInterval(animateMarkers, 10000);
 
   var numDeltas = 100;
   var delay = 100;
