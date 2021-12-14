@@ -208,7 +208,7 @@ class WorkflowController extends Controller
         return view('notificationslog',compact('logs','title','from','to'));
     }
 
-     public function telematicslog($date)
+     public function telematicslog($from,$to)
     {
         $this->check_access("BPJ2");
         $title = 'Daily Telematics Log';
@@ -229,12 +229,12 @@ class WorkflowController extends Controller
             $vehicle->date = $date;
             $start_km = 0; 
             $end_km = 0; 
-            $sql2 = "select min(odometer) as start_km from current_location where capture_date='$date' and  terminal_id='$TID'";
+            $sql2 = "select min(odometer) as start_km from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID'";
             $result2 = DB::select(DB::raw($sql2));
             if(count($result2) > 0){
                 $start_km = $result2[0]->start_km;
             }
-            $sql3 = "select max(odometer) as end_km from  current_location where capture_date='$date' and terminal_id='$TID'";
+            $sql3 = "select max(odometer) as end_km from  current_location where capture_date >='$from' and capture_date <='$to' and terminal_id='$TID'";
             $result3 = DB::select(DB::raw($sql3));
             if(count($result3) > 0){
                 $end_km = $result3[0]->end_km;
@@ -242,7 +242,7 @@ class WorkflowController extends Controller
             $CML = round($end_km - $start_km,3);
             $vehicle->CML = $CML;
 
-            $sql4 = "select capture_time,ground_speed from current_location where capture_date='$date' and  terminal_id='$TID' order by capture_time";
+            $sql4 = "select capture_time,ground_speed from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID' order by capture_time";
             $i=0;
             $total_seconds = 0;
             $CHR = 0;
@@ -266,7 +266,7 @@ class WorkflowController extends Controller
             $vehicle->CHR = $CHR;
 
             $min_speed = 0;
-            $sql5 = "select min(ground_speed) as min_speed from current_location where capture_date='$date' and  terminal_id='$TID' and ground_speed <> 0";
+            $sql5 = "select min(ground_speed) as min_speed from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID' and ground_speed <> 0";
             $result5 = DB::select(DB::raw($sql5));
             if(count($result5) > 0){
                 $min_speed = $result5[0]->min_speed;
@@ -274,7 +274,7 @@ class WorkflowController extends Controller
             $vehicle->min_speed = $min_speed;
             
             $max_speed = 0;
-            $sql6 = "select max(ground_speed) as max_speed from current_location where capture_date='$date' and  terminal_id='$TID'";
+            $sql6 = "select max(ground_speed) as max_speed from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID'";
             $result6 = DB::select(DB::raw($sql6));
             if(count($result6) > 0){
                 $max_speed = $result6[0]->max_speed;
@@ -282,7 +282,7 @@ class WorkflowController extends Controller
             $vehicle->max_speed = $max_speed;
 
             $work_start = "";
-            $sql7 = "select min(capture_datetime) as work_start from current_location where capture_date='$date' and  terminal_id='$TID' and engine_on = 1";
+            $sql7 = "select min(capture_datetime) as work_start from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID' and engine_on = 1";
             $result7 = DB::select(DB::raw($sql7));
             if(count($result7) > 0){
                 $work_start = $result7[0]->work_start;
@@ -290,14 +290,14 @@ class WorkflowController extends Controller
             $vehicle->work_start = substr($work_start,11);
 
             $work_end = "";
-            $sql8 = "select max(capture_datetime) as work_end from current_location where capture_date='$date' and  terminal_id='$TID' and engine_on = 1";
+            $sql8 = "select max(capture_datetime) as work_end from current_location where capture_date >='$from' and capture_date <='$to' and  terminal_id='$TID' and engine_on = 1";
             $result8 = DB::select(DB::raw($sql8));
             if(count($result8) > 0){
                 $work_end = $result8[0]->work_end;
             }
             $vehicle->work_end = substr($work_end,11);
         }
-        return view('telematicslog',compact('vehicles','title','date'));
+        return view('telematicslog',compact('vehicles','title','date','from','to'));
     }
 
 

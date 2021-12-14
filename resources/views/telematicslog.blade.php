@@ -22,10 +22,13 @@
         <div class="col-md-2">
           <label>Daily Telematics Log</label>
         </div>
-        <div class="col-md-10">
+           <div class="col-md-10">
          <form class="form-inline" >
-          <label for="from">&nbsp;Date&nbsp;</label>
-          <input value="{{ $date }}" class="form-control" type="date" id="from" name="from"  />
+          <label for="from">&nbsp;From Date&nbsp;</label>
+          <input value="{{ $from }}" class="form-control" type="date" id="from" name="from"  />
+          <label for="to">&nbsp;To Date&nbsp;</label>
+          <input value="{{ $to }}" class="form-control" type="date" id="to" name="to"  />
+          <label>&nbsp;</label>
           <input onclick="load_report()" type="button"  value="Apply" class="form-control text-center btn btn-success btn-sm" />
         </form>
       </div>
@@ -74,10 +77,13 @@
 	var telematicslog = "{{ url('telematicslog') }}";
 	function load_report(){
 		var from = $("#from").val();
+    var to = $("#to").val();
     if(from == ""){
       alert("Please select from Date");
+    }else if(to == ""){
+      alert("Please select To Date");
     }else{
-      var url =  telematicslog + "/" + from;  
+      var url =  telematicslog + "/" + from + "/" +to;  
       window.location.href = url;
     }		
   }

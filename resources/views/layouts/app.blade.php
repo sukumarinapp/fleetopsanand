@@ -166,7 +166,7 @@
 
               <li><a href="{{ url('alertlog') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'alertlog') ? 'active' : '' }}" class="dropdown-item">Alert Log</a></li> 
 
-               <li><a href="{{ url('telematicslog') }}/{{ date('Y-m-d', strtotime('-1 days')) }}" class="dropdown-item {{ (request()->segment(1) == 'telematicslog') ? 'active' : '' }}" class="dropdown-item">Daily Telematics Log</a></li> 
+               <li><a href="{{ url('telematicslog') }}/{{ date('Y-m-d', strtotime('-1 days')) }}/{{ date('Y-m-d', strtotime('-1 days')) }}" class="dropdown-item {{ (request()->segment(1) == 'telematicslog') ? 'active' : '' }}" class="dropdown-item">Daily Telematics Log</a></li> 
 
           </ul>
       </li>
