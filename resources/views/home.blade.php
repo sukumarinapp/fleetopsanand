@@ -345,7 +345,7 @@
         snapLength = snappedPoints.length - 1;
         position_live[0] = snappedPoints[snapLength].location.latitude;
         position_live[1] = snappedPoints[snapLength].location.longitude;
-        i_live = 0;
+        i_live = 5;
         moveMarkerRepeat();
       },
       error: function (jqXHR, exception) {
