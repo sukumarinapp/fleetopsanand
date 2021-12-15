@@ -218,11 +218,11 @@ class WorkflowController extends Controller
         $vehicles = DB::select(DB::raw($sql));
         foreach($vehicles as $vehicle){
             $vehicle->DDT = date($vehicle->DDT, strtotime('-1 days'));
-            if($VBM == "Rental"){
+            if($vehicle->VBM == "Rental"){
                 $vehicle->VBM = "RT";
-            }else if($VBM == "Hire Purchase"){
+            }else if($vehicle->VBM == "Hire Purchase"){
                 $vehicle->VBM = "HP";
-            }else if($VBM == "Ride Hailing"){
+            }else if($vehicle->VBM == "Ride Hailing"){
                 $vehicle->VBM = "RH";
             }
         }
