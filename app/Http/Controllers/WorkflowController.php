@@ -210,8 +210,8 @@ class WorkflowController extends Controller
 
      public function telematicslog($from,$to)
     {
-        $from = date($from, strtotime('+1 days'));
-        $to = date($to, strtotime('+1 days'));
+        $from = date($from, strtotime('+1 day'));
+        $to = date($to, strtotime('+1 day'));
         $this->check_access("BPJ2");
         $title = 'Daily Telematics Log';
         $sql = "select c.DDT,c.CML,c.CHR,c.min_speed,c.max_speed,c.work_start,c.work_end,a.*,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD,b.VAM from vehicle a,driver b,tbl136 c where a.VNO = c.VNO and c.DDT >= '$from' and c.DDT <= '$to' and a.driver_id=b.id";
