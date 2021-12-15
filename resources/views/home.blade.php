@@ -417,11 +417,11 @@
           var car_icon = "carred.png";
           if(engine_on == 0){
             acc = "ACC OFF";
-            car_icon = "carred.png";
-            car_icon = "redcar.png";
+            //car_icon = "carred.png";
+            car_icon = "redcar.jpg";
           }else{
             acc = "ACC ON";
-            car_icon = "carblue.png";
+            //car_icon = "carblue.png";
             car_icon = "yellowcar.jpg";
           }
           //var car_icon = "off0.png";
