@@ -418,9 +418,11 @@
           if(engine_on == 0){
             acc = "ACC OFF";
             car_icon = "carred.png";
+            car_icon = "redcar.png";
           }else{
             acc = "ACC ON";
             car_icon = "carblue.png";
+            car_icon = "yellowcar.jpg";
           }
           //var car_icon = "off0.png";
           
@@ -483,7 +485,7 @@
               position: myLatLng,
               map: mapnormal,
               icon: car_icon,
-              animation: google.maps.Animation.DROP,
+              animation: google.maps.Animation.NONE,
               title: title
             });
             markers.push(marker);
