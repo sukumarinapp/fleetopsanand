@@ -210,15 +210,14 @@ class WorkflowController extends Controller
 
      public function telematicslog($from,$to)
     {
+        $from = date($from, strtotime('+1 days'));
+        $to = date($to, strtotime('+1 days'));
         $this->check_access("BPJ2");
         $title = 'Daily Telematics Log';
         $sql = "select c.DDT,c.CML,c.CHR,c.min_speed,c.max_speed,c.work_start,c.work_end,a.*,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD,b.VAM from vehicle a,driver b,tbl136 c where a.VNO = c.VNO and c.DDT >= '$from' and c.DDT <= '$to' and a.driver_id=b.id";
         $vehicles = DB::select(DB::raw($sql));
         foreach($vehicles as $vehicle){
-            $VNO = $vehicle->VNO;
-            $TID = $vehicle->TID;
-            $VBM = $vehicle->VBM;
-            $DDT = $vehicle->DDT;
+            $vehicle->DDT = date($vehicle->DDT, strtotime('-1 days'));
             if($VBM == "Rental"){
                 $vehicle->VBM = "RT";
             }else if($VBM == "Hire Purchase"){
@@ -226,9 +225,9 @@ class WorkflowController extends Controller
             }else if($VBM == "Ride Hailing"){
                 $vehicle->VBM = "RH";
             }
-
-            
         }
+        $from = date($from, strtotime('-1 days'));
+        $to = date($to, strtotime('-1 days'));
         return view('telematicslog',compact('vehicles','title','from','to'));
     }
 
