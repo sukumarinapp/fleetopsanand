@@ -210,15 +210,15 @@ class WorkflowController extends Controller
 
      public function telematicslog($from,$to)
     {
-        $from = date($from, strtotime('+1 day'));
-        $to = date($to, strtotime('+1 day'));
+        $from = date("Y-m-d", strtotime($from.' +1 day'));
+        $to = date("Y-m-d", strtotime($to.' +1 day'));
         $this->check_access("BPJ2");
         $title = 'Daily Telematics Log';
         $sql = "select c.DDT,c.CML,c.CHR,c.min_speed,c.max_speed,c.work_start,c.work_end,a.*,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD,b.VAM from vehicle a,driver b,tbl136 c where a.VNO = c.VNO and c.DDT >= '$from' and c.DDT <= '$to' and a.driver_id=b.id";
         echo $sql;
         $vehicles = DB::select(DB::raw($sql));
         foreach($vehicles as $vehicle){
-            $vehicle->DDT = date($vehicle->DDT, strtotime('-1 days'));
+            $vehicle->DDT = date("Y-m-d", strtotime($vehicle->DDT.' -1 days'));
             if($vehicle->VBM == "Rental"){
                 $vehicle->VBM = "RT";
             }else if($vehicle->VBM == "Hire Purchase"){
@@ -227,8 +227,8 @@ class WorkflowController extends Controller
                 $vehicle->VBM = "RH";
             }
         }
-        $from = date($from, strtotime('-1 days'));
-        $to = date($to, strtotime('-1 days'));
+        $from = date("Y-m-d", strtotime($from.' -1 days'));
+        $to = date("Y-m-d", strtotime($to.' -1 days'));
         return view('telematicslog',compact('vehicles','title','from','to'));
     }
 
