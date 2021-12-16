@@ -2,13 +2,16 @@
 @section('content')
 <div class="container" >
   <div class="row justify-content-center">
-   <a href="#" class="navbar-brand">
+   <div class="col-md-12 text-center">
+    <a href="#" class="navbar-brand">
                 <img src="{{ URL::to('/') }}/images/fleetopslogo.png" alt="AdminLTE Logo">
             </a>
+    <h3 style="color: lightgray">Payment Options</h3>
+  </div>
           </div>
   <form method="post" action="{{ route('driverpaysave') }}">
     @csrf
-  <div style="padding: 50px; height: 200px;"></div>
+  <div style="padding: 50px; height: 100px;"></div>
   <div class="row justify-content-center">
         <input type="hidden" id="VNO" name="VNO" value="{{ $sales['VNO'] }}">
         <input type="hidden" id="DCN" name="DCN" value="{{ $sales['DCN'] }}">
