@@ -280,10 +280,10 @@ class WorkflowController extends Controller
                     $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=3 where id = '$DCR'";
                     DB::update($sql);
                 }
-                if($hour >= 12  || $WST < $curr_date){
+                if(($hour >= 12  || $WST < $curr_date) && $DES == 'A4'){
                     $sql = "update tbl136 set DECL = 1,attempts=0 where id = '$DCR'";
                     DB::update($sql);
-                }else{
+                }else if($DES == 'A4'){
                     $sql = "update tbl136 set DECL = 1,attempts=3 where id = '$DCR'";
                     DB::update($sql);
                 }
