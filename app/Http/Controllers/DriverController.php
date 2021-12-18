@@ -84,7 +84,7 @@ class DriverController extends Controller
                     $vehicle->QTY = 0;
                     if(count($result) > 0){
                         foreach($result as $res){
-                            $vehicle->VAM = $vehicle->VAM + $res->SSA;
+                            $vehicle->VAM = $res->SSA;
                             $vehicle->QTY = $vehicle->QTY + 1;
                         }
                     }
