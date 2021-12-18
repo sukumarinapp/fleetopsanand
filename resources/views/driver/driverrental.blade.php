@@ -45,7 +45,7 @@
      <p class="col-form-label"><b>Payment Freq</b> : {{ $vehicle->VPF }}</p>
   </div>
   <div class="col-md-12">
-     <p class="col-form-label"><b>Quantity</b>     : {{ $vehicle->QTY }}</p>
+     <p class="col-form-label"><b>No of Payments</b>     : {{ $vehicle->QTY }}</p>
   </div>
   <div class="col-md-12">
      <p class="col-form-label"><b>Total</b>        : {{ $vehicle->TOT }}</p>
