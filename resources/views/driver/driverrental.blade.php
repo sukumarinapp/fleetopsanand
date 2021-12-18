@@ -31,9 +31,17 @@
 </div>
   <hr>
 <div class="row">
+ <div class="col-md-12">
+     <p class="col-form-label"><b>Amount</b>       : {{ $vehicle->VAM }}</p>
+  </div>
   <div class="col-md-12">
-   <p>A fixed amount of GHC {{ $vehicle->VAM }} is expected to be remitted to your car owner on a {{ $vehicle->VPF }} basis.</p>
-   <p>You may proceed by pressing ‘Ok’ below.</p>
+     <p class="col-form-label"><b>Payment Freq</b> : {{ $vehicle->VPF }}</p>
+  </div>
+  <div class="col-md-12">
+     <p class="col-form-label"><b>Quantity</b>     : {{ $vehicle->DCN }}</p>
+  </div>
+  <div class="col-md-12">
+     <p class="col-form-label"><b>Total</b>        : {{ $vehicle->DCN }}</p>
   </div>
 </div>
 <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">      
