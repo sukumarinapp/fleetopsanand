@@ -39,7 +39,7 @@
                 @endif
   </div>
  <div class="col-md-12">
-     <p class="col-form-label"><b>Amount</b>       : {{ $vehicle->VAM }}</p>
+     <p class="col-form-label"><b>Amount</b>       : GHC {{ $vehicle->VAM }}</p>
   </div>
   <div class="col-md-12">
      <p class="col-form-label"><b>Payment Freq</b> : {{ $vehicle->VPF }}</p>
@@ -48,7 +48,7 @@
      <p class="col-form-label"><b>No of Payments</b>     : {{ $vehicle->QTY }}</p>
   </div>
   <div class="col-md-12">
-     <p class="col-form-label"><b>Total</b>        : {{ $vehicle->TOT }}</p>
+     <p class="col-form-label"><b>Total</b>        : GHC {{ $vehicle->TOT }}</p>
   </div>
 </div>
 <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">      
