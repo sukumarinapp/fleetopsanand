@@ -18,7 +18,7 @@
   <div class="card-body">
       <input type="hidden" id="VNO" name="VNO" value="{{ $vehicle->VNO }}">
        <input type="hidden" id="DCN" name="DCN" value="{{ $vehicle->DCN }}">
-       <input type="hidden" id="SSA" name="SSA" value="{{ $vehicle->VAM }}">
+       <input type="hidden" id="SSA" name="SSA" value="{{ $vehicle->TOT }}">
        <input type="hidden" id="SSR" name="SSR" value="Driver">
        <input type="hidden" id="VBM" name="VBM" value="{{ $vehicle->VBM }}">
      <div class="row justify-content-center">
@@ -31,6 +31,13 @@
 </div>
   <hr>
 <div class="row">
+  <div class="col-md-12">
+      @if($vehicle->VBM == "Hire Purchase")
+               <b> Hire Purchase Customer </b>
+                @else
+                <b>Vehicle Rental Customer</b>
+                @endif
+  </div>
  <div class="col-md-12">
      <p class="col-form-label"><b>Amount</b>       : {{ $vehicle->VAM }}</p>
   </div>
@@ -38,10 +45,10 @@
      <p class="col-form-label"><b>Payment Freq</b> : {{ $vehicle->VPF }}</p>
   </div>
   <div class="col-md-12">
-     <p class="col-form-label"><b>Quantity</b>     : {{ $vehicle->DCN }}</p>
+     <p class="col-form-label"><b>Quantity</b>     : {{ $vehicle->QTY }}</p>
   </div>
   <div class="col-md-12">
-     <p class="col-form-label"><b>Total</b>        : {{ $vehicle->DCN }}</p>
+     <p class="col-form-label"><b>Total</b>        : {{ $vehicle->TOT }}</p>
   </div>
 </div>
 <nav class="navbar fixed-bottom navbar-expand-lg justify-content-center">      
