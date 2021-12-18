@@ -73,16 +73,22 @@ class DriverController extends Controller
                     $sql = "select * from tbl136 where replace(VNO, '-', '') = '$VNO' and DECL=0";
                     $result = DB::select(DB::raw($sql));
                     if(count($result) > 0){
+                        $vehicle->QTY = 1;
                         $DCR = $result[0]->id;
                     }else{
                         return view('driver.nopending');
                     }
-                    $sql = "select sum(SSA) as sales_amount from sales_rental where DCR = $DCR";
+                    $sql = "select SSA from sales_rental where DCR = $DCR";
                     $result = DB::select(DB::raw($sql));
+                    $vehicle->VAM = 0;
+                    $vehicle->QTY = 0;
                     if(count($result) > 0){
-                        $vehicle->VAM = $result[0]->sales_amount;
+                        foreach($result as $res){
+                            $vehicle->VAM = $vehicle->VAM + $res->SSA;
+                            $vehicle->QTY = $vehicle->QTY + 1;
+                        }
                     }
-                }
+                } 
                 return view('driver.driverrental',compact('vehicle'));
             }
         }else{
