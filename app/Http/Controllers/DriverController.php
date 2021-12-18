@@ -74,6 +74,7 @@ class DriverController extends Controller
                     $result = DB::select(DB::raw($sql));
                     if(count($result) > 0){
                         $vehicle->QTY = 1;
+                        $vehicle->TOT = $vehicle->VAM;
                         $DCR = $result[0]->id;
                     }else{
                         return view('driver.nopending');
@@ -82,9 +83,11 @@ class DriverController extends Controller
                     $result = DB::select(DB::raw($sql));
                     $vehicle->VAM = 0;
                     $vehicle->QTY = 0;
+                    $vehicle->TOT = 0;
                     if(count($result) > 0){
                         foreach($result as $res){
                             $vehicle->VAM = $res->SSA;
+                            $vehicle->TOT = $vehicle->TOT + $res->SSA;
                             $vehicle->QTY = $vehicle->QTY + 1;
                         }
                     }
