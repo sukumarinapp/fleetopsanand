@@ -53,7 +53,7 @@
 				<div class="form-group row">
 					<label for="DNO" class="col-sm-4 col-form-label"><span style="color:red">*</span>License Number</label>
 					<div class="col-sm-8">
-						<input onkeyup="duplicateDNO(0)" required="required" type="text" class="form-control" name="DNO" id="DNO" maxlength="15" placeholder="License Number">
+						<input onkeyup="duplicateDNO(0)" required="required" type="text" class="form-control" name="DNO" id="DNO" maxlength="25" placeholder="License Number">
 						<span id="dupDNO" style="color:red"></span>
 					</div>
 				</div>

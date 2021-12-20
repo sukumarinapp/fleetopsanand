@@ -1,3 +1,5 @@
+alter table driver modify DNO varchar(50);
+
 alter table tbl136 add min_speed decimal(10,2) DEFAULT 0;
 alter table tbl136 add max_speed decimal(10,2) DEFAULT 0;
 alter table tbl136 add work_start varchar(10) DEFAULT NULL;

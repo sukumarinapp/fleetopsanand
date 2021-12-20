@@ -53,10 +53,10 @@
 						<input required="required" value="{{ $driver->DSN }}" type="text" class="form-control" name="DSN" id="DSN" maxlength="30" placeholder="Driver Surname">
 					</div>
 				</div>
-				<div class="form-group row">
+				<div clakss="form-group row">
 					<label for="DNO" class="col-sm-4 col-form-label"><span style="color:red">*</span>License Number</label>
 					<div class="col-sm-8">
-						<input onkeyup="duplicateDNO( {{ $driver->id }} )" required="required" value="{{ $driver->DNO }}" type="text" class="form-control" name="DNO" id="DNO" maxlength="15" placeholder="License Number">
+						<input onkeyup="duplicateDNO( {{ $driver->id }} )" required="required" value="{{ $driver->DNO }}" type="text" class="form-control" name="DNO" id="DNO" maxlength="25" placeholder="License Number">
 						<span id="dupDNO" style="color:red"></span>
 					</div>
 				</div>
