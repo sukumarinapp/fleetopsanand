@@ -273,7 +273,7 @@ class WorkflowController extends Controller
 
                 $curr_date = date("Y-m-d");
                 $hour = date("H");
-                if(($hour >= 10 and $hour < 11) || $WST < $curr_date){
+                if(($hour >= 10 and $hour < 11 and $WST == $curr_date) || $WST < $curr_date){
                     $sql = "update tbl136 set alarm_off = 1,alarm_off_attempts=0 where id = '$DCR'";
                     DB::update($sql);
                 }else{
