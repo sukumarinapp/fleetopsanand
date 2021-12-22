@@ -427,6 +427,8 @@
             car_icon = "bluecar.png";
           }
           console.log(car_icon);
+          console.log(driver_id);
+          
           
           var dir = parseFloat(vehicle['direction']);
           /*
