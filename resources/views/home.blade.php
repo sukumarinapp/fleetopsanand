@@ -423,7 +423,7 @@
             acc = "ACC ON";
             car_icon = "yellowcar.jpg";
           }
-          if(driver_id == "" || isnull(driver_id)){
+          if(driver_id == ""){
             car_icon = "bluecar.png";
           }
           console.log(car_icon);
