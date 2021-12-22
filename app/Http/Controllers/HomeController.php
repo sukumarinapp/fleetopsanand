@@ -86,6 +86,7 @@ class HomeController extends Controller
             $sql4 = "select a.id,a.driver_id,a.VNO,a.VTV,a.TID from vehicle a and a.CAN='$CAN'";
             $vehicles = DB::select(DB::raw($sql4));  
             $c=0;
+            //test
             $usertree[$i]['client'][$k]['vehicle'] = array();
             foreach($vehicles as $vehicle){
               $usertree[$i]['client'][$k]['vehicle'][$c]['id'] = $vehicle->id;
