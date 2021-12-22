@@ -414,17 +414,20 @@
           //console.log(vehicle['VNO']+":"+vehicle['latitude']+":"+vehicle['longitude']);
           var acc = "";
           var engine_on = parseInt(vehicle["engine_on"]);
-          var car_icon = "carred.png";
+          var car_icon = "redcar.jpg";
+          var driver_id = vehicle["driver_id"];
           if(engine_on == 0){
             acc = "ACC OFF";
             //car_icon = "carred.png";
             car_icon = "redcar.jpg";
-          }else{
+          }else if(engine_on == 0){
             acc = "ACC ON";
             //car_icon = "carblue.png";
             car_icon = "yellowcar.jpg";
           }
-          //var car_icon = "off0.png";
+          if(driver_id == ""){
+            car_icon = "bluecar.png";
+          }
           
           var dir = parseFloat(vehicle['direction']);
           /*
