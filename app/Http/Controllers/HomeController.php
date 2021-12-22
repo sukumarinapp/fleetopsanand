@@ -83,10 +83,9 @@ class HomeController extends Controller
             $usertree[$i]['client'][$k]['usertype'] = "client";
             $usertree[$i]['client'][$k]['level'] = 2;
             $usertree[$i]['client'][$k]['UAN'] = $client->UAN;
-            $sql4 = "select a.id,a.driver_id,a.VNO,a.VTV,a.TID from vehicle a and a.CAN='$CAN'";
+            $sql4 = "select a.id,a.driver_id,a.VNO,a.VTV,a.TID from vehicle a where a.CAN='$CAN'";
             $vehicles = DB::select(DB::raw($sql4));  
             $c=0;
-            //test
             $usertree[$i]['client'][$k]['vehicle'] = array();
             foreach($vehicles as $vehicle){
               $usertree[$i]['client'][$k]['vehicle'][$c]['id'] = $vehicle->id;
