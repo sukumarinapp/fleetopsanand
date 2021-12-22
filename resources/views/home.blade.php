@@ -423,12 +423,12 @@
             acc = "ACC ON";
             car_icon = "yellowcar.jpg";
           }
-          if(driver_id == ""){
+          if(driver_id == "" or $driver_id == null){
             car_icon = "bluecar.png";
           }
           console.log(car_icon);
           console.log(driver_id);
-          
+
           
           var dir = parseFloat(vehicle['direction']);
           /*
