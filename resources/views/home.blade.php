@@ -426,6 +426,7 @@
           if(driver_id == ""){
             car_icon = "bluecar.png";
           }
+          console.log(car_icon);
           
           var dir = parseFloat(vehicle['direction']);
           /*
