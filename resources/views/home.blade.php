@@ -418,11 +418,9 @@
           var driver_id = vehicle["driver_id"];
           if(engine_on == 0){
             acc = "ACC OFF";
-            //car_icon = "carred.png";
             car_icon = "redcar.jpg";
-          }else if(engine_on == 0){
+          }else if(engine_on == 1){
             acc = "ACC ON";
-            //car_icon = "carblue.png";
             car_icon = "yellowcar.jpg";
           }
           if(driver_id == ""){
