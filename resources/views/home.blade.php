@@ -423,11 +423,12 @@
             acc = "ACC ON";
             car_icon = "yellowcar.jpg";
           }
-          if(driver_id == ""){
+          if(!driver_id){
             car_icon = "bluecar.png";
           }
-          console.log(car_icon);
           console.log(vehicle['VNO']);
+          console.log(car_icon);
+          
           
           var dir = parseFloat(vehicle['direction']);
           /*

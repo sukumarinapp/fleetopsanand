@@ -83,7 +83,7 @@ class HomeController extends Controller
             $usertree[$i]['client'][$k]['usertype'] = "client";
             $usertree[$i]['client'][$k]['level'] = 2;
             $usertree[$i]['client'][$k]['UAN'] = $client->UAN;
-            $sql4 = "select a.id,a.driver_id,a.VNO,a.VTV,a.TID,b.DNM,b.DSN from vehicle a,driver b where a.driver_id=b.id and a.CAN='$CAN' and a.VTV=1";
+            $sql4 = "select a.id,a.driver_id,a.VNO,a.VTV,a.TID from vehicle a where a.CAN='$CAN'";
             $vehicles = DB::select(DB::raw($sql4));  
             $c=0;
             $usertree[$i]['client'][$k]['vehicle'] = array();
@@ -92,8 +92,8 @@ class HomeController extends Controller
               $usertree[$i]['client'][$k]['vehicle'][$c]['driver_id'] = $vehicle->driver_id;
               $usertree[$i]['client'][$k]['vehicle'][$c]['VNO'] = $vehicle->VNO;
               $usertree[$i]['client'][$k]['vehicle'][$c]['TID'] = $vehicle->TID;
-              $usertree[$i]['client'][$k]['vehicle'][$c]['DNM'] = $vehicle->DNM;
-              $usertree[$i]['client'][$k]['vehicle'][$c]['DSN'] = $vehicle->DSN;
+              //$usertree[$i]['client'][$k]['vehicle'][$c]['DNM'] = $vehicle->DNM;
+              //$usertree[$i]['client'][$k]['vehicle'][$c]['DSN'] = $vehicle->DSN;
               $usertree[$i]['client'][$k]['vehicle'][$c]['usertype'] = "vehicle";
               $usertree[$i]['client'][$k]['vehicle'][$c]['level'] = 3;
               $usertree[$i]['client'][$k]['vehicle'][$c]['parent_id'] = $parent_id;
