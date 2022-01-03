@@ -120,12 +120,12 @@
 
 
                   @if(Auth::user()->usertype == "Admin" || Auth::user()->BPC == true || Auth::user()->BPF == true)
-                  <li><a href="{{ route('vehicle.index') }}" class="dropdown-item {{ (request()->segment(1) == 'vehicle' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}" class="dropdown-item">Manage Vehicle</a></li>
+                  <li><a href="{{ route('vehicle.index') }}" class="dropdown-item {{ (request()->segment(1) == 'vehicle' || request()->segment(1) == 'assignvehicle' || request()->segment(1) == 'removevehicle') ? 'active' : '' }}" class="dropdown-item">Fleet Manager</a></li>
                   @endif
 
                   @if(Auth::user()->usertype == "Admin" || Auth::user()->BPF == true)
 
-                  <li><a href="{{ route('fdriver.index') }}" class="dropdown-item {{ (request()->segment(1) == 'fdriver') ? 'active' : '' }}" class="dropdown-item">Manage Driver</a></li>
+                  <li><a href="{{ route('fdriver.index') }}" class="dropdown-item {{ (request()->segment(1) == 'fdriver') ? 'active' : '' }}" class="dropdown-item">Driver Manager</a></li>
               </li>
               @endif
 
@@ -155,7 +155,7 @@
           </ul>
       </li>
 
-  <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'workflowlog' || request()->segment(1) == 'vehiclelog' || request()->segment(1) == 'notificationslog' || request()->segment(1) == 'alertlog' ) ? 'active' : '' }}">
+  <li class="dropdown dropdown-hover {{ (request()->segment(1) == 'workflowlog' || request()->segment(1) == 'vehiclelog' || request()->segment(1) == 'notificationslog' || request()->segment(1) == 'alertlog' || request()->segment(1) == 'telematicslog' ) ? 'active' : '' }}">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Reports</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
               <li><a href="{{ url('workflowlog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) =='workflowlog') ? 'active' : '' }}" class="dropdown-item">Workflow Log </a></li>

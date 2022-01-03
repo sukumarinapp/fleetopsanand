@@ -14,7 +14,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item">Operations</li>
-              <li class="breadcrumb-item">Driver</li>
+              <li class="breadcrumb-item">Driver Manager</li>
             </ol>
           </div>
         </div>
@@ -22,7 +22,7 @@
     </div>
 			<div class="card card-info">
 			<div class="card-header">
-			<h3 class="card-title">Manage Driver</h3>
+			<h3 class="card-title">Driver Manager</h3>
 			<a href="{{ route('fdriver.create') }}" class="btn btn-secondary float-right"><i class="nav-icon fas fa-plus"></i>&nbsp; Add Driver</a>
 		    </div>
 			<div style="overflow-x: auto;" class="card-body">
