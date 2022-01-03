@@ -840,7 +840,11 @@ class HomeController extends Controller
           $alerts[$i]['ev_longitude'] = "";
           $alerts[$i]['res_latitude'] = "";
           $alerts[$i]['res_longitude'] = "";
-          $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$off_time' order by capture_datetime desc limit 1";
+          if($off_time == ""){
+            $sql6="select latitude,longitude from current_location where terminal_id='$TID' order by capture_datetime desc limit 1";
+          }else{
+            $sql6="select latitude,longitude from current_location where terminal_id='$TID' and capture_datetime <= '$off_time' order by capture_datetime desc limit 1";
+          }          
           $ev_location = DB::select(DB::raw($sql6));
           if(count($ev_location) > 0){
             $alerts[$i]['ev_latitude'] = $ev_location[0]->latitude;
