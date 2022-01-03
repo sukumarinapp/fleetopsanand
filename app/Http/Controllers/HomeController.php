@@ -266,6 +266,7 @@ class HomeController extends Controller
           if($i == 0) $odometer_start = $loc->odometer;
           $location['loc'][$i][0] = $loc->latitude;
           $location['loc'][$i][1] = $loc->longitude;
+          $location['loc'][$i][2] = $loc->capture_datetime;
           $odometer_end = $loc->odometer;
           $ground_speed = $loc->ground_speed;
           if($i>0 && $ground_speed <> 0 && $previous_ground_speed <> 0){

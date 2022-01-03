@@ -216,6 +216,7 @@
     </section>
 </div>
 </div>
+
 <script src="{{ mix('js/app.js') }}" ></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMFPPAlejgNNF0FPoxBNjqVpThqXRvy_s"></script>
 @yield('third_party_scripts')
@@ -247,6 +248,7 @@ var startlat = "";
 var endlat = "";
 var startlong = "";
 var endlong = "";
+var mtitle = "";
 speedMultiplier = 1; // speedMultiplier to control animation speed
 //google.maps.event.addDomListener(window, 'load', initializereplay);
 //$(document).ajaxStop(initializereplay);
@@ -258,6 +260,8 @@ function initializereplay() {
     };
     map = new google.maps.Map(document.getElementById('replay-canvas'),
         mapOptions);  
+    console.log('startLat', startlat);
+    console.log('mtitle', mtitle);
     mockDirections();
 }
 
@@ -273,21 +277,22 @@ function mockDirections() {
     var start = new google.maps.LatLng(startlat,startlong);
     var end = new google.maps.LatLng(endlat,endlong);
 
-    var startMarker = new google.maps.Marker({position: start, map: map, label: 'A'});
-    var endMarker = new google.maps.Marker({position: end, map: map, label: 'B'});
+    var startMarker = new google.maps.Marker({position: start, map: map, label: 'A', title: mtitle});
+    var endMarker = new google.maps.Marker({position: end, map: map, label: 'B', title: mtitle});
     initRoute();
 }
 // initialize travel marker
 function initRoute() {
   var route = line.getPath().getArray();
   // options
+
   var options = {
     map: map,  // map object
     speed: 30, // default 10 , animation speed
     interval: 10, //default 10, marker refresh time
     speedMultiplier: speedMultiplier,
     markerOptions: { 
-      title: 'Travel Marker',
+      title: mtitle,
       animation: google.maps.Animation.NONE,
       icon: {
         url: 'track.png',
@@ -305,6 +310,8 @@ function initRoute() {
 
   // define marker
   marker = new TravelMarker(options);
+
+  // console.log('marker', marker.options.markerOptions.title);
   
  // add locations from direction service 
  marker.addLocation(route);
@@ -377,11 +384,16 @@ function play(){
           url: url,
           success: function(response) {
             response = JSON.parse(response);
+            console.log("response");
+            console.log(response);
+            
+
             $("#replay-summary").html("<div style='font-size:large' class='bg-danger text-center'><b>"+response['VNO']+"</b></div><div class='text-center'>"+"<b>Mileage covered: </b>"+response['mileage']+"  "+"<b>Engine Active Hours: </b>"+response['hours_worked']+"  "+"<b>Min. Speed: </b>"+response['min_speed']+"  "+"<b>Max. Speed: </b> "+response['max_speed']+"</div>");
             if(response["loc"] == undefined){
                 alert("No data found");
                 return false;
             }
+
             for (let i = 0; i < response["loc"].length; i++) {
                 if(i == 0){
                     startlat = response["loc"][i][0];
@@ -391,10 +403,11 @@ function play(){
                     endlat = response["loc"][i][0];
                     endlong = response["loc"][i][1];
                 }
-                var series = new Array(response["loc"][i][0],response["loc"][i][1]);
+                var series = new Array(response["loc"][i][0],response["loc"][i][1],response["loc"][i][1]);
                 locationData.push(series);
+                console.log('lookme');
+                mtitle = response["loc"][i][2];
             }
-            console.log(startlat);
             initializereplay();
         },
         error: function (jqXHR, exception) {
