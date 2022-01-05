@@ -397,7 +397,7 @@ class HomeController extends Controller
 
         $today = date("Y-m-d");
 
-        $sql = "select a.driver_id,a.VNO,b.capture_date,b.capture_time,b.direction,terminal_id,latitude,longitude,ground_speed,odometer,engine_on from vehicle a,current_location b where a.TID=b.terminal_id ".$filter." and b.id in (select max(id) from current_location where capture_date='$today' group by terminal_id)";
+        $sql = "select a.driver_id,a.VNO,b.capture_date,b.capture_time,b.direction,terminal_id,latitude,longitude,ground_speed,odometer,engine_on from vehicle a,current_location b where a.TID=b.terminal_id ".$filter." and b.id in (select max(id) from current_location where capture_date='$today' group by terminal_id) and a.TID not in (select TID from tracker_status where status=0)";
         $markers = DB::select(DB::raw($sql));
         //dd($markers);
         return response()->json($markers);
