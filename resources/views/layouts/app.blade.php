@@ -248,7 +248,8 @@ var startlat = "";
 var endlat = "";
 var startlong = "";
 var endlong = "";
-var mtitle = "";
+var startdate = "";
+var enddate = "";
 speedMultiplier = 1; // speedMultiplier to control animation speed
 //google.maps.event.addDomListener(window, 'load', initializereplay);
 //$(document).ajaxStop(initializereplay);
@@ -261,7 +262,6 @@ function initializereplay() {
     map = new google.maps.Map(document.getElementById('replay-canvas'),
         mapOptions);  
     console.log('startLat', startlat);
-    console.log('mtitle', mtitle);
     mockDirections();
 }
 
@@ -277,8 +277,20 @@ function mockDirections() {
     var start = new google.maps.LatLng(startlat,startlong);
     var end = new google.maps.LatLng(endlat,endlong);
 
-    var startMarker = new google.maps.Marker({position: start, map: map, label: 'A', title: mtitle});
-    var endMarker = new google.maps.Marker({position: end, map: map, label: 'B', title: mtitle});
+    var startMarker = new google.maps.Marker({position: start, map: map, label: 'A', title: startdate});
+    var endMarker = new google.maps.Marker({position: end, map: map, label: 'B', title: enddate});
+
+    var marker, i;
+for (i = 0; i < locationData.length; i++) {
+    marker = new google.maps.Marker({
+         position: new google.maps.LatLng(locationData[i][0], locationData[i][1]),
+         map: map,
+         title: locationData[i][2],
+         icon: "dot.png"
+    });
+}
+
+
     initRoute();
 }
 // initialize travel marker
@@ -292,7 +304,7 @@ function initRoute() {
     interval: 10, //default 10, marker refresh time
     speedMultiplier: speedMultiplier,
     markerOptions: { 
-      title: mtitle,
+      title: "",
       animation: google.maps.Animation.NONE,
       icon: {
         url: 'track.png',
@@ -398,15 +410,18 @@ function play(){
                 if(i == 0){
                     startlat = response["loc"][i][0];
                     startlong = response["loc"][i][1];
+
+                    startdate = response["loc"][i][2];
                 }
                 if(i == response["loc"].length-1){
                     endlat = response["loc"][i][0];
                     endlong = response["loc"][i][1];
+                    enddate = response["loc"][i][2];
                 }
-                var series = new Array(response["loc"][i][0],response["loc"][i][1],response["loc"][i][1]);
+                var series = new Array(response["loc"][i][0],response["loc"][i][1],response["loc"][i][2]);
                 locationData.push(series);
                 console.log('lookme');
-                mtitle = response["loc"][i][2];
+                
             }
             initializereplay();
         },
