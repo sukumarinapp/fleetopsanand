@@ -280,15 +280,15 @@ function mockDirections() {
     var startMarker = new google.maps.Marker({position: start, map: map, label: 'A', title: startdate});
     var endMarker = new google.maps.Marker({position: end, map: map, label: 'B', title: enddate});
 
-    var marker, i;
+    /*var marker, i;
 for (i = 0; i < locationData.length; i++) {
     marker = new google.maps.Marker({
          position: new google.maps.LatLng(locationData[i][0], locationData[i][1]),
          map: map,
-         title: locationData[i][2],
+         title: locationData[i][2]
          icon: "dot.png"
     });
-}
+}*/
 
 
     initRoute();
@@ -423,6 +423,7 @@ function play(){
                 console.log('lookme');
                 
             }
+            $("#replaytime").html(startdate);
             initializereplay();
         },
         error: function (jqXHR, exception) {
