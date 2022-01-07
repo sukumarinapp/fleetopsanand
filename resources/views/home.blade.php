@@ -113,7 +113,7 @@
                 <button type="button" class="btn btn-primary btn-xs form-control" onclick="fast()" value ="fast"><i class="fa fa-fast-forward"></i></button>
               </div>
               <div class="col-md-3">
-                <label>Speed:&nbsp;</label><h1 class="badge badge-pill badge-info badge-lg" id="speed">1x</h1>
+                <label>Speed:&nbsp;</label><h3 class="badge badge-pill badge-info" id="speed">1x</h3>
               </div>
             </div>
 
@@ -479,7 +479,7 @@
           */
           if(check_checked(vehicle['VNO'])){
             var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
-            var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + vehicle["ground_speed"]+ "\n" + vehicle["direction"]; 
+            var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n"  + vehicle["ground_speed"]+ "\n" + vehicle["direction"]; 
             var marker = new google.maps.Marker({
               position: myLatLng,
               map: mapnormal,
