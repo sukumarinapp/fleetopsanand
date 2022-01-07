@@ -113,7 +113,7 @@
                 <button type="button" class="btn btn-primary btn-xs form-control" onclick="fast()" value ="fast"><i class="fa fa-fast-forward"></i></button>
               </div>
               <div class="col-md-3">
-                <label>Speed:&nbsp;</label><h1 class="badge badge-pill badge-info badge-lg" id="speed">1x</h1>
+                <label>Speed:&nbsp;</label><h3 class="badge badge-pill badge-info" id="speed">1x</h3>
               </div>
             </div>
 
