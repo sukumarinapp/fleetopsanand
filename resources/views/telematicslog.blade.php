@@ -44,8 +44,12 @@
             <th>VNO</th>
             <th>CML</th>
             <th>CHR</th>
-            <th>Min Speed</th>
+            <th>Avg Speed</th>
             <th>Max Speed</th>
+            <th>Odometer</th>
+            <th>Engine Idling(%)</th>
+            <th>Speeding(%)</th>
+            <th>Fuel Consumed</th>
             <th>Work Start Time</th>
             <th>Work End Time</th>
             <th>VBM</th>
@@ -60,6 +64,10 @@
            <td>{{ $vehicle->CHR }}</td>
            <td>{{ $vehicle->min_speed }}</td>
            <td>{{ $vehicle->max_speed }}</td>
+           <td>{{ round($vehicle->odometer) }}</td>
+           <td>{{ $vehicle->engine_idling }}</td>
+           <td>{{ $vehicle->speeding }}</td>
+           <td>{{ $vehicle->fuel_consumed }}</td>
            <td>{{ $vehicle->work_start }}</td>
            <td>{{ $vehicle->work_end }}</td>
            <td>{{ $vehicle->VBM }}</td>
