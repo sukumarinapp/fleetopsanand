@@ -1,5 +1,7 @@
 alter table bgp1am add odometer varchar(20) DEFAULT NULL;
 alter table bgp1am add engine_idling varchar(5) DEFAULT NULL;
+alter table bgp1am add speeding varchar(5) DEFAULT NULL;
+alter table bgp1am add fuel_consumed varchar(20) DEFAULT NULL;
 
 alter table tbl136 add min_speed decimal(10,2) DEFAULT 0;
 alter table tbl136 add max_speed decimal(10,2) DEFAULT 0;
