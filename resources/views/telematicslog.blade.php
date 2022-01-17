@@ -42,13 +42,13 @@
           <tr>
             <th>Date</th>
             <th>VNO</th>
+            <th>Odometer</th>
             <th>CML</th>
             <th>CHR</th>
-            <th>Avg Speed</th>
-            <th>Max Speed</th>
-            <th>Odometer</th>
             <th>Engine Idling(%)</th>
             <th>Speeding(%)</th>
+            <th>Avg Speed</th>
+            <th>Max Speed</th>
             <th>Fuel Consumed</th>
             <th>Work Start Time</th>
             <th>Work End Time</th>
@@ -60,13 +60,13 @@
           <tr>
            <td>{{ date("d-m-Y",strtotime($vehicle->DDT)) }}</td>
            <td>{{ $vehicle->VNO }}</td>
+           <td>{{ round($vehicle->odometer) }}</td>
            <td>{{ $vehicle->CML }}</td>
            <td>{{ $vehicle->CHR }}</td>
-           <td>{{ $vehicle->min_speed }}</td>
-           <td>{{ $vehicle->max_speed }}</td>
-           <td>{{ round($vehicle->odometer) }}</td>
            <td>{{ $vehicle->engine_idling }}</td>
            <td>{{ $vehicle->speeding }}</td>
+           <td>{{ $vehicle->min_speed }}</td>
+           <td>{{ $vehicle->max_speed }}</td>
            <td>{{ $vehicle->fuel_consumed }}</td>
            <td>{{ $vehicle->work_start }}</td>
            <td>{{ $vehicle->work_end }}</td>
