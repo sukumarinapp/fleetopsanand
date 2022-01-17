@@ -217,7 +217,7 @@ class WorkflowController extends Controller
         $sql = "select c.DDT,c.CML,c.CHR,c.min_speed,c.max_speed,c.work_start,c.work_end,c.odometer,c.engine_idling,c.speeding,c.fuel_consumed,a.*,b.VBM,b.VPF,b.WDY,b.MDY,b.VPD,b.VAM from vehicle a,driver b,bgp1am c where a.VNO = c.VNO and c.DDT >= '$from' and c.DDT <= '$to' and a.driver_id=b.id";
         $vehicles = DB::select(DB::raw($sql));
         foreach($vehicles as $vehicle){
-            $vehicle->DDT = date("Y-m-d", strtotime($vehicle->DDT.' -1 days'));
+            //$vehicle->DDT = date("Y-m-d", strtotime($vehicle->DDT.' -1 days'));
             if($vehicle->VBM == "Rental"){
                 $vehicle->VBM = "RT";
             }else if($vehicle->VBM == "Hire Purchase"){
