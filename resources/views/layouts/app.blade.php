@@ -6,7 +6,7 @@
         @if(isset($title))
         {{ $title }}
         @else
-        {{ config('app.name') }}                
+        {{ config('app.name') }}
         @endif
     </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -115,7 +115,7 @@
 
                 <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"> Operations</a>
 
-                
+
                 <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
 
 
@@ -137,9 +137,9 @@
           </ul>
           @endif
 
-          
 
-         
+
+
          <li class="dropdown dropdown-hover {{ ( request()->segment(1) == 'rhreport' || request()->segment(1) == 'sales' || request()->segment(1) == 'collection'  ) ? 'active' : '' }}">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Sales</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
@@ -162,11 +162,11 @@
 
               <li><a href="{{ url('vehiclelog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'vehiclelog') ? 'active' : '' }}" class="dropdown-item">Vehicle Assign Log</a></li>
 
-              <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li> 
+              <li><a href="{{ url('notificationslog') }}/{{ date('Y-m-d', strtotime('-6 days')) }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'notificationslog') ? 'active' : '' }}" class="dropdown-item">Notifications Log</a></li>
 
-              <li><a href="{{ url('alertlog') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'alertlog') ? 'active' : '' }}" class="dropdown-item">Alert Log</a></li> 
+              <li><a href="{{ url('alertlog') }}/{{ date('Y-m-d') }}/{{ date('Y-m-d') }}" class="dropdown-item {{ (request()->segment(1) == 'alertlog') ? 'active' : '' }}" class="dropdown-item">Alert Log</a></li>
 
-               <li><a href="{{ url('telematicslog') }}/{{ date('Y-m-d', strtotime('-1 days')) }}/{{ date('Y-m-d', strtotime('-1 days')) }}" class="dropdown-item {{ (request()->segment(1) == 'telematicslog') ? 'active' : '' }}" class="dropdown-item">Daily Telematics Log</a></li> 
+               <li><a href="{{ url('telematicslog') }}/{{ date('Y-m-d', strtotime('-1 days')) }}/{{ date('Y-m-d', strtotime('-1 days')) }}" class="dropdown-item {{ (request()->segment(1) == 'telematicslog') ? 'active' : '' }}" class="dropdown-item">Daily Telematics Log</a></li>
 
           </ul>
       </li>
@@ -207,7 +207,7 @@
 </li>
 </ul>
 </div>
-</nav> 
+</nav>
 
 
 <div class="content-wrapper">
@@ -238,11 +238,11 @@
 <script type="text/javascript" language="javascript" src="{{ asset('js/travel-marker.umd.js') }}"></script>
 @stack('page_scripts')
 <script>
-//https://codepen.io/manpreetsingh80/pen/aEpzjB    
+//https://codepen.io/manpreetsingh80/pen/aEpzjB
 var map, line, marker;
 var directionsService = new google.maps.DirectionsService();
 var TravelMarker = travelMarker.TravelMarker;
-speedMultiplier = 1; 
+speedMultiplier = 1;
 var locationData = Array();
 var startlat = "";
 var endlat = "";
@@ -256,11 +256,11 @@ speedMultiplier = 1; // speedMultiplier to control animation speed
 
 function initializereplay() {
     var mapOptions = {
-        zoom: 16, 
+        zoom: 16,
         center: new google.maps.LatLng(startlat,startlong),
     };
     map = new google.maps.Map(document.getElementById('replay-canvas'),
-        mapOptions);  
+        mapOptions);
     console.log('startLat', startlat);
     mockDirections();
 }
@@ -273,7 +273,7 @@ function mockDirections() {
       map: map
   });
     locationArray.forEach(l => this.line.getPath().push(l));
-    
+
     var start = new google.maps.LatLng(startlat,startlong);
     var end = new google.maps.LatLng(endlat,endlong);
 
@@ -296,6 +296,7 @@ for (i = 0; i < locationData.length; i++) {
 // initialize travel marker
 function initRoute() {
   var route = line.getPath().getArray();
+  var mapMarkerImage = "{{ asset('images/map-car.png') }}";
   // options
 
   var options = {
@@ -303,31 +304,45 @@ function initRoute() {
     speed: 30, // default 10 , animation speed
     interval: 10, //default 10, marker refresh time
     speedMultiplier: speedMultiplier,
-    markerOptions: { 
+    markerOptions: {
       title: "",
       animation: google.maps.Animation.NONE,
       icon: {
-        url: 'track.png',
+        url: mapMarkerImage,
         animation: google.maps.Animation.NONE,
         // This marker is 20 pixels wide by 32 pixels high.
         // size: new google.maps.Size(256, 256),
-        scaledSize: new google.maps.Size(128, 128),
+        scaledSize: new google.maps.Size(54, 29),
         // The origin for this image is (0, 0).
         origin: new google.maps.Point(0, 0),
         // The anchor for this image is the base of the flagpole at (0, 32).
-        anchor: new google.maps.Point(53, 110)
-    }
-},
-};
+        anchor: new google.maps.Point(27, 15)
+     }
+    },
+  };
 
   // define marker
   marker = new TravelMarker(options);
 
   // console.log('marker', marker.options.markerOptions.title);
-  
- // add locations from direction service 
+
+ // add locations from direction service
  marker.addLocation(route);
- 
+
+ // rotating the Car
+    var parentOverflowFixed = false;
+    marker.event.onEvent(function (event, data) {
+        var angle = marker.marker.angle;
+
+        var $car = $("img[src=\"" + mapMarkerImage +"\"]");
+        if (!parentOverflowFixed && $car.length > 0) {
+            $car.parent().css('overflow', 'visible');
+            $car.css('transform-origin', "50% 50%");
+            parentOverflowFixed = true;
+        }
+        $car.css("transform", "rotate(" + (angle + 270) + "deg)");
+    });
+
  //setTimeout(play, 2000);
  marker.play();
 }
@@ -373,7 +388,7 @@ function play(){
     var endtime = $("#endtime").val();
     var formData = "VNO="+VNO+"&starttime="+starttime+"&endtime="+endtime;
     var track = "{{ url('track') }}";
-    var url =  track + "/" + VNO + "/" +starttime + "/" +endtime; 
+    var url =  track + "/" + VNO + "/" +starttime + "/" +endtime;
     if(typeof(VNO) == "undefined" || VNO == "" ){
         alert("Enter vehicle no");
         $("#search_inp").focus();
@@ -398,7 +413,7 @@ function play(){
             response = JSON.parse(response);
             console.log("response");
             console.log(response);
-            
+
 
             $("#replay-summary").html("<div style='font-size:large' class='bg-danger text-center'><b>"+response['VNO']+"</b></div><div class='text-center'>"+"<b>Mileage covered: </b>"+response['mileage']+"  "+"<b>Engine Active Hours: </b>"+response['hours_worked']+"  "+"<b>Min. Speed: </b>"+response['min_speed']+"  "+"<b>Max. Speed: </b> "+response['max_speed']+"</div>");
             if(response["loc"] == undefined){
@@ -420,8 +435,6 @@ function play(){
                 }
                 var series = new Array(response["loc"][i][0],response["loc"][i][1],response["loc"][i][2]);
                 locationData.push(series);
-                console.log('lookme');
-                
             }
             $("#replaytime").html(startdate);
             initializereplay();
@@ -457,7 +470,7 @@ function toggle_map(arg){
                 $("#map_canvas_live").slideUp("slow");
                 $("#map_replay").slideDown("slow");
                 $("#gmapreplay").prop('value', 'normal');
-                $("#gmapreplay").html("<i class='fa fa-arrow-left'>&nbsp;</i>Normal"); 
+                $("#gmapreplay").html("<i class='fa fa-arrow-left'>&nbsp;</i>Normal");
                 $("#gmaplive").hide();
                 live_play_mode  = 0;
             }else if(arg.value == "normal"){
@@ -486,13 +499,13 @@ function toggle_map(arg){
     }
 
     $(document).ready(function(){
-        
+
 
         $("#search_inp").bind('paste', function(e) {
             var elem = $(this);
             search_tree(e);
         });
-        
+
         $("#treeview").hummingbird();
         $("#treeview").hummingbird("checkAll");
         //reloadMarkers();
@@ -506,17 +519,17 @@ function toggle_map(arg){
             $(".alert-success").slideUp(500);
         });
         $('#rhvisibility').change(function() {
-            if(this.checked) {            
-                $("#SPF").attr("disabled", "disabled"); 
-                $("#RMT").attr("disabled", "disabled"); 
-                $("#TPF").attr("disabled", "disabled"); 
+            if(this.checked) {
+                $("#SPF").attr("disabled", "disabled");
+                $("#RMT").attr("disabled", "disabled");
+                $("#TPF").attr("disabled", "disabled");
             }else{
                 $("#SPF").removeAttr("disabled");
                 $("#RMT").removeAttr("disabled");
                 $("#TPF").removeAttr("disabled");
             }
         });
-        
+
         if(($('#BPJ1').prop("checked")) == false){
             $('#BPJ1').prop("checked", false);
             $('#BPJ2').prop("checked", false);
@@ -528,9 +541,9 @@ function toggle_map(arg){
             $('#RBA4A').attr("disabled", true);
             $('#RBA4B').attr("disabled", true);
         }
-        
+
         $('#RBA4').change(function() {
-            if(this.checked) {            
+            if(this.checked) {
                 $('#RBA4A').attr("disabled", false);
                 $('#RBA4B').attr("disabled", false);
             }else{
@@ -540,7 +553,7 @@ function toggle_map(arg){
         });
 
         $('#BPJ').change(function() {
-            if(this.checked) {            
+            if(this.checked) {
                 $('#BPJ1').prop("checked", true);
                 $('#BPJ2').prop("checked", true);
                 $('#BPJ1').attr("disabled", false);
@@ -552,7 +565,7 @@ function toggle_map(arg){
                 $('#BPJ2').attr("disabled", true);
             }
         });
-        
+
         $("#VPF").change(function(evt){
             var VPF = $("#VPF").val();
             if(VPF=="Daily"){
@@ -590,7 +603,7 @@ function toggle_map(arg){
                 $("#CBKLBL").text("Telecom Provider");
                 $("#CMA").attr("placeholder", "Name");
                 $("#CMN").attr("placeholder", "Mobile Number");
-                $("#telecom_div").html("<select class='form-control' name='CMB' id='CMB'><option value='AIRTELTIGO'>AIRTELTIGO</option><option value='MTN'>MTN</option><option value='VODAFONE'>VODAFONE</option></select>");            
+                $("#telecom_div").html("<select class='form-control' name='CMB' id='CMB'><option value='AIRTELTIGO'>AIRTELTIGO</option><option value='MTN'>MTN</option><option value='VODAFONE'>VODAFONE</option></select>");
             }else if(CMT == "B"){
                 $("#CMBLBL").show();
                 $("#branch_div").show();
@@ -631,13 +644,13 @@ function toggle_map(arg){
          dom: "<'row'<'col-sm-12 col-md-9'B><'col-sm-12 col-md-3'f>>" +
          "<'row'<'col-sm-12'tr>>" +
          "<'row'<'col-sm-12 col-md-2'i><'col-sm-12 col-md-2'l><'col-sm-12 col-md-8'p>>",
-         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],  
+         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
          buttons: [
          'excel', 'pdf', 'print','columnsToggle'
          ]
      } );
 
-        var maxLen200 = 200;        
+        var maxLen200 = 200;
         $('.max200').keypress(function(event){
             var Length = $(".max200").val().length;
             if(Length >= maxLen200){
@@ -867,7 +880,7 @@ function validate_amount(){
             return false;
         }
     }
-    return true;    
+    return true;
 }
 
 </script>
