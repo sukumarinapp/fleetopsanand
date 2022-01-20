@@ -418,12 +418,6 @@
             acc = "ACC ON";
             car_icon = "yellowcar.jpg";
           }
-          if(!driver_id){
-            car_icon = "bluecar.png";
-          }
-          console.log(vehicle['VNO']);
-          console.log(car_icon);
-          
           
           var dir = parseFloat(vehicle['direction']);
           /*
@@ -477,6 +471,14 @@
             }
           }
           */
+
+          if(!driver_id){
+            car_icon = "bluecar.png";
+          }
+
+          console.log(vehicle['VNO']);
+          console.log(car_icon);
+          
           if(check_checked(vehicle['VNO'])){
             var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
             var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + "Speed: " + vehicle["ground_speed"]+ "\n" + "Direction: " + vehicle["direction"]; 
