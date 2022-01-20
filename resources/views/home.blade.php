@@ -18,7 +18,7 @@
     <div class="container-fluid">
      <div class="card card-info">
       <div class="card-header">
-        <h3 class="card-title">Tracker</h3>
+        <h3 class="card-title">Vehicle Monitoring</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool btn-secondary" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -130,7 +130,7 @@
 </div>
 <div class="card card-info">
   <div class="card-header">
-    <h3 class="card-title">Alert</h3>
+    <h3 class="card-title">Alerts</h3>
 
     <div class="card-tools">
       <button type="button" class="btn btn-tool btn-secondary" data-card-widget="collapse"><i class="fas fa-minus"></i>
