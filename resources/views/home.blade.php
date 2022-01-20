@@ -477,10 +477,11 @@
           }
 
           console.log(driver_id);
-          console.log(vehicle['VNO']);
-          console.log(car_icon);
+          
 
           if(check_checked(vehicle['VNO'])){
+            console.log(vehicle['VNO']);
+          console.log(car_icon);
             var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
             var title = vehicle["VNO"] + "\n" + vehicle["terminal_id"] + "\n" + "Speed: " + vehicle["ground_speed"]+ "\n" + "Direction: " + vehicle["direction"]; 
             var marker = new google.maps.Marker({
