@@ -476,8 +476,9 @@
             car_icon = "bluecar.png";
           }
 
-          //console.log(vehicle['VNO']);
-          //console.log(car_icon);
+          console.log(driver_id);
+          console.log(vehicle['VNO']);
+          console.log(car_icon);
 
           if(check_checked(vehicle['VNO'])){
             var myLatLng = new google.maps.LatLng(vehicle["latitude"], vehicle["longitude"]);
