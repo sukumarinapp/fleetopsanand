@@ -474,6 +474,7 @@
 
           if(!driver_id){
             car_icon = "bluecar.png";
+            car_icon = "redcar.jpg";
           }
 
 
